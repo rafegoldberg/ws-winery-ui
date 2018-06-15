@@ -10,15 +10,13 @@ module.exports = {
   rules: {
     'no-console': 'off',
     'no-debugger': 'off',
-    'vue/html-end-tags': 'error',
-    'vue/html-indent': [
-      'error',
-      2
-    ],
-    'vue/html-self-closing': 'error',
     'vue/html-quotes': [
       'error',
       'double'
+    ],
+    'vue/attribute-hyphenation': [
+      'error',
+      'always'
     ]
   },
   parserOptions: {
