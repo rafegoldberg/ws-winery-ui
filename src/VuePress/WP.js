@@ -6,9 +6,9 @@ import WpRest from "wpapi";
  * API Configuration
  */
 const URI =
-    typeof WP_API_Settings == "object"
-      ? WP_API_Settings.endpoint
-      : "http://192.168.64.2/clients/BGLJ/",
+  typeof WP_API_Settings == "object" ?
+  WP_API_Settings.endpoint :
+  "http://192.168.64.2/clients/BGLJ/",
   API = WpRest.discover(URI);
 
 /**
@@ -41,7 +41,7 @@ API.then(WP =>
       }
       // delegate to default transport if no cache
       // data is found
-      return WpRest.transport.get(wpreq, cb).then(function(result) {
+      return WpRest.transport.get(wpreq, cb).then(function (result) {
         cache[wpreq] = result;
         return result;
       });

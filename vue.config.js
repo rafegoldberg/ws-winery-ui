@@ -12,5 +12,5 @@ module.exports = {
   css: {
     extract: false
   },
-  lintOnSave: true
+  lintOnSave: false
 };

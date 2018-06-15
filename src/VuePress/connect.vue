@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import WP from "./WP.API";
+import WP from "./WP";
 export default {
   name: "VpConnect",
   methods: {

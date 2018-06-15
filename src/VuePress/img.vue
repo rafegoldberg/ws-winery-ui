@@ -13,7 +13,7 @@
 <script>
 import VpConnect from "./connect";
 export default {
-  name: "vp-img",
+  name: "VpImg",
   extends: VpConnect,
   props: ["id", "alt", "url"],
   asyncComputed: {
