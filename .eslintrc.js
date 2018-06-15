@@ -8,7 +8,7 @@ module.exports = {
     '@vue/prettier'
   ],
   rules: {
-    'no-console': 'off',
+    'no-console': 1,
     'no-debugger': 'off',
     'vue/html-quotes': [
       'error',
