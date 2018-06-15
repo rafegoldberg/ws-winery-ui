@@ -1,9 +1,9 @@
 <template>
 
-  <main class="home">
+  <main class="alt">
     <img src="../assets/logo.png">
     <article>
-      <b>Welcome to Vue</b>
+      <b>Alternate Page</b>
     </article>
   </main>
 
