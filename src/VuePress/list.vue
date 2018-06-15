@@ -1,19 +1,26 @@
 <template>
-  <ul v-if="!context.loading && !context.error">
-    <slot name="item" v-for="item in context">
+  <div v-if="!context.loading && !context.error">
+    <slot v-for="item in context" :item="item">
       {{item}}
     </slot>
-  </ul>
+    <slot name="pagination" :paging="context._paging">
+
+    </slot>
+  </div>
 </template>
 
 <script>
 import VpConnect from "./connect";
-import MediaBox from "@/components/MediaBox";
+import LoadCase from "@/components/case/load";
+import ErrorCase from "@/components/case/error";
 
 export default {
   name: "VpList",
+
+  loading: LoadCase,
+  error: ErrorCase,
+
   extends: VpConnect,
-  components: { MediaBox },
   props: {
     type: { type: String, default: "posts" }
   },
