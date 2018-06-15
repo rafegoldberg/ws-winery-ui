@@ -6,7 +6,6 @@ import routes from "@/routes";
 export default new Router({
   routes,
   mode: "history",
-  base: "/",
   linkActiveClass: "open",
   linkExactActiveClass: "active"
 });
