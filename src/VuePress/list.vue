@@ -11,15 +11,9 @@
 
 <script>
 import VpConnect from "./connect";
-import LoadCase from "@/components/case/load";
-import ErrorCase from "@/components/case/error";
 
 export default {
   name: "VpList",
-
-  loading: LoadCase,
-  error: ErrorCase,
-
   extends: VpConnect,
   props: {
     type: { type: String, default: "posts" }

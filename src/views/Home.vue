@@ -1,10 +1,14 @@
 <template>
-
-  <main class="home">
-    <img src="../assets/logo.png">
-    <article>
-      <b>Welcome to Vue</b>
-    </article>
-  </main>
-
+  <div class="home">
+    <MockBox></MockBox>
+  </div>
 </template>
+
+<script>
+import MockBox from "@/components/Mock";
+export default {
+  components: {
+    MockBox
+  }
+}
+</script>

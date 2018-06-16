@@ -1,0 +1,15 @@
+$colors:(
+  gray:    #0E0E0E,
+  slate:   #323232,
+  silver:  #B8B8B8,
+  gallery: #F0F0F0,
+  spring:  #F5F3ED,
+  gold:    #BA9454,
+  red:     #7D1214,
+);
+
+@function Color($key) {
+  $color: map-get($colors,$key);
+  @debug $color;
+  @return $color;
+}
