@@ -10,6 +10,7 @@ module.exports = {
   },
 
   css: {
+    sourceMap: true,
     extract: false
   },
   lintOnSave: false
