@@ -1,4 +1,5 @@
 module.exports = {
+
   configureWebpack: {
     devtool: "source-map",
     devServer: {
@@ -13,5 +14,6 @@ module.exports = {
     sourceMap: true,
     extract: false
   },
+  
   lintOnSave: false
 };
