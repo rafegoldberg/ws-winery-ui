@@ -1,0 +1,21 @@
+{
+  "name": "ws-winery-ui",
+  "description": "continuous delivery for the WS Winery UI",
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
