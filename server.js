@@ -1,9 +1,11 @@
-const dist = "/dist",
-  // docs = "/docs",
-  port = process.env.PORT || 5000;
+let
+dist = "/dist",
+// docs = "/docs",
+port = process.env.PORT || 5000
 
-let exp = require("express"),
-  app = exp();
+let
+exp = require("express"),
+app = exp();
 
 app.use("/", exp.static(__dirname + dist));
 // app.use("/docs", exp.static(__dirname + docs));
