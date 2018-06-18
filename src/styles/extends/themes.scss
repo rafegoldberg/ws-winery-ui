@@ -1,0 +1,34 @@
+@import "../config/colors";
+
+$themes: cream light dark !default;
+
+@mixin UI_THEMES_EXTEND( $themes: $themes ){
+  @each $theme in $themes {
+    &_#{$theme} {
+      @extend %#{$theme} !optional;
+    }
+  }
+}
+
+%cream {
+  @extend .UiTheme;
+  color: Color(slate);
+  background: Color(cream);
+}
+%light {
+  @extend .UiTheme;
+  color: Color(slate);
+  background: Color(light);
+}
+%dark {
+  @extend .UiTheme;
+  color: Color(gallery);
+  background: Color(dark);
+}
+
+.UiTheme {
+  & {
+    transition: .3s ease-out;
+  }
+  @include UI_THEMES_EXTEND;
+}

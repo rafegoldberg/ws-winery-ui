@@ -13,10 +13,6 @@
 @import "~@/styles/config/scale";
 @import "~@/styles/config/fonts";
 
-@import "~@/styles/theme/light";
-@import "~@/styles/theme/cream";
-@import "~@/styles/theme/dark";
-
 * {
   box-sizing: border-box;
 }
@@ -27,7 +23,7 @@ html, body {
 }
 html {
   font-family: "futura-pt", Futura, sans-serif;
-  font-size: Scale();
+  font-size: Size(1);
   line-height: 1.6;
 }
 
@@ -49,46 +45,7 @@ p, ul ol, dl, figure, blockquote {
 pre, code {
   font-family: $ff-mono;
 }
-</style>
-<style lang="scss" id="ui.panel">
-@import "~@/styles/config/scale";
-.UiPanel {
 
-  display: flex;
-  justify-content: stretch;
-  align-items: center;
-  flex-flow: nowrap row;
-  > * { flex: 1 }
-  > :only-child {
-    flex: 0 $legible;
-    margin: 0 auto
-  }
-  // display: grid;
-  // grid-template-columns: repeat(2,1fr);
-  // grid-gap: 0;
-}
-</style>
-<style lang="scss" id="ui.header">
-@import "~@/styles/config/fonts";
-@import "~@/styles/config/colors";
-.UiHeader {
-  font-family: $ff-serif;
-  font-weight: 300;
-  color: Color(gold);
-}
-</style>
-<style lang="scss" id="ui.button">
-@import "~@/styles/config/fonts";
-@import "~@/styles/config/colors";
-.UiButton {
-  font-family: $ff-sans;
-  font-weight: 500;
-  color: Color(gallery);
-  background: Color(gold);
-  padding: .8em 1.5em;
-  border: none;
-  font-size: .7rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-}
+@import "~@/styles/extends/themes";
+
 </style>
