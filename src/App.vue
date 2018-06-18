@@ -9,10 +9,11 @@
 <style lang="scss" id="document">
 
 @import "~@/styles/external";
-@import "~@/styles/var/fonts";
+@import "~@/styles/config/fonts";
 
-@import "~@/styles/theme/dark";
+@import "~@/styles/theme/light";
 @import "~@/styles/theme/cream";
+@import "~@/styles/theme/dark";
 
 * {
   box-sizing: border-box;
@@ -38,19 +39,28 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+p, ul ol, dl, figure, blockquote {
+  max-width: 42em;
+}
+
 pre, code {
   font-family: $ff-mono;
 }
 </style>
 <style lang="scss" id="ui.panel">
+@import "~@/styles/config/scale";
 .UiPanel {
 
   display: flex;
   justify-content: stretch;
   align-items: center;
   flex-flow: nowrap row;
-  > * { flex: 0 1 50% }
-  > :only-child { margin: 0 auto } 
+  > * { flex: 1 }
+  > :only-child {
+    flex: 0 $legible;
+    margin: 0 auto
+  }
   // display: grid;
   // grid-template-columns: repeat(2,1fr);
   // grid-gap: 0;
@@ -59,41 +69,12 @@ pre, code {
 <style lang="scss" id="ui.box">
 .UiBox {
   align-self: center;
-  padding: 4em 2em;
-}
-</style>
-<style lang="scss" id="ui.list">
-.UiList {
-  padding: unset;
-  list-style-type: none;
-  > * {
-    position: relative;
-    padding-left: 1.8em;
-    
-    & + * { margin-top: .65em }
-    
-    &:before {
-      position: absolute;
-      left: 0;
-      top: .2em;
-      transform: translateY(0%);
-
-      display: inline-block;
-      content: " ";
-      min-width: 1em;
-      min-height: 1em;
-      margin: 0 .5em 0 .3em;
-      background-image: url("~@/assets/list-bullet.svg");
-      background-position: center;
-      background-size: contain;
-      background-repeat: no-repeat;
-    }    
-  }
+  padding: 4em 3em;
 }
 </style>
 <style lang="scss" id="ui.header">
-@import "~@/styles/var/fonts";
-@import "~@/styles/var/colors";
+@import "~@/styles/config/fonts";
+@import "~@/styles/config/colors";
 .UiHeader {
   font-family: $ff-serif;
   font-weight: 300;
@@ -101,8 +82,8 @@ pre, code {
 }
 </style>
 <style lang="scss" id="ui.button">
-@import "~@/styles/var/fonts";
-@import "~@/styles/var/colors";
+@import "~@/styles/config/fonts";
+@import "~@/styles/config/colors";
 .UiButton {
   font-family: $ff-sans;
   font-weight: 500;

@@ -1,0 +1,10 @@
+@import "../config/colors";
+
+%light {
+  color: Color(slate);
+  background: Color(light);
+}
+
+.UiTheme_light {
+  @extend %light;
+}
