@@ -5,7 +5,7 @@
 
   <UiPanel>
     <UiBox>
-      <ActionBox v-bind="mock0" level="2">
+      <ActionBox v-bind="mock0">
         <UiList slot-scope="slot" :list="slot"/>
       </ActionBox>
     </UiBox>
