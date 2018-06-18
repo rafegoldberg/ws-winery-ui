@@ -3,22 +3,22 @@
   [`UiTheme_${theme}`]: theme || 'light'
   }">
 
-  <div class="UiPanel UiTheme_cream">
-    <div class="UiBox UiTheme_dark">
+  <div class="UiPanel">
+    <UiBox>
       <WineWidget></WineWidget>
-    </div>
-    <div class="UiBox">
+    </UiBox>
+    <UiBox>
       <ActionBox v-bind="mock0">
         <UiList slot-scope="slot" :list="slot"></UiList>
       </ActionBox>
-    </div>
+    </UiBox>
   </div>
 
   <div class="UiPanel">
-    <div class="UiBox">
+    <UiBox>
       <ActionBox v-bind="mock1">
       </ActionBox>
-    </div>
+    </UiBox>
   </div>
 
 </div>
@@ -26,6 +26,7 @@
 
 <script>
 import UiList from "@/components/UI/List"
+import UiBox from "@/components/UI/Box"
 import ActionBox from "@/components/ActionBox"
 import WineWidget from "@/components/Wine"
 
@@ -34,13 +35,13 @@ import data1 from "@/components/ActionBox/mock/context.1.json"
 
 let
 settings = {
-  theme: 'light'
+  theme: 'cream'
 }
 
 export default {
   name: "WidgetsPage",
   components: {
-    UiList,
+    UiList, UiBox,
     ActionBox,
     WineWidget
   },

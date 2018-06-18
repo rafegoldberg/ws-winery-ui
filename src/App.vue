@@ -68,12 +68,6 @@ pre, code {
   // grid-gap: 0;
 }
 </style>
-<style lang="scss" id="ui.box">
-.UiBox {
-  align-self: center;
-  padding: 4em 3em;
-}
-</style>
 <style lang="scss" id="ui.header">
 @import "~@/styles/config/fonts";
 @import "~@/styles/config/colors";

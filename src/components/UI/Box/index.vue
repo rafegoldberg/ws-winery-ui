@@ -1,15 +1,16 @@
 <template>
-<div class="UiBase">
-  👋🌍
+<div class="UiBox">
+  <slot/>
 </div>
 </template>
 <script>
 export default {
-  name: "UiBase"
+  name: "UiBox"
 }
 </script>
 <style lang="scss" scoped>
-.UiBase {
-  font-size: 3rem;
+.UiBox {
+  align-self: center;
+  padding: 4em 3em;
 }
 </style>
