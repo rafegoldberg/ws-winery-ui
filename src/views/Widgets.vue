@@ -1,32 +1,33 @@
 <template>
 <div class="home" :class="{
-  [`UiTheme_${theme}`]: theme || 'light'
+  [`UiTheme_${theme}`]: theme,
   }">
 
-  <div class="UiPanel">
+  <UiPanel>
     <UiBox>
+      <ActionBox v-bind="mock0" level="2">
+        <UiList slot-scope="slot" :list="slot"/>
+      </ActionBox>
+    </UiBox>
+  </UiPanel>
+
+  <UiPanel class="UiTheme_cream">
+    <UiBox class="UiTheme_dark">
       <WineWidget></WineWidget>
     </UiBox>
     <UiBox>
-      <ActionBox v-bind="mock0">
-        <UiList slot-scope="slot" :list="slot"></UiList>
-      </ActionBox>
+      <ActionBox v-bind="mock1" layout="float"/>
     </UiBox>
-  </div>
-
-  <div class="UiPanel">
-    <UiBox>
-      <ActionBox v-bind="mock1">
-      </ActionBox>
-    </UiBox>
-  </div>
+  </UiPanel>
 
 </div>
 </template>
 
 <script>
-import UiList from "@/components/UI/List"
+import UiPanel from "@/components/UI/Panel"
 import UiBox from "@/components/UI/Box"
+import UiList from "@/components/UI/List"
+
 import ActionBox from "@/components/ActionBox"
 import WineWidget from "@/components/Wine"
 
@@ -35,13 +36,14 @@ import data1 from "@/components/ActionBox/mock/context.1.json"
 
 let
 settings = {
-  theme: 'cream'
+  theme: 'light'
 }
+if( window ) window.UiSettings = settings
 
 export default {
   name: "WidgetsPage",
   components: {
-    UiList, UiBox,
+    UiList, UiBox, UiPanel,
     ActionBox,
     WineWidget
   },

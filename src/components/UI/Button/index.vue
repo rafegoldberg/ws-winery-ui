@@ -1,15 +1,30 @@
 <template>
-<div class="UiBase">
-  👋🌍
-</div>
+
+  <button class="UiButton">
+    <slot>{{cta}}</slot>
+  </button>
+
 </template>
 <script>
 export default {
-  name: "UiBase"
+  name: "UiButton",
+  props: {
+    cta: { type:String, required:false }
+  }
 }
 </script>
 <style lang="scss" scoped>
-.UiBase {
-  font-size: 3rem;
+@import "~@/styles/config/fonts";
+@import "~@/styles/config/colors";
+.UiButton {
+  font-family: $ff-sans;
+  font-weight: 500;
+  color: Color(gallery);
+  background: Color(gold);
+  padding: .8em 1.5em;
+  border: none;
+  font-size: .7rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
 }
 </style>

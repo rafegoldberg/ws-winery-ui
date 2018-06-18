@@ -10,5 +10,15 @@ export default {
   },
   cta: {
     type: String,
+  },
+  layout: {
+    type: String,
+    default: ""
+  },
+  level: {
+    type: [String,Number]
+  },
+  scale: {
+    type: [String,Number]
   }
 }
