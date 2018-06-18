@@ -3,8 +3,8 @@
   [`UiTheme_${theme}`]: theme || 'light'
   }">
 
-  <div class="UiPanel">
-    <div class="UiBox">
+  <div class="UiPanel UiTheme_cream">
+    <div class="UiBox UiTheme_dark">
       <WineWidget></WineWidget>
     </div>
     <div class="UiBox">
@@ -34,7 +34,7 @@ import data1 from "@/components/ActionBox/mock/context.1.json"
 
 let
 settings = {
-  theme: 'dark'
+  theme: 'light'
 }
 
 export default {
