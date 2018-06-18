@@ -1,0 +1,10 @@
+@import "../var/colors";
+
+%dark {
+  color: Color(silver);
+  background: Color(dark);
+}
+
+.UiTheme_dark {
+  @extend %dark;
+}

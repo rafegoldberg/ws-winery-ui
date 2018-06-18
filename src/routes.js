@@ -1,5 +1,5 @@
-import Home from "./views/Home.vue";
-import Alt from "./views/Alt.vue";
+import Home from "./views/Home";
+import Widgets from "./views/Widgets";
 
 export default [
   {
@@ -8,8 +8,8 @@ export default [
     component: Home
   },
   {
-    path: "/alt",
-    name: "alt",
-    component: Alt
-  }
+    path: "/widgets",
+    name: "widgets",
+    component: Widgets
+  },
 ];

@@ -1,0 +1,10 @@
+@import "../var/colors";
+
+%cream {
+  color: Color(slate);
+  background: Color(cream);
+}
+
+.UiTheme_cream {
+  @extend %cream;
+}
