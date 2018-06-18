@@ -2,7 +2,7 @@
 <div class="ActionBox">
 
   <div class="ActionBox--content">
-    <h1 class="UiHeader">{{title}}</h1>
+    <h3 class="UiHeader">{{title}}</h3>
     <slot v-bind="content">
       <p>{{content}}</p>
     </slot>

@@ -9,6 +9,8 @@
 <style lang="scss" id="document">
 
 @import "~@/styles/external";
+
+@import "~@/styles/config/scale";
 @import "~@/styles/config/fonts";
 
 @import "~@/styles/theme/light";
@@ -25,7 +27,7 @@ html, body {
 }
 html {
   font-family: "futura-pt", Futura, sans-serif;
-  font-size: 14pt;
+  font-size: Scale();
   line-height: 1.6;
 }
 

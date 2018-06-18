@@ -1,1 +1,22 @@
 $legible: 42em;
+
+$scale:
+  16pt
+  20pt
+  28pt
+  36pt
+  48pt
+  72pt;
+
+@function Scale( $n:false ){
+  @if( $n ){
+    @return nth($scale,$n);
+  }
+  @return nth($scale,1);
+}
+
+@for $x from 1 through 6 {
+  h#{$x} {
+    font-size: Scale(-$x);
+  }
+}

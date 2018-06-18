@@ -1,10 +1,10 @@
 <template>
 <div class="WineWidget">
   <img src="./mock/generic.png">
-  <h3>
+  <h6 class="WineWidget--title">
     {{context.name}}
     <div>{{context.type}}</div>
-  </h3>
+  </h6>
   <table>
     <tr>
       <td>${{parseFloat(context.price).toFixed(2)}}</td>
@@ -31,7 +31,7 @@ export default {
   max-width: 15em;
   margin: 0 auto;
   border-bottom: 1px solid Color(gold);
-  h3 {
+  &--title {
     margin: 1em auto;
     font-family: $ff-serif;
     text-align: center;
