@@ -17,8 +17,8 @@
 
 :root {
   font-size: $root;
-  @media (max-width:64rem){
-    font-size: calc(12pt + (1vw - .5vmin));
+  @media (max-width:68rem){
+    font-size: calc(13pt + .33vmin);
   }
 }
 
@@ -59,4 +59,11 @@ pre, code {
   font-family: $ff-mono;
 }
 
+</style>
+
+<style id="UiIcon@css">
+img.UiIcon {
+  width: 2rem;
+  height: 2rem;
+}
 </style>

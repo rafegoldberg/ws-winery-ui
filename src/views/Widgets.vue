@@ -75,10 +75,3 @@ export default {
   }
 }
 </script>
-
-<style>
-img.UiIcon {
-  width: 2rem;
-  height: 2rem;
-}
-</style>

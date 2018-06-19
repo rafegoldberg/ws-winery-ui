@@ -18,7 +18,7 @@ export default {
   justify-content: stretch;
   align-items: center;
   flex-flow: nowrap row;
-  @media ( min-width:960px ) {
+  @media ( min-width:800px ) {
     > * { flex: 1 }
 
     // BROKE: full-width UiBox layouts
@@ -28,7 +28,7 @@ export default {
     // }
     
   }
-  @media ( max-width:960px ) {
+  @media ( max-width:800px ) {
     flex-flow: nowrap column;
     > * {
       width: 100%;
