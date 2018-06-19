@@ -24,7 +24,7 @@ export default {
   list-style-type: none;
   > * {
     position: relative;
-    padding-left: 1.8em;
+    padding-left: 1.6em;
     
     & + * { margin-top: .65em }
     
@@ -38,7 +38,7 @@ export default {
       content: " ";
       min-width: 1em;
       min-height: 1em;
-      margin: 0 .5em 0 .3em;
+      margin: 0 .5em 0 .1em;
       background-image: url("~@/assets/list-bullet.svg");
       background-position: center;
       background-size: contain;
