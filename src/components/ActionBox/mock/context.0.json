@@ -1,10 +1,10 @@
 {
   "title": "Our winery is open for List-member visits only.",
   "content": [
-    "Visits are available to List members and their guests.",
     "All visits are by appointment only.",
     "Group size is limited to six people.",
-    "Kindly book at least two weeks in advance."
+    "Kindly book at least two weeks in advance.",
+    "Visits are available to List members and their guests."
   ],
   "cta": "Reserve"
 }

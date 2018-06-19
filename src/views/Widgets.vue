@@ -11,6 +11,21 @@
     </UiBox>
   </UiPanel>
 
+  <UiPanel class="UiTheme_cream" :style="{textAlign:'center'}">
+    <UiBoxImage v-bind="mImg0">
+      <UiHeading>Welcome</UiHeading>
+      <img src="@/assets/more.svg" alt="+" class="UiIcon" style="position:absolute;bottom:2rem;">
+    </UiBoxImage>
+    <UiBoxImage v-bind="mImg1">
+      <UiHeading>Indelible</UiHeading>
+      <img src="@/assets/more.svg" alt="+" class="UiIcon" style="position:absolute;bottom:2rem;">
+    </UiBoxImage>
+    <UiBoxImage v-bind="mImg2">
+      <UiHeading>Private Visit</UiHeading>
+      <img src="@/assets/more.svg" alt="+" class="UiIcon" style="position:absolute;bottom:2rem;">
+    </UiBoxImage>
+  </UiPanel>
+
   <UiPanel class="UiTheme_cream">
     <UiBox class="UiTheme_dark">
       <WineWidget></WineWidget>
@@ -26,13 +41,18 @@
 <script>
 import UiPanel from "@/components/UI/Panel"
 import UiBox from "@/components/UI/Box"
+import UiBoxImage from "@/components/UI/Box/Image"
 import UiList from "@/components/UI/List"
+import UiHeading from "@/components/UI/Heading"
 
 import ActionBox from "@/components/ActionBox"
 import WineWidget from "@/components/Wine"
 
-import data0 from "@/components/ActionBox/mock/context.0.json"
-import data1 from "@/components/ActionBox/mock/context.1.json"
+import mock0 from "@/components/ActionBox/mock/context.0.json"
+import mock1 from "@/components/ActionBox/mock/context.1.json"
+import mock2 from "./Home/mock/welcome.png"
+import mock3 from "./Home/mock/indelible.png"
+import mock4 from "./Home/mock/private-visit.png"
 
 let
 settings = {
@@ -44,13 +64,24 @@ export default {
   name: "WidgetsPage",
   components: {
     UiList, UiBox, UiPanel,
+    UiBoxImage, UiHeading,
     ActionBox,
     WineWidget
   },
   data: ()=> settings,
   computed:{
-    mock0(){ return data0 },
-    mock1(){ return data1 },
+    mock0:()=> mock0,
+    mock1:()=> mock1,
+    mImg0:()=>({ img:mock2 }),
+    mImg1:()=>({ img:mock3 }),
+    mImg2:()=>({ img:mock4 }),
   }
 }
 </script>
+
+<style>
+img.UiIcon {
+  width: 2rem;
+  height: 2rem;
+}
+</style>

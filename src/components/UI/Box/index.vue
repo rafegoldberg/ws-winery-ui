@@ -1,19 +1,18 @@
 <template>
-<div class="UiBox">
+<component :is="tag" class="UiBox">
   <slot/>
-</div>
+</component>
 </template>
 <script>
+import schema from './schema';
 export default {
-  name: "UiBox"
+  name: "UiBox",
+  props: schema
 }
 </script>
 <style lang="scss" scoped>
+@import "./style.scss";
 .UiBox {
-  align-self: center;
-  padding: 4em 3em;
-  @media ( max-width:1015px ) {
-    padding: 2em 1.5em;
-  }
+  @extend %UiBox, %UiBox_center;
 }
 </style>

@@ -18,14 +18,14 @@ export default {
   justify-content: stretch;
   align-items: center;
   flex-flow: nowrap row;
-  @media ( min-width:1015px ) {
+  @media ( min-width:960px ) {
     > * { flex: 1 }
     > :only-child {
       flex: 0 $legible;
       margin: 0 auto
     }
   }
-  @media ( max-width:1015px ) {
+  @media ( max-width:960px ) {
     flex-flow: nowrap column;
     > * {
       width: 100%;

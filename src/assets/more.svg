@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 38">
+  <g data-name="Symbol 169 – 1">
+    <g fill="none" stroke="#ba9454" data-name="Ellipse 3" transform="translate(0 7)">
+      <circle cx="12" cy="12" r="12" stroke="none"/>
+      <circle cx="12" cy="12" r="11.5"/>
+    </g>
+    <text fill="#ba9454" data-name="+" font-family="FuturaPT-Light,Futura PT" font-size="30" font-weight="300" transform="translate(12 29)">
+      <tspan x="-7.5" y="0">+</tspan>
+    </text>
+  </g>
+</svg>

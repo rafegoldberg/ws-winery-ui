@@ -1,0 +1,16 @@
+%UiBox {
+  align-self: stretch;
+  padding: 4em 3em;
+  &_center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+}
+
+%UiBox {
+  @media ( max-width:960px ) {
+    padding: 2em 1.5em;
+  }
+}
