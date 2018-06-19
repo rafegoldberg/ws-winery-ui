@@ -39,10 +39,13 @@ export default {
 
 <style lang="scss" scoped>
 .ActionBox {
+  &--action {
+    margin-top: 1.5em;
+  }
   &--button {
     &_float {
       float: right;
-      margin: 1.3rem 0 0 1em;
+      margin-left: 1em;
     }
   }
 }</style>

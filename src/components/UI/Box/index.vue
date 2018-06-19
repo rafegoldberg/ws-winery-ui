@@ -12,5 +12,8 @@ export default {
 .UiBox {
   align-self: center;
   padding: 4em 3em;
+  @media ( max-width:1015px ) {
+    padding: 2em 1.5em;
+  }
 }
 </style>

@@ -17,13 +17,14 @@ export default {
 @import "~@/styles/config/fonts";
 @import "~@/styles/config/colors";
 .UiButton {
+  appearance: none;
   font-family: $ff-sans;
   font-weight: 500;
   color: Color(gallery);
   background: Color(gold);
   padding: .8em 1.5em;
   border: none;
-  font-size: .7rem;
+  font-size: .8em;
   letter-spacing: .1em;
   text-transform: uppercase;
 }

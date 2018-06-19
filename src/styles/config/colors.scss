@@ -15,6 +15,5 @@ $colors:(
 
 @function Color($key) {
   $color: map-get($colors,$key);
-  @debug $color;
   @return $color;
 }
