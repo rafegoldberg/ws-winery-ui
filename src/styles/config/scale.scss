@@ -1,13 +1,3 @@
-$legible: 42em;
-
-$sizes:
-  16pt
-  20pt
-  28pt
-  36pt
-  48pt
-  72pt;
-
 @function Size( $n:false ){
   @if( $n ){
     @return nth($sizes,$n);
@@ -15,8 +5,13 @@ $sizes:
   @return nth($sizes,1);
 }
 
-@for $x from 1 through 6 {
-  h#{$x} {
-    font-size: Size(-$x);
-  }
-}
+$root: 16pt !default;
+$sizes:
+  1em    // 16pt
+  1.25em // 20pt
+  1.75em // 28pt
+  2.25em // 36pt
+  3em    // 48pt
+  4.5em  // 72pt
+  ;
+$legible: 42em !default;

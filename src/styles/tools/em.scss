@@ -1,0 +1,8 @@
+@import "./ununit";
+
+$root: 16pt !default;
+@function em( $size, $base: $root ) {
+  $size: ununit($size);
+  $base: ununit($base);
+  @return #{$size/$base}em;
+}

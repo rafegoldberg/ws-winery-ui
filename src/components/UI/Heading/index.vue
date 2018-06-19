@@ -19,16 +19,18 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import "~@/styles/tools/em";
 @import "~@/styles/config/scale";
 @import "~@/styles/config/colors";
 @import "~@/styles/config/fonts";
+
 .UiHeading {
   font-family: $ff-serif;
   font-weight: 300;
-  color: Color(gold);
+  // color: Color(gold);
   @for $i from 1 through 6 {
-    &_size#{$i} {
+    &_scale#{$i} {
       font-size: Size(-$i);
     }
   }

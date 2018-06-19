@@ -13,7 +13,14 @@
 @import "~@/styles/config/scale";
 @import "~@/styles/config/fonts";
 
-@import "~@/styles/extends/themes";
+@import "~@/styles/extend/themes";
+
+:root {
+  font-size: $root;
+  @media (max-width:64rem){
+    font-size: calc(12pt + (1vw - .5vmin));
+  }
+}
 
 * {
   box-sizing: border-box;
@@ -25,7 +32,11 @@ html, body {
 }
 html {
   font-family: "futura-pt", Futura, sans-serif;
-  font-size: Size(1);
+  // font-size: $root;
+}
+body {
+  font-size: 1em;
+  // font-size: 100%;
   line-height: 1.6;
 }
 

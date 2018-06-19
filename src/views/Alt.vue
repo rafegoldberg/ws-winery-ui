@@ -17,9 +17,10 @@
 <script>
 export default {
   components: {
-    VPList: () =>
-      import(/* webpackChunkName: "VPList" */
-      "@/VuePress/list")
+    VPList: () => import(
+      /* webpackChunkName: "VPList" */
+      "@/VuePress/list"
+    )
   }
 };
 </script>

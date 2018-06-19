@@ -28,7 +28,7 @@ $themes: cream light dark !default;
 
 .UiTheme {
   & {
-    transition: .3s ease-out;
+    transition: 0s ease-out;
   }
-  @include UI_THEMES_EXTEND;
+  & { @include UI_THEMES_EXTEND; }
 }

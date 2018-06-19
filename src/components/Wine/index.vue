@@ -1,10 +1,10 @@
 <template>
 <div class="WineWidget">
   <img src="./mock/generic.png">
-  <h6 class="WineWidget--title">
+  <UiHeading :level="6" class="WineWidget--title">
     {{context.name}}
     <div>{{context.type}}</div>
-  </h6>
+  </UiHeading>
   <table>
     <tr>
       <td>${{parseFloat(context.price).toFixed(2)}}</td>
@@ -15,10 +15,12 @@
 </template>
 
 <script>
+import UiHeading from "@/components/UI/Heading"
 import context from "./mock/data"
 export default {
   name: "WineWidget",
   data: ()=>( {context} ),
+  components:{ UiHeading }
 }
 </script>
 
@@ -31,9 +33,8 @@ export default {
   max-width: 15em;
   margin: 0 auto;
   border-bottom: 1px solid Color(gold);
-  &--title {
+  /deep/ .UiHeading {
     margin: 1em auto;
-    font-family: $ff-serif;
     text-align: center;
     font-weight: 500;
   }

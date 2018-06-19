@@ -14,15 +14,12 @@
   <UiPanel class="UiTheme_cream" :style="{textAlign:'center'}">
     <UiBoxImage v-bind="mImg0">
       <UiHeading>Welcome</UiHeading>
-      <img src="@/assets/more.svg" alt="+" class="UiIcon" style="position:absolute;bottom:2rem;">
     </UiBoxImage>
     <UiBoxImage v-bind="mImg1">
       <UiHeading>Indelible</UiHeading>
-      <img src="@/assets/more.svg" alt="+" class="UiIcon" style="position:absolute;bottom:2rem;">
     </UiBoxImage>
     <UiBoxImage v-bind="mImg2">
       <UiHeading>Private Visit</UiHeading>
-      <img src="@/assets/more.svg" alt="+" class="UiIcon" style="position:absolute;bottom:2rem;">
     </UiBoxImage>
   </UiPanel>
 
@@ -63,8 +60,8 @@ if( window ) window.UiSettings = settings
 export default {
   name: "WidgetsPage",
   components: {
-    UiList, UiBox, UiPanel,
-    UiBoxImage, UiHeading,
+    UiBox, UiPanel,
+    UiList, UiBoxImage, UiHeading,
     ActionBox,
     WineWidget
   },

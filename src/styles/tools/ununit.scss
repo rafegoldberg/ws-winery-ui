@@ -1,0 +1,3 @@
+@function ununit($value) {
+  @return $value / ($value * 0 + 1);
+}
