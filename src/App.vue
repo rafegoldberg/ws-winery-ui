@@ -13,6 +13,8 @@
 @import "~@/styles/config/scale";
 @import "~@/styles/config/fonts";
 
+@import "~@/styles/extends/themes";
+
 * {
   box-sizing: border-box;
 }
@@ -45,7 +47,5 @@ p, ul ol, dl, figure, blockquote {
 pre, code {
   font-family: $ff-mono;
 }
-
-@import "~@/styles/extends/themes";
 
 </style>
