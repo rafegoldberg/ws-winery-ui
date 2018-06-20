@@ -53,7 +53,7 @@ img {
   height: auto;
 }
 
-p, ul ol, dl, figure, blockquote {
+p, ul, ol, dl, figure, blockquote {
   max-width: 42em;
   margin: 1rem 0;
 }
