@@ -1,7 +1,9 @@
 <template>
-<div class="home" :class="{
+<div class="widgets" :class="{
   [`UiTheme_${theme}`]: theme,
   }">
+
+  <Home></Home>
 
   <UiPanel>
     <UiBox>
@@ -11,7 +13,7 @@
     </UiBox>
   </UiPanel>
 
-  <UiPanel class="UiTheme_cream" :style="{textAlign:'center'}">
+  <UiPanel class="-UiTheme_cream" :style="{textAlign:'center'}">
     <UiBoxImage v-bind="mImg0">
       <UiHeading>Welcome</UiHeading>
     </UiBoxImage>
@@ -23,8 +25,8 @@
     </UiBoxImage>
   </UiPanel>
 
-  <UiPanel class="UiTheme_cream">
-    <UiBox class="UiTheme_dark">
+  <UiPanel class="UiTheme_light">
+    <UiBox class="UiTheme_cream">
       <WineWidget></WineWidget>
     </UiBox>
     <UiBox>
@@ -49,17 +51,22 @@ import mock0 from "@/components/ActionBox/mock/context.0.json"
 import mock1 from "@/components/ActionBox/mock/context.1.json"
 import mock2 from "./Home/mock/welcome.png"
 import mock3 from "./Home/mock/indelible.png"
-import mock4 from "./Home/mock/private-visit.png"
+import mock4 from "./Home/mock/visit.png"
+
+import __TEMP__HP from "./Home"
 
 let
 settings = {
-  theme: 'light'
+  theme: 'dark'
 }
 if( window ) window.UiSettings = settings
 
 export default {
   name: "WidgetsPage",
   components: {
+
+    Home: __TEMP__HP,
+    
     UiBox, UiPanel,
     UiList, UiBoxImage, UiHeading,
     ActionBox,
@@ -75,3 +82,4 @@ export default {
   }
 }
 </script>
+
