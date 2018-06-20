@@ -22,7 +22,7 @@ $themes: cream light dark !default;
 }
 %dark {
   @extend .UiTheme;
-  color: Color(gallery);
+  color: Color(matte);
   background: Color(dark);
 }
 

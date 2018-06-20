@@ -1,5 +1,7 @@
 <template>
-<component :is="tag" class="UiBox">
+<component :is="tag" class="UiBox" :class="{
+    'UiBox_stack': stack
+  }">
   <slot/>
 </component>
 </template>
@@ -13,6 +15,16 @@ export default {
 <style lang="scss" scoped>
 @import "./style.scss";
 .UiBox {
+  // @extend %UiBox, %UiBox_center;
+  
+  // @extend %UiBox;
+  // &:not(#{&}_stack) { @extend %UiBox_center }
+
   @extend %UiBox, %UiBox_center;
+  &_stack {
+    flex-flow: nowrap column;
+    align-items: center;
+  }
+
 }
 </style>

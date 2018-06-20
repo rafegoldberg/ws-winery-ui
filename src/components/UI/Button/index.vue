@@ -14,18 +14,12 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import "~@/styles/config/fonts";
-@import "~@/styles/config/colors";
+@import "./style.scss";
 .UiButton {
-  appearance: none;
-  font-family: $ff-sans;
-  font-weight: 500;
-  color: Color(gallery);
-  background: Color(gold);
-  padding: .8em 1.5em;
-  border: none;
-  font-size: .8em;
-  letter-spacing: .1em;
-  text-transform: uppercase;
+  &_outline {
+    background-color: transparent;
+    border: 3px solid currentColor;
+    &:not(:hover) { opacity: .8 }
+  }
 }
 </style>

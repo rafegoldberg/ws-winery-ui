@@ -28,7 +28,7 @@ export default {
 .UiHeading {
   font-family: $ff-serif;
   font-weight: 300;
-  // color: Color(gold);
+  // color: Color(theme);
   @for $i from 1 through 6 {
     &_scale#{$i} {
       font-size: Size(-$i);

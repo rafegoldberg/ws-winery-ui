@@ -24,6 +24,8 @@
 
 * {
   box-sizing: border-box;
+  margin: unset;
+  padding: unset;
 }
 
 html, body {
@@ -53,6 +55,7 @@ img {
 
 p, ul ol, dl, figure, blockquote {
   max-width: 42em;
+  margin: 1rem 0;
 }
 
 pre, code {

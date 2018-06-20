@@ -3,14 +3,15 @@ $c-matte: invert($c-black,99.5%);
 $c-theme: #BA9454;
 
 $colors:(
-  dark:    $c-black,
+  dark:    $c-black, // #0E0E0E
   slate:   lighten($c-black,15%), // #323232,
   silver:  lighten($c-black,67%), // #B8B8B8
-  gallery: $c-matte,
   cream:   lighten(desaturate(adjust-hue($c-theme,7deg),14),42), // #F5F3ED,
-  light:   mix( white, $c-matte, 69% ),
-  gold:    $c-theme,
-  red:     #7D1214,
+  light:   mix( white, $c-matte, 69% ), // #F6F4EE
+  matte:   $c-matte, // #F0F0F0
+  
+  theme:   $c-theme, // #BA9454
+  pop:     #7D1214,
 );
 
 @function Color($key) {

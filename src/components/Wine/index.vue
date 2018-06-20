@@ -32,7 +32,7 @@ export default {
 .WineWidget {
   max-width: 15em;
   margin: 0 auto;
-  border-bottom: 1px solid Color(gold);
+  border-bottom: 1px solid Color(theme);
   /deep/ .UiHeading {
     margin: 1em auto;
     text-align: center;
@@ -46,7 +46,7 @@ export default {
     margin: 0 auto;
     table-layout: fixed;
     text-align: center;
-    color: Color(gold);
+    color: Color(theme);
     border-spacing: 0;
     border-top: 1px solid;
     td {

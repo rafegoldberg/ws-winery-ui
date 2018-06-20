@@ -1,0 +1,28 @@
+@import "~@/styles/config/fonts";
+@import "~@/styles/config/colors";
+.UiButton {
+  & {
+    appearance: none;
+    cursor: pointer;
+
+    padding: .8em 1.5em;
+    font-size: .8em;
+    font-family: $ff-sans;
+    font-weight: 500;
+    color: Color(matte);
+    background: Color(theme);
+    border: none;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  transition: .2s ease-in-out;
+  opacity: .9;
+  &:hover, &:focus, &:active { opacity: 1 }
+
+  outline: 1px dotted transparent;
+  &:focus {
+    outline: 1px dotted currentColor;
+    outline-offset: -.25em;
+  }
+}

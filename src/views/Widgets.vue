@@ -5,11 +5,12 @@
 
   <Home></Home>
 
-  <UiPanel>
-    <UiBox>
-      <ActionBox v-bind="mock0">
-        <UiList slot-scope="slot" :list="slot"/>
-      </ActionBox>
+  <UiPanel class="UiTheme_cream">
+    <UiBox :stack="true">
+      <div>
+        <UiHeading>Estate<br>Vineyards</UiHeading>
+        <MediaList/>
+      </div>
     </UiBox>
   </UiPanel>
 
@@ -21,8 +22,16 @@
       <UiHeading>Indelible</UiHeading>
     </UiBoxImage>
     <UiBoxImage v-bind="mImg2">
-      <UiHeading>Private Visit</UiHeading>
+      <UiHeading>Visit</UiHeading>
     </UiBoxImage>
+  </UiPanel>
+
+  <UiPanel>
+    <UiBox>
+      <ActionBox v-bind="mock0">
+        <UiList slot-scope="slot" :list="slot"/>
+      </ActionBox>
+    </UiBox>
   </UiPanel>
 
   <UiPanel class="UiTheme_light">
@@ -45,6 +54,7 @@ import UiList from "@/components/UI/List"
 import UiHeading from "@/components/UI/Heading"
 
 import ActionBox from "@/components/ActionBox"
+import MediaList from "@/components/MediaList"
 import WineWidget from "@/components/Wine"
 
 import mock0 from "@/components/ActionBox/mock/context.0.json"
@@ -69,8 +79,8 @@ export default {
     
     UiBox, UiPanel,
     UiList, UiBoxImage, UiHeading,
-    ActionBox,
-    WineWidget
+
+    ActionBox, MediaList, WineWidget
   },
   data: ()=> settings,
   computed:{
