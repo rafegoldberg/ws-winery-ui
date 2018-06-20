@@ -8,7 +8,7 @@
   <UiPanel class="UiTheme_cream">
     <UiBox :stack="true">
       <div>
-        <UiHeading>Estate<br>Vineyards</UiHeading>
+        <UiHeading style="margin-bottom:.75em">Estate<br>Vineyards</UiHeading>
         <MediaList/>
       </div>
     </UiBox>
