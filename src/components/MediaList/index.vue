@@ -53,6 +53,9 @@ export default {
   }
   &--media {
     margin: 0 1.5rem;
+    @media ( max-width:800px ) {
+      display: none;
+    }
   }
   &--list {
     padding: unset;
@@ -84,14 +87,14 @@ export default {
       margin-top: -1px;
       margin-right: -.5em;
       opacity: 0;
-      transition: .3s .1s ease-out;
+      transition: .2s .1s ease-out;
     }
     &_active {
       position: relative;
       color: Color(dark);
       font-weight: bold;
       font-weight: 400;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.036em;
       &:before {
         opacity: 1;
         margin-right: 0.5em;

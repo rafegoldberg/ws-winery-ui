@@ -1,14 +1,14 @@
 <template>
 <UiPanel class="home">
 
-  <UiBoxImg :style="{minHeight:'100vh'}" :img="page.img" alt="Welcome">
+  <UiBoxImg :img="page.img" alt="Welcome">
     
     <header class="home--header" :style="{margin:'auto',marginLeft:0}">
-      <UiHeading :level="1" :style="{maxWidth:'6em'}">
+      <UiHeading :level="2" :style="{maxWidth:'6em'}">
         <b>Schedule a private visit.</b>
       </UiHeading>
       <p>Visits are reserved for List members and are by appointment only.</p>
-      <UiButton>Reserve</UiButton>
+      <UiButton class="UiButton_outline">Reserve</UiButton>
     </header>
 
   </UiBoxImg>
@@ -39,9 +39,15 @@ export default {
 
 <style lang="scss" scoped>
 .home {
+  .UiBoxImage {
+    min-height: 100vh;
+    @media ( max-width:800px ) {
+      min-height: 63vh;
+    }
+  }
   &--header {
-    border-left: .5rem solid #FFF;
-    padding: 3em 0 3em 3em;
+    // border-left: .5rem solid #FFF;
+    // padding: 3em 0 3em 3em;
   }
   .UiHeading {
     line-height: .9;

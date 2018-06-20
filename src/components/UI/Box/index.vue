@@ -15,11 +15,6 @@ export default {
 <style lang="scss" scoped>
 @import "./style.scss";
 .UiBox {
-  // @extend %UiBox, %UiBox_center;
-  
-  // @extend %UiBox;
-  // &:not(#{&}_stack) { @extend %UiBox_center }
-
   @extend %UiBox, %UiBox_center;
   &_stack {
     flex-flow: nowrap column;
