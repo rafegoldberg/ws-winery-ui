@@ -2,12 +2,15 @@
 <div class="MediaList">
 
   <ul class="MediaList--list">
-    <li v-for="(item,i) in list" class="MediaList--item" :class="{
-        'MediaList--item_active': (current==i)
-      }" @click="(current=i)">
+    <li v-for="(item,i) in list"
+        class="MediaList--item"
+        :class="{
+          'MediaList--item_active': (current==i)
+        }" @click="(current=i)">
       <slot>{{item}}</slot>
     </li>
   </ul>
+
   <div class="MediaList--media">
     <img src="./mock/default.jpg" alt="">
   </div>
@@ -16,7 +19,7 @@
 </template>
 
 <script>
-import mock from './mock/data';
+import mock from './mock/data.long';
 export default {
   name: "MediaList",
   props:{
@@ -49,10 +52,13 @@ export default {
     // justify-self: center;
     // align-self: center;
     display: inline-flex;
+    align-items: center;
     margin: 0 auto;
   }
   &--media {
-    margin: 0 1.5rem;
+    margin: 0;
+    &:first-child { margin-right: 1.5rem }
+    &:last-child { margin-left: 1.5rem }
     @media ( max-width:800px ) {
       display: none;
     }

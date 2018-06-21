@@ -1,12 +1,12 @@
 <template>
-<div :is="`h${level}`" :class="{
+<component :is="`h${level}`" :class="{
   UiHeading: true,
   [`UiHeading_scale${scale||level}`]: true,
   }">
 
   <slot/>
 
-</div>
+</component>
 </template>
 
 <script>
