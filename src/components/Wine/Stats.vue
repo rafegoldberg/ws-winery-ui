@@ -9,19 +9,17 @@
     <small>Hold</small> <progress :value="hold" max="1"></progress> <small>Drink</small>
   </div>
 
-  <div style="line-height:1.1; margin:.5em 0">
+  <div class="gold" style="line-height:1.1; margin:.5em 0">
     <em>{{metas.WpbDrinkwindow}}</em>
     <br>
     <small>Optimal Drinking Window</small>
   </div>
-
   
   <hr>
   
-  <div style="line-height:1.1; margin:.5em 0; font-size: 1.15em; text-transform: uppercase;">
-    <small style="font-weight:100">Location</small>
-    <br>
-    <div style="letter-spacing:.05em;">{{vineyard}}</div>
+  <div style="letter-spacing:.05em; line-height:1.1; margin:.5em 0; text-transform: uppercase;">
+    <div class="gold" style="font-size:.8em">Location</div>
+    <div>{{vineyard}}</div>
   </div>
   
   <hr>
@@ -83,6 +81,9 @@ export default {
   $bgc: Color(light);
   text-align: center;
   max-width: 18em;
+  .gold {
+    color: Color(theme);
+  }
   em {
     font-family: $ff-alt;
   }
