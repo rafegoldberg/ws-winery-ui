@@ -11,7 +11,7 @@
   
   <!-- External -->
   <script src="//unpkg.com/wpapi@1.1.2/browser/wpapi.min.js"></script>
-  <script src="//unpkg.com/vue"></script>
+  <!-- <script src="//unpkg.com/vue"></script> -->
   
   <!-- Wordpress -->
   <?wp_head()?>
