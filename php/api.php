@@ -18,3 +18,20 @@ function API_EnableMetaQuery($valid_vars)
 }
 add_filter('rest_query_vars', 'API_EnableMetaQuery');
 ?>
+
+<? 
+function API_EnableMetaFields(){
+  
+  register_rest_field('post','ws:fields',array(
+    'get_callback'=> function($object){
+      //get the id of the post object array
+      $post_id = $object['id'];
+      
+      //return the post meta
+      return get_post_meta( $post_id );
+    },
+    'schema'=> null,
+  ));
+}
+add_action( 'rest_api_init', 'API_EnableMetaFields' )
+?>
