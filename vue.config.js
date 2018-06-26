@@ -16,7 +16,7 @@ module.exports = {
 
   css: {
     sourceMap: true,
-    extract: false
+    extract: true
   },
   
   lintOnSave: false
