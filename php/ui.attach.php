@@ -4,8 +4,8 @@
   function LinkUiAssets(){
 
     $DIST = get_template_directory_uri() . "/dist";
-    
-    $glob = glob("$DIST/css/app.*.css");
+
+    $glob = glob($DIST."/css/app.*.css");
     ?><script>console.log(<?=json_encode($glob)?>)</script><?
     
     // wp_enqueue_style(  'UiStyles', "$DIST/filename.css"  );
