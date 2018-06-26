@@ -5,8 +5,10 @@
 
     $DIST = get_template_directory_uri() . "/dist";
 
-    // $glob = glob($DIST."/css/app.*.css");
+    /*
+    $glob = glob($DIST."/css/app.*.css");
     ?><script>console.log(<?=json_encode($DIST."/css/app.*.css")?>)</script><?
+    */
     
     // wp_enqueue_style(  'UiStyles', "$DIST/filename.css"  );
     wp_enqueue_script( 'UiScript', "$DIST/app.js", [], false, true );
