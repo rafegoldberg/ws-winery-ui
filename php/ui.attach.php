@@ -2,7 +2,7 @@
    * Link UI Scripts & Styles
    */
   function LinkUiAssets(){
-    $BUNDLE = get_template_directory_uri() . "/dist";
+    $DIST = get_template_directory_uri() . "/dist";
 
     // wp_enqueue_style(  'UiStyles', "$DIST/filename.css"  );
     wp_enqueue_script( 'UiScript', "$DIST/app.js", [], false, true );
