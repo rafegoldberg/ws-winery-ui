@@ -1,0 +1,1 @@
+A reactive Wordpress theme written in Vue. Further docs to follow.

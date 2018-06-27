@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "build": "vue-cli-service serve",
-    "bundle": "vue-cli-service build",
+    "dev": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "dox": "vue-styleguidist server",
+    "dox:build": "vue-styleguidist build",
     "lint": "vue-cli-service lint",
-    "heroku-postbuild": "concurrently \"yarn bundle\""
+    "heroku-postbuild": "concurrently \"yarn build\""
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -16,7 +18,8 @@
     "lodash": "^4.17.10",
     "vue": "^2.5.16",
     "vue-async-computed": "^3.3.1",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-styleguidist": "^1.7.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.15",
