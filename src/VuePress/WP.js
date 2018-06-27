@@ -8,7 +8,7 @@ import WpRest from "wpapi";
 const URI =
   typeof WP_API_Settings == "object" ?
   WP_API_Settings.endpoint :
-  "http://192.168.64.2/clients/BGLJ/",
+  "http://192.168.64.2/clients/ws3/",
   API = WpRest.discover(URI);
 
 /**
