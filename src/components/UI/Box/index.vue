@@ -7,6 +7,9 @@
 </template>
 <script>
 import schema from './schema';
+/**
+ * A simple flexbox layout component. Intended for use within a `<UiPanel/>` wrapper.
+ */
 export default {
   name: "UiBox",
   props: schema
@@ -20,6 +23,5 @@ export default {
     flex-flow: nowrap column;
     align-items: center;
   }
-
 }
 </style>

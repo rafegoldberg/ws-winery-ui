@@ -19,7 +19,7 @@
     "vue": "^2.5.16",
     "vue-async-computed": "^3.3.1",
     "vue-router": "^3.0.1",
-    "vue-styleguidist": "^1.7.10"
+    "vue-styleguidist": "^1.7.11"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.15",
@@ -39,3 +39,4 @@
     "not ie <= 8"
   ]
 }
+

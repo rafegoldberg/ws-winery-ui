@@ -8,6 +8,9 @@
 
 <script>
 import UiBox from '.';
+/**
+ * A flexbox-based layout component for use within a `<UiPanel/>` wrapper.
+ */
 export default {
   name: "UiBoxImage",
   props:[ 'img' ],
