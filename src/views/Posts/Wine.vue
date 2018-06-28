@@ -1,42 +1,44 @@
 <template>
-<VPItem :id="id" class="WinePost UiTheme_cream">
-    
-  <template slot-scope="WP" v-if="!WP.loading">
-    
-    <UiHeading :level="1" :scale="2">{{WP.title.rendered}}</UiHeading>
+<UiPanel>
 
-    <hr>
-    
-    <div>
-      <UiHeading :level="3" :scale="5">Hierarchy:</UiHeading>
-      <ul class="WinePost--hierarchy" style="margin:0">
-        <li class="WinePost--category" v-for="cat in [...((category+'/'+hierarchy).replace(/-/g,' ').split('/'))]">{{cat}}</li>
-      </ul>
-    </div>
-    
-    <pre>{{WP}}</pre>
-    {{$log({WP})}}
-    
-  </template>
+  <UiBox class="UiTheme_cream">
+    hi world
+  </UiBox>
+  <UiBox>
+    <VpItem :id="id" class="WinePost">    
+    <template slot-scope="WP" v-if="!WP.loading">
+      <UiHeading :level="1" :scale="2">{{WP.title.rendered}}</UiHeading>
+      <hr>
+      <div>
+        <UiHeading :level="3" :scale="5">Hierarchy:</UiHeading>
+        <ul class="WinePost--hierarchy" style="margin:0">
+          <li class="WinePost--category" v-for="cat in [...((category+'/'+hierarchy).replace(/-/g,' ').split('/'))]">{{cat}}</li>
+        </ul>
+      </div>
+      <!-- <pre>{{WP}}</pre> -->
+    </template>
+    </VpItem>
+  </UiBox>
 
-</VPItem>
+</UiPanel>
 </template>
 
 <script>
+import UiBox from '@/components/UI/Box';
+import UiPanel from '@/components/UI/Panel';
 import UiHeading from '@/components/UI/Heading';
 
-import WsWinePostParser from "@/includes/mix/ws-wine-wysiwyg"
-window.WsWinePostParser = WsWinePostParser
+import WineParser from "@/includes/wine/parse.wpContent"
+import WineGetTerm from "@/includes/wine/get.wpTerm"
+window.WineParser  = WineParser
+window.WineGetTerm = WineGetTerm
 
 export default {
   name: "WinePost",
   props:['id','category','hierarchy'],
   components:{
-    UiHeading,
-    VPItem:()=> import(
-      /* webpackChunkName: "VuePress" */
-      "@/VuePress/item"
-      ),
+    UiHeading, UiBox, UiPanel,
+    VpItem:()=> import( /* webpackChunkName: "VuePress" */ '@/VuePress/item')
   },
 };
 </script>
@@ -67,7 +69,6 @@ export default {
 .WinePost {
   box-sizing: border-box;
   max-width: 100vw;
-  min-height: 100vh;
   padding: 1.5rem 0;
   > *:not(hr) {
     margin: 1.5rem;

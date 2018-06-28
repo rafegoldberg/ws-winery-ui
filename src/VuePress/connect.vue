@@ -1,9 +1,13 @@
 <template>
-  <div class="VPConnect">
-    <slot v-bind="context">
-      <pre>{{context}}</pre>
-    </slot>
-  </div>
+<div class="VPConnect">
+
+  <em v-if="context.loading">
+    <img style="width: 3em; height: auto; opacity: .5;" src="@/assets/preloader.gif" alt="Loading...">
+  </em>
+  <slot v-else v-bind="context">
+  </slot>
+
+</div>
 </template>
 
 <script>

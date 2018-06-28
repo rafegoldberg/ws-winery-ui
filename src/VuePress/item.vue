@@ -12,11 +12,11 @@ export default {
   methods: {
     fetch(/*WP*/) {
       if( this.id )
-        return this.endpoint.id(this.id)
+        return this.endpoint.id(this.id).embed()
       if( this.slug )
-        return this.endpoint.slug(this.slug)
+        return this.endpoint.slug(this.slug).embed()
       else
-        return this.endpoint
+        return this.endpoint.embed()
     }
   },
   asyncComputed: {
