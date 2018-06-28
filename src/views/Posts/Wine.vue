@@ -24,6 +24,10 @@
 
 <script>
 import UiHeading from '@/components/UI/Heading';
+
+// import WsWinePostParser from "@/includes/mix/ws-wine-wysiwyg"
+window.WsWinePostParser = WsWinePostParser
+
 export default {
   name: "WinePost",
   props:['id','category','hierarchy'],
