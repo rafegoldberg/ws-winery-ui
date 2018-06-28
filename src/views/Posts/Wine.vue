@@ -10,7 +10,7 @@
     <div>
       <UiHeading :level="3" :scale="5">Hierarchy:</UiHeading>
       <ul class="WinePost--hierarchy" style="margin:0">
-        <li class="WinePost--category" v-for="cat in [category,...(hierarchy && hierarchy.replace('-',' ').split('/'))]">{{cat}}</li>
+        <li class="WinePost--category" v-for="cat in [...((category+'/'+hierarchy).replace(/-/g,' ').split('/'))]">{{cat}}</li>
       </ul>
     </div>
     
@@ -25,7 +25,7 @@
 <script>
 import UiHeading from '@/components/UI/Heading';
 
-// import WsWinePostParser from "@/includes/mix/ws-wine-wysiwyg"
+import WsWinePostParser from "@/includes/mix/ws-wine-wysiwyg"
 window.WsWinePostParser = WsWinePostParser
 
 export default {
