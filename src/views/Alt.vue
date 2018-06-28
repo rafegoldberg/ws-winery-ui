@@ -1,15 +1,15 @@
 <template>
 
   <main class="alt">
-    <img src="../assets/logo.png">
-    <article>
+    <VPItem></VPItem>
+    <!-- <article>
       <VPList>
         <template slot-scope="item">
           <h2>{{item.title && item.title.rendered}}</h2>
           <pre>{{item}}</pre>
         </template>
       </VPList>
-    </article>
+    </article> -->
   </main>
 
 </template>
@@ -17,9 +17,13 @@
 <script>
 export default {
   components: {
-    VPList: () => import(
-      /* webpackChunkName: "VPList" */
+    VPList:()=> import(
+      /* webpackChunkName: "VuePress" */
       "@/VuePress/list"
+    ),
+    VPItem:()=> import(
+      /* webpackChunkName: "VuePress" */
+      "@/VuePress/item"
     )
   }
 };
@@ -37,7 +41,7 @@ export default {
     font-family: Source Code Pro, monospace;
     max-width: 63rem;
     overflow: scroll;
-    max-height: 33vh;
+    max-height: 75vh;
     border: 1px solid #ddd;
     border-radius: 3px;
     padding: 1em;

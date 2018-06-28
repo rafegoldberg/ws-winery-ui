@@ -4,7 +4,6 @@
       {{item}}
     </slot>
     <slot name="pagination" :paging="context._paging">
-
     </slot>
   </div>
 </template>

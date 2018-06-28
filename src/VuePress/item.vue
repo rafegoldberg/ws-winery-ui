@@ -1,7 +1,3 @@
-<template>
-  <pre>{{context}}</pre>
-</template>
-
 <script>
 import VpConnect from "./connect";
 
@@ -9,7 +5,19 @@ export default {
   name: "VpItem",
   extends: VpConnect,
   props: {
-    type: { type: String, default: "posts" }
+    type: { type: String, default: "posts" },
+    slug: { type: String                   },
+    id:   { type:[String,Number]           },
+  },
+  methods: {
+    fetch(/*WP*/) {
+      if( this.id )
+        return this.endpoint.id(this.id)
+      if( this.slug )
+        return this.endpoint.slug(this.slug)
+      else
+        return this.endpoint
+    }
   },
   asyncComputed: {
     context: {

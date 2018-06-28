@@ -1,27 +1,19 @@
-import Home from "./views/Home";
-import WinePage from "./views/Wine";
+// import Home from "./views/Home";
+// import WinePage from "./views/Wine";
+// import Alt from "./views/Alt";
 import Widgets from "./views/Widgets";
-import Alt from "./views/Alt";
+import WinePost from "./views/Posts/Wine";
 
 export default [
-  {
-    path: "/front",
-    name: "front",
-    component: Home
-  },
   {
     path: "/",
     name: "widgets",
     component: Widgets
   },
   {
-    path: "/wp-list",
-    name: "wplist",
-    component: Alt
-  },
-  {
-    path: "/wine-page",
-    name: "WinePage",
-    component: WinePage
-  },
+    path: "/:category/:hierarchy*/:id",
+    name: "WinePost",
+    props: true,
+    component: WinePost
+  }
 ];

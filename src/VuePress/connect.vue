@@ -1,6 +1,8 @@
 <template>
   <div class="VPConnect">
-    <slot/>
+    <slot v-bind="context">
+      <pre>{{context}}</pre>
+    </slot>
   </div>
 </template>
 
