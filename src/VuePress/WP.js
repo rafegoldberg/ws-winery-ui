@@ -3,6 +3,13 @@
 import WpRest from "wpapi";
 
 /**
+ * Beta Test
+ */
+import conf from "../../config"
+window.conf = conf
+console.log(conf)
+
+/**
  * API Configuration
  */
 const URI =
