@@ -24,6 +24,9 @@ export default {
 <style lang="scss" scoped>
 @import "./style.scss";
 .UiBoxImage {
+
+  min-height: 50vh;
+
   & {
     position: relative;
     z-index: 1;
@@ -32,11 +35,15 @@ export default {
     justify-content: flex-end;
     align-items: center;
 
+    color: #FFF;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 
-    color: #FFF;
+    &:only-child {
+      min-height: 90vh;
+      @media (max-width:800px) { min-height: 63vh }
+    }
   }
   &:before {
     content: " ";
@@ -54,9 +61,10 @@ export default {
       rgba(0,0,0,.7) 95%
     );    
   }
-  &:only-child {
-    min-height: 90vh;
-    @media (max-width:800px) { min-height: 63vh }
+  
+  &_fixed {
+    background-attachment: fixed;
+    background-size: cover;
   }
 }
 </style>

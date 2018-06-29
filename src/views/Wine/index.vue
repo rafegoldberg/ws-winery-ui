@@ -11,7 +11,7 @@
   </UiBox>
   
   <UiBox class="UiTheme_halves">
-    <img :src="media" :alt="context.title.rendered" />
+    <img id="WineBottle" :src="media" :alt="context.title.rendered" />
   </UiBox>
 
   <UiBox>
@@ -50,7 +50,7 @@
 </UiPanel>
 
 <UiPanel style="max-height:68vh; overflow: hidden;">
-  <UiBoxImg :img="img3"/>
+  <UiBoxImg :img="img3" class="UiBoxImage_fixed"/>
 </UiPanel>
 
 <UiPanel class="UiTheme_dark">
@@ -66,21 +66,33 @@
 <UiPanel class="UiTheme_dark">
   <UiBox class="iconListBox">
     <section class="iconList">
-      <p class="iconList--item">
+      <div class="iconList--item">
         <img :src="icon.bottles" class="iconList--icon">
-        <span class="iconList--item--label">All Our Wines</span>
+        <p>
+          <span class="iconList--item--label">All Our Wines</span>
+          <br>
+          <small>Visit our wine library to find a specific bottle or peruse our full collection.</small>
+        </p>
         <UiButton>Library</UiButton>
-      </p>
-      <p class="iconList--item">
+      </div>
+      <div class="iconList--item">
         <img :src="icon.barrels" class="iconList--icon">
-        <span class="iconList--item--label">How To Purchase</span>
+        <p>
+          <span class="iconList--item--label">How To Purchase</span>
+          <br>
+          <small>Our wines are available twice a year for purchase.</small>
+        </p>
         <UiButton>Purchasing</UiButton>
-      </p>
-      <p class="iconList--item">
+      </div>
+      <div class="iconList--item">
         <img :src="icon.glasses" class="iconList--icon">
-        <span class="iconList--item--label">Visit The Winery</span>
-        <UiButton>Visit Us</UiButton>
-      </p>
+        <p>
+          <span class="iconList--item--label">Visit The Winery</span>
+          <br>
+          <small>Arrange a private tour and tasting tailored specifically for you.</small>
+        </p>
+        <UiButton>Visiting</UiButton>
+      </div>
     </section>
   </UiBox>
 </UiPanel>
@@ -106,9 +118,10 @@ import getTexts from "./lib/parse.wpContent"
 import getTerm  from "./lib/get.wpTerm"
 import getImage from "./lib/get.wpImage"
 
-import img1 from "@/assets/mock/indelible.png"
-import img2 from "@/assets/mock/harvest.png"
-import img3 from "@/assets/mock/cellar.png"
+import img1 from "@/assets/mock/table.png"
+import img2 from "@/assets/mock/cellar.png"
+import img3 from "@/assets/mock/harvest.png"
+// import img4 from "@/assets/mock/grapes.png"
 
 import icon_bottles from "@/assets/icons/bottles.svg"
 import icon_barrels from "@/assets/icons/barrels.svg"
@@ -155,20 +168,32 @@ export default {
 </script>
 
 <style lang="scss">
+img#WineBottle {
+  mix-blend-mode: multiply;
+  max-height: 33em;
+  max-width: 88%;
+  width: auto;
+  height: auto;
+}
+</style>
+<style lang="scss">
 @import "~@/styles/config/colors";
 @import "~@/components/UI/Box/style";
 .iconList {
-  flex: 1 100%;
+  min-width: 68%;
+  margin: 0 auto;
   &--item {
-    margin: 0 auto 1rem;
+    margin: 0 auto;
     display: flex;
     align-items: center;
-    &:last-child { margin-bottom: 0 }
+    & + & {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid Color(theme);
+    }
     > * {
-      margin: .5rem auto .5rem 2rem;
-      &:last-child {
-        margin: .5rem 2rem .5rem auto;
-      }
+      margin: .5rem 2rem;
+      &:last-child { margin: .5rem 0 .5rem auto }
     }
     &--label {
       text-transform: uppercase;
@@ -184,6 +209,7 @@ export default {
     object-fit: contain;
   }
   &Box { @extend %UiBox_compact; }
+  p { line-height: 1.3 }
 }
 </style>
 <style lang="scss">
@@ -196,8 +222,5 @@ export default {
     Color(cream) 50%,
     Color(light) 50%
   );
-  img {
-    mix-blend-mode: multiply;
-  }
 }
 </style>
