@@ -10,13 +10,15 @@
   </UiBox>
   
   <UiBox class="UiTheme_halves">
-    <img :src="img" :alt="context.title.rendered" />
+    <img :src="media" :alt="context.title.rendered" />
   </UiBox>
   
   <UiBox>
     <div>
-      <UiHeading :level="2" :scale="3">Winemakers Notes</UiHeading>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam animi delectus exercitationem amet impedit mollitia obcaecati suscipit harum omnis ab cupiditate, porro inventore autem? Repellendus eaque velit tenetur nobis vero.</p>
+      <UiHeading :level="2" :scale="3">
+        {{sections[0].heading}}
+      </UiHeading>
+      <aside v-html="sections[0].text"></aside>
     </div>
   </UiBox>
 
@@ -34,10 +36,9 @@ import UiBoxImg from '@/components/UI/Box/Image'
 import WineStats from '@/components/Wine/Stats'
 import UiHeading from '@/components/UI/Heading'
 
-// import WineParser from "./lib/parse.wpContent"
-import getTerm from "./lib/get.wpTerm"
-import getImgSrc from "./lib/get.wpImage"
-// window.getImgSrc  = getImgSrc
+import getTexts from "./lib/parse.wpContent"
+import getTerm  from "./lib/get.wpTerm"
+import getImage from "./lib/get.wpImage"
 
 export default {
   name: "WinePost",
@@ -49,7 +50,8 @@ export default {
   },
   methods:{ getTerm },
   computed:{
-    img: getImgSrc,
+    media:   getImage,
+    sections: getTexts,
     embed(){ 
       if( this.context.loading ) return
       return this.context._embedded

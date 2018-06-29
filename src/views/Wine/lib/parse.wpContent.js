@@ -1,19 +1,17 @@
 import loPair from "lodash/fromPairs"
 import loChunk from "lodash/chunk"
+import loZip from "lodash/zip"
 
-export default function( data ){
-  if( typeof data == 'object' && data.content && data.content.rendered )
-    data = data.content.rendered
-  else if( typeof data == 'string' )
-    data = data
-  else
-    return
-    
+export default function parseWpContent(){
+  if( this.context.loading ) return
+  
   let
-  match = data
+  matches = this.context.content.rendered
     .split( /<h2.*>(.*)<\/h2>/gi )
-    .map(e=>e.trim())
-    .filter(e=>e)
+    .map( e=> e.trim() )
+    .filter( e=>e ),
+  matched = loChunk(matches,2)
+    .map( arr=> loPair(loZip( ['heading','text'], arr )) )
 
-  return loPair( loChunk(match,2) )
+  return matched
 }

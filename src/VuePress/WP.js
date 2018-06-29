@@ -3,20 +3,13 @@
 import WpRest from "wpapi";
 
 /**
- * Beta Test
- */
-import conf from "../../config"
-window.conf = conf
-console.log(conf)
-
-/**
  * API Configuration
  */
-const URI =
-  typeof WP_API_Settings == "object" ?
-  WP_API_Settings.endpoint :
-  "http://192.168.64.2/clients/ws3/",
-  API = WpRest.discover(URI);
+const
+URI = typeof WP_API_Settings == "object"
+  ? WP_API_Settings.endpoint
+  :"http://192.168.64.2/clients/ws3/",
+API = WpRest.discover(URI)
 
 /**
  * API Authorization

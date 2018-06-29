@@ -1,10 +1,10 @@
 const
-PRODENV = process.env.NODE_ENV === 'production',
-BASEURL = PRODENV ? '/clients/ws3/' : '/'
+ENV = process.env.NODE_ENV === 'production',
+URI = ENV ? '/clients/ws3/' : '/'
 
 module.exports = {
 
-  baseUrl: BASEURL,
+  baseUrl: URI,
 
   configureWebpack: {
     devtool: "source-map",
@@ -14,7 +14,7 @@ module.exports = {
     output:{
       filename: '[name].js',
       chunkFilename: '[name].js',
-      publicPath: PRODENV ? BASEURL+`wp-content/themes/ws-ui/dist/` : '/'
+      publicPath: ENV ? URI+`wp-content/themes/ws-ui/dist/` : '/'
     },
     resolve: {
       alias: {}
