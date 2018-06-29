@@ -14,7 +14,7 @@ module.exports = {
     output:{
       filename: '[name].js',
       chunkFilename: '[name].js',
-      publicPath: ENV ? URI+`wp-content/themes/ws-ui/dist/` : '/'
+      publicPath: ENV ? '/wp-content/themes/ws-ui/dist/' : '/'
     },
     resolve: {
       alias: {}
