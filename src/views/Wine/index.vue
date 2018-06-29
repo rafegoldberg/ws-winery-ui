@@ -15,28 +15,31 @@
   </UiBox>
 
   <UiBox>
-    <div>
+    <!-- <div>
       <UiHeading :level="2" :scale="3">
         {{sections[0].heading}}
       </UiHeading>
-      <p>{{sections[0].text | truncate}}
-        <br>
-        <a href="#more">Read more</a>
-      </p>
-    </div>
+    </div> -->
+    <p>{{sections[0].text | truncate}}
+      <br>
+      <a href="#more">Read more</a>
+    </p>
   </UiBox>
 </UiPanel>
 
 <UiPanel>
-  <UiBox>
+  <UiBox><div style="text-align:center">
     <UiHeading>Technical Notes</UiHeading>
+
     <table>
       <tr>
         <th></th>
         <td></td>
       </tr>
     </table>
-  </UiBox>
+    
+    <UiButton class="UiButton_outline gold">Download</UiButton>
+  </div></UiBox>
 </UiPanel>
 
 <UiPanel class="UiTheme_cream">

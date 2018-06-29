@@ -16,6 +16,9 @@ export default {
 <style lang="scss" scoped>
 @import "./style.scss";
 .UiButton {
+  &.gold {
+    color: Color(theme);
+  }
   &_outline {
     background-color: transparent;
     border: 3px solid currentColor;
