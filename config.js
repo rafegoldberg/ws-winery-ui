@@ -1,11 +1,13 @@
 export default {
+  host: location.host,
+  http: location.protocol,
   root:{
     local: '/',
     stage: '/clients/ws3/',
     prod:  '/',
   },
   env( key ){
-    return this[key] && this[key][ENV] && this[key][ENV]
+    return this[key] && this[key][ENV] && this[key][ENV] || this[key]
   }
 }
 
