@@ -7,8 +7,11 @@ export default function parseWpContent(){
   
   let
   matches = this.context.content.rendered
-    .split( /<h2.*>(.*)<\/h2>/gi )
-    .map( e=> e.trim() )
+    .split( /<h2.*>(.*)<\/h2>/gi ) // @todo: dangerous assumptions about content/format
+    .map( e=>{
+      e = e.trim().replace(/(<([^>]+)>)/ig,"")
+      return e.trim()
+    })
     .filter( e=>e ),
   matched = loChunk(matches,2)
     .map( arr=> loPair(loZip( ['heading','text'], arr )) )
