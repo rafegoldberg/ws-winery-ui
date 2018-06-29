@@ -24,22 +24,20 @@ export default {
 <style lang="scss" scoped>
 @import "./style.scss";
 .UiBoxImage {
-  position: relative;
-  z-index: 1;
-  
-  flex: 1 100%;
-  flex-flow: nowrap column;
-  justify-content: flex-end;
-  align-items: center;
+  & {
+    position: relative;
+    z-index: 1;
+    
+    flex-flow: nowrap column;
+    justify-content: flex-end;
+    align-items: center;
 
-  min-height: 50vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-
-  color: #FFF;
-
+    color: #FFF;
+  }
   &:before {
     content: " ";
 
@@ -55,6 +53,10 @@ export default {
       rgba(0,0,0,.6) 85%, 
       rgba(0,0,0,.7) 95%
     );    
+  }
+  &:only-child {
+    min-height: 90vh;
+    @media (max-width:800px) { min-height: 63vh }
   }
 }
 </style>

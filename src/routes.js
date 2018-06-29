@@ -1,17 +1,14 @@
-// import Home from "./views/Home";
-// import WinePage from "./views/Wine";
-// import Alt from "./views/Alt";
-import Widgets from "./views/Widgets";
-import WinePost from "./views/Posts/Wine";
+import Home from "./views";
+import WinePost from "./views/Wine";
 
 export default [
   {
     path: "/",
     name: "widgets",
-    component: Widgets
+    component: Home
   },
   {
-    path: "/:category/:hierarchy*/:id",
+    path: "/:category+/:slug",
     name: "WinePost",
     props: true,
     component: WinePost

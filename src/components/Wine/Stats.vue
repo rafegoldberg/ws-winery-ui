@@ -1,7 +1,7 @@
 <template>
 <div class="WineStats">
 
-  <UiHeading v-if="title" :level="1" :scale="4">
+  <UiHeading :level="1" :scale="4">
     <b>{{title}}</b>
   </UiHeading>
 
@@ -17,7 +17,7 @@
   
   <hr>
   
-  <div style="letter-spacing:.05em; line-height:1.1; margin:.5em 0; text-transform: uppercase;">
+  <div v-if="vineyard" style="letter-spacing:.05em; line-height:1.1; margin:.5em 0; text-transform: uppercase;">
     <div class="gold" style="font-size:.8em">Location</div>
     <div>{{vineyard}}</div>
   </div>
@@ -42,7 +42,11 @@ import UiHeading from "@/components/UI/Heading"
 
 export default {
   name: "WineStats",
-  props:[ 'wp:post_id', 'wp:postmeta', 'title', 'category' ],
+  props:{
+    title:   { type: String        },
+    fields:  { type:[Object,Array] },
+    category:{ type:[Object,Array] },
+  },
   components:{
     UiHeading
   },
@@ -51,16 +55,17 @@ export default {
   },
   computed:{
     metas(){
-      return wpMetaParser(this['wp:postmeta'])
+      return wpMetaParser(this.fields)
     },
     vineyard(){
+      // return "Vineyard Name"
       let
-      keyed = '#cdata-section',
-      match = obj=>( obj[keyed].toLowerCase().indexOf('vineyard') > 0 ),
+      match = obj=>( JSON.stringify(obj).indexOf('vineyard') > 0 ),
       entry = loFind( this.category, match )
-      return entry[keyed]
+      return !entry ? false : (entry.name || entry['#CDATA-SECTION'] || entry)
     },
     hold(){ 
+      if( !this.metas.length ) return
       let
       today = (new Date()).getFullYear(),
       dates = this.metas.WpbDrinkwindow.split(/-|_|–|\/|:/g)

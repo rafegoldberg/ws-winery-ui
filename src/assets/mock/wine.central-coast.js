@@ -43,7 +43,7 @@ A hot spell in March followed by a warm spring influenced an unusually early blo
       "#cdata-section": "wine"
     }
   ],
-  "wp:postmeta": [
+  "ws:fields": [
     {
       "wp:meta_key": "_edit_last",
       "wp:meta_value": "4"

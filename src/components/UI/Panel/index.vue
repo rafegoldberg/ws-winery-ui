@@ -13,7 +13,7 @@ export default {
 <style lang="scss" scoped>
 @import "~@/styles/config/scale";
 .UiPanel {
-
+  position: relative;
   display: flex;
   justify-content: stretch;
   align-items: center;
