@@ -1,6 +1,7 @@
 <template>
-<UiPanel v-if="!context.loading" class="UiTheme_light">
+<div>
 
+<UiPanel v-if="!context.loading" class="UiTheme_light">
   <UiBox class="UiTheme_cream">
     <WineStats
       :title="context.title.rendered"
@@ -18,11 +19,13 @@
       <UiHeading :level="2" :scale="3">
         {{sections[0].heading}}
       </UiHeading>
-      <aside v-html="sections[0].text"></aside>
+      <aside v-html="$options.filters.truncate(sections[0].text)"></aside>
+      <a href="#more">Read more</a>
     </div>
   </UiBox>
-
 </UiPanel>
+
+</div>
 </template>
 
 <script>
@@ -78,32 +81,5 @@ export default {
   img {
     mix-blend-mode: multiply;
   }
-}
-</style>
-<style lang="scss" scoped>
-.WinePost {
-  &--hierarchy {
-    list-style: none;
-  }
-  &--category {
-    display: inline-block;
-    text-transform: capitalize;
-
-    font-size: .88em;
-    font-weight: 100;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-
-    & + &:before {
-      content: "/";
-      display: inline-block;
-      margin: 0 .3em;
-    }
-  }
-}
-img {
-  width: auto;
-  min-height: 38vh;
-  max-height: 22em;
 }
 </style>
