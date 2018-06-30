@@ -18,7 +18,11 @@ module.exports = {
     },
     resolve: {
       alias: {}
-    }
+    },
+    module:{rules:[
+      { resourceQuery: /blockType=docs/,
+        loader:        require.resolve('./docs/src/.loader.js')  },
+    ]}
   },
 
   css: {

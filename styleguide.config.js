@@ -10,7 +10,8 @@ module.exports = {
     path.join(__dirname,'src/VuePress/WP'),
     path.join(__dirname,'src/includes/use/log'),
     path.join(__dirname,'src/includes/use/async'),
-    // path.join(__dirname,'src/styles/external.scss'),
+    path.join(__dirname,'src/styles/main.scss'),
+    path.join(__dirname,'src/styles/extend/themes.scss'),
   ],
   sections: [
     { name: 'Williams Selyem',
@@ -25,7 +26,7 @@ module.exports = {
   navigation: true,
   showCode: true,
   showUsage: false,
-  defaultExample: true,
+  defaultExample: false,
   editorConfig: {
     lineNumbers: true
   },

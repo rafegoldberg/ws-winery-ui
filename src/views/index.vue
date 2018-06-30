@@ -54,15 +54,10 @@ import UiButton from "@/components/UI/Button"
 import ActionBox from "@/components/ActionBox"
 import MediaList from "@/components/MediaList"
 import WineWidget from "@/components/Wine"
-import WineStats from "@/components/Wine/Stats"
 
 import mock0 from "@/components/ActionBox/mock/context.0.json"
-import mock1 from "@/components/ActionBox/mock/context.1.json"
 import mock2 from "@/assets/mock/welcome.png"
-import mock3 from "@/assets/mock/indelible.png"
-import mock4 from "@/assets/mock/visit.png"
-import mock5 from "@/assets/mock/wine.ferrington.js"
-import mock6 from '@/assets/mock/visit.png'
+import mock6 from "@/assets/mock/visit.png"
 
 let
 settings = {
@@ -79,16 +74,11 @@ export default {
 
     ActionBox, MediaList,
     
-    WineWidget, WineStats
+    WineWidget,
   },
   data: ()=> settings,
   computed:{
     mock0:()=> mock0,
-    mock1:()=> mock1,
-    mImg0:()=>({ img:mock2 }),
-    mImg1:()=>({ img:mock3 }),
-    mImg2:()=>({ img:mock4 }),
-    mock5:()=> mock5,
     mock6:()=> mock6,
   }
 }

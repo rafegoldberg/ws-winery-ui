@@ -26,3 +26,20 @@ export default {
   }
 }
 </style>
+<docs>
+### Using Props
+
+```vue
+<UiButton :cta="'Do This'"/>
+```
+
+### Using Slots
+
+```vue
+<UiButton>
+  <!-- custom inner markup -->
+  Schedule a 
+  <a href="#action"><b>Visit</b></a>
+</UiButton>
+```
+</docs>
