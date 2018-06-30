@@ -1,7 +1,7 @@
 <template>
-<div v-if="!context.loading">
+<div id="WinePage" v-if="!context.loading">
 
-<UiPanel class="UiTheme_light">
+<UiPanel id="WinePage--header" class="UiTheme_light">
   <UiBox class="UiTheme_cream">
     <WineStats
       :title="context.title.rendered"
@@ -53,7 +53,7 @@
 </UiPanel>
 
 <UiPanel style="max-height:68vh; overflow: hidden;">
-  <UiBoxImg :img="img3" class="UiBoxImage_fixed"/>
+  <UiBoxImg :img="img4"/>
 </UiPanel>
 
 <UiPanel class="UiTheme_dark">
@@ -64,6 +64,16 @@
     </div>
   </UiBox>
   <UiBoxImg :img="img2"></UiBoxImg>
+</UiPanel>
+
+<UiPanel>
+  <UiBox><div style="text-align:center">
+    <UiHeading :level="3" :scale="4">Reviews &amp; Scores</UiHeading>
+  </div></UiBox>
+</UiPanel>
+
+<UiPanel style="max-height:62vh; overflow: hidden;">
+  <UiBoxImg :img="img3"/>
 </UiPanel>
 
 <UiPanel class="UiTheme_dark">
@@ -122,9 +132,9 @@ import getTerm  from "./lib/get.wpTerm"
 import getImage from "./lib/get.wpImage"
 
 import img1 from "@/assets/mock/table.png"
-import img2 from "@/assets/mock/cellar.png"
+import img2 from "@/assets/mock/vineyard.png"
 import img3 from "@/assets/mock/harvest.png"
-// import img4 from "@/assets/mock/grapes.png"
+import img4 from "@/assets/mock/cellar.png"
 
 import icon_bottles from "@/assets/icons/bottles.svg"
 import icon_barrels from "@/assets/icons/barrels.svg"
@@ -140,6 +150,10 @@ export default {
   },
   methods:{ getTerm },
   computed:{
+    img1: ()=> img1,
+    img2: ()=> img2,
+    img3: ()=> img3,
+    img4: ()=> img4,
     icon(){
       return {
         bottles: icon_bottles,
@@ -148,12 +162,9 @@ export default {
       }
     },
 
-    img1: ()=> img1,
-    img2: ()=> img2,
-    img3: ()=> img3,
-
     media:    getImage,
     sections: getTexts,
+
     embed(){ 
       if( this.context.loading ) return
       return this.context._embedded
@@ -171,10 +182,15 @@ export default {
 </script>
 
 <style lang="scss">
+#WinePage {
+  &--header {
+    min-height: 75vh;
+  }
+}
 img#WineBottle {
   mix-blend-mode: multiply;
-  max-height: 33em;
-  max-width: 88%;
+  max-height: 42em;
+  max-width: 100%;
   width: auto;
   height: auto;
 }

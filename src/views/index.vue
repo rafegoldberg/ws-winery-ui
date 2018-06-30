@@ -17,7 +17,7 @@
     </UiBoxImage>
   </UiPanel>
   
-  <UiPanel class="UiTheme_cream">
+  <UiPanel>
     <UiBox :stack="true">
       <div>
         <UiHeading slot="header">
@@ -29,33 +29,15 @@
     </UiBox>
   </UiPanel>
 
-  <UiPanel class="-UiTheme_cream">
-    <UiBoxImage v-bind="mImg0">
-      <UiHeading>Welcome</UiHeading>
-    </UiBoxImage>
+  <UiPanel class="UiTheme_dark">
     <UiBox>
+      <WineWidget></WineWidget>
+    </UiBox>
+    <UiBox class="UiTheme_cream">
       <ActionBox v-bind="mock0">
         <UiList slot-scope="slot" :list="slot"/>
       </ActionBox>
     </UiBox>
-  </UiPanel>
-
-  <UiPanel class="UiTheme_light">
-    <UiBox class="UiTheme_cream">
-      <WineWidget></WineWidget>
-    </UiBox>
-    <UiBox class="UiTheme_cream">
-      <WineStats v-bind="mock5" :fields="mock5['ws:fields']"></WineStats>
-    </UiBox>
-  </UiPanel>
-
-  <UiPanel>
-    <UiBox>
-      <ActionBox v-bind="mock1" layout="float"/>
-    </UiBox>
-    <UiBoxImage v-bind="mImg2">
-      <UiHeading>Visit</UiHeading>
-    </UiBoxImage>
   </UiPanel>
 
 </div>
@@ -84,7 +66,7 @@ import mock6 from '@/assets/mock/visit.png'
 
 let
 settings = {
-  theme: 'dark'
+  theme: 'light'
 }
 if( window ) window.UiSettings = settings
 
