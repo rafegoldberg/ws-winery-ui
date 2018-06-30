@@ -4,7 +4,7 @@
 :root {
   font-size: $root;
   @media (max-width:68rem){
-    font-size: calc(10pt + .33vmin);
+    font-size: calc(12pt + .33vmin);
   }
 }
 
