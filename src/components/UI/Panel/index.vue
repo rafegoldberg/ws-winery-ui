@@ -6,6 +6,9 @@
 
 </template>
 <script>
+/**
+ * The `<UiPanel/>` is a full-width layout component. Each panel should contain a set of `<UiBox/>` child components. In some ways it's similar to Bootstrap's `.row > .col-*` construct. (Except it uses flexbox, which let's us pull of some neat tricks Bootstrap would never dream to touch.)
+ */
 export default {
   name: "UiPanel"
 }
@@ -39,3 +42,28 @@ export default {
   // grid-gap: 0;
 }
 </style>
+<docs>
+```vue
+<div>
+
+  <UiPanel class="UiTheme_cream">
+    <UiBox>
+      <h1>Hello.</h1>
+    </UiBox>
+    <UiBox class="UiTheme_light">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, delectus molestiae sapiente vel repudiandae in nulla facism? Harum facilis assumenda maiores vel aliquam. Nulla voluptatem unde nam tenetur repudiandae.</p>
+    </UiBox>
+  </UiPanel>
+
+  <UiPanel class="UiTheme_dark">
+    <UiBox class="UiTheme_light">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, delectus molestiae sapiente vel repudiandae in nulla facism? Harum facilis assumenda maiores vel aliquam. Nulla voluptatem unde nam tenetur repudiandae.</p>
+    </UiBox>
+    <UiBox>
+      <h1>Goodbye.</h1>
+    </UiBox>
+  </UiPanel>
+
+</div>
+```
+</docs>

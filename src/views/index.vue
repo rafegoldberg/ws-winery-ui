@@ -51,11 +51,11 @@ import UiHeading from "@/components/UI/Heading"
 import UiList from "@/components/UI/List"
 import UiButton from "@/components/UI/Button"
 
-import ActionBox from "@/components/ActionBox"
-import MediaList from "@/components/MediaList"
-import WineWidget from "@/components/Wine"
+import ActionBox from "@/components/modules/ActionBox"
+import MediaList from "@/components/modules/MediaList"
+import WineWidget from "@/components/modules/Wine"
 
-import mock0 from "@/components/ActionBox/mock/context.0.json"
+import mock0 from "@/components/modules/ActionBox"
 import mock2 from "@/assets/mock/welcome.png"
 import mock6 from "@/assets/mock/visit.png"
 

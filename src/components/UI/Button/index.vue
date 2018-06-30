@@ -1,6 +1,7 @@
 <template>
 
   <button class="UiButton">
+    <!-- @slot Add rich markup to your button. -->
     <slot>{{cta}}</slot>
   </button>
 
@@ -16,7 +17,7 @@ export default {
 <style lang="scss" scoped>
 @import "./style.scss";
 .UiButton {
-  &.gold {
+  &_gold, &.gold {
     color: Color(theme);
   }
   &_outline {
@@ -27,19 +28,21 @@ export default {
 }
 </style>
 <docs>
-### Using Props
+#### Using Props
+
+Quickly pass a custom call-to-action:
 
 ```vue
-<UiButton :cta="'Do This'"/>
+<UiButton :cta="'First Do This'"/>
 ```
 
-### Using Slots
+#### Using Slots
+
+For more involved scenarios, you can pass custom markup directly to the `<UiButton/>`'s default slot:
 
 ```vue
 <UiButton>
-  <!-- custom inner markup -->
-  Schedule a 
-  <a href="#action"><b>Visit</b></a>
+  Now Do <a href="#action"><b>That</b></a>
 </UiButton>
 ```
 </docs>

@@ -8,6 +8,9 @@
 </ul>
 </template>
 <script>
+/**
+ * A stylish unordered list.
+ */
 export default {
   name: "UiList",
   props:{
@@ -47,3 +50,12 @@ export default {
   }
 }
 </style>
+<docs>
+```vue
+<UiList :list="[
+  'list entry one',
+  'another item',
+  'a final test'
+]"></UiList>
+```
+</docs>

@@ -1,0 +1,23 @@
+%debug {
+  outline: 1px dotted;
+  &_blue {
+    outline: 1px dashed dodgerblue;
+  }
+  &_pink {
+    outline: 1px dotted magenta;
+  }
+  &_offset {
+    outline-offset: .5em;
+  }
+  &_inset  {
+    outline-offset: -.5em;
+  }
+}
+[class*="rsg--"] {
+  .UiPanel {
+    @extend %debug, %debug_blue;
+  }
+  .UiBox {
+    @extend %debug, %debug_pink, %debug_inset;
+  }
+}

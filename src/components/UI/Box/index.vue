@@ -25,3 +25,11 @@ export default {
   }
 }
 </style>
+<docs>
+```vue
+<UiBox>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, delectus molestiae sapiente vel repudiandae in nulla facism? Harum facilis assumenda maiores vel aliquam. Nulla voluptatem unde nam tenetur repudiandae.
+  </p>
+</UiBox>
+```
+</docs>

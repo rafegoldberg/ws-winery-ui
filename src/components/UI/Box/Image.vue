@@ -8,12 +8,13 @@
 
 <script>
 import UiBox from '.';
+import fallback_img from '@/assets/mock/harvest.png';
 /**
  * A flexbox-based layout component for use within a `<UiPanel/>` wrapper.
  */
 export default {
   name: "UiBoxImage",
-  props:[ 'img' ],
+  props:{ img:{ type:[String,Object], default:fallback_img } },
   components:{ UiBox },
   computed:{
     src(){ return `url(${this.img})` }
@@ -68,3 +69,10 @@ export default {
   }
 }
 </style>
+<docs>
+```vue
+<UiBoxImage style="text-align: center">
+  <UiHeading :level=1>Text<br/>Overlay</UiHeading>
+</UiBoxImage>
+```
+</docs>

@@ -56,3 +56,9 @@ export default {
   }
 }
 </style>
+
+<docs>
+```vue
+<WineWidget style="margin:2em auto"/>
+```
+</docs>

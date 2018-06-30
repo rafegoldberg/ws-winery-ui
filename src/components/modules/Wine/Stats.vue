@@ -120,3 +120,9 @@ export default {
   }
 }
 </style>
+
+<docs>
+```vue
+<WineStats title="Mock Up" style="margin:2em auto;"/>
+```
+</docs>

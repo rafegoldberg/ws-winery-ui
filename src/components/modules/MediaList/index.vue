@@ -108,4 +108,16 @@ export default {
     }
   }
 }
+.MediaList--item:not(.MediaList--item_active) {
+  overflow: hidden;
+  &:before { transition: all 0s !important }
+}
 </style>
+
+<docs>
+```vue
+<MediaList :style="{
+  position:'relative',
+}"/>
+```
+</docs>
