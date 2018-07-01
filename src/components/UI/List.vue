@@ -1,8 +1,8 @@
 <template>
 <ul class="UiList">
 
-  <li v-for="(text,i) in list" :key="i">
-    {{text}}
+  <li v-for="(item,i) in list" :key="i">
+    <slot v-bind="item">{{item}}</slot>
   </li>
 
 </ul>

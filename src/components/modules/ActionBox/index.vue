@@ -76,12 +76,20 @@ export default {
 }</style>
 
 <docs>
+Render an `<ActionBox/>` with sub-components:
+  
 ```vue
-<UiBox>
-  <ActionBox cta="Eat Dirt" layout="float">
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, delectus molestiae sapiente vel repudiandae in nulla facism? Harum facilis assumenda maiores vel aliquam. Nulla voluptatem unde nam tenetur repudiandae.
-    </p>
-  </ActionBox>
-</UiBox>
+<ActionBox cta="Drink" title="A, B, C">
+  <UiList :list="['easy as one, two, three','simple as do-re-mi']"></UiList>
+</ActionBox>
+```
+
+Pass a custom `[layout]`:
+
+```vue
+<ActionBox cta="Drink Wine" layout="float">
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, delectus molestiae sapiente vel repudiandae in nulla facism? Harum facilis assumenda maiores vel aliquam. Nulla voluptatem unde nam tenetur repudiandae.
+  </p>
+</ActionBox>
 ```
 </docs>

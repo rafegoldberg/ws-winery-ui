@@ -46,35 +46,57 @@ export default {
 </style>
 <docs>
 ```vue
-<UiBox style="padding: 0"> <div>
-  <UiHeading :level=6 :scale=1>Heading 1</UiHeading>
-  <br/>
-  <UiHeading :level=5 :scale=2>Heading 2</UiHeading>
-  <br/>
-  <UiHeading :level=4 :scale=3>Heading 3</UiHeading>
-  <br/>
-  <UiHeading :level=3 :scale=4>Heading 4</UiHeading>
+<UiBox class="UiTheme_cream">
+
+<UiHeading :level="1" style="text-align: center;">
+  2016 Westside Road Neighbors Pinot Noir
+</UiHeading>
+
+</UiBox>
+```
+
+## Typographic Scale
+
+```vue
+<div>
+  <UiHeading :level=1 :scale=6>Heading 6</UiHeading>
   <br/>
   <UiHeading :level=2 :scale=5>Heading 5</UiHeading>
   <br/>
-  <UiHeading :level=1 :scale=6>Heading 6</UiHeading>
-</div> </UiBox>
+  <UiHeading :level=3 :scale=4>Heading 4</UiHeading>
+  <br/>
+  <UiHeading :level=4 :scale=3>Heading 3</UiHeading>
+  <br/>
+  <UiHeading :level=5 :scale=2>Heading 2</UiHeading>
+  <br/>
+  <UiHeading :level=6 :scale=1>Heading 1</UiHeading>
+</div>
 ```
+
+## Typographic Applications
 
 You can also use the sans-serif typeset where appropriate:
 
 ```vue
-<UiHeading class="UiHeading_sans" :level="5" style="text-align: center;">
-  <b>Ferrington Vineyard</b>
+<UiBox class="UiTheme_light">
+
+<UiHeading class="UiHeading_sans" :level="6" style="text-align: center;">
+  <b>2016 Westside Road Neighbors Pinot Noir</b>
 </UiHeading>
+
+</UiBox>
 ```
 
 In certain settings you may mix the two applications together:
 
 ```vue
+<UiBox>
+
 <header style=text-align:center>
   <UiHeading style="font-weight:400;" :level="5">Anderson Valley</UiHeading>
   <UiHeading class="UiHeading_sans" :level="3">Ferrington Vineyard</UiHeading>
 </header>
+
+</UiBox>
 ```
 </docs>

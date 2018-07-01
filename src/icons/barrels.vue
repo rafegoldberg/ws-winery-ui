@@ -1,5 +1,4 @@
 <template>
-<!-- viewBox = 0 0 76 75.488 -->
 <g id="Group_762" data-name="Group 762" transform="translate(-334 -6105)">
 
   <g id="Group_566" data-name="Group 566" transform="translate(334 6105)">
@@ -129,13 +128,6 @@
 <script>
 export default {
   name:"IconBarrels",
+  data:()=>({ viewBox:"0 0 76 75.488" })
 }
 </script>
-
-<docs>
-```vue
-<UiIcon name="barrels" width="5em" height="5em" view-box="0 0 76 75.488" fill="#BA9454">
-  <IconBarrels/>
-</UiIcon>
-```
-</docs>

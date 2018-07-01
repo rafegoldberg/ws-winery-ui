@@ -8,16 +8,21 @@
     role="presentation">
     <title :id="name" lang="en">{{name}} icon</title>
     <g :fill="fill">
-      <slot />
+      <slot>
+        <component :is="`icon-${name}`"/>
+      </slot>
     </g>
   </svg>
 </template>
 
 <script>
-import IconBarrels from "@/components/icons/barrels"
+import Icons from "@/icons"
 export default {
   name: "UiIcon",
-  components:{ IconBarrels },
+  components:{ ...Icons },
+  mounted(){
+    this.viewBox = this.$children[0].viewBox || 0;
+  },
   props: {
     name: {
       type: String,
@@ -25,11 +30,11 @@ export default {
     },
     width: {
       type: [Number, String],
-      default: 18
+      default: "auto"
     },
     height: {
       type: [Number, String],
-      default: 18
+      default: "auto"
     },
     fill: {
       type: String,
@@ -37,7 +42,7 @@ export default {
     },
     viewBox: {
       type: String,
-      default: '0 0 18 18'
+      default: '0'
     }
   },
 }
@@ -53,26 +58,20 @@ svg {
 
 <docs>
 ```vue
-<UiPanel>
+<UiBox>
+  <UiIcon name="glasses" fill="#BA9454" width="5em"/>
+</UiBox>
+```
 
-  <UiBox class=UiTheme_dark>
-    <UiIcon name="barrels" width="5em" height="5em" view-box="0 0 76 75.488" fill="#BA9454">
-      <IconBarrels/>
-    </UiIcon>
-  </UiBox>
+### A More Complex Example
 
-  <UiBox class=UiTheme_light>
-    <UiIcon name="bottles" width="5em" height="5em" view-box="0 0 76.1 72.3" fill="#BA9454">
-      <IconBottles/>
-    </UiIcon>
-  </UiBox>
-
-  <UiBox class=UiTheme_cream>
-    <UiIcon name="glasses" width="5em" height="5em" view-box="0 0 70 63" fill="#BA9454">
-      <IconGlasses/>
-    </UiIcon>
-  </UiBox>
-
-</UiPanel>
+```vue
+<UiBox class="UiTheme_dark">
+  <ActionBox cta="Clink" layout="float" title="Drink Wine">
+    <UiIcon name="glasses" fill="#BA9454" width="8em" style="float: left; margin: .5em 1em 0 -1em;"/>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, delectus molestiae sapiente vel repudiandae in nulla facism? Harum facilis assumenda maiores vel aliquam. Nulla voluptatem unde nam tenetur repudiandae.
+    </p>
+  </ActionBox>
+</UiBox>
 ```
 </docs>

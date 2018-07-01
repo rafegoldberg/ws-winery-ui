@@ -29,9 +29,9 @@ module.exports = {
       description: 'Combinations of components and common brand-specific patterns.',
       components: 'src/components/modules/**/*.vue',
       },
-    { name:"Icons",
-      components: 'src/components/icons/*.vue'
-      },
+    // { name:"Icons",
+    //   components: 'src/components/icons/*.vue'
+    //   },
     // { name: "Pages",
     //   description: 'Discreet sections of the WS application flow.',
     //   components: 'src/views/**/*.vue',
@@ -39,7 +39,7 @@ module.exports = {
   ],
 
   navigation: true,
-  showCode: true,
+  showCode: false,
   showUsage: false,
   defaultExample: false,
   editorConfig: {
