@@ -34,9 +34,9 @@ export default {
     &:before {
       position: absolute;
       left: 0;
-      top: .2em;
-      transform: translateY(0%);
-
+      top: 50%;
+      transform: translateY(-50%);
+      
       display: inline-block;
       content: " ";
       min-width: 1em;

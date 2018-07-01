@@ -7,7 +7,7 @@
 </template>
 <script>
 /**
- * The `<UiPanel/>` is a full-width layout component. Each panel should contain a set of `<UiBox/>` child components. In some ways it's similar to Bootstrap's `.row > .col-*` construct. (Except it uses flexbox, which let's us pull of some neat tricks Bootstrap would never dream to touch.)
+ * The `<UiPanel/>` is a full-width layout component. Each panel should contain a set of `<UiBox/>` child components. In some ways it's similar to Bootstrap's `.row > .col-*` construct. Except we're using flexbox to pull of some neat tricks that Bootstrap would never even dream to touch.
  */
 export default {
   name: "UiPanel"

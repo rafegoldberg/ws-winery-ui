@@ -18,18 +18,21 @@ module.exports = {
   ],
   
   sections: [
-    { name: 'Introduction',
+    { name: "Introduction",
       content: 'readme.md'
       },
-    { name: 'Components',
+    { name: "Components",
       description: 'The building blocks of the WS user interface.',
       components: 'src/components/UI/**/*.vue',
       },
-    { name: 'Complications',
+    { name: "Complications",
       description: 'Combinations of components and common brand-specific patterns.',
       components: 'src/components/modules/**/*.vue',
       },
-    // { name: 'Pages',
+    { name:"Icons",
+      components: 'src/components/icons/*.vue'
+      },
+    // { name: "Pages",
     //   description: 'Discreet sections of the WS application flow.',
     //   components: 'src/views/**/*.vue',
     //   },

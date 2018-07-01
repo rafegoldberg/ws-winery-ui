@@ -13,11 +13,11 @@
     outline-offset: -.5em;
   }
 }
-[class*="rsg--"] {
-  .UiPanel {
-    @extend %debug, %debug_blue;
-  }
-  .UiBox {
-    @extend %debug, %debug_pink, %debug_inset;
-  }
-}
+// [class*="rsg--"] {
+//   .UiPanel {
+//     @extend %debug, %debug_blue;
+//   }
+//   .UiBox {
+//     @extend %debug, %debug_pink, %debug_inset;
+//   }
+// }

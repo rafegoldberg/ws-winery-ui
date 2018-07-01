@@ -124,7 +124,7 @@ import UiBox from '@/components/UI/Box'
 import UiBoxImg from '@/components/UI/Box/Image'
 import UiButton from '@/components/UI/Button'
 
-import WineStats from '@/components/modules/Wine'
+import WineStats from '@/components/modules/Wine/Stats'
 import UiHeading from '@/components/UI/Heading'
 
 import getTexts from "./lib/parse.wpContent"
