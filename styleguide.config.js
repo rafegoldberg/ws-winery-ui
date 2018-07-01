@@ -16,6 +16,7 @@ module.exports = {
     
     path.join(__dirname,'src/styles/docs.scss'),
   ],
+  
   sections: [
     { name: 'Introduction',
       content: 'readme.md'
