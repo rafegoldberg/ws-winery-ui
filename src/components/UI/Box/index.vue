@@ -7,13 +7,21 @@
 </component>
 </template>
 <script>
-import schema from './schema';
 /**
- * A simple flexbox layout component. Intended for use within a `<UiPanel/>` wrapper.
+ * A simple flexbox layout component. Intended for use within a `<UiPanel/>` parent wrapper.
  */
 export default {
   name: "UiBox",
-  props: schema
+  props: {
+    tag: {
+      type: String,
+      default: "div"
+    },
+    stack: {
+      type: Boolean,
+      default: false
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
