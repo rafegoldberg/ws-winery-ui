@@ -1,0 +1,19 @@
+@import "~@/breakpoint-sass";
+
+$breaks: 18rem 36rem 54rem 72rem;
+
+@function Breaks( $i ){
+  @return nth($breaks,$i);
+}
+
+@mixin Break($MQ){
+  
+  //=ARGS=>
+  //
+  // 500px                                     // default (min-width)
+  // 600px 800px                               // between (min/max)
+  // max-width 1000px                          // features
+  //(min-height 1000px) (orientation portrait) // multiple
+  
+  @include breakpoint( $MQ ){ @content }
+}

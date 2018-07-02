@@ -23,13 +23,6 @@ export default {
   flex-flow: nowrap row;
   @media ( min-width:800px ) {
     > * { flex: 1 }
-
-    // BROKE: full-width UiBox layouts
-    // > :only-child {
-    //   flex: 0 $legible;
-    //   margin: 0 auto
-    // }
-    
   }
   @media ( max-width:800px ) {
     flex-flow: nowrap column;

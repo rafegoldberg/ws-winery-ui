@@ -38,10 +38,22 @@ img {
 }
 
 p, ul, ol, dl, figure, blockquote {
-  max-width: 42em;
   margin: 1rem 0;
 }
 
 pre, code {
   font-family: $ff-mono;
+}
+
+@media (min-width:0) {
+
+  // 
+  // CSS Staging Area
+  // 
+  
+  .UiBox > *:only-child:not([class]) {
+    max-width: 34rem;
+    margin: 0 auto;
+  }
+  
 }
