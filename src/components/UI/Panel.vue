@@ -14,7 +14,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import "~@/styles/config/scale";
+@import "~@/styles/theme/scale";
 .UiPanel {
   position: relative;
   display: flex;

@@ -15,14 +15,17 @@
 </template>
 
 <style lang="scss" id="TEMP">
+@import "~@/styles/theme/colors";
 @import "~@/styles/extend/container";
 #AppFooter {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.178);
+  padding: 0 1rem;
   &Wrap { 
     @extend %container;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    color: Color(silver);
   }
 }
 </style>

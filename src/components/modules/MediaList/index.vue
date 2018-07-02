@@ -45,7 +45,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~@/styles/config/colors";
+@import "~@/styles/theme/colors";
 .MediaList {
   $base: #{&};
   & {

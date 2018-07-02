@@ -9,7 +9,8 @@
     "dox": "vue-styleguidist server",
     "dox:build": "vue-styleguidist build",
     "lint": "vue-cli-service lint",
-    "heroku-postbuild": "concurrently \"yarn build\""
+    "heroku-postbuild": "concurrently \"yarn build\"",
+    "devx": "concurrently \"yarn dev\" \"yarn dox\""
   },
   "dependencies": {
     "axios": "^0.18.0",

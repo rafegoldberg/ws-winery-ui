@@ -79,8 +79,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~@/styles/config/colors";
-@import "~@/styles/config/fonts";
+@import "~@/styles/theme/colors";
+@import "~@/styles/theme/fonts";
 .WineStats {
   $val: Color(alt);
   $bgc: Color(light);

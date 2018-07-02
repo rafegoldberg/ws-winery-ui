@@ -21,9 +21,9 @@ export default {
 
 <style lang="scss">
 @import "~@/styles/tools/em";
-@import "~@/styles/config/scale";
-@import "~@/styles/config/colors";
-@import "~@/styles/config/fonts";
+@import "~@/styles/theme/scale";
+@import "~@/styles/theme/colors";
+@import "~@/styles/theme/fonts";
 
 .UiHeading {
   & {

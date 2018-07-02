@@ -196,7 +196,7 @@ img#WineBottle {
 }
 </style>
 <style lang="scss">
-@import "~@/styles/config/colors";
+@import "~@/styles/theme/colors";
 @import "~@/components/UI/Box/style";
 .iconList {
   min-width: 68%;
@@ -232,7 +232,7 @@ img#WineBottle {
 }
 </style>
 <style lang="scss">
-@import "~@/styles/config/colors";
+@import "~@/styles/theme/colors";
 .UiTheme_halves {
   flex: 0 auto !important;
   padding: 2rem 1rem !important;

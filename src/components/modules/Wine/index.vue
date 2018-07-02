@@ -26,8 +26,8 @@ export default {
 
 <style lang="scss" scoped>
 
-@import "~@/styles/config/fonts";
-@import "~@/styles/config/colors";
+@import "~@/styles/theme/fonts";
+@import "~@/styles/theme/colors";
 
 .WineWidget {
   max-width: 15em;
