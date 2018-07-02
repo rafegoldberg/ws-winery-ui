@@ -46,7 +46,7 @@ export default {
       @media (max-width:800px) { min-height: 63vh }
     }
   }
-  &:before {
+  &:not(:empty):before {
     content: " ";
 
     position: absolute;
