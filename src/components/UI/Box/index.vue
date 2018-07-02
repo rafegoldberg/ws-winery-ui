@@ -2,6 +2,7 @@
 <component :is="tag" class="UiBox" :class="{
     'UiBox_stack': stack
   }">
+  <!-- @slot Pass content and components to the `UiBox` -->
   <slot/>
 </component>
 </template>

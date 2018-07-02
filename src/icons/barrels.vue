@@ -128,6 +128,6 @@
 <script>
 export default {
   name:"IconBarrels",
-  data:()=>({ viewBox:"0 0 76 75.488" })
+  data:()=>({ viewBox:[0,0,76,75.488] })
 }
 </script>

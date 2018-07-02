@@ -1,6 +1,7 @@
 <template>  
 <div id="app">
 
+  <AppNav class=""/>
   <router-view/>
   <AppFooter class="UiTheme_dark"/>
   
@@ -8,10 +9,11 @@
 </template>
 <script>
 import AppFooter from "@/components/App/footer"
+import AppNav from "@/components/App/nav"
 export default {
   name:"App",
   components:{
-    AppFooter,
+    AppNav, AppFooter,
   }
 }
 </script>

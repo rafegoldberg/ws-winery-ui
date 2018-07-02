@@ -41,7 +41,7 @@ export default {
       default: 'currentColor'
     },
     viewBox: {
-      type: String,
+      type: [String,Array],
       default: '0'
     }
   },
@@ -51,7 +51,7 @@ export default {
 <style lang="scss" scoped>
 svg {
   display: inline-block;
-  vertical-align: baseline;
+  vertical-align: middle;
   // margin-bottom: -2px; /* yes, I'm that particular about formatting */
 }
 </style>
@@ -59,19 +59,38 @@ svg {
 <docs>
 ```vue
 <UiBox>
-  <UiIcon name="glasses" fill="#BA9454" width="5em"/>
+  <UiIcon name="logo" fill="indianred" width="16em"/>
 </UiBox>
 ```
+
+### Available Icons
+
+- `barrels`
+- `bottles`
+- `glasses`
+- `logo`
 
 ### A More Complex Example
 
 ```vue
+<div>
+
 <UiBox class="UiTheme_dark">
-  <ActionBox cta="Clink" layout="float" title="Drink Wine">
-    <UiIcon name="glasses" fill="#BA9454" width="8em" style="float: left; margin: .5em 1em 0 -1em;"/>
+  <ActionBox cta="Clink" title="Drink Wine" layout="float">
+    <UiIcon name="glasses" fill="#BA9454" width="5em" style="float: left; margin: 1em 1em 0 0;"/>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, delectus molestiae sapiente vel repudiandae in nulla facism? Harum facilis assumenda maiores vel aliquam. Nulla voluptatem unde nam tenetur repudiandae.
+    </p>
+  </ActionBox>
+</UiBox> 
+
+<UiBox class="UiTheme_light">
+  <ActionBox cta="Clink" title="Drink Wine">
+    <UiIcon name="barrels" fill="#BA9454" width="5em" style="float: right; margin: 1em 0 0 1em;"/>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, delectus molestiae sapiente vel repudiandae in nulla facism? Harum facilis assumenda maiores vel aliquam. Nulla voluptatem unde nam tenetur repudiandae.
     </p>
   </ActionBox>
 </UiBox>
+
+</div>
 ```
 </docs>

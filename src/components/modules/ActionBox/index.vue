@@ -41,7 +41,6 @@ export default {
     },
     content: {
       type: [ Array, String, Object ],
-      required: true,
       default: ""
     },
     cta: {

@@ -71,6 +71,6 @@
 <script>
 export default {
   name:"IconBottles",
-  data:()=>({ viewBox:"0 0 76.1 72.3" })
+  data:()=>({ viewBox:[0,0,76.1,72.3] })
 }
 </script>

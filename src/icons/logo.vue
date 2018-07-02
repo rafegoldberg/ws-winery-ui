@@ -41,6 +41,6 @@
 <script>
 export default {
   name:"IconLogo",
-  data:()=>({ viewBox:'0 0 180 91.42' })
+  data:()=>({ viewBox:[0,0,180,91.42] })
 }
 </script>
