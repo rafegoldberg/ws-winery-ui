@@ -93,8 +93,8 @@ In certain settings you may mix the two applications together:
 <UiBox>
 
 <header style=text-align:center>
-  <UiHeading style="font-weight:400;" :level="5">Anderson Valley</UiHeading>
-  <UiHeading class="UiHeading_sans" :level="3">Ferrington Vineyard</UiHeading>
+  <UiHeading class="UiHeading_sans" style="font-weight:400;" :level="6">Anderson Valley</UiHeading>
+  <UiHeading :level="3">Ferrington Vineyard</UiHeading>
 </header>
 
 </UiBox>
