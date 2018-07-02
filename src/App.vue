@@ -1,7 +1,7 @@
 <template>  
 <div id="app">
 
-  <AppNav class=""/>
+  <AppNav class="UiTheme_light_translucent"/>
   <router-view/>
   <AppFooter class="UiTheme_dark"/>
   

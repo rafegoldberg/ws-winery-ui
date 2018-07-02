@@ -1,11 +1,14 @@
 @import "~@/styles/theme/colors";
 
-$themes: cream light dark !default;
+$themes: cream light dark rust !default;
 
 @mixin UI_THEMES_EXTEND( $themes: $themes ){
   @each $theme in $themes {
     &_#{$theme} {
       @extend %#{$theme} !optional;
+      &_translucent {
+        @extend %#{$theme}, %#{$theme}_translucent !optional;
+      }
     }
   }
 }
@@ -15,15 +18,39 @@ $themes: cream light dark !default;
   color: Color(slate);
   background: Color(cream);
 }
+%cream_translucent {
+  color: Color(slate);
+  background: rgba(Color(cream),.99);
+}
+
 %light {
   @extend .UiTheme;
   color: Color(slate);
   background: Color(light);
 }
+%light_translucent {
+  color: Color(slate);
+  background: rgba(Color(light),.99);
+}
+
 %dark {
   @extend .UiTheme;
   color: Color(silver);
   background: Color(dark);
+}
+%dark_translucent {
+  color: Color(silver);
+  background: rgba(Color(dark),.99);
+}
+
+%rust {
+  @extend .UiTheme;
+  color: Color(matte);
+  background: Color(alt);
+}
+%rust_translucent {
+  color: Color(matte);
+  background: rgba(Color(alt),.99);
 }
 
 .UiTheme {

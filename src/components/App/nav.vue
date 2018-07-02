@@ -2,7 +2,7 @@
 <UiPanel id="AppNav">
 <div id="AppNavWrap">
 
-  <UiIcon name="logo" height="3.5em" width="7em" color="#CB3E3D"/>
+  <UiIcon name="logo" height="3.5em" width="7em"/>
   <UiIcon name="menu" width="1em" height="1em"></UiIcon>
   
 </div>
@@ -24,16 +24,21 @@ export default {
 @import "~@/styles/extend/container";
 #AppNav {
   & {
-    background: rgba(Color(light),.975);
     z-index: 9;
     position: sticky;
     top: 0;
     left: 0;
     width: 100vw;
     max-height: 6rem;
-    color: Color(dark);
     padding: 0 1em;
+    // color: Color(dark);
+    // background: rgba(Color(light),.975);
+    border-bottom: 1px solid rgba(Color(dark),.1);
+    box-shadow: 0 18px 24px -12px rgba(Color(slate), .05);
   }
+  &[class*="UiTheme_light"],
+  &[class*="UiTheme_cream"]{ color: Color(alt) }
+  &[class*="UiTheme_dark"] { color: Color(theme) }
   &Wrap{
     @extend %container, %container_flex;
     display: flex;
