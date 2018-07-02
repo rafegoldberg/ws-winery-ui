@@ -26,7 +26,7 @@ export default {
 @import "./style.scss";
 .UiBoxImage {
 
-  min-height: 50vh;
+  // min-height: 50vh;
 
   & {
     position: relative;
@@ -42,7 +42,7 @@ export default {
     background-size: cover;
 
     &:only-child {
-      min-height: 90vh;
+      // min-height: 90vh;
       @media (max-width:800px) { min-height: 63vh }
     }
   }
@@ -57,9 +57,9 @@ export default {
     height: 100%;
     background-image: linear-gradient(
       to bottom,
-      rgba(0,0,0,.0) 15%,
-      rgba(0,0,0,.6) 85%, 
-      rgba(0,0,0,.7) 95%
+      rgba(0,0,0,.15) 08%,
+      rgba(0,0,0,.63) 68%, 
+      rgba(0,0,0,.75) 88%
     );    
   }
   
@@ -71,8 +71,20 @@ export default {
 </style>
 <docs>
 ```vue
-<UiBoxImage style="text-align: center">
-  <UiHeading :level=1>Text<br/>Overlay</UiHeading>
+<UiBoxImage style="justify-content: flex-start">
+  <div style="margin: 0 auto 0 0">
+    <header>
+      <UiIcon name=barrels width="5em" height="5em" style="display: block; margin: 0 auto 1em"/>
+      <UiHeading>
+        Harvest 2016
+      </UiHeading>
+    </header>
+    <UiList :list="[
+      'Pruney notes',
+      'Weak legs',
+      'Mature tannins'
+    ]"/>
+  </div>
 </UiBoxImage>
 ```
 </docs>
