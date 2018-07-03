@@ -6,7 +6,7 @@ import StaffBio from "./views/Staff/Bio";
 import WinePost from "./views/Wine/post";
 
 import VineyardsList from "./views/Vineyards/list";
-// import VineyardPage from "./views/Vineyards/page";
+import VineyardPage from "./views/Vineyards/page";
 
 export default [
   {
@@ -48,15 +48,16 @@ export default [
     component: VineyardsList,
     props: true,
   },
-  // {
-  //   name: "Vineyard",
-  //   path: "/vineyards/:permalink+/:slug",
-  //   component: VineyardPage,
-  //   props: {
-  //     default: true,
-  //     type:'categories'
-  //   },
-  // },
+  {
+    name: "VineyardPage",
+    path: "/vineyards/:permalink+/:slug",
+    component: VineyardPage,
+    props: true,
+    // props: {
+    //   default: true,
+    //   type:'categories'
+    // },
+  },
 
   
   {
