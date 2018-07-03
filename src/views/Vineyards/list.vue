@@ -7,18 +7,18 @@
   
   <UiBox>
     <UiList :list="context">
-      <router-link :to="vineyard.slug"
+      <router-link :to="item.slug"
                     append
-                    slot-scope="vineyard">
-        {{vineyard.name || vineyard.title.rendered}}
-        {{$log(vineyard)}}
+                    slot-scope="{item}">
+        {{item.name || item.title.rendered}}
+        {{$log(item)}}
       </router-link>
     </UiList>
   </UiBox>
 
 
 </main>
-<div v-else style="text-align: center">Loading...</div>
+<UiBox v-else style="text-align: center">Loading...</UiBox>
 </template>
 
 <script>

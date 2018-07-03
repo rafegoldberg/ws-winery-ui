@@ -31,12 +31,10 @@
 
   <UiPanel class="UiTheme_dark">
     <UiBox>
-      <WineWidget></WineWidget>
+      <WineWidget/>
     </UiBox>
     <UiBox class="UiTheme_cream">
-      <ActionBox v-bind="mock0">
-        <UiList slot-scope="slot" :list="slot"/>
-      </ActionBox>
+      <ActionBox v-bind="mock0"/>
     </UiBox>
   </UiPanel>
 

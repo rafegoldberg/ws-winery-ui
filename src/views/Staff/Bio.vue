@@ -2,7 +2,7 @@
 <main v-if="!context.loading" id="StaffBio" class="wrap">
 
   <div class="wrap_min">
-    <UiBox :style="{ justifyContent:'left', padding:0 }">
+    <UiBox :style="{ justifyContent:'left', paddingLeft:0 }">
       <UiHeading :level="3" :scale="2">
         {{context.title.rendered}}
       </UiHeading>
@@ -12,7 +12,7 @@
   </div>
 
 </main>
-<div v-else style="text-align: center">Loading...</div>
+<UiBox v-else style="text-align: center">Loading...</UiBox>
 </template>
 
 <script>

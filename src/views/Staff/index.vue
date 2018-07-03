@@ -3,14 +3,14 @@
 
   <UiBox style="text-align: left">
     <UiList :list="context">
-      <router-link slot-scope="employee" :to="employee.slug" append>
-        {{employee.title.rendered}}
+      <router-link slot-scope="{item}" :to="item.slug" append>
+        {{item.title.rendered}}
       </router-link>
     </UiList>
   </UiBox>
 
 </main>
-<div v-else style="text-align: center">Loading...</div>
+<UiBox v-else style="text-align: center">Loading...</UiBox>
 </template>
 
 <script>

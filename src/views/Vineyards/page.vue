@@ -1,16 +1,19 @@
 <template>
+  <main v-if="!context.loading" id="VineyardPage" class="UiTheme_cream">
 
-<main v-if="!context.loading" id="VineyardPage" class="wrap" style="text-align: center">
-  <UiHeading :level="3">
-    {{context.title.rendered}}
-  </UiHeading>
-  <article  v-if="context.content"
-            v-html="context.content.rendered"
-            class="wrap_mid"
-            style="text-align: initial; margin: 2rem auto"/>
-</main>
-<div v-else style="text-align: center">Loading...</div>
+    <div class="wrap"><div class="wrap_min">
+      <UiBox :style="{ justifyContent:'left', paddingLeft:0 }">
+        <UiHeading :level="3">
+          {{context.title.rendered}}
+        </UiHeading>
+      </UiBox>
+      <article
+        v-if="context.content"
+        v-html="context.content.rendered"/>
+    </div></div>
 
+  </main>
+  <UiBox v-else style="text-align: center">Loading...</UiBox>
 </template>
 
 <script>
@@ -32,7 +35,7 @@ export default {
   computed:{
     endpoint() {
       if( this.API )
-        return this.API[this.type]().slug(this.slug)
+        return this.API["posts"]().slug(this.slug)
     }
   }
 }

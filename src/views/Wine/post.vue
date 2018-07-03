@@ -1,116 +1,117 @@
 <template>
 <div id="WinePage" v-if="!context.loading">
 
-<UiPanel id="WinePage--header" class="UiTheme_light">
-  <UiBox class="UiTheme_cream">
-    <WineStats
-      :title="context.title.rendered"
-      :fields="context['ws:fields']"
-      :category="terms"
-      />
-  </UiBox>
-  
-  <UiBox class="UiTheme_halves">
-    <img id="WineBottle" :src="media" :alt="context.title.rendered" />
-  </UiBox>
-
-  <UiBox>
-    <!-- <div>
-      <UiHeading :level="2" :scale="3">
-        {{sections[0].heading}}
-      </UiHeading>
-    </div> -->
-    <p>{{sections[0].text | truncate}}
-      <br>
-      <a href="#more">Read more</a>
-    </p>
-  </UiBox>
-</UiPanel>
-
-<UiPanel>
-  <UiBox><div style="text-align:center">
-    <UiHeading>Technical Notes</UiHeading>
-
-    <table>
-      <tr>
-        <th></th>
-        <td></td>
-      </tr>
-    </table>
+  <UiPanel id="WinePage--header" class="UiTheme_light">
+    <UiBox class="UiTheme_cream">
+      <WineStats
+        :title="context.title.rendered"
+        :fields="context['ws:fields']"
+        :category="terms"
+        />
+    </UiBox>
     
-    <UiButton class="UiButton_outline gold">Download</UiButton>
-  </div></UiBox>
-</UiPanel>
+    <UiBox class="UiTheme_halves">
+      <img id="WineBottle" :src="media" :alt="context.title.rendered" />
+    </UiBox>
 
-<UiPanel class="UiTheme_cream">
-  <UiBoxImg :img="img1"></UiBoxImg>
-  <UiBox>
-    <div>
-      <UiHeading :level="3">{{sections[0].heading}}</UiHeading>
-      <p>{{sections[0].text}}</p>
-    </div>
-  </UiBox>
-</UiPanel>
+    <UiBox>
+      <!-- <div>
+        <UiHeading :level="2" :scale="3">
+          {{sections[0].heading}}
+        </UiHeading>
+      </div> -->
+      <p>{{sections[0].text | truncate}}
+        <br>
+        <a href="#more">Read more</a>
+      </p>
+    </UiBox>
+  </UiPanel>
 
-<UiPanel style="max-height:68vh; overflow: hidden;">
-  <UiBoxImg :img="img4"/>
-</UiPanel>
+  <UiPanel>
+    <UiBox><div style="text-align:center">
+      <UiHeading>Technical Notes</UiHeading>
 
-<UiPanel class="UiTheme_dark">
-  <UiBox>
-    <div>
-      <UiHeading :level="3">{{sections[2].heading}}</UiHeading>
-      <p>{{sections[2].text}}</p>
-    </div>
-  </UiBox>
-  <UiBoxImg :img="img2"></UiBoxImg>
-</UiPanel>
+      <table>
+        <tr>
+          <th></th>
+          <td></td>
+        </tr>
+      </table>
+      
+      <UiButton class="UiButton_outline gold">Download</UiButton>
+    </div></UiBox>
+  </UiPanel>
 
-<UiPanel>
-  <UiBox><div style="text-align:center">
-    <UiHeading :level="3" :scale="4">Reviews &amp; Scores</UiHeading>
-  </div></UiBox>
-</UiPanel>
-
-<UiPanel style="max-height:62vh; overflow: hidden;">
-  <UiBoxImg :img="img3"/>
-</UiPanel>
-
-<UiPanel class="UiTheme_dark">
-  <UiBox class="iconListBox">
-    <section class="iconList">
-      <div class="iconList--item">
-        <UiIcon name="bottles" width="3rem" height="3rem"/>
-        <p>
-          <span class="iconList--item--label">All Our Wines</span>
-          <br>
-          <small>Visit our wine library to find a specific bottle or peruse our full collection.</small>
-        </p>
-        <UiButton>Library</UiButton>
+  <UiPanel class="UiTheme_cream">
+    <UiBoxImg :img="img1"></UiBoxImg>
+    <UiBox>
+      <div>
+        <UiHeading :level="3">{{sections[0].heading}}</UiHeading>
+        <p>{{sections[0].text}}</p>
       </div>
-      <div class="iconList--item">
-        <UiIcon name="barrels" width="3rem" height="3rem"/>
-        <p>
-          <span class="iconList--item--label">How To Purchase</span>
-          <br>
-          <small>Our wines are available twice a year for purchase.</small>
-        </p>
-        <UiButton>Purchasing</UiButton>
+    </UiBox>
+  </UiPanel>
+
+  <UiPanel style="max-height:68vh; overflow: hidden;">
+    <UiBoxImg :img="img4"/>
+  </UiPanel>
+
+  <UiPanel class="UiTheme_dark">
+    <UiBox>
+      <div>
+        <UiHeading :level="3">{{sections[2].heading}}</UiHeading>
+        <p>{{sections[2].text}}</p>
       </div>
-      <div class="iconList--item">
-        <UiIcon name="glasses" width="3rem" height="3rem"/>
-        <p>
-          <span class="iconList--item--label">Visit The Winery</span>
-          <br>
-          <small>Arrange a private tour and tasting tailored specifically for you.</small>
-        </p>
-        <UiButton>Visiting</UiButton>
-      </div>
-    </section>
-  </UiBox>
-</UiPanel>
+    </UiBox>
+    <UiBoxImg :img="img2"></UiBoxImg>
+  </UiPanel>
+
+  <UiPanel>
+    <UiBox><div style="text-align:center">
+      <UiHeading :level="3" :scale="4">Reviews &amp; Scores</UiHeading>
+    </div></UiBox>
+  </UiPanel>
+
+  <UiPanel style="max-height:62vh; overflow: hidden;">
+    <UiBoxImg :img="img3"/>
+  </UiPanel>
+
+  <UiPanel class="UiTheme_dark">
+    <UiBox class="iconListBox">
+      <section class="iconList">
+        <div class="iconList--item">
+          <UiIcon name="bottles" width="3rem" height="3rem"/>
+          <p>
+            <span class="iconList--item--label">All Our Wines</span>
+            <br>
+            <small>Visit our wine library to find a specific bottle or peruse our full collection.</small>
+          </p>
+          <UiButton>Library</UiButton>
+        </div>
+        <div class="iconList--item">
+          <UiIcon name="barrels" width="3rem" height="3rem"/>
+          <p>
+            <span class="iconList--item--label">How To Purchase</span>
+            <br>
+            <small>Our wines are available twice a year for purchase.</small>
+          </p>
+          <UiButton>Purchasing</UiButton>
+        </div>
+        <div class="iconList--item">
+          <UiIcon name="glasses" width="3rem" height="3rem"/>
+          <p>
+            <span class="iconList--item--label">Visit The Winery</span>
+            <br>
+            <small>Arrange a private tour and tasting tailored specifically for you.</small>
+          </p>
+          <UiButton>Visiting</UiButton>
+        </div>
+      </section>
+    </UiBox>
+  </UiPanel>
 
 </div>
+<UiBox v-else style="text-align: center">Loading...</UiBox>
 </template>
 
 <script>
