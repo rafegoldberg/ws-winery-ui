@@ -136,9 +136,9 @@ import img2 from "@/assets/mock/vineyard.png"
 import img3 from "@/assets/mock/harvest.png"
 import img4 from "@/assets/mock/cellar.png"
 
-import icon_bottles from "@/assets/icons/bottles.svg"
-import icon_barrels from "@/assets/icons/barrels.svg"
-import icon_glasses from "@/assets/icons/glasses.svg"
+import bottles from "@/assets/icons/bottles.svg"
+import barrels from "@/assets/icons/barrels.svg"
+import glasses from "@/assets/icons/glasses.svg"
 
 export default {
   name: "WinePost",
@@ -150,33 +150,23 @@ export default {
   },
   methods:{ getTerm },
   computed:{
-    img1: ()=> img1,
-    img2: ()=> img2,
-    img3: ()=> img3,
-    img4: ()=> img4,
-    icon(){
-      return {
-        bottles: icon_bottles,
-        barrels: icon_barrels,
-        glasses: icon_glasses,
-      }
-    },
-
     media:    getImage,
     sections: getTexts,
-
     embed(){ 
       if( this.context.loading ) return
       return this.context._embedded
-    },
-    details(){
-      return loPick( this['ws:fields'], ['key1','key2'] )
     },
     terms(){
       if( this.context.loading || !this.embed ) return
       // return this.embed['wp:term']
       return loFlat(this.embed['wp:term'])
     },
+
+    img1: ()=> img1,
+    img2: ()=> img2,
+    img3: ()=> img3,
+    img4: ()=> img4,
+    icon: ()=> ({ bottles, barrels, glasses, }),
   }
 }
 </script>
