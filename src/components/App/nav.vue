@@ -31,10 +31,6 @@ export default {
     width: 100vw;
     max-height: 6rem;
     padding: 0 1em;
-    // color: Color(dark);
-    // background: rgba(Color(light),.975);
-    border-bottom: 1px solid rgba(Color(dark),.1);
-    box-shadow: 0 18px 24px -12px rgba(Color(slate), .05);
   }
   &[class*="UiTheme_light"],
   &[class*="UiTheme_cream"]{ color: Color(alt) }
