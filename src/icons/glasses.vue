@@ -1,5 +1,5 @@
 <template>
-<g id="Group_763" data-name="Group 763" transform="translate(-340 -6262)">
+<g id="icon" class="icon" data-name="Group 763" transform="translate(-340 -6262)">
 
   <g id="Group_621" data-name="Group 621" transform="translate(340 6262)">
     <g id="Group_620" data-name="Group 620">

@@ -2,7 +2,15 @@
 <div id="app">
 
   <AppNav class="UiTheme_light_translucent"/>
-  <router-view/>
+  <!-- <UiHeading class="UiHeading_sans"
+            style="text-align: center;"
+            :level="1" 
+            :scale="1">
+    <b>{{$route.name}}</b>
+  </UiHeading> -->
+  
+  <router-view :key="$route.fullPath"/>
+  
   <AppFooter class="UiTheme_dark"/>
   
 </div>
@@ -10,10 +18,13 @@
 <script>
 import AppFooter from "@/components/App/footer"
 import AppNav from "@/components/App/nav"
+import UiHeading from "@/components/UI/Heading"
 export default {
   name:"App",
   components:{
-    AppNav, AppFooter,
+    AppNav,
+    AppFooter,
+    UiHeading,
   }
 }
 </script>

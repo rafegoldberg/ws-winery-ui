@@ -21,7 +21,7 @@
   border-top: 1px solid rgba(255, 255, 255, 0.178);
   padding: 0 1rem;
   &Wrap { 
-    @extend %container;
+    @extend %wrap;
     display: flex;
     justify-content: space-between;
     padding: 1rem 0;

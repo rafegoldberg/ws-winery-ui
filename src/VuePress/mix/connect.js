@@ -2,8 +2,20 @@ import WP from "../WP";
 export default {
   props: {
     type: {
-      default: "posts",
       type: String,
+      default: "posts",
+    },
+    category: {
+      type: [Number,String],
+    },
+    parent: {
+      type: [Number,String],
+    },
+    include: {
+      type: [Number,String,Array],
+    },
+    exclude: {
+      type: [Number,String,Array],
     },
   },
   methods: {
@@ -13,7 +25,8 @@ export default {
   },
   computed: {
     endpoint(){
-      if (this.API && this.type) return this.API[this.type]();
+      let type = this.type || 'posts'
+      if( this.API ) return this.API[type]()
     }
   },
   asyncComputed: {
@@ -23,7 +36,7 @@ export default {
       return API;
     },
     context: {
-      default: {loading:true},
+      default:{ loading:true },
       async get() {
         if ( !this.API || !this.endpoint )
           return {loading:true}
@@ -38,7 +51,7 @@ export default {
         if (error) return {error}
         return data
       },
-      // watch() { this.$route.params }
+      watch() { return this.$route.params }
     }
   }
 }

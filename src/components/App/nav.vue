@@ -2,7 +2,7 @@
 <UiPanel id="AppNav">
 <div id="AppNavWrap">
 
-  <UiIcon name="logo" height="3.5em" width="7em"/>
+  <UiIcon name="logo" height="3.5em" width="7em" :view="[0,0,180,45.71]"/>
   <UiIcon name="menu" width="1em" height="1em"></UiIcon>
   
 </div>
@@ -40,7 +40,7 @@ export default {
   &[class*="UiTheme_cream"]{ color: Color(alt) }
   &[class*="UiTheme_dark"] { color: Color(theme) }
   &Wrap{
-    @extend %container, %container_flex;
+    @extend %wrap, %wrap_flex;
     display: flex;
     justify-content: space-between;
     align-items: center;

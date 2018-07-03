@@ -1,10 +1,16 @@
 <template>
-<main id="StaffBio">
+<main v-if="!context.loading" id="StaffBio" class="wrap" style="text-align: center">
 
-  <pre v-if="!context.loading">{{context}}</pre>
-  <span v-else>Loading...</span>
+  <UiHeading :level="3">
+    {{context.title.rendered}}
+  </UiHeading>
+  <article  v-if="context.content"
+            v-html="context.content.rendered"
+            class="wrap_mid"
+            style="text-align: initial; margin: 2rem auto"/>
 
 </main>
+<div v-else style="text-align: center">Loading...</div>
 </template>
 
 <script>
@@ -12,7 +18,6 @@ import WpConnect from "@/VuePress/mix/item"
 
 import UiPanel from '@/components/UI/Panel'
 import UiBox from '@/components/UI/Box'
-import UiButton from '@/components/UI/Button'
 import UiHeading from '@/components/UI/Heading'
 
 export default {
@@ -20,28 +25,15 @@ export default {
   props:[ 'slug', 'category' ],
   mixins:[ WpConnect ],  
   components:{
-    UiPanel, UiBox,
-    UiButton, UiHeading
+    UiPanel,
+    UiBox,
+    UiHeading,
   },
-  methods:{
-    fetch() {
-      return this.endpoint
-    }
-  }
 }
 </script>
 
-<style lang="scss" scoped>
-#StaffBio {
-  pre {
-    max-width: 72rem;
-    white-space: pre;
-    max-height: 80vh;
-    overflow: scroll;
-    margin: 12vh auto 4vh;
-    padding: .8rem 1rem;
-    border-radius: 5px;
-    background: rgba(0,0,0,.05);
-  }
+<style lang="scss">
+article {
+  img { display: none }
 }
 </style>

@@ -18,33 +18,44 @@
 <script>
 import Icons from "@/icons"
 export default {
+
   name: "UiIcon",
   components:{ ...Icons },
+
   mounted(){
-    this.viewBox = this.$children[0].viewBox || 0;
+    this.opts = this.options
+    this.viewBox = this.view || this.$children[0].viewBox || this.viewBox || [];
   },
+
   props: {
     name: {
       type: String,
-      default: 'box'
-    },
+      required: true
+      },
     width: {
-      type: [Number, String],
-      default: "auto"
-    },
+      type: [String,Number]
+      },
     height: {
-      type: [Number, String],
-      default: "auto"
-    },
+      type: [String,Number]
+      },
+    view: {
+      type: [String,Array]
+      },
     fill: {
       type: String,
       default: 'currentColor'
+      },
+    options: {
+      type: Object,
+      default:()=>({
+        compact:false
+      })
     },
-    viewBox: {
-      type: [String,Array],
-      default: '0'
-    }
   },
+  data:()=>({
+    viewBox:[]
+  })
+
 }
 </script>
 
@@ -57,40 +68,42 @@ svg {
 </style>
 
 <docs>
-```vue
-<UiBox>
-  <UiIcon name="logo" fill="indianred" width="16em"/>
-</UiBox>
-```
 
-### Available Icons
+  ```vue
+  <UiBox>
+    <UiIcon name="logo" fill="indianred" width="16em"/>
+  </UiBox>
+  ```
 
-- `barrels`
-- `bottles`
-- `glasses`
-- `logo`
+  ### Available Icons
 
-### A More Complex Example
+  - `barrels`
+  - `bottles`
+  - `glasses`
+  - `logo`
 
-```vue
-<div>
+  ### A More Complex Example
 
-<UiBox class="UiTheme_dark">
-  <ActionBox cta="Clink" title="Drink Wine" layout="float">
-    <UiIcon name="glasses" fill="#BA9454" width="5em" style="float: left; margin: 1em 1em 0 0;"/>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, delectus molestiae sapiente vel repudiandae in nulla facism? Harum facilis assumenda maiores vel aliquam. Nulla voluptatem unde nam tenetur repudiandae.
-    </p>
-  </ActionBox>
-</UiBox> 
+  ```vue
+  <div>
 
-<UiBox class="UiTheme_light">
-  <ActionBox cta="Clink" title="Drink Wine">
-    <UiIcon name="barrels" fill="#BA9454" width="5em" style="float: right; margin: 1em 0 0 1em;"/>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, delectus molestiae sapiente vel repudiandae in nulla facism? Harum facilis assumenda maiores vel aliquam. Nulla voluptatem unde nam tenetur repudiandae.
-    </p>
-  </ActionBox>
-</UiBox>
+  <UiBox class="UiTheme_dark">
+    <ActionBox cta="Clink" title="Drink Wine" layout="float">
+      <UiIcon name="glasses" fill="#BA9454" width="5em" style="float: left; margin: 1em 1em 0 0;"/>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, delectus molestiae sapiente vel repudiandae in nulla facism? Harum facilis assumenda maiores vel aliquam. Nulla voluptatem unde nam tenetur repudiandae.
+      </p>
+    </ActionBox>
+  </UiBox> 
 
-</div>
-```
+  <UiBox class="UiTheme_light">
+    <ActionBox cta="Clink" title="Drink Wine">
+      <UiIcon name="barrels" fill="#BA9454" width="5em" style="float: right; margin: 1em 0 0 1em;"/>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, delectus molestiae sapiente vel repudiandae in nulla facism? Harum facilis assumenda maiores vel aliquam. Nulla voluptatem unde nam tenetur repudiandae.
+      </p>
+    </ActionBox>
+  </UiBox>
+
+  </div>
+  ```
+  
 </docs>

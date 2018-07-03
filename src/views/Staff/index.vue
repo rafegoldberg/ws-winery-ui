@@ -1,16 +1,16 @@
 <template>
-<main id="StaffList">
+<main v-if="!context.loading" id="StaffList" class="wrap" style="text-align: center">
 
-  <UiBox v-if="!context.loading">
+  <UiBox style="text-align: left">
     <UiList :list="context">
-      <router-link slot-scope="employee" :to="employee.slug">
+      <router-link slot-scope="employee" :to="employee.slug" append>
         {{employee.title.rendered}}
       </router-link>
     </UiList>
   </UiBox>
-  <span v-else>Loading...</span>
 
 </main>
+<div v-else style="text-align: center">Loading...</div>
 </template>
 
 <script>

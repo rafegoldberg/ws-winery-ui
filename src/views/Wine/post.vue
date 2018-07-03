@@ -80,7 +80,7 @@
   <UiBox class="iconListBox">
     <section class="iconList">
       <div class="iconList--item">
-        <img :src="icon.bottles" class="iconList--icon">
+        <UiIcon name="bottles" width="3rem" height="3rem"/>
         <p>
           <span class="iconList--item--label">All Our Wines</span>
           <br>
@@ -89,7 +89,7 @@
         <UiButton>Library</UiButton>
       </div>
       <div class="iconList--item">
-        <img :src="icon.barrels" class="iconList--icon">
+        <UiIcon name="barrels" width="3rem" height="3rem"/>
         <p>
           <span class="iconList--item--label">How To Purchase</span>
           <br>
@@ -98,7 +98,7 @@
         <UiButton>Purchasing</UiButton>
       </div>
       <div class="iconList--item">
-        <img :src="icon.glasses" class="iconList--icon">
+        <UiIcon name="glasses" width="3rem" height="3rem"/>
         <p>
           <span class="iconList--item--label">Visit The Winery</span>
           <br>
@@ -122,6 +122,7 @@ import loPick from "lodash/pick"
 import UiPanel from '@/components/UI/Panel'
 import UiBox from '@/components/UI/Box'
 import UiBoxImg from '@/components/UI/Box/Image'
+import UiIcon from '@/components/UI/Icon'
 import UiButton from '@/components/UI/Button'
 
 import WineStats from '@/components/modules/Wine/Stats'
@@ -146,7 +147,8 @@ export default {
   mixins:[ WpConnect ],  
   components:{
     UiPanel, UiBox, UiBoxImg,
-    UiButton, UiHeading, WineStats
+    UiIcon, UiButton, UiHeading,
+    WineStats,
   },
   methods:{ getTerm },
   computed:{
@@ -211,11 +213,13 @@ img#WineBottle {
       letter-spacing: 0.1em;
     }
   }
-  &--icon {
+  &--icon,
+  .UiIcon {
     margin: 0;
     width: 3rem;
     height: 3rem;
     object-fit: contain;
+    .icon { fill: Color(theme) }
   }
   &Box { @extend %UiBox_compact; }
   p { line-height: 1.3 }

@@ -1,5 +1,5 @@
 <template>
-<g id="Group_1" data-name="Group 1" transform="translate(-1582 -61)">
+<g id="icon" class="icon" data-name="Group 1" transform="translate(-1582 -61)">
 
   <rect id="Rectangle_3" data-name="Rectangle 3" class="cls-1" width="20" height="1.748" transform="translate(1582 61)"/>
   <rect id="Rectangle_4" data-name="Rectangle 4" class="cls-1" width="20" height="1.748" transform="translate(1582 67.117)"/>

@@ -1,8 +1,13 @@
-%container {
+%wrap,
+.wrap {
   width: 72rem;
   max-width: 100%;
   margin: 0 auto;
+  &_mid { width: 54rem }
+  &_min { width: 36rem }
   &_flex {
     flex: 0 1 75rem;
+    &_mid { flex: 0 1 54rem }
+    &_min { flex: 0 1 36rem }
   }
 }
