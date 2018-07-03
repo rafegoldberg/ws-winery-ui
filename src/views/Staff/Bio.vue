@@ -1,13 +1,15 @@
 <template>
-<main v-if="!context.loading" id="StaffBio" class="wrap" style="text-align: center">
+<main v-if="!context.loading" id="StaffBio" class="wrap">
 
-  <UiHeading :level="3">
-    {{context.title.rendered}}
-  </UiHeading>
-  <article  v-if="context.content"
-            v-html="context.content.rendered"
-            class="wrap_mid"
-            style="text-align: initial; margin: 2rem auto"/>
+  <div class="wrap_min">
+    <UiBox :style="{ justifyContent:'left', padding:0 }">
+      <UiHeading :level="3" :scale="2">
+        {{context.title.rendered}}
+      </UiHeading>
+    </UiBox>  
+    <article  v-if="context.content"
+              v-html="context.content.rendered"/>
+  </div>
 
 </main>
 <div v-else style="text-align: center">Loading...</div>
