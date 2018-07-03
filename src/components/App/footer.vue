@@ -16,7 +16,7 @@
 
 <style lang="scss" id="TEMP">
 @import "~@/styles/theme/colors";
-@import "~@/styles/extend/container";
+@import "~@/styles/extend/wrap";
 #AppFooter {
   border-top: 1px solid rgba(255, 255, 255, 0.178);
   padding: 0 1rem;

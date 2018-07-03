@@ -2,26 +2,40 @@
 <UiPanel id="AppNav">
 <div id="AppNavWrap">
 
-  <UiIcon name="logo" height="3.5em" width="7em" :view="[0,0,180,45.71]"/>
-  <UiIcon name="menu" width="1em" height="1em"></UiIcon>
+  <router-link to="/">
+    <UiIcon name="logo" height="3.5em" width="7em" :view="[0,0,180,45.71]"/>
+  </router-link>
+  
+  <span class="AppMenuTrigger">
+    <button @click="toggleMenu" style="all:unset">
+      <UiIcon name="menu" width="1em" height="1em"/>
+    </button>
+    <AppMenu @click.stop ref="menu"/>
+  </span>
   
 </div>
 </UiPanel>
 </template>
 
 <script>
-import icons from "@/icons"
+import AppMenu from "./menu"
 import UiPanel from "@/components/UI/Panel"
 import UiIcon from "@/components/UI/Icon"
+
 export default {
   name: "AppNav",
-  components:{ UiPanel, UiIcon, ...icons }
+  components:{ AppMenu, UiPanel, UiIcon },
+  methods:{
+    toggleMenu(){
+      this.$refs.menu.toggle()
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 @import "~@/styles/theme/colors";
-@import "~@/styles/extend/container";
+@import "~@/styles/extend/wrap";
 #AppNav {
   & {
     z-index: 9;
@@ -31,6 +45,8 @@ export default {
     width: 100vw;
     max-height: 6rem;
     padding: 0 1em;
+    
+    user-select: none;
   }
   &[class*="UiTheme_light"],
   &[class*="UiTheme_cream"]{ color: Color(alt) }
