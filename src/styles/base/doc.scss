@@ -1,6 +1,10 @@
 @import "~@/styles/theme/scale";
 @import "~@/styles/theme/fonts";
 
+@import "./elements/all";
+@import "./elements/table";
+@import "./elements/article";
+
 :root {
   font-size: $root;
   @media (max-width:68rem){
