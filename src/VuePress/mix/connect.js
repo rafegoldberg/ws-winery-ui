@@ -12,7 +12,7 @@ export default {
     }
   },
   computed: {
-    endpoint() {
+    endpoint(){
       if (this.API && this.type) return this.API[this.type]();
     }
   },
