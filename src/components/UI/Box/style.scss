@@ -1,7 +1,6 @@
 %UiBox {
   align-self: stretch;
   padding: 4em;
-  min-height: 42vh;
   &_center {
     display: flex;
     justify-content: center;
@@ -10,11 +9,16 @@
   }
 }
 
-%UiBox {
-  &_compact {
-    padding: 2em 1.5em !important;
-  }
+%UiBox_minh {
+  min-height: 42vh;
+}
+
+%UiBox_compact {
+
+  padding: 2em 1.5em !important;
+  
   @media ( max-width:800px ) {
     padding: 2em 1.5em;
   }
+  
 }
