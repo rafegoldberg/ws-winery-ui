@@ -3,7 +3,7 @@
 <div id="AppNavWrap">
 
   <router-link to="/">
-    <UiIcon id="AppNav-logo" name="logo" height="auto" width="10rem" :view="[0,0,180,45.71]"/>
+    <UiIcon id="AppNav-logo" name="logo" height="auto" width="9rem" :view="[0,0,180,45.71]"/>
   </router-link>
   
   <span class="AppMenuTrigger">

@@ -4,6 +4,7 @@
 @import "./elements/all";
 @import "./elements/table";
 @import "./elements/article";
+@import "./elements/iframe";
 
 :root {
   font-size: $root;
@@ -47,17 +48,4 @@ p, ul, ol, dl, figure, blockquote {
 
 pre, code {
   font-family: $ff-mono;
-}
-
-@media (min-width:0) {
-
-  // 
-  // CSS Staging Area
-  // 
-  
-  // .UiBox > *:only-child:not([class]) {
-  //   max-width: 34rem;
-  //   margin: 0 auto;
-  // }
-  
 }

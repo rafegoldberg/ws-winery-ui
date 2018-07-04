@@ -1,0 +1,15 @@
+@import "~@/styles/theme/breaks";
+
+iframe {
+  p > &:only-child {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 16em;
+    margin: 0 -1rem;
+    @include Break( max-width Breaks(2) ){
+      min-width: 100vw;
+      /* padding: 0 1rem; */
+    }
+  }
+}

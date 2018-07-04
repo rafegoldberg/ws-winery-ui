@@ -2,12 +2,6 @@
 <div id="app">
 
   <AppNav class="UiTheme_light_translucent"/>
-  <!-- <UiHeading class="UiHeading_sans"
-            style="text-align: center;"
-            :level="1" 
-            :scale="1">
-    <b>{{$route.name}}</b>
-  </UiHeading> -->
   
   <router-view :key="$route.fullPath"/>
   

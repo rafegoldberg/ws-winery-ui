@@ -1,20 +1,32 @@
+%layout-wrap {
+  display: block;
+  margin: 0 auto;
+  padding: 1px 1em;
+}
+
 %wrap,
 .wrap {
-  width: 72rem;
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 1px;
+  & {
+    @extend %layout-wrap;
+    width: 72rem;
+  }
   &_mid {
+    @extend %layout-wrap;
     width: 54rem;
-    max-width: 100%;
   }
   &_min {
+    @extend %layout-wrap;
     width: 36rem;
-    max-width: 100%;
   }
-  &_flex{
+  &_flex {
     flex: 0 1 72rem;
     &_mid { flex: 0 1 54rem }
     &_min { flex: 0 1 36rem }
   }
+}
+
+%layout-wrap {
+  max-width: 100%;
+  box-sizing: border-box;
+  & & { padding: 0 }
 }
