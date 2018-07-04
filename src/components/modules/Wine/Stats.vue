@@ -5,9 +5,11 @@
     <b>{{title}}</b>
   </UiHeading>
 
-  <div>
-    <small>Hold</small> <progress :value="hold" max="1"></progress> <small>Drink</small>
-  </div>
+  <span style="position: relative">
+    <small style="position: absolute; right: 100%; top: 0;">Hold</small>
+    <progress :value="hold" max="1"></progress>
+    <small style="position: absolute; left: 100%; top: 0;">Drink</small>
+  </span>
 
   <div class="gold" style="line-height:1.1; margin:.5em 0">
     <em>{{metas.WpbDrinkwindow}}</em>

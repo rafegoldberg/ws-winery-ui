@@ -1,8 +1,8 @@
 <template>
 
-  <div class="UiPanel">
+  <component :is="tag" class="UiPanel">
     <slot/>
-  </div>
+  </component>
 
 </template>
 <script>
@@ -10,7 +10,8 @@
  * The `<UiPanel/>` is a full-width layout component. Each panel should contain a set of `<UiBox/>` child components. In some ways it's similar to Bootstrap's `.row > .col-*` construct. Except we're using flexbox to pull of some neat tricks that Bootstrap would never even dream to touch.
  */
 export default {
-  name: "UiPanel"
+  name: "UiPanel",
+  props:{ tag:{ default:"div" } }
 }
 </script>
 <style lang="scss" scoped>
