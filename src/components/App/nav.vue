@@ -3,7 +3,7 @@
 <div id="AppNavWrap">
 
   <router-link to="/">
-    <UiIcon name="logo" height="3.5em" width="7em" :view="[0,0,180,45.71]"/>
+    <UiIcon id="AppNav-logo" name="logo" height="auto" width="10rem" :view="[0,0,180,45.71]"/>
   </router-link>
   
   <span class="AppMenuTrigger">
@@ -43,7 +43,7 @@ export default {
     top: 0;
     left: 0;
     width: 100vw;
-    max-height: 6rem;
+    max-height: 5rem;
     padding: 0 1em;
     
     user-select: none;
@@ -51,12 +51,13 @@ export default {
   &[class*="UiTheme_light"],
   &[class*="UiTheme_cream"]{ color: Color(alt) }
   &[class*="UiTheme_dark"] { color: Color(theme) }
+  
   &Wrap{
     @extend %wrap, %wrap_flex;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: .5rem 0;
+    padding: 1rem 0;
   }
 }
 </style>

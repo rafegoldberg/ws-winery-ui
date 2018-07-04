@@ -12,7 +12,7 @@
   </div>
 
 </main>
-<UiBox v-else style="text-align: center">Loading...</UiBox>
+<UiBox v-else style="text-align: center; min-height: 68vh">Loading...</UiBox>
 </template>
 
 <script>

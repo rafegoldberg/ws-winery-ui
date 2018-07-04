@@ -1,12 +1,12 @@
 <template>
-<div class="widgets" :class="{
+<div id="HomePage" :class="{
   [`UiTheme_${theme}`]: theme,
   }">
 
-  <UiPanel>
+  <UiPanel id="HomePage-feature">
     <UiBoxImage :img="mock6" alt="Welcome">
       
-      <header class="home--header" :style="{margin:'auto',marginLeft:0}">
+      <header class="home--header  wrap" :style="{margin:'auto'}">
         <UiHeading :level="2" :style="{maxWidth:'6em'}">
           <b>Schedule a private visit.</b>
         </UiHeading>
@@ -64,7 +64,7 @@ settings = {
 if( window ) window.UiSettings = settings
 
 export default {
-  name: "WidgetsPage",
+  name: "HomePage",
   components: {
 
     UiPanel, UiBox, UiBoxImage,
@@ -82,3 +82,11 @@ export default {
 }
 </script>
 
+<style lang="scss">
+@import "~@/styles/theme/colors";
+#HomePage {
+  &-feature {
+    min-height: 80vh;
+  }
+}
+</style>

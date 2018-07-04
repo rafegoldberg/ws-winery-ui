@@ -33,3 +33,16 @@ export default {
 @import "~@/styles/main";
 @import "~@/styles/extend/themes";
 </style>
+<style lang="scss" id="@stage:css/nav" notes="hot take on the XD designs; temporary">
+#AppNav {
+  position: fixed !important;
+  background: transparent;
+  color: rgb(140,140,140) !important;
+  + [id] >:first-child {
+    &[class*="UiBox"],
+     [class*="UiBox"]{
+      padding-top: 7rem;
+    }
+  }
+}
+</style>

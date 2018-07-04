@@ -47,7 +47,7 @@ export default {
     width: 12em;
     padding: 0 2em 0 1em;
     // box-sizing: content-box;
-    box-shadow: -4px 0 2rem 4px rgba( 48, 41, 3, .1 );
+    box-shadow: -4px 0 2rem 4px rgba( 48, 41, 3, .08 );
     border-left: 8px solid rgba(Color(theme), .25);
   }
   & { // open
