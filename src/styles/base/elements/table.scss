@@ -25,9 +25,10 @@ caption {
 }
 
 th, td {
-  padding: .5em;
+  padding: .4em .5em;
   border: solid Color(theme);
   border-width: 0;
+  vertical-align: top;
   tr + tr & { border-top-width:  1px }
   & + &     { border-left-width: 1px }
 }

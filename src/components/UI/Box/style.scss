@@ -1,11 +1,24 @@
+@import "~@/styles/theme/breaks";
+
 %UiBox {
   align-self: stretch;
-  padding: 4em;
+  padding: 3rem;
+  max-width: 100%;
   &_center {
     display: flex;
     justify-content: center;
     align-items: center;
     align-content: center;
+  }
+  &.wrap {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  @include Break( max-width Breaks(-1)){
+    padding: 2rem;
+  }
+  @include Break( max-width Breaks(2)){
+    padding: 1rem;
   }
 }
 
@@ -15,10 +28,10 @@
 
 %UiBox_compact {
 
-  padding: 2em 1.5em !important;
+  padding: 2rem 1.5rem !important;
   
   @media ( max-width:800px ) {
-    padding: 2em 1.5em;
+    padding: 2rem 1.5rem;
   }
   
 }
