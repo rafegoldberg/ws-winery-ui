@@ -20,6 +20,7 @@
     "lodash": "^4.17.10",
     "vue": "^2.5.16",
     "vue-async-computed": "^3.3.1",
+    "vue-check-view": "^0.2.3",
     "vue-router": "^3.0.1",
     "vue-styleguidist": "^1.7.11"
   },

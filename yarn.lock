@@ -8878,6 +8878,10 @@ vue-async-computed@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/vue-async-computed/-/vue-async-computed-3.3.1.tgz#9d754e649ccabef97e7e3932f1bc097a66a23db7"
 
+vue-check-view@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/vue-check-view/-/vue-check-view-0.2.3.tgz#0bb8175908eee6e0975c63de71cfc445d251d97a"
+
 vue-docgen-api@^2.3.11:
   version "2.3.11"
   resolved "https://registry.yarnpkg.com/vue-docgen-api/-/vue-docgen-api-2.3.11.tgz#3c7fce7544f23a9d38373bf6830d5a85dd65f6b3"
