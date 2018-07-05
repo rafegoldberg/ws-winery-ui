@@ -1,9 +1,9 @@
 <template>
 
-<main id="VineyardPage" v-if="!context.loading" tag="main" class="UiTheme_cream">
+<main id="VineyardPage" v-if="!context.loading" tag="main" class="UiTheme_light">
 
   <UiPanel id="VineyardPage-overview">
-    <UiBoxImg  id="VineyardPage-overviewMedia" class="UiTheme_light">
+    <UiBoxImg id="VineyardPage-overviewMedia" :img="media" class="UiTheme_cream">
     </UiBoxImg>
     <UiBox id="VineyardPage-overviewContent" class="wrap_mid">
       <article v-if="text">
@@ -20,9 +20,13 @@
     </UiBox>
   </UiPanel>
   
-  <UiPanel class="UiTheme_light">
+  <UiPanel class="UiTheme_cream">
     <UiBox style="justify-content: left">
-      <article class="wrap_mid" style="margin: 1rem 0"><p v-for="p in text" v-html="p"/></article>
+      <article class="wrap_mid" style="margin: 1rem 0">
+        <p v-if="text.length"   v-html="text[0]"/>
+        <p v-if="iframe.length" v-html="iframe[0]"/>
+        <p v-if="text.length>0" v-for="p in text.slice(1)" v-html="p"/>
+      </article>
     </UiBox>
   </UiPanel>
   
@@ -43,18 +47,24 @@ import * as computed from './computed'
 
 export default {
   name: "VineyardPage",
-  mixins:[WpConnect],
+  mixins:[ WpConnect ],
   props:[
     'type',
     'category',
     'slug'
   ],
   computed:{
+
     ...computed,
+    
     endpoint(){
       if( this.API )
-        return this.API["posts"]().slug(this.slug)
+        return this.API["posts"]().slug(this.slug).embed()
     },
+    embedded(){
+      if( this.context.loading ) return
+      return this.context._embedded
+    }
   },
   components:{
     UiPanel,

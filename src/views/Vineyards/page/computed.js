@@ -1,7 +1,16 @@
-export function objects( self, str ){
+export function media( self ){
+  if( this.context.loading ) return
+  var
+  img = this.embedded['wp:featuredmedia'][0],
+  src = img.source_url
+  src = src.replace(/.*\/wp-content\//gim,'https://www.williamsselyem.com/wp-content/')
+  return src
+}
+
+export function iframe( self, str ){
   var
   txt = str || !this.context.loading && this.context.content.rendered,
-  rgx = txt.match(/(<table[^>]*>(?:.|\s)*?<\/table>)/gim)
+  rgx = txt.match(/(<iframe[^>]*>[^<]*?<\/iframe>)/gim)
 
   if( rgx && rgx.length )
   return rgx

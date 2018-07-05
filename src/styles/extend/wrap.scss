@@ -1,27 +1,42 @@
-%layout-wrap {
-  display: block;
-  margin: 0 auto;
-  padding: 1px 1em;
+%wraps {
+  &Default {
+    display: block;
+    margin: 0 auto;
+    padding: 1px 1em;
+  }
+  &Flexbox {
+    flex-grow: 0;
+    flex-shrink: 1;
+  }
 }
 
 %wrap,
 .wrap {
   & {
-    @extend %layout-wrap;
+    @extend %wrapsDefault;
     width: 72rem;
   }
   &_mid {
-    @extend %layout-wrap;
+    @extend %wrapsDefault;
     width: 54rem;
   }
   &_min {
-    @extend %layout-wrap;
+    @extend %wrapsDefault;
     width: 36rem;
   }
   &_flex {
-    flex: 0 1 72rem;
-    &_mid { flex: 0 1 54rem }
-    &_min { flex: 0 1 36rem }
+    & {
+      @extend %wrapsFlexbox;
+      flex-basis: 72rem;
+    }
+    &_mid {
+      @extend %wrapsFlexbox;
+      flex-basis: 54rem;
+    }
+    &_min {
+      @extend %wrapsFlexbox;
+      flex-basis: 36rem;
+    }
   }
 }
 
