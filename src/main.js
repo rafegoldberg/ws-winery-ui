@@ -8,6 +8,7 @@ import "@/includes/filters"
 
 import "@/includes/use/log"
 import "@/includes/use/async"
+import "@/includes/use/inView"
 
 import router from "@/includes/use/router"
 
