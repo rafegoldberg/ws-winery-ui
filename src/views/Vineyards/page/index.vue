@@ -1,6 +1,7 @@
 <template>
 
 <main id="VineyardPage" v-if="!context.loading" tag="main" class="UiTheme_cream">
+
   <UiPanel id="VineyardPage-overview">
     <UiBoxImg  id="VineyardPage-overviewMedia" class="UiTheme_light">
     </UiBoxImg>
@@ -13,21 +14,20 @@
           <div v-for="tbl in tables" v-html="tbl"/>
         </aside>
 
-        <blockquote v-html="text[0]"/>
+        <blockquote id="VineyardPage-overviewText" v-html="text[0]"/>
 
       </article>
     </UiBox>
   </UiPanel>
+  
   <UiPanel class="UiTheme_light">
     <UiBox style="justify-content: left">
       <article class="wrap_mid" style="margin: 1rem 0"><p v-for="p in text" v-html="p"/></article>
     </UiBox>
   </UiPanel>
+  
 </main>
-
-<UiBox v-else style="text-align: center; min-height: 68vh">
-  Loading...
-</UiBox>
+<UiBox v-else style="text-align: center; min-height: 68vh">Loading...</UiBox>
 
 </template>
 
@@ -69,18 +69,8 @@ export default {
 @import "~@/styles/theme/colors";
 @import "~@/styles/theme/breaks";
 @import "~@/styles/theme/fonts";
+
 #VineyardPage {
-  > .UiPanel:first-child {
-    min-height: 100vh;
-    max-height: unset;
-    > .UiBoxImage {
-      @include Break( min-width Breaks(3) ){
-        max-height: 100vh;
-        position: sticky;
-        top: 0;
-      }
-    }
-  }
   &-overview {
     &Content {
       flex-basis: 33%;
@@ -93,7 +83,7 @@ export default {
     }
     &Header {
       max-width: 80%;
-      margin: .5em 0 1em;
+      margin: 0 0 1em;
       @include Break( max-width Breaks(3) ){
         margin: .5em 0;
       }
@@ -111,15 +101,40 @@ export default {
     }
   }
 }
+
+#VineyardPage > .UiPanel:first-child {
+  @include Break( min-width Breaks(3) ){
+    & {
+      min-height: 100vh;
+      max-height: unset;
+    }
+    > .UiBoxImage {
+      max-height: 100vh;
+      position: sticky;
+      top: 0;
+    }
+  }
+}
 </style>
+
 <style lang="scss">
 @import "~@/styles/theme/colors";
 @import "~@/styles/theme/fonts";
+
 blockquote {
   font-family: $ff-alt;
   font-style: italic;
   color: Color(theme);
+  article & { margin-top: 0 }
 }
+
+hr {
+  border-width: 1px 0 0;
+  border-style: solid;
+  border-color: Color(theme);
+  margin: 1rem 0;
+}
+
 table {
   margin: 0;
   font-size: .9rem;
@@ -134,8 +149,8 @@ table {
     margin: 0;
     padding: .8em .4em;
     font-size: 1.2em;
-    #VineyardPage-sidebar >:first-child & { padding-top: .3rem }
-    #VineyardPage-sidebar >:not(:first-child) & {
+    #VineyardPage-overviewSidebar >:first-child & { padding-top: .3rem }
+    #VineyardPage-overviewSidebar >:not(:first-child) & {
       border-top: 1px solid;
       margin-top: 0.7rem;
     }

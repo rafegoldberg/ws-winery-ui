@@ -1,24 +1,22 @@
 <template>
-<main id="VineyardsList" v-if="!context.loading">
+  <main id="VineyardsList" v-if="!context.loading">
+    
+    <UiBox>
+      <UiList :list="context">
+        <router-link :to="item.slug"
+                      append
+                      slot-scope="{item}">
+          {{ item.name || item.title.rendered }}
+          {{$log(item)}}
+        </router-link>
+      </UiList>
+    </UiBox>
 
-  <!-- <UiHeading style="text-align: center; text-transform: capitalize">
-    {{(this.category || this.type).split(/-/g).join(' ')}}
-  </UiHeading> -->
-  
-  <UiBox>
-    <UiList :list="context">
-      <router-link :to="item.slug"
-                    append
-                    slot-scope="{item}">
-        {{item.name || item.title.rendered}}
-        {{$log(item)}}
-      </router-link>
-    </UiList>
+
+  </main>
+  <UiBox v-else style="text-align: center; min-height: 68vh">
+    Loading...
   </UiBox>
-
-
-</main>
-<UiBox v-else style="text-align: center; min-height: 68vh">Loading...</UiBox>
 </template>
 
 <script>
@@ -61,18 +59,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-#VineyardsList {
-  pre {
-    max-width: 72rem;
-    white-space: pre;
-    max-height: 80vh;
-    overflow: scroll;
-    margin: 12vh auto 4vh;
-    padding: .8rem 1rem;
-    border-radius: 5px;
-    background: rgba(0,0,0,.05);
-  }
-}
-</style>
