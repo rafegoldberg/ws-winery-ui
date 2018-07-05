@@ -55,12 +55,13 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
+    opacity: .75;
     background-image: linear-gradient(
       to bottom,
       rgba(0,0,0,.15) 08%,
       rgba(0,0,0,.63) 68%, 
       rgba(0,0,0,.75) 88%
-    );    
+    );
   }
   
   &_fixed {

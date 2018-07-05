@@ -1,5 +1,5 @@
 <template>
-<UiPanel id="AppNav">
+<nav id="AppNav">
 <div id="AppNavWrap">
 
   <router-link to="/">
@@ -14,7 +14,7 @@
   </span>
   
 </div>
-</UiPanel>
+</nav>
 </template>
 
 <script>
@@ -38,12 +38,15 @@ export default {
 @import "~@/styles/extend/wrap";
 #AppNav {
   & {
-    z-index: 9;
     position: sticky;
+    z-index: 9;
     top: 0;
     left: 0;
+
+    display: flex;
+    align-items: center;
     width: 100vw;
-    max-height: 5rem;
+    height: 6rem;
     padding: 0 1em;
     
     user-select: none;

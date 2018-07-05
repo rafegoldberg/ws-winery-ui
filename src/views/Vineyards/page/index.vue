@@ -95,7 +95,10 @@ export default {
       max-width: 80%;
       margin: 0 0 1em;
       @include Break( max-width Breaks(3) ){
-        margin: .5em 0;
+        margin: .5em auto;
+        text-align: center;
+        min-width: 100%;
+        line-height: 1;
       }
     }
     &Sidebar {

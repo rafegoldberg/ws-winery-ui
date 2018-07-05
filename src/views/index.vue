@@ -3,10 +3,10 @@
   [`UiTheme_${theme}`]: theme,
   }">
 
-  <UiPanel id="HomePage-feature">
+  <UiPanel id="HomePage-feature" class="UiTheme_dark">
     <UiBoxImage :img="mock6" alt="Welcome">
       
-      <header class="home--header  wrap" :style="{margin:'auto'}">
+      <header class="home--header  wrap" :style="{ margin:'auto', padding:0 }">
         <UiHeading :level="2" :style="{maxWidth:'6em'}">
           <b>Schedule a private visit.</b>
         </UiHeading>
@@ -18,6 +18,12 @@
   </UiPanel>
   
   <UiPanel>
+    <UiBox>
+      <WineWidget/>
+    </UiBox>
+  </UiPanel>
+
+  <UiPanel class="UiTheme_cream">
     <UiBox :stack="true">
       <div>
         <UiHeading slot="header">
@@ -26,15 +32,6 @@
         <MediaList>
         </MediaList>
       </div>
-    </UiBox>
-  </UiPanel>
-
-  <UiPanel class="UiTheme_dark">
-    <UiBox>
-      <WineWidget/>
-    </UiBox>
-    <UiBox class="UiTheme_cream">
-      <ActionBox v-bind="mock0"/>
     </UiBox>
   </UiPanel>
 
@@ -86,7 +83,10 @@ export default {
 @import "~@/styles/theme/colors";
 #HomePage {
   &-feature {
-    min-height: 80vh;
+    min-height: 88vh;
+    > .UiBox {
+      min-height: inherit;
+    }
   }
 }
 </style>

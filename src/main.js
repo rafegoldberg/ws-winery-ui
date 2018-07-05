@@ -1,16 +1,16 @@
 import Vue from "vue"
 import App from "./App.vue"
-
-import API from "@/VuePress/WP"
-API.then(wp=> (window.API = wp))
-
-import "@/includes/filters"
+import router from "@/includes/use/router"
 
 import "@/includes/use/log"
 import "@/includes/use/async"
 import "@/includes/use/inView"
 
-import router from "@/includes/use/router"
+import "@/includes/filters"
+
+import API from "@/VuePress/WP"
+API.then(wp=> (window.API = wp))
+
 
 new Vue({
   router,

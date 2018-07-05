@@ -1,6 +1,6 @@
 <template>
 
-  <component :is="tag" class="UiPanel">
+  <component :is="tag" v-view="$scrollIntersect" class="UiPanel">
     <slot/>
   </component>
 

@@ -13,34 +13,34 @@
 %wrap,
 .wrap {
   & {
-    @extend %wrapsDefault;
+    @extend %wraps, %wrapsDefault;
     width: 72rem;
   }
   &_mid {
-    @extend %wrapsDefault;
+    @extend %wraps, %wrapsDefault;
     width: 54rem;
   }
   &_min {
-    @extend %wrapsDefault;
+    @extend %wraps, %wrapsDefault;
     width: 36rem;
   }
   &_flex {
     & {
-      @extend %wrapsFlexbox;
+      @extend %wraps, %wrapsFlexbox;
       flex-basis: 72rem;
     }
     &_mid {
-      @extend %wrapsFlexbox;
+      @extend %wraps, %wrapsFlexbox;
       flex-basis: 54rem;
     }
     &_min {
-      @extend %wrapsFlexbox;
+      @extend %wraps, %wrapsFlexbox;
       flex-basis: 36rem;
     }
   }
 }
 
-%layout-wrap {
+%wraps {
   max-width: 100%;
   box-sizing: border-box;
   & & { padding: 0 }
