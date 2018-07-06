@@ -1,11 +1,11 @@
 <template>
 
-<main id="VineyardPage" v-if="!context.loading" tag="main" class="UiTheme_light">
+<main id="VineyardPage" v-if="!context.loading" tag="main">
 
   <UiPanel id="VineyardPage-overview">
     <UiBoxImg id="VineyardPage-overviewMedia" :img="media" class="UiTheme_cream">
     </UiBoxImg>
-    <UiBox id="VineyardPage-overviewContent" class="wrap_mid">
+    <UiBox id="VineyardPage-overviewContent" class="UiTheme_light wrap_mid">
       <article v-if="text">
 
         <DevCom></DevCom>

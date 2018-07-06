@@ -18,6 +18,10 @@ export default {
   components:{ UiBox },
   computed:{
     src(){ return `url(${this.img})` }
+  },
+  mounted(){
+    if( this.$parent.$options.name=='UiPanel' )
+      this.$parent.$el.classList.add('UiTheme_dark')
   }
 }
 </script>
@@ -48,7 +52,6 @@ export default {
   }
   &:not(:empty):before {
     content: " ";
-
     position: absolute;
     z-index: -1;
     top: 0;
@@ -70,22 +73,23 @@ export default {
   }
 }
 </style>
+
 <docs>
-```vue
-<UiBoxImage style="justify-content: flex-start">
-  <div style="margin: 0 auto 0 0">
-    <header>
-      <UiIcon name=barrels width="5em" height="5em" style="display: block; margin: 0 auto 1em"/>
-      <UiHeading>
-        Harvest 2016
-      </UiHeading>
-    </header>
-    <UiList :list="[
-      'Pruney notes',
-      'Weak legs',
-      'Mature tannins'
-    ]"/>
-  </div>
-</UiBoxImage>
-```
+  ```vue
+  <UiBoxImage style="justify-content: flex-start">
+    <div style="margin: 0 auto 0 0">
+      <header>
+        <UiIcon name=barrels width="5em" height="5em" style="display: block; margin: 0 auto 1em"/>
+        <UiHeading>
+          Harvest 2016
+        </UiHeading>
+      </header>
+      <UiList :list="[
+        'Pruney notes',
+        'Weak legs',
+        'Mature tannins'
+      ]"/>
+    </div>
+  </UiBoxImage>
+  ```
 </docs>

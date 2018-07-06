@@ -21,9 +21,11 @@
       <UiBoxImage :img="imgs.casks" style="min-height:68vh"/>
     </UiPanel>
 
-    <UiBox>
-      <v-list title="Growers Vineyards" category="growers-vineyards"/>
-    </UiBox>
+    <UiPanel>
+      <UiBox>
+        <v-list title="Growers Vineyards" category="growers-vineyards"/>
+      </UiBox>
+    </UiPanel>
       
     <UiPanel>
       <UiBoxImage :img="imgs.grapes" style="min-height:68vh"/>
