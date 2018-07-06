@@ -32,11 +32,11 @@
     </UiBox>
   </UiPanel>
   
-  <UiPanel class="UiTheme_cream" style="flex-direction: row-reverse">
+  <UiPanel v-if="text.length>2" class="UiTheme_cream" style="flex-direction: row-reverse">
     <UiBox v-if="iframe.length" v-html="iframe[0]" style="padding-right: 0; position: sticky; top: 0; max-height: 100vh; align-items: flex-start"/>
     <UiBox style="align-items: stretch; padding-right: 0">
       <article id="VineyardsPage--text" class="wrap_min" style="margin-right: auto">
-        <p v-if="text.length>2" v-for="p in text.slice(2)" v-html="p"/>
+        <p v-for="p in text.slice(2)" v-html="p"/>
       </article>
     </UiBox>
   </UiPanel>
