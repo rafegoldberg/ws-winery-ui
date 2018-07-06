@@ -32,6 +32,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~@/styles/theme/breaks";
 @import "~@/styles/theme/colors";
 @import "~@/styles/extend/wrap";
 #AppNav {
@@ -56,8 +57,18 @@ export default {
   & { // scroll theme
     transition: .38s 0s ease-out;
     &.light { color: Color(slate) }
-    &.cream { color: Color(alt)   }
+    &.cream { color: Color(dark)  }
     &.dark  { color: Color(light) }
+  }
+  @include Break( max-width Breaks(4) ){
+    padding: 0 1em;
+    height: 4rem;
+    background: rgba(250, 250, 250, 0.9);
+    color: Color(slate) !important;
+    box-shadow: -4px 0 2rem 4px rgba(48, 41, 3, 0.08);
+    &-logo {
+      width: 8em;
+    }
   }
 }
 </style>

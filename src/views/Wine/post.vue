@@ -75,41 +75,13 @@
   <UiPanel style="max-height:62vh; overflow: hidden;">
     <UiBoxImg :img="img3"/>
   </UiPanel>
-
+  
   <UiPanel class="UiTheme_dark">
     <UiBox class="iconListBox">
-      <section class="iconList">
-        <div class="iconList--item">
-          <UiIcon name="bottles" width="3rem" height="3rem"/>
-          <p>
-            <span class="iconList--item--label">All Our Wines</span>
-            <br>
-            <small>Visit our wine library to find a specific bottle or peruse our full collection.</small>
-          </p>
-          <UiButton>Library</UiButton>
-        </div>
-        <div class="iconList--item">
-          <UiIcon name="barrels" width="3rem" height="3rem"/>
-          <p>
-            <span class="iconList--item--label">How To Purchase</span>
-            <br>
-            <small>Our wines are available twice a year for purchase.</small>
-          </p>
-          <UiButton>Purchasing</UiButton>
-        </div>
-        <div class="iconList--item">
-          <UiIcon name="glasses" width="3rem" height="3rem"/>
-          <p>
-            <span class="iconList--item--label">Visit The Winery</span>
-            <br>
-            <small>Arrange a private tour and tasting tailored specifically for you.</small>
-          </p>
-          <UiButton>Visiting</UiButton>
-        </div>
-      </section>
+      <StaticIconList/>
     </UiBox>
   </UiPanel>
-
+  
 </div>
 <UiBox v-else style="text-align: center; min-height: 68vh">Loading...</UiBox>
 </template>
@@ -133,6 +105,8 @@ import getTexts from "./lib/parse.wpContent"
 import getTerm  from "./lib/get.wpTerm"
 import getImage from "./lib/get.wpImage"
 
+import StaticIconList from "@/components/static/icon-list"
+
 import img1 from "@/assets/mock/table.png"
 import img2 from "@/assets/mock/vineyard.png"
 import img3 from "@/assets/mock/harvest.png"
@@ -148,8 +122,8 @@ export default {
   mixins:[ WpConnect ],  
   components:{
     UiPanel, UiBox, UiBoxImg,
-    UiIcon, UiButton, UiHeading,
-    WineStats,
+    UiButton, UiHeading,
+    WineStats, StaticIconList,
   },
   methods:{ getTerm },
   computed:{

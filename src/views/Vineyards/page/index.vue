@@ -13,16 +13,14 @@
           <UiHeading id="VineyardPage-overviewHeader" :level="2" :scale="3" v-html="context.title.rendered"/>
         </header>
 
-        <aside id="VineyardPage-overviewSidebar" v-if="tables">
+        <aside id="VineyardPage-overviewSidebar" v-if="tables.length">
           <div v-for="tbl in tables" v-html="tbl"/>
         </aside>
 
         <div id="VineyardPage-overviewText">
           <blockquote v-html="text[0]"/>
-          <p>
-            <small v-html="text[1]"/>
-          </p>
-          <a id="VineyardPage-overviewKick" href="#VineyardsPage--text">
+          <p v-html="text[1]"/>
+          <a id="VineyardPage-overviewKick" v-if="text.length>2" href="#VineyardsPage--text">
             <div>Read More</div>
             <UiIcon name="arrow-down" height="1em" width="1em"></UiIcon>
           </a>
@@ -40,6 +38,12 @@
       </article>
     </UiBox>
   </UiPanel>
+
+  <UiPanel class="UiTheme_dark">
+    <UiBox class="iconListBox">
+      <StaticIconList/>
+    </UiBox>
+  </UiPanel>
   
 </main>
 <UiBox v-else style="text-align: center; min-height: 68vh">Loading...</UiBox>
@@ -55,6 +59,8 @@ import UiBox from '@/components/UI/Box'
 import UiBoxImg from '@/components/UI/Box/Image'
 import UiIcon from '@/components/UI/Icon'
 import UiHeading from '@/components/UI/Heading'
+
+import StaticIconList from '@/components/static/icon-list'
 
 //==TEMP=>
 // 
@@ -87,7 +93,7 @@ export default {
     UiBoxImg,
     UiHeading,
     UiIcon,
-    DevCom
+    StaticIconList, DevCom,
   },
 }
 </script>
@@ -114,7 +120,7 @@ export default {
     }
     
     &Header {
-      margin: .25em 0 .5em;
+      margin: 0 0 1rem;
       @include Break( max-width Breaks(4) ){
         margin: .5em auto;
         text-align: center;
@@ -134,8 +140,7 @@ export default {
         border-right: none;
       }
     }
-    
-    &Text {
+    &Sidebar + &Text {
       @include Break( min-width Breaks(4) ){
         margin-left: $sidebar-width + 2%;
       }
