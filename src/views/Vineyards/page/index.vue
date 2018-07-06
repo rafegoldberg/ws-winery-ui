@@ -20,11 +20,11 @@
     </UiBox>
   </UiPanel>
   
-  <UiPanel class="UiTheme_cream">
-    <UiBox style="justify-content: left">
-      <article class="wrap_mid" style="margin: 1rem 0">
+  <UiPanel class="UiTheme_cream" style="flex-direction: row-reverse">
+    <UiBox v-if="iframe.length" v-html="iframe[0]" style="padding-right: 0; position: sticky; top: 0; max-height: 100vh; align-items: flex-start"/>
+    <UiBox style="align-items: stretch; padding-right: 0">
+      <article class="wrap_mid" style="margin-right: auto">
         <p v-if="text.length"   v-html="text[0]"/>
-        <p v-if="iframe.length" v-html="iframe[0]"/>
         <p v-if="text.length>0" v-for="p in text.slice(1)" v-html="p"/>
       </article>
     </UiBox>
@@ -103,7 +103,7 @@ export default {
     }
     &Sidebar {
       float: left;
-      width: 38%;
+      width: 42%;
       margin: 0 1.4rem 0 -.4rem;
       border-right: 1px solid Color(theme);
       @include Break( max-width Breaks(4) ){
@@ -138,7 +138,6 @@ blockquote {
   font-family: $ff-alt;
   font-style: italic;
   color: Color(theme);
-  article & { margin-top: 0 }
 }
 
 hr {

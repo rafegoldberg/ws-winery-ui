@@ -1,5 +1,6 @@
-import WP from "../WP";
+import API from "./API";
 export default {
+  mixins: [ API ],
   props: {
     type: {
       type: String,
@@ -30,11 +31,6 @@ export default {
     }
   },
   asyncComputed: {
-    async API() {
-      let API = await WP;
-      this.$emit("vp.ready");
-      return API;
-    },
     context: {
       default:{ loading:true },
       async get() {

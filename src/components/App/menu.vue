@@ -27,6 +27,8 @@ export default {
   methods:{
     toggle(){
       this.open = this.open ? false : true
+      if( this.open ) this.$emit('open')
+      else this.$emit('close')
     },
   },
 }
@@ -61,8 +63,22 @@ export default {
     }
   }
   &Trigger {
-    // outer wrapper
+    
+    $pop: rgba(mix(Color(theme),Color(light),68%),.38);
+    
     position: relative;
+    color: Color(theme);
+    transition: .3s;
+    box-shadow:
+      inset 0 0 0 0 transparent,
+      0 0 0 0 transparent,
+      0 0 0 0 transparent;
+    &:hover {
+      box-shadow:
+        inset 0 0 0 .6em $pop,
+        .5em 0 0 $pop,
+        -.5em 0 0 $pop;
+    }
   }
 }
 </style>

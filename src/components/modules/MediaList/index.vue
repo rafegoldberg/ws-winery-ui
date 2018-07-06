@@ -1,44 +1,98 @@
 <template>
 <div class="MediaList">
 
-  <ul class="MediaList--list">
-    <li v-for="(item,i) in list"
-        class="MediaList--item"
-        :class="{
-          'MediaList--item_active': (current==i)
-        }" @click="(current=i)">
-      <slot>{{item}}</slot>
-    </li>
-  </ul>
-
+  <div>
+    <slot name="head">
+      <UiHeading>{{title}}</UiHeading>
+    </slot>
+    <ul class="MediaList--list">
+      <li v-for="(item,i) in list"
+          class="MediaList--item"
+          :class="{
+            'MediaList--item_active': (active==i)
+          }" @mouseover="( active = i )">
+        <slot v-bind="{ item, key:i }">
+          {{item}}
+        </slot>
+      </li>
+    </ul>
+  </div>
+  
   <div class="MediaList--media">
-    <img src="./mock/default.jpg" alt="">
+    <img :src="media" alt="">
   </div>
 
 </div>
 </template>
 
 <script>
-import mock from './mock/data.long';
+import API from '@/VuePress/mix/API'
+import UiHeading from '@/components/UI/Heading'
+
+import mock from './mock/data.long'
+import fallback from './mock/default.jpg'
+
 export default {
   name: "MediaList",
+  mixins:[ API ],
+  components:{ UiHeading },
   props:{
     list:{ type:[Array,Object], default:()=>mock },
+    title:{ type:String }
   },
   data:()=>({
     current: 0
-  }),
+    }),
+  methods:{
+    getImage(){
+      // console.log({args:arguments,self:this})
+    }
+  },
   computed:{
     active:{
       default: 0,
       get( ){
-        this.$log('active:get',this.current)
-        return this.current || this.list[0]
+        return this.current
       },
       set(i){
-        this.$log('active:set',{old:this.current,new:i})
-        this.current = i
+        let
+        list   = this.list,
+        prior  = this.current,
+        active = i>=0 ? i : -1
+
+        if( list[active] )
+          active!=prior && this.$emit( 'activate', list[active], list[prior]  )
+
+        this.current = active
       }
+    },
+  },
+  asyncComputed:{
+    media:{
+      default: fallback,
+      async get(){
+        if( !this.API ) return fallback
+        
+        let
+        img = this.list[this.active] ? this.list[this.active].featured_media : false
+
+        if( !img ) return fallback
+        
+        let
+        err,
+        xhr = await this.API.media()
+          .id(img)
+          .get()
+          .then( rsp=> rsp
+            .source_url
+            .replace(/.*\/wp-content\//gim,'https://www.williamsselyem.com/wp-content/')
+          )
+          .catch( e=>( err = e ))
+
+        if( err ) return fallback
+        return xhr
+      },
+      watch(){ this.active }
     }
   }
 }
@@ -59,6 +113,13 @@ export default {
     margin: 0;
     &:first-child { margin-right: 1.5rem }
     &:last-child { margin-left: 1.5rem }
+    width: 50vmax;
+    height: 42vmax;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
     @media ( max-width:800px ) {
       display: none;
     }
@@ -66,7 +127,6 @@ export default {
   &--list {
     padding: unset;
     list-style: none;
-    color: mix(Color(slate),Color(silver),75%);
     font-weight: 100;
     width: 15em;
     max-width: 100%;
@@ -74,11 +134,13 @@ export default {
     font-size: .9em;
   }
   &--item {
+    position: relative;
     padding: .3em 0;
+    color: inherit;
     letter-spacing: .05em;
     cursor: default;
     & + & {
-      border-top: 1px solid Color(silver);
+      border-top: 1px solid rgba( mix(Color(dark),Color(cream)), .4 );
     }
     &:before {
       content: " ";
@@ -96,8 +158,6 @@ export default {
       transition: .2s .1s ease-out;
     }
     &_active {
-      position: relative;
-      color: Color(dark);
       font-weight: bold;
       font-weight: 400;
       letter-spacing: 0.036em;
@@ -107,6 +167,9 @@ export default {
       }
     }
   }
+}
+a {
+  text-decoration: none;
 }
 .MediaList--item:not(.MediaList--item_active) {
   overflow: hidden;

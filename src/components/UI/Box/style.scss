@@ -1,9 +1,12 @@
 @import "~@/styles/theme/breaks";
 
 %UiBox {
-  align-self: stretch;
-  padding: 3rem;
-  max-width: 100%;
+  & {
+    align-self: stretch;
+    padding: 3rem;
+    max-width: 100%;
+    overflow: hidden;
+  }
   &_center {
     display: flex;
     justify-content: center;

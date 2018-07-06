@@ -23,18 +23,6 @@
     </UiBox>
   </UiPanel>
 
-  <UiPanel class="UiTheme_cream">
-    <UiBox :stack="true">
-      <div>
-        <UiHeading slot="header">
-          Estate<br>Vineyards
-        </UiHeading>
-        <MediaList>
-        </MediaList>
-      </div>
-    </UiBox>
-  </UiPanel>
-
 </div>
 </template>
 

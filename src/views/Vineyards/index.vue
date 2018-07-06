@@ -1,14 +1,35 @@
 <template>
-  <UiBox id="VineyardsList" v-if="!context.loading">
-    <MediaList :list="context" :title="title">
-      <router-link :to="item.slug"
-                    append
-                    slot-scope="{item}">
-        {{ item.name || item.title.rendered }}
-        <!-- {{$log(item)}} -->
-      </router-link>
-    </MediaList>
-  </UiBox>
+  <main id="VineyardsList" v-if="!context.loading">
+    
+    <UiPanel>
+      <UiBoxImage :img="imgs.featImg">
+        <UiHeading :level="1" :scale="2">
+          {{page.title}}
+        </UiHeading>
+      </UiBoxImage>
+    </UiPanel>
+
+    <UiPanel class="UiTheme_cream">
+      <UiBox :stack="true">
+        <div>
+          <router-view name="estate" title="Estate Vineyards"/>
+        </div>
+      </UiBox>
+    </UiPanel>
+
+    <UiPanel>
+      <UiBoxImage/>
+    </UiPanel>
+
+    <UiBox>
+      <router-view name="growers" title="Growers Vineyards"/>
+    </UiBox>
+      
+    <UiPanel>
+      <UiBoxImage/>
+    </UiPanel>
+
+  </main>
   <UiBox v-else style="text-align: center; min-height: 68vh">
     Loading...
   </UiBox>
@@ -39,7 +60,6 @@ export default {
     'parent',
     'include',
     'exclude',
-    'title'
   ],
   mixins:[ WpConnect ],  
   components:{

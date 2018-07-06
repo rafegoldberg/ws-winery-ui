@@ -1,5 +1,6 @@
 /* global WP_API_Settings */
 
+import Vue from "vue";
 import WpRest from "wpapi";
 
 /**
@@ -54,3 +55,9 @@ API.then(WP =>
  */
 
 export default API;
+
+API.then(wp=>{
+  if (process.env.NODE_ENV == "development")
+    window.API = wp
+  Vue.prototype.$API = wp;
+})

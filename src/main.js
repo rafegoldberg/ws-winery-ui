@@ -9,8 +9,6 @@ import "@/includes/use/inView"
 import "@/includes/filters"
 
 import API from "@/VuePress/WP"
-API.then(wp=> (window.API = wp))
-
 
 new Vue({
   router,

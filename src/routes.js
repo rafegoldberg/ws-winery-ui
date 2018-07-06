@@ -5,6 +5,7 @@ import StaffBio from "./views/Staff/Bio";
 
 import WinePost from "./views/Wine/post";
 
+import Vineyards from "./views/Vineyards";
 import VineyardsList from "./views/Vineyards/list";
 import VineyardPage from "./views/Vineyards/page";
 
@@ -32,33 +33,39 @@ export default [
   },
 
   {
-    name: "VineyardsList",
+    name: "Vineyards",
     path: "/vineyards/",
-    component: VineyardsList,
+    component: Vineyards,
+    children:[
+      { path:'',
+        components:{ 
+          estate:VineyardsList,
+          growers:VineyardsList,
+        },
+        props:{
+          estate:{ category:"estate-vineyards" },
+          growers:{ category:"growers-vineyards" },
+        }
+      }
+    ],
     props: {
-      default: true,
       type: 'categories',
       parent: 73,
       include: [25,26],
     },
   },
-  {
-    name: "VineyardsSubList",
-    path: "/vineyards/:category",
-    component: VineyardsList,
-    props: true,
-  },
+  // {
+  //   name: "VineyardsSubList",
+  //   path: "/vineyards/:category",
+  //   component: VineyardsList,
+  //   props: true,
+  // },
   {
     name: "VineyardPage",
-    path: "/vineyards/:permalink+/:slug",
+    path: "/vineyards/:permalink?/:slug",
     component: VineyardPage,
     props: true,
-    // props: {
-    //   default: true,
-    //   type:'categories'
-    // },
   },
-
   
   {
     name: "WinePost",
