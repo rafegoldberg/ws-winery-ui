@@ -3,7 +3,7 @@
 %UiBox {
   & {
     align-self: stretch;
-    padding: 3rem;
+    padding: 4rem;
     max-width: 100%;
     overflow: hidden;
   }
@@ -18,10 +18,10 @@
     padding-right: 0;
   }
   @include Break( max-width Breaks(-1)){
-    padding: 2rem;
+    padding: 2.5rem;
   }
   @include Break( max-width Breaks(2)){
-    padding: 1rem;
+    padding: 1.25rem;
   }
 }
 
