@@ -16,12 +16,6 @@
 
     </UiBoxImage>
   </UiPanel>
-  
-  <UiPanel>
-    <UiBox>
-      <WineWidget/>
-    </UiBox>
-  </UiPanel>
 
 </div>
 </template>

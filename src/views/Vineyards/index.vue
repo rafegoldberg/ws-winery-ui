@@ -2,7 +2,7 @@
   <main id="VineyardsList" v-if="!context.loading">
     
     <UiPanel>
-      <UiBoxImage :img="imgs.featImg">
+      <UiBoxImage :img="imgs.feat" style="min-height:80vh">
         <UiHeading :level="1" :scale="2">
           {{page.title}}
         </UiHeading>
@@ -12,21 +12,21 @@
     <UiPanel class="UiTheme_cream">
       <UiBox :stack="true">
         <div>
-          <router-view name="estate" title="Estate Vineyards"/>
+          <v-list category="estate-vineyards" title="Estate Vineyards"/>
         </div>
       </UiBox>
     </UiPanel>
 
     <UiPanel>
-      <UiBoxImage/>
+      <UiBoxImage :img="imgs.casks" style="min-height:68vh"/>
     </UiPanel>
 
     <UiBox>
-      <router-view name="growers" title="Growers Vineyards"/>
+      <v-list title="Growers Vineyards" category="growers-vineyards"/>
     </UiBox>
       
     <UiPanel>
-      <UiBoxImage/>
+      <UiBoxImage :img="imgs.grapes" style="min-height:68vh"/>
     </UiPanel>
 
   </main>
@@ -44,9 +44,11 @@ import UiBoxImage from "@/components/UI/Box/Image"
 import UiHeading from "@/components/UI/Heading"
 import UiList from "@/components/UI/List"
 
-import MediaList from "@/components/modules/MediaList"
+import VList from "./list"
 
 import featImg from "@/assets/mock/vineyard-feat.png"
+import casksImg from "@/assets/mock/vineyards-page/casks.png"
+import grapesImg from "@/assets/mock/vineyards-page/grapes.png"
 
 let pageSettings = {
   title: "Discover Our Vineyards",
@@ -66,12 +68,14 @@ export default {
     UiPanel, UiBox,
     UiBoxImage,
     UiList, UiHeading,
-    MediaList
+    VList
   },
   computed:{
     page: ()=> pageSettings,
     imgs: ()=>({
-      featImg
+      feat:   featImg,
+      casks:  casksImg,
+      grapes: grapesImg,
     })
   },
   methods: {

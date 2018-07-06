@@ -36,18 +36,6 @@ export default [
     name: "Vineyards",
     path: "/vineyards/",
     component: Vineyards,
-    children:[
-      { path:'',
-        components:{ 
-          estate:VineyardsList,
-          growers:VineyardsList,
-        },
-        props:{
-          estate:{ category:"estate-vineyards" },
-          growers:{ category:"growers-vineyards" },
-        }
-      }
-    ],
     props: {
       type: 'categories',
       parent: 73,
