@@ -16,6 +16,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "~@/styles/theme/scale";
+@import "~@/styles/theme/breaks";
 .UiPanel {
   position: relative;
   display: flex;
@@ -25,7 +26,7 @@ export default {
   @media ( min-width:800px ) {
     > * { flex: 1 }
   }
-  @media ( max-width:800px ) {
+  @include Break( max-width Breaks(4) ) {
     flex-flow: nowrap column;
     > * {
       width: 100%;
