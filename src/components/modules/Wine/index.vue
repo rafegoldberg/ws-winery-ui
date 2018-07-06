@@ -1,14 +1,13 @@
 <template>
 <div class="WineWidget">
-  <img src="./mock/generic.png">
+  <img :src="image">
   <UiHeading :level="6" class="WineWidget--title">
-    {{context.name}}
-    <div>{{context.type}}</div>
+    {{name}}
   </UiHeading>
   <table>
     <tr>
-      <td>${{parseFloat(context.price).toFixed(2)}}</td>
-      <td>{{context.vintage}}</td>
+      <td>${{parseFloat(price).toFixed(2)}}</td>
+      <td>{{vintage}}</td>
     </tr>
   </table>
 </div>
@@ -16,10 +15,33 @@
 
 <script>
 import UiHeading from "@/components/UI/Heading"
-import context from "./mock/data"
+import fallback_img from "./mock/generic.png"
+
 export default {
   name: "WineWidget",
-  data: ()=>( {context} ),
+  props:{
+    name: {
+      type: String,
+      default: "Ferrington Vineyard",
+    },
+    image: {
+      type: [String,Object],
+      default: fallback_img,
+    },
+    vineyard: {
+      type: String,
+      default: "Anderson Valley Ferrington Vineyard",
+    },
+    vintage: {
+      type: [String,Number],
+      default: 2009,
+    },
+    price: {
+      type: [String,Number],
+      default: 62,
+    },
+  },
+  // data: ()=>( {context} ),
   components:{ UiHeading }
 }
 </script>

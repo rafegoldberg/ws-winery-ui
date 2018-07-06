@@ -39,6 +39,12 @@
     </UiBox>
   </UiPanel>
 
+  <UiPanel>
+    <UiBox>
+      <WineArchive class="wrap" :category="slug"/>
+    </UiBox>
+  </UiPanel>
+
   <UiPanel class="UiTheme_dark">
     <UiBox class="iconListBox">
       <StaticIconList/>
@@ -60,6 +66,7 @@ import UiBoxImg from '@/components/UI/Box/Image'
 import UiIcon from '@/components/UI/Icon'
 import UiHeading from '@/components/UI/Heading'
 
+import WineArchive from "@/components/modules/Wine/archive";
 import StaticIconList from '@/components/static/icon-list'
 
 //==TEMP=>
@@ -93,7 +100,10 @@ export default {
     UiBoxImg,
     UiHeading,
     UiIcon,
-    StaticIconList, DevCom,
+
+    DevCom,
+    WineArchive,
+    StaticIconList,
   },
 }
 </script>

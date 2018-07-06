@@ -4,6 +4,7 @@ import Staff from "./views/Staff";
 import StaffBio from "./views/Staff/Bio";
 
 import WinePost from "./views/Wine/post";
+import WineArchive from "@/components/modules/Wine/archive";
 
 import Vineyards from "./views/Vineyards";
 import VineyardsList from "./views/Vineyards/list";
@@ -56,9 +57,15 @@ export default [
   },
   
   {
+    name: "WineArchive",
+    path: "/category/:category",
+    component: WineArchive,
+    props: true,
+  },
+  {
     name: "WinePost",
     path: "/:category+/:slug",
     component: WinePost,
     props: true,
-  }
+  },
 ];
