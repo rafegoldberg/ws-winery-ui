@@ -63,12 +63,10 @@ export default {
     }
   }
   &Trigger {
-    $pop: rgba(
-      mix( Color(theme), Color(light), 68% ),
-      .3
-      );
-    
+    $pop: mix( Color(theme), Color(dark), 98% );
+
     position: relative;
+    color: Color(theme);
 
     >:first-child {
       
@@ -82,6 +80,7 @@ export default {
       padding: .34em .5em;
       border-radius: 2px;
       background-color: transparent;
+      transition: .3s 0s ease-out;
 
       >small {
         line-height: 1.6;
@@ -91,7 +90,7 @@ export default {
     >:first-child:hover,
     >:first-child:focus-within,
     &:hover >:first-child {
-      background-color: $pop;
+      background-color: rgba($pop,.25);
     }
     // #AppNav.cream & {
     //   color: Color(theme);

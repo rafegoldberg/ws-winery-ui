@@ -1,0 +1,10 @@
+%text-label {
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: Color(theme);
+  &:not(:hover) {
+    text-decoration: none;
+  }
+}

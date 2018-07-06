@@ -6,10 +6,12 @@
     <UiBoxImg id="VineyardPage-overviewMedia" :img="media" class="UiTheme_cream">
     </UiBoxImg>
     <UiBox id="VineyardPage-overviewContent" class="UiTheme_light wrap_mid">
-      <article v-if="text">
+      <div id="VineyardPage-overviewContent-inner" v-if="text">
 
-        <DevCom></DevCom>
-        <UiHeading id="VineyardPage-overviewHeader" :level="2" v-html="context.title.rendered" style="order: 1"/>
+        <header style="order: 1">
+          <DevCom></DevCom>
+          <UiHeading id="VineyardPage-overviewHeader" :level="2" :scale="3" v-html="context.title.rendered"/>
+        </header>
 
         <aside id="VineyardPage-overviewSidebar" v-if="tables">
           <div v-for="tbl in tables" v-html="tbl"/>
@@ -17,22 +19,24 @@
 
         <div id="VineyardPage-overviewText">
           <blockquote v-html="text[0]"/>
+          <p>
+            <small v-html="text[1]"/>
+          </p>
           <a id="VineyardPage-overviewKick" href="#VineyardsPage--text">
             <div>Read More</div>
             <UiIcon name="arrow-down" height="1em" width="1em"></UiIcon>
           </a>
         </div>
 
-      </article>
+      </div>
     </UiBox>
   </UiPanel>
   
   <UiPanel class="UiTheme_cream" style="flex-direction: row-reverse">
     <UiBox v-if="iframe.length" v-html="iframe[0]" style="padding-right: 0; position: sticky; top: 0; max-height: 100vh; align-items: flex-start"/>
     <UiBox style="align-items: stretch; padding-right: 0">
-      <article id="VineyardsPage--text" class="wrap_mid" style="margin-right: auto">
-        <p v-if="text.length"   v-html="text[0]"/>
-        <p v-if="text.length>0" v-for="p in text.slice(1)" v-html="p"/>
+      <article id="VineyardsPage--text" class="wrap_min" style="margin-right: auto">
+        <p v-if="text.length>2" v-for="p in text.slice(2)" v-html="p"/>
       </article>
     </UiBox>
   </UiPanel>
@@ -93,30 +97,35 @@ export default {
 @import "~@/styles/theme/breaks";
 @import "~@/styles/theme/fonts";
 
+@import "~@/styles/extend/text.label";
+
 #VineyardPage {
   &-overview {
+    $sidebar-width: 42%;
+
     &Content {
       flex-basis: 33%;
       @include Break( max-width Breaks(4) ){
-        article {
+        &-inner {
           display: flex;
           flex-direction: column-reverse;
         }
       }
     }
+    
     &Header {
-      max-width: 80%;
-      margin: 0 0 1em;
+      margin: .25em 0 .5em;
       @include Break( max-width Breaks(4) ){
         margin: .5em auto;
         text-align: center;
-        min-width: 100%;
-        line-height: 1;
+        max-width: 92%;
+        line-height: 1.2;
       }
     }
+
     &Sidebar {
       float: left;
-      width: 42%;
+      width: $sidebar-width;
       margin: 0 1.4rem 0 -.4rem;
       border-right: 1px solid Color(theme);
       @include Break( max-width Breaks(4) ){
@@ -125,16 +134,18 @@ export default {
         border-right: none;
       }
     }
+    
+    &Text {
+      @include Break( min-width Breaks(4) ){
+        margin-left: $sidebar-width + 2%;
+      }
+    }
+    
     &Kick {
       display: block;
-      color: Color(theme);
-      text-decoration: none;
-      line-height: 1.3;
-      letter-spacing: .08em;
-      text-transform: uppercase;
+      @extend %text-label;
     }
   }
-  &--text {}
 }
 
 #VineyardPage > .UiPanel:first-child {

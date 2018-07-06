@@ -1,13 +1,17 @@
 <template>
 <nav id="VineyardsPage--overviewNav">
 
-  <UiIcon name="arrow-left" width=".75em" height=".75em"></UiIcon>
-  <a href="#prior">Prior</a>
+  <a href="#prior">
+    <UiIcon name="arrow-left" width=".75em" height=".75em"></UiIcon>
+    Prior
+  </a>
 
-  <a href="#all">All</a>
+  <router-link to="/vineyards">All</router-link>
 
-  <a href="#next">Next</a>
-  <UiIcon name="arrow-right" width=".75em" height=".75em"></UiIcon>
+  <a href="#next">
+    Next
+    <UiIcon name="arrow-right" width=".75em" height=".75em"></UiIcon>
+  </a>
   
 </nav>
 </template>
@@ -21,27 +25,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~@/styles/theme/breaks";
 @import "~@/styles/theme/colors";
+@import "~@/styles/extend/text.label";
 
 #VineyardsPage--overviewNav {
-
-  padding: 0.5em 0;
-  font-weight: 600;
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  color: Color(theme);
-
-display: inline-flex;
-align-items: center;
-
   > * + * {
     margin-left: 1rem;
   }
-  
-  a {
-    &:not(:hover) { text-decoration: none }
-  }
 
+  a {
+    @extend %text-label;
+    display: inline-flex;
+    align-items: center;
+    &:first-child .UiIcon { margin-right: .4em }
+    &:last-child  .UiIcon { margin-left:  .3em }
+  }
+  
+  @include Break( max-width Breaks(3) ){
+    text-align: center;
+  }
 }
 </style>
