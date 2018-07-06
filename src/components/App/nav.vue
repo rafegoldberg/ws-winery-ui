@@ -33,7 +33,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "~@/styles/theme/colors";
-@import "~@/styles/theme/breaks";
 @import "~@/styles/extend/wrap";
 #AppNav {
   & {
@@ -61,6 +60,9 @@ export default {
     &.dark  { color: Color(light) }
   }
 }
+</style>
+<style lang="scss">
+@import "~@/styles/theme/breaks";
 #AppNav + [id] >:first-child {
   &[class*="UiBox"],
    [class*="UiBox"]{
