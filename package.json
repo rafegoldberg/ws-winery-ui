@@ -1,6 +1,6 @@
 {
-  "name": "vuepress",
-  "version": "0.1.0",
+  "name": "ws-vue-wp",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "start": "node server.js",
