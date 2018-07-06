@@ -21,7 +21,7 @@
       <UiBoxImage :img="imgs.casks" style="min-height:68vh"/>
     </UiPanel>
 
-    <UiPanel>
+    <UiPanel class="UiTheme_cream">
       <UiBox>
         <v-list title="Growers Vineyards" category="growers-vineyards"/>
       </UiBox>

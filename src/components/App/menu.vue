@@ -63,22 +63,39 @@ export default {
     }
   }
   &Trigger {
-    
-    $pop: rgba(mix(Color(theme),Color(light),68%),.38);
+    $pop: rgba(
+      mix( Color(theme), Color(light), 68% ),
+      .3
+      );
     
     position: relative;
-    color: Color(theme);
-    transition: .3s;
-    box-shadow:
-      inset 0 0 0 0 transparent,
-      0 0 0 0 transparent,
-      0 0 0 0 transparent;
-    &:hover {
-      box-shadow:
-        inset 0 0 0 .6em $pop,
-        .5em 0 0 $pop,
-        -.5em 0 0 $pop;
+
+    >:first-child {
+      
+      all: unset;
+      appearance: none;
+
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;      
+      
+      padding: .34em .5em;
+      border-radius: 2px;
+      background-color: transparent;
+
+      >small {
+        line-height: 1.6;
+        transform: translateY(1px);
+      }
     }
+    >:first-child:hover,
+    >:first-child:focus-within,
+    &:hover >:first-child {
+      background-color: $pop;
+    }
+    // #AppNav.cream & {
+    //   color: Color(theme);
+    // }
   }
 }
 </style>

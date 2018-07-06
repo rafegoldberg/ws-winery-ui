@@ -6,8 +6,8 @@
   </router-link>
   
   <span class="AppMenuTrigger">
-    <button @click="toggleMenu" style="all:unset">
-      <UiIcon name="menu" width="1em" height="1em"/>
+    <button @click="toggleMenu">
+      <small>MENU  </small><UiIcon name="menu" width="1em" height="1em"/>
     </button>
     <AppMenu @click.stop ref="menu"/>
   </span>
