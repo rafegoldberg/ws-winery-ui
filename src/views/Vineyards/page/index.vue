@@ -8,13 +8,20 @@
     <UiBox id="VineyardPage-overviewContent" class="wrap_mid">
       <article v-if="text">
 
+        <DevCom></DevCom>
         <UiHeading id="VineyardPage-overviewHeader" :level="2" v-html="context.title.rendered" style="order: 1"/>
 
         <aside id="VineyardPage-overviewSidebar" v-if="tables">
           <div v-for="tbl in tables" v-html="tbl"/>
         </aside>
 
-        <blockquote id="VineyardPage-overviewText" v-html="text[0]"/>
+        <div id="VineyardPage-overviewText">
+          <blockquote v-html="text[0]"/>
+          <a id="VineyardPage-overviewKick" href="#VineyardsPage--text">
+            <div>Read More</div>
+            <UiIcon name="arrow-down" height="1em" width="1em"></UiIcon>
+          </a>
+        </div>
 
       </article>
     </UiBox>
@@ -23,7 +30,7 @@
   <UiPanel class="UiTheme_cream" style="flex-direction: row-reverse">
     <UiBox v-if="iframe.length" v-html="iframe[0]" style="padding-right: 0; position: sticky; top: 0; max-height: 100vh; align-items: flex-start"/>
     <UiBox style="align-items: stretch; padding-right: 0">
-      <article class="wrap_mid" style="margin-right: auto">
+      <article id="VineyardsPage--text" class="wrap_mid" style="margin-right: auto">
         <p v-if="text.length"   v-html="text[0]"/>
         <p v-if="text.length>0" v-for="p in text.slice(1)" v-html="p"/>
       </article>
@@ -37,13 +44,17 @@
 
 <script>
 import WpConnect from "@/VuePress/mix/item"
+import * as computed from './computed'
 
 import UiPanel from '@/components/UI/Panel'
 import UiBox from '@/components/UI/Box'
 import UiBoxImg from '@/components/UI/Box/Image'
+import UiIcon from '@/components/UI/Icon'
 import UiHeading from '@/components/UI/Heading'
 
-import * as computed from './computed'
+//==TEMP=>
+// 
+import DevCom from "@/components/modules/dev"
 
 export default {
   name: "VineyardPage",
@@ -71,6 +82,8 @@ export default {
     UiBox,
     UiBoxImg,
     UiHeading,
+    UiIcon,
+    DevCom
   },
 }
 </script>
@@ -94,7 +107,7 @@ export default {
     &Header {
       max-width: 80%;
       margin: 0 0 1em;
-      @include Break( max-width Breaks(3) ){
+      @include Break( max-width Breaks(4) ){
         margin: .5em auto;
         text-align: center;
         min-width: 100%;
@@ -112,11 +125,20 @@ export default {
         border-right: none;
       }
     }
+    &Kick {
+      display: block;
+      color: Color(theme);
+      text-decoration: none;
+      line-height: 1.3;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
   }
+  &--text {}
 }
 
 #VineyardPage > .UiPanel:first-child {
-  @include Break( min-width Breaks(3) ){
+  @include Break( min-width Breaks(4) ){
     & {
       min-height: 100vh;
       max-height: unset;
@@ -149,7 +171,7 @@ hr {
 
 table {
   margin: 0;
-  font-size: .9rem;
+  font-size: .8rem;
   * {
     font-size: inherit;
     border: none;
