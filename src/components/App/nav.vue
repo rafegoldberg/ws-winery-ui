@@ -33,11 +33,13 @@ export default {
 
 <style lang="scss" scoped>
 @import "~@/styles/theme/colors";
+@import "~@/styles/theme/breaks";
 @import "~@/styles/extend/wrap";
 #AppNav {
   & {
     & { // outer layout
       position: sticky;
+      position: fixed;
       z-index: 9;
       top: 0;
       left: 0;
@@ -52,9 +54,18 @@ export default {
     }
     user-select: none;
   }
-  &[class*="UiTheme_light"],
-  &[class*="UiTheme_cream"]{ color: Color(alt) }
-  &[class*="UiTheme_dark"] { color: Color(theme) }
-  
+  & { // scroll theme
+    transition: .38s 0s ease-out;
+    &.light { color: Color(slate) }
+    &.cream { color: Color(alt)   }
+    &.dark  { color: Color(light) }
+  }
+}
+#AppNav + [id] >:first-child {
+  &[class*="UiBox"],
+   [class*="UiBox"]{
+    &:first-child { padding-top: 9rem }
+    @include Break( min-width Breaks(3) ){ padding-top: 9rem }
+  }
 }
 </style>
