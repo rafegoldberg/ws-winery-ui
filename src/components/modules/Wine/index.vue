@@ -1,10 +1,10 @@
 <template>
 <div class="WineWidget">
-  <img :src="image">
+  <img :src="image" class="WineWidget--image">
   <UiHeading :level="6" class="WineWidget--title">
     {{name}}
   </UiHeading>
-  <table>
+  <table class="WineWidget--detail">
     <tr>
       <td>${{parseFloat(price).toFixed(2)}}</td>
       <td>{{vintage}}</td>
@@ -60,8 +60,9 @@ export default {
     text-align: center;
     font-weight: 500;
   }
-  img {
+  &--image {
     max-height: 15em;
+    mix-blend-mode: multiply;
   }
   table {
     width: 80%;

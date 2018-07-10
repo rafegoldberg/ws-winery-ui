@@ -1,5 +1,5 @@
 <template>
-<div id="WineArchive" class="WineArchive" v-if="!context.loading">
+<div id="WineArchive" class="WineArchive UiTheme_light" v-if="!context.loading">
 
   <div class="WineArchive--grid" v-for="item in context">
     <WineWidget
@@ -20,7 +20,7 @@ import UiList from "@/components/UI/List"
 import WineWidget from "@/components/modules/Wine"
 
 export default {
-  name: "WineArchive",
+  name: "WineList",
   mixins:[ WpConnect ],
   computed:{
     endpoint(){

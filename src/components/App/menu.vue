@@ -5,6 +5,7 @@
       'Our Vineyards': '/vineyards',
       'Our Wine': '/wine/pinot-noir/2016-westside-road-neighbors-pinot-noir',
       'Our Staff': '/people',
+      'Our History': '/history',
       }">
       <router-link slot-scope="{ item, index }" :to="item" tag="li">
         <a>{{index}}</a>

@@ -19,7 +19,7 @@ Vue.prototype.$scrollIntersect = function(e){
     cList = Array.from(element.classList).filter(e=> e.indexOf(bemfx)==0 ),
     theme = cList[0] ? cList[0].split(bemfx).filter(v=>v)[0] : `light`
     
-    console.log(theme)
+    // console.log(theme)
     
     if( theme==navThemeActive ) return
     if( navThemeActive )

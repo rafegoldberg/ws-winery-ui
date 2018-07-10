@@ -45,12 +45,9 @@ if( window ) window.UiSettings = settings
 export default {
   name: "HomePage",
   components: {
-
     UiPanel, UiBox, UiBoxImage,
     UiHeading, UiList, UiButton,
-
     ActionBox, MediaList,
-    
     WineWidget,
   },
   data: ()=> settings,

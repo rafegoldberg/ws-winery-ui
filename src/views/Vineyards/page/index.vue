@@ -1,6 +1,6 @@
 <template>
 
-<main id="VineyardPage" v-if="!context.loading" tag="main">
+<main id="VineyardPage" class="UiTheme_light" v-if="!context.loading" tag="main">
 
   <UiPanel id="VineyardPage-overview">
     <UiBoxImg id="VineyardPage-overviewMedia" :img="media" class="UiTheme_cream">
@@ -41,7 +41,7 @@
 
   <UiPanel>
     <UiBox>
-      <WineArchive class="wrap" :category="slug"/>
+      <WineList class="wrap" :category="slug"/>
     </UiBox>
   </UiPanel>
 
@@ -66,7 +66,7 @@ import UiBoxImg from '@/components/UI/Box/Image'
 import UiIcon from '@/components/UI/Icon'
 import UiHeading from '@/components/UI/Heading'
 
-import WineArchive from "@/components/modules/Wine/archive";
+import WineList from "@/components/modules/Wine/list";
 import StaticIconList from '@/components/static/icon-list'
 
 //==TEMP=>
@@ -102,7 +102,7 @@ export default {
     UiIcon,
 
     DevCom,
-    WineArchive,
+    WineList,
     StaticIconList,
   },
 }

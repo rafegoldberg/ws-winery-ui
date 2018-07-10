@@ -1,20 +1,28 @@
-import Home from "./views";
+import Home from "./views"
 
-import Staff from "./views/Staff";
-import StaffBio from "./views/Staff/Bio";
+import Staff from "./views/Staff"
+import StaffBio from "./views/Staff/Bio"
 
-import WinePost from "./views/Wine/post";
-import WineArchive from "@/components/modules/Wine/archive";
+import WinePost from "./views/Wine/post"
+// import WineArchive from "@/components/modules/Wine/archive"
+import WineArchive from "./views/Wine/archive"
 
-import Vineyards from "./views/Vineyards";
-import VineyardsList from "./views/Vineyards/list";
-import VineyardPage from "./views/Vineyards/page";
+import Vineyards from "./views/Vineyards"
+import VineyardPage from "./views/Vineyards/page"
+
+import HistoryPage from "./views/pages/history"
 
 export default [
   {
     name: "Home",
     path: "/",
     component: Home,
+  },
+
+  {
+    name: "History",
+    path: "/history",
+    component: HistoryPage,
   },
 
   {
@@ -43,12 +51,6 @@ export default [
       include: [25,26],
     },
   },
-  // {
-  //   name: "VineyardsSubList",
-  //   path: "/vineyards/:category",
-  //   component: VineyardsList,
-  //   props: true,
-  // },
   {
     name: "VineyardPage",
     path: "/vineyards/:permalink?/:slug",
