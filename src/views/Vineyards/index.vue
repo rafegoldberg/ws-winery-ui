@@ -1,15 +1,16 @@
 <template>
   <main id="VineyardsList" v-if="!context.loading">
     
-    <UiPanel>
+    <UiPanel :connect="'down'">
       <UiBoxImage :img="imgs.feat" style="min-height:80vh">
         <UiHeading :level="1" :scale="2">
           {{page.title}}
         </UiHeading>
       </UiBoxImage>
+      <a href="#estate-vineyards-panel" slot="connect">Scroll for More</a>
     </UiPanel>
 
-    <UiPanel class="UiTheme_cream">
+    <UiPanel id="estate-vineyards-panel" class="UiTheme_cream">
       <UiBox :stack="true">
         <div>
           <v-list category="estate-vineyards" title="Estate Vineyards"/>

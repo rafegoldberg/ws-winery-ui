@@ -33,16 +33,16 @@ export default {
 
 .UiPanel--connect {
   
-  $height: 3em;
+  $height: 4em;
   $slot-offset: -1.9rem;
   
-  @at-root .UiPanel_connected {
-    > .UiBox,
-    + .UiPanel > .UiBox {
-      padding-top: 5rem !important;
-      padding-bottom: 5rem !important;
-    }
-  }
+  // @at-root .UiPanel_connected {
+  //   > .UiBox,
+  //   + .UiPanel > .UiBox {
+  //     padding-top: 3rem !important;
+  //     padding-bottom: 3rem !important;
+  //   }
+  // }
   
   & {
     z-index: 8;
@@ -85,6 +85,7 @@ export default {
     letter-spacing: .1em;
     font-style: normal;
     font-family: $ff-sans;
+    text-decoration: none;
   }
 
 

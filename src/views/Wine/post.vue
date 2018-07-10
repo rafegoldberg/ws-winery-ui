@@ -20,7 +20,7 @@
           {{sections[0].heading}}
         </UiHeading>
       </div> -->
-      <p>{{sections[0].text | truncate}}
+      <p class="wrap_min">{{sections[0].text | truncate}}
         <br>
         <a href="#more">Read more</a>
       </p>
@@ -151,7 +151,7 @@ export default {
 <style lang="scss">
 #WinePage {
   &--header {
-    min-height: 75vh;
+    min-height: 88vh;
   }
 }
 img#WineBottle {
