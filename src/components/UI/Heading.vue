@@ -22,6 +22,7 @@ export default {
 <style lang="scss">
 @import "~@/styles/tools/em";
 @import "~@/styles/theme/scale";
+@import "~@/styles/theme/breaks";
 @import "~@/styles/theme/colors";
 @import "~@/styles/theme/fonts";
 
@@ -42,6 +43,11 @@ export default {
       font-size: Size(-$i);
     }
   }
+
+  @include Break( max-width Breaks(2) ){
+    text-align: center;
+  }
+
 }
 </style>
 <docs>
