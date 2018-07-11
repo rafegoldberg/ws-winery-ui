@@ -8,8 +8,8 @@
     <UiBox id="VineyardPage-overviewContent" class="UiTheme_light wrap_mid">
       <div id="VineyardPage-overviewContent-inner" v-if="text">
 
-        <header style="order: 1">
-          <DevCom></DevCom>
+        <header>
+          <VineyardsPageMenu/>
           <UiHeading id="VineyardPage-overviewHeader" :level="2" :scale="3" v-html="context.title.rendered"/>
         </header>
 
@@ -69,9 +69,7 @@ import UiHeading from '@/components/UI/Heading'
 import WineList from "@/components/modules/Wine/list";
 import StaticIconList from '@/components/static/icon-list'
 
-//==TEMP=>
-// 
-import DevCom from "@/components/modules/dev"
+import VineyardsPageMenu from "./menu"
 
 export default {
   name: "VineyardPage",
@@ -101,7 +99,7 @@ export default {
     UiHeading,
     UiIcon,
 
-    DevCom,
+    VineyardsPageMenu,
     WineList,
     StaticIconList,
   },
@@ -124,7 +122,7 @@ export default {
       @include Break( max-width Breaks(4) ){
         &-inner {
           display: flex;
-          flex-direction: column-reverse;
+          flex-direction: column;
         }
       }
     }
@@ -144,6 +142,18 @@ export default {
       width: $sidebar-width;
       margin: 0 1.4rem 0 -.4rem;
       border-right: 1px solid Color(theme);
+
+      padding: 0 1rem;
+      
+      >:first-child caption { padding-top: .3rem }
+      >:not(:first-child) caption {
+        border-top: 1px solid;
+        margin-top: 0.7rem;
+        @include Break( max-width Breaks(4) ){
+          border-top: 3px solid;
+        }
+      }
+
       @include Break( max-width Breaks(4) ){
         float: none;
         width: 100%;
@@ -209,11 +219,6 @@ table {
     margin: 0;
     padding: .8em .4em;
     font-size: 1.2em;
-    #VineyardPage-overviewSidebar >:first-child & { padding-top: .3rem }
-    #VineyardPage-overviewSidebar >:not(:first-child) & {
-      border-top: 1px solid;
-      margin-top: 0.7rem;
-    }
   }
 }
 </style>

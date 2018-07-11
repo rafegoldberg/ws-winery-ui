@@ -19,7 +19,7 @@
 <script>
 import UiIcon from "@/components/UI/Icon"
 export default {
-  name: "DevCom",
+  name: "VineyardsPageMenu",
   components:{ UiIcon },
 }
 </script>
