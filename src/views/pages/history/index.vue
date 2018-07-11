@@ -1,7 +1,9 @@
 <template>
 <div id="HistoryPage">
   <UiPanel :connect="'down'">
-    <UiBoxImage :img="featureImage" style="height: 88vh;"/>
+    <UiBoxImage :img="featureImage" style="height: 80vh;">
+      <UiHeading>Our History</UiHeading>
+    </UiBoxImage>
     <small slot="connect">Scroll Down</small>
   </UiPanel>
   <UiPanel>
