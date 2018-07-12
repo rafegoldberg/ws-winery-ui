@@ -47,7 +47,7 @@ export default {
     & { // outer layout
       position: sticky;
       position: fixed;
-      z-index: 9;
+      z-index: 10;
       top: 0;
       left: 0;
       width: 100vw;
@@ -82,7 +82,7 @@ export default {
     color: Color(slate) !important;
     box-shadow: -4px 0 2rem 4px rgba(48, 41, 3, 0.08);
     &-logo {
-      width: 8em;
+      width: 7.75rem !important;
     }
   }
 }

@@ -3,14 +3,13 @@
 <main id="VineyardPage" class="UiTheme_light" v-if="!context.loading" tag="main">
 
   <UiPanel id="VineyardPage-overview">
-    <UiBoxImg id="VineyardPage-overviewMedia" :img="media" class="UiTheme_cream">
-    </UiBoxImg>
+    <UiBoxImg id="VineyardPage-overviewMedia" :img="media" class="UiTheme_cream" style="background-position: center 25%"/>
     <UiBox id="VineyardPage-overviewContent" class="UiTheme_light wrap_mid">
       <div id="VineyardPage-overviewContent-inner" v-if="text">
 
         <header>
           <VineyardsPageMenu/>
-          <UiHeading id="VineyardPage-overviewHeader" :level="2" :scale="3" v-html="context.title.rendered"/>
+          <UiHeading id="VineyardPage-overviewHeader" :level="2" v-html="context.title.rendered"/>
         </header>
 
         <aside id="VineyardPage-overviewSidebar" v-if="tables.length">
@@ -20,7 +19,7 @@
         <div id="VineyardPage-overviewText">
           <blockquote v-html="text[0]"/>
           <p v-html="text[1]"/>
-          <a id="VineyardPage-overviewKick" v-if="text.length>2" href="#VineyardsPage--text">
+          <a id="VineyardPage-overviewKick" v-if="text.length>2" href="#content">
             <div>Read More</div>
             <UiIcon name="arrow-down" height="1em" width="1em"></UiIcon>
           </a>
@@ -30,16 +29,18 @@
     </UiBox>
   </UiPanel>
   
-  <UiPanel v-if="text.length>2" class="UiTheme_cream" style="flex-direction: row-reverse">
-    <UiBox v-if="iframe.length" v-html="iframe[0]" style="padding-right: 0; position: sticky; top: 0; max-height: 100vh; align-items: flex-start"/>
-    <UiBox style="align-items: stretch; padding-right: 0">
-      <article id="VineyardsPage--text" class="wrap_min" style="margin-right: auto">
+  <UiPanel id="content" v-if="text.length>2" class="UiTheme_cream" style="flex-direction: row-reverse">
+    <UiBox class="UiBox_stack">
+      <div id="VineyardPage--media" class="wrap_mid">
+        <span class="iframeWrap" v-if="iframe.length" v-html="iframe[0]"/>
+      </div>
+      <article id="VineyardPage--text" class="wrap_mid" style="columns: 18em; column-gap: 2rem;">
         <p v-for="p in text.slice(2)" v-html="p"/>
       </article>
     </UiBox>
   </UiPanel>
 
-  <UiPanel>
+  <UiPanel class="UiTheme_light">
     <UiBox class="UiBox_stack">
       <UiHeading :level="2" :scale="3" class="UiHeading_space">
         Our <span v-html="context.title.rendered"/> Wines
@@ -170,7 +171,32 @@ export default {
     
     &Kick {
       display: block;
+      line-height: 1.2;
       @extend %text-label;
+      @include Break( max-width Breaks(3) ){
+        text-align: center;
+      }
+    }
+  }
+  &--media {
+    margin-bottom: 1.5rem;
+    @include Break( max-width Breaks(2) ){
+      min-width: 100vw;
+      margin-left: -1.5rem;
+    }
+    .iframeWrap {
+      position: relative;
+      display: block;
+      padding-bottom: 55%; /* 16:9 */
+      padding-top: 25px;
+      height: 0;
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 }
@@ -181,10 +207,13 @@ export default {
       min-height: 100vh;
       max-height: unset;
     }
-    > .UiBoxImage {
+    > .UiBoxImage:first-child {
       max-height: 100vh;
       position: sticky;
       top: 0;
+      @include Break( min-width Breaks(3) ){
+        background-position: center !important
+      }
     }
   }
 }
