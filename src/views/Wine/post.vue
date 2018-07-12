@@ -15,11 +15,6 @@
     </UiBox>
 
     <UiBox>
-      <!-- <div>
-        <UiHeading :level="2" :scale="3">
-          {{sections[0].heading}}
-        </UiHeading>
-      </div> -->
       <p class="wrap_min">{{sections[0].text | truncate}}
         <br>
         <a href="#more">Read more</a>
@@ -42,12 +37,12 @@
     </div></UiBox>
   </UiPanel>
 
-  <UiPanel class="UiTheme_cream">
+  <UiPanel v-if="sections[0]" class="UiTheme_cream">
     <UiBoxImg :img="img1"></UiBoxImg>
     <UiBox>
       <div>
-        <UiHeading :level="3">{{sections[0].heading}}</UiHeading>
-        <p>{{sections[0].text}}</p>
+        <UiHeading :level="3" v-html="sections[0].heading"/>
+        <p v-html="sections[0].text"/>
       </div>
     </UiBox>
   </UiPanel>
@@ -56,11 +51,11 @@
     <UiBoxImg :img="img4"/>
   </UiPanel>
 
-  <UiPanel class="UiTheme_dark">
+  <UiPanel v-if="sections[2]" class="UiTheme_dark">
     <UiBox>
       <div>
-        <UiHeading :level="3">{{sections[2].heading}}</UiHeading>
-        <p>{{sections[2].text}}</p>
+        <UiHeading :level="3" v-html="sections[2].heading"/>
+        <p v-html="sections[2].text"/>
       </div>
     </UiBox>
     <UiBoxImg :img="img2"></UiBoxImg>

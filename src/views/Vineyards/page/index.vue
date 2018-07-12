@@ -40,8 +40,11 @@
   </UiPanel>
 
   <UiPanel>
-    <UiBox>
-      <WineList class="wrap" :category="slug"/>
+    <UiBox class="UiBox_stack">
+      <UiHeading :level="2" :scale="3" class="UiHeading_space">
+        Our <span v-html="context.title.rendered"/> Wines
+      </UiHeading>
+      <WineGrid class="wrap" :category="slug"/>
     </UiBox>
   </UiPanel>
 
@@ -66,7 +69,7 @@ import UiBoxImg from '@/components/UI/Box/Image'
 import UiIcon from '@/components/UI/Icon'
 import UiHeading from '@/components/UI/Heading'
 
-import WineList from "@/components/modules/Wine/list";
+import WineGrid from "@/components/modules/Wine/grid";
 import StaticIconList from '@/components/static/icon-list'
 
 import VineyardsPageMenu from "./menu"
@@ -100,7 +103,7 @@ export default {
     UiIcon,
 
     VineyardsPageMenu,
-    WineList,
+    WineGrid,
     StaticIconList,
   },
 }
@@ -143,8 +146,6 @@ export default {
       margin: 0 1.4rem 0 -.4rem;
       border-right: 1px solid Color(theme);
 
-      padding: 0 1rem;
-      
       >:first-child caption { padding-top: .3rem }
       >:not(:first-child) caption {
         border-top: 1px solid;
@@ -158,11 +159,12 @@ export default {
         float: none;
         width: 100%;
         border-right: none;
+        padding: 0 1rem;
       }
     }
     &Sidebar + &Text {
       @include Break( min-width Breaks(4) ){
-        margin-left: $sidebar-width + 2%;
+        margin-left: $sidebar-width + 3%;
       }
     }
     
@@ -192,33 +194,37 @@ export default {
 @import "~@/styles/theme/colors";
 @import "~@/styles/theme/fonts";
 
-blockquote {
-  font-family: $ff-alt;
-  font-style: italic;
-  color: Color(theme);
-}
-
-hr {
-  border-width: 1px 0 0;
-  border-style: solid;
-  border-color: Color(theme);
-  margin: 1rem 0;
-}
-
-table {
-  margin: 0;
-  font-size: .8rem;
-  * {
-    font-size: inherit;
-    border: none;
+#VineyardPage {
+  
+  blockquote {
+    font-family: $ff-alt;
+    font-style: italic;
+    color: Color(theme);
   }
-  caption {
-    border: none;
-    font-weight: 900;
-    letter-spacing: 0;
+
+  hr {
+    border-width: 1px 0 0;
+    border-style: solid;
+    border-color: Color(theme);
+    margin: 1rem 0;
+  }
+
+  table {
     margin: 0;
-    padding: .8em .4em;
-    font-size: 1.2em;
+    font-size: .8rem;
+    * {
+      font-size: inherit;
+      border: none;
+    }
+    caption {
+      border: none;
+      font-weight: 900;
+      letter-spacing: 0;
+      margin: 0;
+      padding: .8em .4em;
+      font-size: 1.2em;
+    }
   }
-}
+
+} // #VineyardPage
 </style>

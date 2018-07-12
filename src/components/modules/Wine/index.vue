@@ -2,12 +2,12 @@
 <div class="WineWidget">
   <img :src="image" class="WineWidget--image">
   <UiHeading :level="6" class="WineWidget--title">
-    {{name}}
+    <span v-html="name"/>
   </UiHeading>
   <table class="WineWidget--detail">
     <tr>
-      <td>${{parseFloat(price).toFixed(2)}}</td>
-      <td>{{vintage}}</td>
+      <td v-if="price">${{parseFloat(price).toFixed(2)}}</td>
+      <td>{{vintage || 'N/A'}}</td>
     </tr>
   </table>
 </div>
@@ -22,26 +22,21 @@ export default {
   props:{
     name: {
       type: String,
-      default: "Ferrington Vineyard",
+      default: "N/A",
     },
     image: {
       type: [String,Object],
       default: fallback_img,
     },
-    vineyard: {
-      type: String,
-      default: "Anderson Valley Ferrington Vineyard",
-    },
     vintage: {
-      type: [String,Number],
-      default: 2009,
+      type: [String,Number,Boolean],
+      default: "N/A",
     },
     price: {
-      type: [String,Number],
-      default: 62,
+      type: [String,Number,Boolean],
+      default: 0,
     },
   },
-  // data: ()=>( {context} ),
   components:{ UiHeading }
 }
 </script>
@@ -66,7 +61,7 @@ export default {
   }
   table {
     width: 80%;
-    margin: 0 auto;
+    margin: 0 auto !important;
     table-layout: fixed;
     text-align: center;
     color: Color(theme);

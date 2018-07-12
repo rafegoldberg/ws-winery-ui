@@ -7,6 +7,19 @@
     xmlns="http://www.w3.org/2000/svg" 
     role="presentation">
     <title :id="name" lang="en">{{name}} icon</title>
+    <defs>
+      <filter xmlns="http://www.w3.org/2000/svg" id="dropshadow" height="150%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="1"/> 
+        <feOffset dx="-1" dy="0" result="offsetblur"/>
+        <feComponentTransfer>
+          <feFuncA type="linear" slope="0.13"/>
+        </feComponentTransfer>
+        <feMerge> 
+          <feMergeNode/>
+          <feMergeNode in="SourceGraphic"/> 
+        </feMerge>
+      </filter>
+    </defs>
     <g :fill="fill">
       <slot>
         <component :is="`icon-${name}`"/>
@@ -16,47 +29,48 @@
 </template>
 
 <script>
-import Icons from "@/icons"
+import Icons from "@/icons";
 export default {
-
   name: "UiIcon",
-  components:{ ...Icons },
-
-  mounted(){
-    this.opts = this.options
-    this.viewBox = this.view || this.$children[0].viewBox || this.viewBox || [];
-  },
-
+  components: { ...Icons },
   props: {
     name: {
       type: String,
       required: true
-      },
+    },
     width: {
-      type: [String,Number]
-      },
+      type: [String, Number]
+    },
     height: {
-      type: [String,Number]
-      },
+      type: [String, Number]
+    },
     view: {
-      type: [String,Array]
-      },
+      type: [String, Array]
+    },
     fill: {
       type: String,
-      default: 'currentColor'
-      },
+      default: "currentColor"
+    },
     options: {
       type: Object,
-      default:()=>({
-        compact:false
+      default: () => ({
+        compact: false
       })
     },
+    filter: {
+      // filter="url(#dropshadow)"
+      type: [String,Boolean],
+      default: ""
+    }
   },
-  data:()=>({
-    viewBox:[]
-  })
-
-}
+  data:()=> ({
+    viewBox: []
+  }),
+  mounted() {
+    this.opts = this.options;
+    this.viewBox = this.view || this.$children[0].viewBox || this.viewBox || [];
+  },
+};
 </script>
 
 <style lang="scss" scoped>

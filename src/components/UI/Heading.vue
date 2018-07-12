@@ -31,6 +31,7 @@ export default {
     font-family: $ff-serif;
     font-weight: 300;
   }
+
   &_sans {
     font-family: $ff-sans;
     text-transform: uppercase;
@@ -48,61 +49,67 @@ export default {
     text-align: center;
   }
 
+  &_expand { line-height: 2 }
+  &_space  { margin-bottom: 1.3em }
+  &_loosen { letter-spacing: .06em }
+  &_thin   { font-weight: lighter; }
+  &_bold   { font-weight: bolder; }
+
 }
 </style>
 <docs>
-```vue
-<UiBox class="UiTheme_cream">
+  ```vue
+  <UiBox class="UiTheme_cream">
 
-<UiHeading :level="1" style="text-align: center;">
-  2016 Westside Road Neighbors Pinot Noir
-</UiHeading>
+  <UiHeading :level="1" style="text-align: center;">
+    2016 Westside Road Neighbors Pinot Noir
+  </UiHeading>
 
-</UiBox>
-```
+  </UiBox>
+  ```
 
-## Typographic Scale
+  ## Typographic Scale
 
-```vue
-<div>
-  <UiHeading :level=1 :scale=6>Heading 6</UiHeading>
-  <br/>
-  <UiHeading :level=2 :scale=5>Heading 5</UiHeading>
-  <br/>
-  <UiHeading :level=3 :scale=4>Heading 4</UiHeading>
-  <br/>
-  <UiHeading :level=4 :scale=3>Heading 3</UiHeading>
-  <br/>
-  <UiHeading :level=5 :scale=2>Heading 2</UiHeading>
-  <br/>
-  <UiHeading :level=6 :scale=1>Heading 1</UiHeading>
-</div>
-```
+  ```vue
+  <div>
+    <UiHeading :level=1 :scale=6>Heading 6</UiHeading>
+    <br/>
+    <UiHeading :level=2 :scale=5>Heading 5</UiHeading>
+    <br/>
+    <UiHeading :level=3 :scale=4>Heading 4</UiHeading>
+    <br/>
+    <UiHeading :level=4 :scale=3>Heading 3</UiHeading>
+    <br/>
+    <UiHeading :level=5 :scale=2>Heading 2</UiHeading>
+    <br/>
+    <UiHeading :level=6 :scale=1>Heading 1</UiHeading>
+  </div>
+  ```
 
-## Typographic Applications
+  ## Typographic Applications
 
-You can also use the sans-serif typeset where appropriate:
+  You can also use the sans-serif typeset where appropriate:
 
-```vue
-<UiBox class="UiTheme_light">
+  ```vue
+  <UiBox class="UiTheme_light">
 
-<UiHeading class="UiHeading_sans" :level="6" style="text-align: center;">
-  <b>2016 Westside Road Neighbors Pinot Noir</b>
-</UiHeading>
+  <UiHeading class="UiHeading_sans" :level="6" style="text-align: center;">
+    <b>2016 Westside Road Neighbors Pinot Noir</b>
+  </UiHeading>
 
-</UiBox>
-```
+  </UiBox>
+  ```
 
-In certain settings you may mix the two applications together:
+  In certain settings you may mix the two applications together:
 
-```vue
-<UiBox>
+  ```vue
+  <UiBox>
 
-<header style=text-align:center>
-  <UiHeading class="UiHeading_sans" style="font-weight:400;" :level="6">Anderson Valley</UiHeading>
-  <UiHeading :level="3">Ferrington Vineyard</UiHeading>
-</header>
+  <header style=text-align:center>
+    <UiHeading class="UiHeading_sans" style="font-weight:400;" :level="6">Anderson Valley</UiHeading>
+    <UiHeading :level="3">Ferrington Vineyard</UiHeading>
+  </header>
 
-</UiBox>
-```
+  </UiBox>
+  ```
 </docs>

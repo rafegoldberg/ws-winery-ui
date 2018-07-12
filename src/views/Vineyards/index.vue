@@ -1,21 +1,17 @@
 <template>
-  <main id="VineyardsList" v-if="!context.loading">
+  <main id="VineyardsListPage" v-if="!context.loading">
     
     <UiPanel :connect="'down'">
-      <UiBoxImage :img="imgs.feat" style="min-height:80vh">
+      <UiBoxImage :img="imgs.feat" style="min-height:88vh">
         <UiHeading :level="1" :scale="2">
           {{page.title}}
         </UiHeading>
       </UiBoxImage>
-      <a href="#estate-vineyards-panel" slot="connect">Scroll for More</a>
+      <a href="#estate-vineyards" slot="connect">Scroll for More</a>
     </UiPanel>
 
-    <UiPanel id="estate-vineyards-panel" class="UiTheme_cream">
-      <UiBox :stack="true">
-        <div>
-          <v-list category="estate-vineyards" title="Estate Vineyards"/>
-        </div>
-      </UiBox>
+    <UiPanel class="UiTheme_cream" id="estate-vineyards">
+      <v-list category="estate-vineyards" title="Estate Vineyards"/>
     </UiPanel>
 
     <UiPanel>
@@ -23,9 +19,7 @@
     </UiPanel>
 
     <UiPanel class="UiTheme_cream">
-      <UiBox>
-        <v-list title="Growers Vineyards" category="growers-vineyards"/>
-      </UiBox>
+      <v-list title="Growers Vineyards" category="growers-vineyards"/>
     </UiPanel>
       
     <UiPanel>

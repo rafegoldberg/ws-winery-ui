@@ -1,3 +1,4 @@
+import DEMO from "./views/DEMO/vineyardStats"
 import Home from "./views"
 
 import Staff from "./views/Staff"
@@ -18,11 +19,17 @@ export default [
     path: "/",
     component: Home,
   },
+  {
+    name: "Demo",
+    path: "/demo",
+    component: DEMO,
+  },
 
   {
     name: "History",
     path: "/history",
     component: HistoryPage,
+    props: { default: true, type:"pages" }
   },
 
   {

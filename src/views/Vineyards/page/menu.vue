@@ -42,7 +42,7 @@ export default {
     &:last-child  .UiIcon { margin-left:  .3em }
   }
   
-  @include Break( max-width Breaks(3) ){
+  @include Break( max-width Breaks(4) ){
     text-align: center;
   }
 }

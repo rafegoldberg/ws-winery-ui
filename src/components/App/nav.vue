@@ -2,7 +2,13 @@
 <nav id="AppNav">
 
   <router-link to="/">
-    <UiIcon id="AppNav-logo" name="logo" height="auto" width="9rem" :view="[0,0,180,45.71]"/>
+    <UiIcon
+      id="AppNav-logo"
+      name="logo"
+      height="auto"
+      width="9rem"
+      :view="[0,0,180,45.71]"
+      filter="url(#dropshadow)"/>
   </router-link>
   
   <span class="AppMenuTrigger">
@@ -54,11 +60,18 @@ export default {
     }
     user-select: none;
   }
-  & { // scroll theme
-    transition: .38s 0s ease-out;
+  & { // theme
+
+    color: Color(slate);
     &.light { color: Color(slate) }
     &.cream { color: Color(dark)  }
     &.dark  { color: Color(light) }
+  }
+  & { // transition
+    transition: color .2s 0s ease-in-out;
+    transition-delay: 0s !important;
+    transition-duration: .3s !important;
+    transition-timing-function: ease-in-out !important;
   }
   @include Break( max-width Breaks(4) ){
     padding: 0 1em;

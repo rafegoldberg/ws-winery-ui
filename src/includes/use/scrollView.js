@@ -4,29 +4,42 @@ import checkView from 'vue-check-view'
 Vue.use(checkView)
 
 let
-navThemeActive;
+lastTheme,
+navOffset
+
+function getAppNavHeight( id='AppNav' ){
+  return document.getElementById(id).offsetHeight
+}
+
 Vue.prototype.$scrollIntersect = function(e){
 
   let
   AppNav    = document.getElementById('AppNav'),
   element   = e.target.element,
-  intersect = this.rect,
-  offset    = AppNav.offsetHeight
+  intersect = this.rect
   
-  if( intersect.top <= (offset/2) && intersect.bottom >= (offset/2) ){
+  navOffset = navOffset || getAppNavHeight()
+  
+  if( intersect.bottom > (navOffset/2) && intersect.top <= (navOffset/2) ){
+    
+    /* console.log("%o\n%o",element,{
+      top: intersect.top,
+      btm: intersect.bottom,
+      off: navOffset,
+    }) */
+
     let
     bemfx = "UiTheme_",
     cList = Array.from(element.classList).filter(e=> e.indexOf(bemfx)==0 ),
     theme = cList[0] ? cList[0].split(bemfx).filter(v=>v)[0] : `light`
+
+    if( theme==lastTheme ) return
     
-    // console.log(theme)
-    
-    if( theme==navThemeActive ) return
-    if( navThemeActive )
-      AppNav.classList.replace( navThemeActive, theme )
+    if( lastTheme )
+      AppNav.classList.replace( lastTheme, theme )
     else
       AppNav.classList.add( theme )
 
-    navThemeActive = theme
+    lastTheme = theme
   }
 }
