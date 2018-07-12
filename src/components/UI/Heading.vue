@@ -49,14 +49,24 @@ export default {
     text-align: center;
   }
 
-  &_expand { line-height: 2 }
-  &_space  { margin-bottom: 1.3em }
+  &_space  {
+    margin-bottom: 1.2em;
+    &÷2, &Half { margin-bottom: .6em }  
+  }
+  &_push   {
+    margin-top: 1.2em;
+    &÷2, &Half { margin-top: .6em }
+  }
+  &_expand { line-height: 1.6      }
   &_loosen { letter-spacing: .06em }
-  &_thin   { font-weight: lighter; }
-  &_bold   { font-weight: bolder; }
+  &_center { text-align: center    }
+  &_thin   { font-weight: lighter  }
+  &_bold   { font-weight: bolder   }
+  &_gold   { color: Color(theme)   }
 
 }
 </style>
+
 <docs>
   ```vue
   <UiBox class="UiTheme_cream">

@@ -8,7 +8,8 @@
       height="auto"
       width="9rem"
       :view="[0,0,180,45.71]"
-      filter="url(#dropshadow)"/>
+      filter="url(#dropshadow)"
+      />
   </router-link>
   
   <span class="AppMenuTrigger">
@@ -66,6 +67,7 @@ export default {
     &.light { color: Color(slate) }
     &.cream { color: Color(dark)  }
     &.dark  { color: Color(light) }
+    &.rust  { color: Color(cream) }
   }
   & { // transition
     transition: color .2s 0s ease-in-out;

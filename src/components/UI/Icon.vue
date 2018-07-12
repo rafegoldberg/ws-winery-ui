@@ -1,8 +1,9 @@
 <template>
   <svg class="UiIcon"
-    :width="width" 
-    :height="height" 
     :viewBox="viewBox" 
+    :width="width" 
+    :height="height"
+    :style="{ width, height }"
     :aria-labelledby="name" 
     xmlns="http://www.w3.org/2000/svg" 
     role="presentation">
