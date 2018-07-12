@@ -25,7 +25,7 @@
     <UiBoxImage :img="img.casks" style="height: 28rem; max-height: 70vh"/>
   </UiPanel>
 
-  <UiPanel id="timeline">
+  <UiPanel id="timeline" class="UiTheme_light">
     <UiBox class="UiBox_stack">
       <Timeline v-if="!context.loading" :list="context.acf.timeline" class="wrap_mid"/>      
     </UiBox>
