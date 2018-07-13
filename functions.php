@@ -6,7 +6,7 @@
       'public' => true,
       'publicly_queryable' => true,
       'show_in_rest' => true,
-      'show_ui' => false,
+      "meta_box_cb" => false,
       'has_archive' => false,
       'hierarchical' => false,
       'labels'       => [

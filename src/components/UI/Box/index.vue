@@ -32,6 +32,9 @@ export default {
     flex-flow: nowrap column;
     align-items: center;
   }
+  &_block {
+    display: block;
+  }
   &_tall {
     height: 50vw;
     max-height: 75vh;

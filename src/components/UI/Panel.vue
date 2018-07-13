@@ -93,7 +93,7 @@ export default {
     top: 100%;
     top: calc(100% + .5em);
     background-position: center bottom;
-    transform: translateY(-50%);
+    transform: translate(-50%,-50%);
     &:before, &:after { top: -.5em }
   }
   &-top, &-up {
@@ -101,7 +101,7 @@ export default {
     bottom: 100%;
     bottom: calc(100% + .5em);
     background-position: center top;
-    transform: translateY(50%);
+    transform: translate(-50%,50%);
     &:before, &:after { top: .5em }
     .UiBoxImage + &:after { 
       top: unset;
