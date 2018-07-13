@@ -1,12 +1,12 @@
 %wraps {
+  margin: 0 auto;
   &Default {
     display: block;
-    margin: 0 auto;
     // padding: 1px 1em;
   }
   &Flexbox {
-    flex-grow: 0;
-    flex-shrink: 1;
+    flex-grow: 0 !important;
+    flex-shrink: 1 !important;
   }
 }
 
@@ -27,15 +27,15 @@
   &_flex {
     & {
       @extend %wraps, %wrapsFlexbox;
-      flex-basis: 72rem;
+      flex-basis: 72rem !important;
     }
     &_mid {
       @extend %wraps, %wrapsFlexbox;
-      flex-basis: 54rem;
+      flex-basis: 54rem !important;
     }
     &_min {
       @extend %wraps, %wrapsFlexbox;
-      flex-basis: 36rem;
+      flex-basis: 36rem !important;
     }
   }
 }

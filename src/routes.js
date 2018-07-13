@@ -1,8 +1,8 @@
 import DEMO from "./views/DEMO/vineyardStats"
 import Home from "./views"
 
-import Staff from "./views/Staff"
-import StaffBio from "./views/Staff/Bio"
+import Staff from "./views/People"
+import StaffBio from "./views/People/Bio"
 
 import WinePost from "./views/Wine/post"
 // import WineArchive from "@/components/modules/Wine/archive"

@@ -1,0 +1,41 @@
+<template>
+<a class="ReadMore" :href="href">
+  <slot>{{text}}</slot>
+  <br>
+  {{$log($slots)}}
+  <slot name="icon" v-if="icon">
+    <UiIcon :name="icon" height="1em" width="1em"></UiIcon>
+  </slot>
+</a>
+</template>
+
+<script>
+import UiIcon from '@/components/UI/Icon'
+export default {
+  name: "ReadMore",
+  props:{
+    href:{ type:String, required:true        },
+    text:{ type:String, default:"Read More"  },
+    icon:{ type:String, default:"arrow-down" },
+  },
+  components:{ UiIcon }
+}
+</script>
+
+<style lang="scss" scoped>
+@import "~@/styles/theme/breaks";
+@import "~@/styles/theme/colors";
+@import "~@/styles/extend/text.label";
+
+.ReadMore {
+  display: block;
+  line-height: 1.2;
+  @include Break( max-width Breaks(3) ){
+    text-align: center;
+  }
+  &_gold {
+    @extend .ReadMore, %text-label;
+  }
+}
+</style>
+

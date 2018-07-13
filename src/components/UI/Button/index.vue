@@ -1,15 +1,16 @@
 <template>
 
-  <button class="UiButton">
+  <component :is="tag" class="UiButton">
     <!-- @slot Add rich markup to your button. -->
     <slot>{{cta}}</slot>
-  </button>
+  </component>
 
 </template>
 <script>
 export default {
   name: "UiButton",
   props: {
+    tag: { type:String, default:"button"},
     cta: { type:String, required:false }
   }
 }
@@ -24,6 +25,12 @@ export default {
     background-color: transparent;
     border: 3px solid currentColor;
     &:not(:hover) { opacity: .8 }
+  }
+  &_flex {
+    display: inline-flex;
+    flex-flow: nowrap row;
+    justify-content: space-around;
+    align-items: center;
   }
 }
 </style>

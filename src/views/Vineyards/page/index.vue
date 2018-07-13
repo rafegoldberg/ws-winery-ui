@@ -19,10 +19,7 @@
         <div id="VineyardPage-overviewText">
           <blockquote v-html="text[0]"/>
           <p v-html="text[1]"/>
-          <a id="VineyardPage-overviewKick" v-if="text.length>2" href="#content">
-            <div>Read More</div>
-            <UiIcon name="arrow-down" height="1em" width="1em"></UiIcon>
-          </a>
+          <ReadMore id="VineyardPage-overviewKick" v-if="text.length>2" href="#content"/>
         </div>
 
       </div>
@@ -67,9 +64,9 @@ import * as computed from './computed'
 import UiPanel from '@/components/UI/Panel'
 import UiBox from '@/components/UI/Box'
 import UiBoxImg from '@/components/UI/Box/Image'
-import UiIcon from '@/components/UI/Icon'
 import UiHeading from '@/components/UI/Heading'
 
+import ReadMore from "@/components/modules/ReadMore"
 import WineGrid from "@/components/modules/Wine/grid";
 import StaticIconList from '@/components/static/icon-list'
 
@@ -101,8 +98,8 @@ export default {
     UiBox,
     UiBoxImg,
     UiHeading,
-    UiIcon,
 
+    ReadMore,
     VineyardsPageMenu,
     WineGrid,
     StaticIconList,
@@ -167,16 +164,13 @@ export default {
       @include Break( min-width Breaks(4) ){
         margin-left: $sidebar-width + 3%;
       }
+      
     }
     
     &Kick {
-      display: block;
-      line-height: 1.2;
       @extend %text-label;
-      @include Break( max-width Breaks(3) ){
-        text-align: center;
-      }
     }
+    
   }
   &--media {
     margin-bottom: 1.5rem;
