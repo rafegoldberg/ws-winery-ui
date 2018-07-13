@@ -10,7 +10,7 @@
     </UiBox>
   </UiPanel>
   <UiPanel id="theOwners">
-    <UiBox class="UiBox_stack">
+    <UiBox class="UiBox_stack" style="padding-bottom: 0">
       <UiHeading :level="4" class="UiHeading_space">Proprietors</UiHeading>
       <img :src="imgs.proprietors">
       <label>John &amp; Kath Dyson</label>
@@ -20,7 +20,7 @@
     <UiBox>
       <img :src="imgs[term.slug]" :alt="term.slug">
     </UiBox>
-    <UiBox class="UiBox_stack">
+    <UiBox class="UiBox_stack" style="padding-bottom: 0; padding-top: 0">
         <UiHeading v-html="term.name" style="width: 100%"/>
         <RoleList v-if="!context.loading" v-bind="term"/>
     </UiBox>
@@ -91,7 +91,7 @@ export default {
     }
   }
   @include Break( max-width Breaks(4) ){
-    .UiBox:first-child {
+    .UiPanel:first-child > .UiBox:first-child {
       width: 100vw;
       height: 18em;
       padding: 0;

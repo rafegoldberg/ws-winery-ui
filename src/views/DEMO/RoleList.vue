@@ -42,13 +42,15 @@ export default {
 
 <style lang="scss" scoped>
 @import "~@/styles/theme/colors";
+@import "~@/styles/theme/breaks";
 .RoleList {
   $color-universal: rgba(mix(Color(dark),Color(light),25%),.4);
   width: 100%;
   list-style: none;
   &--item {
     $E: &;
-    padding: .6rem .4rem;
+    padding: .7rem 0;
+    line-height: 1.2;
     & + & {
       border-top: 1px solid $color-universal;
     }
@@ -76,9 +78,20 @@ export default {
         }
       }
       &Title {
-        margin-left: 1.5rem;
+        margin-left: auto;
+        padding-left: 0.5rem;
         font-weight: 600;
+        text-align: right;
         color: Color(silver);
+      }
+      @include Break( max-width Breaks(3) ){
+        flex-flow: nowrap column;
+        align-items: flex-start;
+        > * {
+          margin: 0 !important;
+          padding-left: 0 !important;
+        }
+        &Title { font-weight: normal }
       }
     }
   }

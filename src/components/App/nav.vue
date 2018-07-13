@@ -89,6 +89,10 @@ export default {
 </style>
 <style lang="scss">
 @import "~@/styles/theme/breaks";
+#AppNav {
+  position: relative !important;
+  margin-bottom: -112px !important;
+}
 #AppNav + [id] >:first-child {
   &[class*="UiBox"],
    [class*="UiBox"]{
