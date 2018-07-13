@@ -74,10 +74,13 @@ export default {
   computed:{
     featured_img(){
       if( this.context.loading ) return
-      let
-      src = this.context._embedded['wp:featuredmedia'][0].source_url
-      src = src.replace(/.*\/wp-content\//gim,'https://www.williamsselyem.com/wp-content/')
-      return src
+      if( 'wp:featuredmedia' in this.context._embedded ){
+        let
+        src = this.context._embedded['wp:featuredmedia'][0].source_url
+        src = src.replace(/.*\/wp-content\//gim,'https://www.williamsselyem.com/wp-content/')
+        return src
+      }
+      else return ""
     },
   }
 }
