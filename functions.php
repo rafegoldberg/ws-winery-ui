@@ -1,3 +1,8 @@
+<?/** WP Configuration
+   */
+  add_theme_support( 'post-thumbnails' );
+  ?>
+  
 <?/** Custom Post Type Registration
    */
   // include "php/types/example.php";
