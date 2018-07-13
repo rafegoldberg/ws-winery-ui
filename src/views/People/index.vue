@@ -10,7 +10,7 @@
     </UiBox>
   </UiPanel>
   <UiPanel id="theOwners">
-    <UiBox class="UiBox_stack" style="padding-bottom: 0">
+    <UiBox class="UiBox_stack">
       <UiHeading :level="4" class="UiHeading_space">Proprietors</UiHeading>
       <img :src="imgs.proprietors">
       <label>John &amp; Kath Dyson</label>
@@ -91,14 +91,16 @@ export default {
     }
   }
   @include Break( max-width Breaks(4) ){
-    .UiPanel:first-child > .UiBox:first-child {
+    .UiPanel:not(:nth-child(-n+2)) .UiBox:first-child {
       width: 100vw;
       height: 18em;
+      margin-bottom: 1.5rem;
       padding: 0;
-      > .UiBox > img:only-child {
+      > img:only-child {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        margin: 0;
       }
     }
   }
