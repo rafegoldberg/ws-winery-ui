@@ -16,7 +16,7 @@ export default {
   props:{
     href:{ type:String, required:true        },
     text:{ type:String, default:"Read More"  },
-    icon:{ type:String, default:"arrow-down" },
+    icon:{ type:[String,Boolean], default:"arrow-down" },
   },
   components:{ UiIcon }
 }

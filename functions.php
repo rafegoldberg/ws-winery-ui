@@ -1,6 +1,21 @@
-<?/** WP Configuration
+<?/** WP Init Configuration
    */
-  add_theme_support( 'post-thumbnails' );
+  function onInitWP(){
+    add_theme_support('post-thumbnails');
+    register_taxonomy("staff_roles",'post',[
+      'public' => true,
+      'publicly_queryable' => true,
+      'show_in_rest' => true,
+      'show_ui' => false,
+      'has_archive' => false,
+      'hierarchical' => false,
+      'labels'       => [
+        'name'=>"Staff Roles",
+        'singular_name'=>"Role",
+      ],
+      ]);
+  }
+  add_action('init','onInitWP',0);
   ?>
   
 <?/** Custom Post Type Registration

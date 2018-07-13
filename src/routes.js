@@ -1,4 +1,5 @@
-import DEMO from "./views/DEMO/vineyardStats"
+import DEMO1 from "./views/DEMO/vineyardStats"
+
 import Home from "./views"
 
 import Staff from "./views/People"
@@ -19,10 +20,12 @@ export default [
     path: "/",
     component: Home,
   },
+
   {
     name: "Demo",
     path: "/demo",
-    component: DEMO,
+    component: DEMO1,
+    props:{ default:true, type:'taxonomy' },
   },
 
   {
@@ -38,7 +41,7 @@ export default [
     component: Staff,
     props: {
       default: true,
-      category: 28, // slug: 'people',
+      type: "taxonomy", // slug: 'people',
     },
   },
   {
