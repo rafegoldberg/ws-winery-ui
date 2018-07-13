@@ -23,12 +23,12 @@
         </UiHeading>
         <b class="Bio--position">{{context.acf.position}}</b>
         <p>{{context.acf.intro}}</p>
-        <!-- <ReadMore href="#content" class="ReadMore_gold"/> -->
+        <ReadMore href="#content" class="ReadMore_gold" :icon="false"/>
       </div>
     </UiBox>
-    <span slot="connect">
+    <!-- <span slot="connect">
         <ReadMore href="#content" class="ReadMore_gold" :icon="false"/>
-    </span>
+    </span> -->
   </UiPanel>
 
   <UiPanel id="content" class="UiTheme_light">
