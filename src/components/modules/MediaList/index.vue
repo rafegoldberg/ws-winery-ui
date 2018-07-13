@@ -100,6 +100,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "~@/styles/theme/colors";
+@import "~@/styles/theme/breaks";
 .MediaList {
   $base: #{&};
   & {
@@ -119,9 +120,6 @@ export default {
       width: 100%;
       height: 100%;
       object-fit: contain;
-    }
-    @media ( max-width:800px ) {
-      display: none;
     }
   }
   &--list {
@@ -165,6 +163,21 @@ export default {
         opacity: 1;
         margin-right: 0.5em;
       }
+    }
+  }
+  @include Break( max-width Breaks(3) ){
+    flex-flow: nowrap column-reverse;
+    &--media {
+      //-----------------------
+      display: none !important;
+      //-----------------------
+      // width: 100vw;
+      // max-height: 32vh;
+      // margin: 0 0 1.5rem !important;
+      // img {
+      //   object-fit: cover;
+      //   object-position: center 25%;
+      // }
     }
   }
 }

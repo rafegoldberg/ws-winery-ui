@@ -22,7 +22,7 @@
   </UiPanel>
 
   <UiPanel>
-    <UiBoxImage :img="img.casks" style="height: 28rem; max-height: 70vh"/>
+    <UiBoxImage :img="img.casks" class="UiBoxImage_fixed UiBoxImage_vignette-z" style="height: 28rem; max-height: 70vh"/>
   </UiPanel>
 
   <UiPanel id="timeline" class="UiTheme_light">
@@ -87,6 +87,7 @@ export default {
     line-height: 1.3;
     margin-top: 1rem;
     text-decoration: none;
+    text-align: center;
   }
 }
 </style>

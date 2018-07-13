@@ -37,7 +37,7 @@
       <br>
       <router-link to="/people" style="text-decoration: none">
         <UiButton class="UiButton_outline UiButton_gold UiButton_flex">
-          <UiIcon name="ArrowLeft" width="1em" height="1em"/>&nbsp; All Our People
+          <UiIcon name="ArrowRight" width="1em" height="1em"/>&nbsp; All Our People
         </UiButton>
       </router-link>
     </UiBox>

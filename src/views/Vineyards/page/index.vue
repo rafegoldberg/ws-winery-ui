@@ -9,7 +9,10 @@
 
         <header>
           <VineyardsPageMenu/>
-          <UiHeading id="VineyardPage-overviewHeader" :level="2" v-html="context.title.rendered"/>
+          <UiHeading id="VineyardPage-overviewHeader"
+            class="UiHeading_contract"
+            :level="2"
+            v-html="context.title.rendered"/>
         </header>
 
         <aside id="VineyardPage-overviewSidebar" v-if="tables.length">
@@ -134,7 +137,6 @@ export default {
         margin: .5em auto;
         text-align: center;
         max-width: 92%;
-        line-height: 1.2;
       }
     }
 

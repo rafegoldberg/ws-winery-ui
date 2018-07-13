@@ -71,6 +71,30 @@ export default {
     background-attachment: fixed;
     background-size: cover;
   }
+  &_vignette {
+    $shade: rgba( Color(dark),  .5 );
+    $edge:  rgba( Color(light), .2 );
+    &Vertical, &-v {
+      box-shadow:
+      inset 0  1px 0 0 $edge,
+      inset 0 -1px 0 0 $edge,
+      inset 0  1em 2em -.25em $shade,
+      inset 0 -1em 2em -.25em $shade;
+    }
+    &Horizontal, &-z {
+      box-shadow:
+      inset  1em 0 2em -.25em $shade,
+      inset -1em 0 2em -.25em $shade;
+    }
+    & {
+      box-shadow:
+      inset  0    1em 2em -.25em $shade,
+      inset  0   -1em 2em -.25em $shade,
+      inset  1em  0   2em -.25em $shade,
+      inset -1em  0   2em -.25em $shade;
+      box-shadow: inset 0 0 2em .75em $shade;
+    }
+  }
 }
 </style>
 

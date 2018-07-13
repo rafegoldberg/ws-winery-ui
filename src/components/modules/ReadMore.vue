@@ -29,12 +29,17 @@ export default {
 
 .ReadMore {
   display: block;
+  width: 100%;
   line-height: 1.2;
   @include Break( max-width Breaks(3) ){
     text-align: center;
   }
   &_gold {
     @extend .ReadMore, %text-label;
+  }
+  &_center {
+    text-align: center;
+    justify-content: center;
   }
 }
 </style>

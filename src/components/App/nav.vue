@@ -67,7 +67,7 @@ export default {
     &.light { color: Color(slate) }
     &.cream { color: Color(dark)  }
     &.dark  { color: Color(light) }
-    &.rust  { color: Color(cream) }
+    &.rust  { color: mix(Color(theme),Color(cream)) }
   }
   & { // transition
     transition: color .2s 0s ease-in-out;

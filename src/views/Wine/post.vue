@@ -14,11 +14,10 @@
       <img id="WineBottle" :src="media" :alt="context.title.rendered" />
     </UiBox>
 
-    <UiBox>
-      <p class="wrap_min">{{sections[0].text | truncate}}
-        <br>
-        <a href="#more">Read more</a>
-      </p>
+    <UiBox class="UiBox_stack">
+      <p class="wrap_min">{{sections[0].text | truncate}}</p>
+      <br>
+      <ReadMore href="#content" class="ReadMore_gold"/>
     </UiBox>
   </UiPanel>
 
@@ -37,9 +36,9 @@
     </div></UiBox>
   </UiPanel>
 
-  <UiPanel v-if="sections[0]" class="UiTheme_cream">
+  <UiPanel id="content" v-if="sections[0]" class="UiTheme_cream">
     <UiBoxImg :img="img1"></UiBoxImg>
-    <UiBox>
+    <UiBox class="UiBox_tall">
       <div>
         <UiHeading :level="3" v-html="sections[0].heading"/>
         <p v-html="sections[0].text"/>
@@ -48,7 +47,7 @@
   </UiPanel>
 
   <UiPanel style="max-height:68vh; overflow: hidden;">
-    <UiBoxImg :img="img4"/>
+    <UiBoxImg :img="img4" class="UiBoxImage_vignette"/>
   </UiPanel>
 
   <UiPanel v-if="sections[2]" class="UiTheme_dark">
@@ -92,9 +91,10 @@ import UiBox from '@/components/UI/Box'
 import UiBoxImg from '@/components/UI/Box/Image'
 import UiIcon from '@/components/UI/Icon'
 import UiButton from '@/components/UI/Button'
-
-import WineStats from '@/components/modules/Wine/Stats'
 import UiHeading from '@/components/UI/Heading'
+
+import ReadMore from '@/components/modules/ReadMore'
+import WineStats from '@/components/modules/Wine/Stats'
 
 import getTexts from "./lib/parse.wpContent"
 import getTerm  from "./lib/get.wpTerm"
@@ -116,9 +116,14 @@ export default {
   props:[ 'slug', 'category' ],
   mixins:[ WpConnect ],  
   components:{
-    UiPanel, UiBox, UiBoxImg,
-    UiButton, UiHeading,
-    WineStats, StaticIconList,
+    UiPanel,
+    UiBox,
+    UiBoxImg,
+    UiButton,
+    UiHeading,
+    ReadMore,
+    WineStats,
+    StaticIconList,
   },
   methods:{ getTerm },
   computed:{

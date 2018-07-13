@@ -45,11 +45,11 @@ $themes: cream light dark rust !default;
 
 %rust {
   @extend .UiTheme;
-  color: Color(matte);
+  color: Color(silver);
   background: Color(alt);
 }
 %rust_translucent {
-  color: Color(matte);
+  color: Color(silver);
   background: rgba(Color(alt),.99);
 }
 
