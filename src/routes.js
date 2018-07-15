@@ -1,5 +1,4 @@
-// import DEMO from "./views/DEMO/vineyardStats"
-import DEMO from "./views/DEMO/wineFilters"
+import beta from "./views/DEMO/wineFilters"
 
 import Home from "./views"
 
@@ -23,9 +22,9 @@ export default [
   },
 
   {
-    name: "Demo",
-    path: "/demo",
-    component: DEMO,
+    name: "beta",
+    path: "/beta",
+    component: beta,
     props:{ default:true },
   },
 
