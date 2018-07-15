@@ -11,9 +11,15 @@
   </UiPanel>
   <UiPanel id="theOwners">
     <UiBox class="UiBox_stack">
-      <UiHeading :level="4" class="UiHeading_space">Proprietors</UiHeading>
-      <img :src="imgs.proprietors">
-      <label>John &amp; Kath Dyson</label>
+      <UiHeading :level="4" class="UiHeading_space">
+        <router-link to="john-and-kathe-dyson" append>Proprietors</router-link>
+      </UiHeading>
+      <router-link to="john-and-kathe-dyson" append>
+        <img :src="imgs.proprietors">
+      </router-link>
+      <label>
+        <router-link to="john-and-kathe-dyson" append>John &amp; Kath Dyson</router-link>
+      </label>
     </UiBox>
   </UiPanel>
   <UiPanel id="StaffLists--group" v-for="(term) in context" :key="term.id">
@@ -113,6 +119,9 @@ export default {
 <style lang="scss">
 @import "~@/styles/theme/colors";
 #theOwners {
+  * {
+    text-decoration: none;
+  }
   label {
     color: Color(theme);
     font-weight: bold;
