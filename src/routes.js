@@ -1,4 +1,5 @@
-import DEMO1 from "./views/DEMO/vineyardStats"
+// import DEMO from "./views/DEMO/vineyardStats"
+import DEMO from "./views/DEMO/wineFilters"
 
 import Home from "./views"
 
@@ -24,7 +25,7 @@ export default [
   {
     name: "Demo",
     path: "/demo",
-    component: DEMO1,
+    component: DEMO,
     props:{ default:true, type:'taxonomy' },
   },
 
