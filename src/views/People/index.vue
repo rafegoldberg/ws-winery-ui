@@ -1,7 +1,7 @@
 <template>
 <div id="StaffList">
   <UiPanel class="UiTheme_dark" connect="down">
-    <UiBoxImage :img="imgs.cover" style="min-height:75vh"/>
+    <UiBoxImage :img="imgs.cover" style="min-height:70vh"/>
     <UiBox>
       <div>
         <UiHeading :level="2" class="UiHeading_gold">Our People</UiHeading>
@@ -103,6 +103,9 @@ export default {
         margin: 0;
       }
     }
+  }
+  .UiPanel:nth-child(3) .UiBox:first-child {
+    padding-top: 0;
   }
 }
 </style>
