@@ -1,7 +1,11 @@
 <?/** WP Init Configuration
    */
   function onInitWP(){
+
     add_theme_support('post-thumbnails');
+    
+    add_filter( 'acf/settings/remove_wp_meta_box', '__return_false' );
+    
     register_taxonomy("staff_roles",'post',[
       'public' => true,
       'publicly_queryable' => true,
