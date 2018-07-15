@@ -26,7 +26,7 @@ export default [
     name: "Demo",
     path: "/demo",
     component: DEMO,
-    props:{ default:true, type:'taxonomy' },
+    props:{ default:true },
   },
 
   {
