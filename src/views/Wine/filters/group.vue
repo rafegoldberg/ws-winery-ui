@@ -1,5 +1,5 @@
 <template>
-<form class="FilterGroup" v-if="!context.loading" @change="$emit('filtered',filters)">
+<form class="FiltersGroup" v-if="!context.loading" @change="$emit('filtered',filters)">
 
   <header v-if="title">
     <UiHeading class="UiHeading_bold UiHeading_push UiHeading_spaceHalf" :level="5">
@@ -18,7 +18,7 @@ import UiList from "@/components/UI/List"
 import FilterItem from "./item"
 
 export default {
-  name: "FilterGroup",
+  name: "FiltersGroup",
   mixins:[ WP ],
   props:[ "wpx", "title" ],
   components:{ UiHeading, UiList, FilterItem },
@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.FilterGroup {
+.FiltersGroup {
   display: flex;
   width: 100%;
   flex-flow: nowrap column;

@@ -129,7 +129,7 @@ export default {
   @media ( min-width:800px ) {
     > * { flex: 1 }
   }
-  @include Break( max-width Breaks(4) ) {
+  @include Break( max-width Breaks(3) ) {
     flex-flow: nowrap column;
     > * {
       width: 100%;

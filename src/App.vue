@@ -26,6 +26,11 @@ export default {
 <style lang="scss" id="document">
 @import "~@/styles/main";
 @import "~@/styles/extend/themes";
+img[src*="preloader"][src*=".gif"] {
+  width: 3rem;
+  height: 3rem;
+  opacity: .3;
+}
 </style>
 <style lang="scss" id="@stage:css/nav" notes="hot take on the XD designs; temporary">
 @import "~@/styles/theme/breaks";

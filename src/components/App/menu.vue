@@ -3,7 +3,7 @@
   <nav class="AppMenu" :class="{ AppMenu_open:open }">
     <UiList :list="{
       'Our Vineyards': '/vineyards',
-      'Our Wine': '/wine/pinot-noir/2016-westside-road-neighbors-pinot-noir',
+      'Our Wine': '/wine',
       'Our People': '/people',
       'Our History': '/history',
       }">

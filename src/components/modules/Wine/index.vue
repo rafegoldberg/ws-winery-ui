@@ -59,7 +59,7 @@ export default {
     max-height: 15em;
     mix-blend-mode: multiply;
   }
-  table {
+  &--detail {
     width: 80%;
     margin: 0 auto !important;
     table-layout: fixed;
@@ -68,6 +68,7 @@ export default {
     border-spacing: 0;
     border-top: 1px solid;
     td {
+      white-space: nowrap;
       padding: .5em;
       & + td { border-left: 1px solid currentColor }
     }

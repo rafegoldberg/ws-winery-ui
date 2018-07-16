@@ -1,6 +1,6 @@
 <template>
   <label class="FilterItem">
-    <input class="FilterItem--status" type="checkbox" v-model="$parent.filters" :value="id" :name="slug">
+    <input class="FilterItem--status" type="radio" v-model="$parent.filters" :value="id" :id="slug" :name="'filters'||name">
     <span class="FilterItem--label">{{name}}</span>
   </label>
 </template>
@@ -36,6 +36,15 @@ export default {
     &:checked {
       background: Color(theme);
     }
+  }
+  &--label {
+    max-width: 12rem;
+    display: block;
+    width: 12rem;
+    white-space: nowrap;
+    overflow: hidden;
+    flex: 1;
+    text-overflow: ellipsis;
   }
 }
 </style>

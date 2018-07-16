@@ -1,9 +1,11 @@
-import Beta from "./views/beta/wineFilters"
 
 import Home from "./views"
 
 import Staff from "./views/People"
 import StaffBio from "./views/People/Bio"
+
+import Wine from "./views/Wine"
+import WineGrid from "@/components/modules/Wine/grid"
 
 import WinePost from "./views/Wine/post"
 // import WineArchive from "@/components/modules/Wine/archive"
@@ -19,13 +21,6 @@ export default [
     name: "Home",
     path: "/",
     component: Home,
-  },
-
-  {
-    name: "Beta",
-    path: "/beta",
-    component: Beta,
-    props:{ default:true },
   },
 
   {
@@ -68,11 +63,24 @@ export default [
     props: true,
   },
   
+  // {
+  //   name: "WineArchive",
+  //   path: "/category/:category",
+  //   component: WineArchive,
+  //   props: true,
+  // },
   {
-    name: "WineArchive",
-    path: "/category/:category",
-    component: WineArchive,
-    props: true,
+    name: "Wine",
+    path: "/wine/:page?",
+    redirect:['our-wines'],
+    component: Wine,
+    children:[
+      { path: '',
+        name: 'WineGrid',
+        component: WineGrid,
+        props: true,
+      }
+    ],
   },
   {
     name: "WinePost",
