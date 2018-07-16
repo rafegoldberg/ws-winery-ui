@@ -178,7 +178,7 @@ export default {
     margin-bottom: 1.5rem;
     @include Break( max-width Breaks(2) ){
       min-width: 100vw;
-      margin-left: -1.5rem;
+      margin-left: -2rem;
     }
     .iframeWrap {
       position: relative;

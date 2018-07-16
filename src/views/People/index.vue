@@ -1,7 +1,7 @@
 <template>
 <div id="StaffList">
   <UiPanel class="UiTheme_dark" connect="down">
-    <UiBoxImage :img="imgs.cover" style="min-height:75vh"/>
+    <UiBoxImage :img="imgs.cover" style="min-height:70vh"/>
     <UiBox>
       <div>
         <UiHeading :level="2" class="UiHeading_gold">Our People</UiHeading>
@@ -11,9 +11,15 @@
   </UiPanel>
   <UiPanel id="theOwners">
     <UiBox class="UiBox_stack">
-      <UiHeading :level="4" class="UiHeading_space">Proprietors</UiHeading>
-      <img :src="imgs.proprietors">
-      <label>John &amp; Kath Dyson</label>
+      <UiHeading :level="4" class="UiHeading_space">
+        <router-link to="john-and-kathe-dyson" append>Proprietors</router-link>
+      </UiHeading>
+      <router-link to="john-and-kathe-dyson" append>
+        <img :src="imgs.proprietors">
+      </router-link>
+      <label>
+        <router-link to="john-and-kathe-dyson" append>John &amp; Kath Dyson</router-link>
+      </label>
     </UiBox>
   </UiPanel>
   <UiPanel id="StaffLists--group" v-for="(term) in context" :key="term.id">
@@ -35,7 +41,7 @@ import UiPanel from '@/components/UI/Panel'
 import UiBox from '@/components/UI/Box'
 import UiBoxImage from '@/components/UI/Box/Image'
 import UiHeading from '@/components/UI/Heading'
-import RoleList from '@/views/DEMO/RoleList'
+import RoleList from '@/views/beta/RoleList'
 
 import cover from "./assets/cover.png"
 import hospitality from "./assets/hospitality.png"
@@ -104,12 +110,18 @@ export default {
       }
     }
   }
+  .UiPanel:nth-child(3) .UiBox:first-child {
+    padding-top: 0;
+  }
 }
 </style>
 
 <style lang="scss">
 @import "~@/styles/theme/colors";
 #theOwners {
+  * {
+    text-decoration: none;
+  }
   label {
     color: Color(theme);
     font-weight: bold;

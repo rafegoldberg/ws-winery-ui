@@ -1,5 +1,5 @@
 <template>
-<div id="WineGrid" class="WineGrid UiTheme_light" v-if="!context.loading">
+<div id="WineGrid" class="WineGrid" v-if="!context.loading">
 
   <router-link v-for="item in context" :to="`/wines/${item.slug}`" :key="item.id" class="WineGrid--item">
     <WineWidget
@@ -21,14 +21,18 @@ import WineWidget from "@/components/modules/Wine"
 
 export default {
   name: "WineGrid",
+  props:[ "wpx" ],
   mixins:[ WpConnect ],
   computed:{
     endpoint(){
       if( !this.API ) return
-      return this.API
-        .posts()
-        .category(['wine',this.category])
-        .embed()
+
+      let endpoint = this.API.posts().category([this.category||'wine','wine'])
+
+      if( typeof this.wpx == 'function' )
+        endpoint = this.wpx( endpoint )
+
+      return endpoint.embed()
     }
   },
   components:{ UiList, WineWidget },
