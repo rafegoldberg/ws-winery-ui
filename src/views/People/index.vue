@@ -41,7 +41,7 @@ import UiPanel from '@/components/UI/Panel'
 import UiBox from '@/components/UI/Box'
 import UiBoxImage from '@/components/UI/Box/Image'
 import UiHeading from '@/components/UI/Heading'
-import RoleList from '@/views/DEMO/RoleList'
+import RoleList from '@/views/beta/RoleList'
 
 import cover from "./assets/cover.png"
 import hospitality from "./assets/hospitality.png"
