@@ -103,6 +103,7 @@ export default {
     flex-flow: nowrap column;
     justify-content: flex-end;
     height: 100%;
+    >.WineWidget:only-child { height: 100% }
   }
   
   a { text-decoration: none }

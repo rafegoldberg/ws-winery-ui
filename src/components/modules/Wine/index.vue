@@ -47,16 +47,21 @@ export default {
 @import "~@/styles/theme/colors";
 
 .WineWidget {
+  display: flex;
+  flex-flow: nowrap column;
   max-width: 15em;
   margin: 0 auto;
   border-bottom: 1px solid Color(theme);
+  >:first-child { margin-bottom: 1em !important }
+  >:last-child  { margin-top:    1em !important }
+
   /deep/ .UiHeading {
-    margin: 1em auto;
+    margin: auto;
     text-align: center;
     font-weight: 500;
   }
   &--image {
-    max-height: 15em;
+    height: 15em;
     mix-blend-mode: multiply;
   }
   &--detail {
