@@ -40,7 +40,7 @@ export default {
       type: Function
     },
     paginate:{
-      type:[ Boolean, Number ],
+      type:[ Boolean, Number, String ],
       default: 10,
     },
     page:{

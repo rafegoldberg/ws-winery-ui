@@ -22,6 +22,9 @@ export default {
   mixins:[ WP ],
   props:[ "wpx", "title" ],
   components:{ UiHeading, UiList, FilterItem },
+  created(){
+    this.$attrs.show && (this.show = this.$attrs.show)
+  },
   data:()=>({
     filters:[],
     show: false,

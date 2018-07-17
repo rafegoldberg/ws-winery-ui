@@ -11,7 +11,7 @@
     </UiPanel>
 
     <UiPanel class="UiTheme_cream" id="estate-vineyards">
-      <v-list category="estate-vineyards" title="Estate Vineyards"/>
+      <v-list :category="25" title="Estate Vineyards"/>
     </UiPanel>
 
     <UiPanel>
@@ -19,7 +19,7 @@
     </UiPanel>
 
     <UiPanel class="UiTheme_cream">
-      <v-list title="Growers Vineyards" category="growers-vineyards"/>
+      <v-list title="Growers Vineyards" :category="26"/>
     </UiPanel>
       
     <UiPanel>

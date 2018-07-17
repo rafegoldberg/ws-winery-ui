@@ -8,8 +8,6 @@ import Wine from "./views/Wine"
 import WineGrid from "@/components/modules/Wine/grid"
 
 import WinePost from "./views/Wine/post"
-// import WineArchive from "@/components/modules/Wine/archive"
-import WineArchive from "./views/Wine/archive"
 
 import Vineyards from "./views/Vineyards"
 import VineyardPage from "./views/Vineyards/page"

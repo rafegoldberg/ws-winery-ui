@@ -1,27 +1,28 @@
 <template>
 <div id="WineFiltersWrap">
-<UiPanel class="UiTheme_light">
+<UiPanel class="UiTheme_cream">
 
-  <div class="WineFilters UiTheme_light">
+  <div class="WineFilters UiTheme_light" :class="{open:sidebar}" @mouseleave.self="(sidebar=false)">
+    <div class="WineFilters--ribbon" v-text="'Filters'" @click="(sidebar=true)"/>
     <div class="WineFilters--inner">
-      <UiHeading>Filters</UiHeading>
-      <FiltersGroup @filtered="test" title="Vineyard" :show="false" :wpx="wpapi=>wpapi
+      <UiHeading>Filter</UiHeading>
+      <FiltersGroup ref="vineyard" @filtered="test" title="Vineyard" :show="false" :wpx="wpapi=>wpapi
         .categories()
-        .parent(73) // [vineyards:#73|varietal:#10]
+        .parent(73) // vineyards
         .exclude([25,26]) // growers + estate vineyards
         .perPage(50)
         "/>
-      <FiltersGroup @filtered="test" title="Varietal" :show="false" :wpx="wpapi=>wpapi
+      <FiltersGroup ref="varietal" @filtered="test" title="Varietal" :show="true" :wpx="wpapi=>wpapi
         .categories()
-        .parent(10) // [vineyards:#73|varietal:#10]
+        .parent(10) // wine/:varietal*
         //.exclude([62,5])
-        .perPage(50)
+        .perPage(20)
         "/>
     </div>
   </div>
 
   <UiBox class="UiTheme_cream">
-    <router-view :wpx="wpx" :page="page||1" paginate="20"/>
+    <router-view :wpx="wpx" :page="page||1" paginate="5"/>
     <!-- <WineGrid :wpx="wpx" :page="page||1"/> -->
   </UiBox>
 
@@ -48,14 +49,15 @@ export default {
     FiltersGroup
   },
   data:()=>({
-    wpx: wpapi=> wpapi.categories([10])
+    wpx: wpapi=> wpapi.categories([10]),
+    sidebar: false,
   }),
   methods:{
     test(filters){
       this.page = 1;
       this.wpx  = WP=>WP.categories( filters || [] )
     }
-  }
+  },
 }
 </script>
 
@@ -76,48 +78,58 @@ $sidebar-width: 16rem;
   flex: 1;
 }
 .WineFilters {
-  margin: 0;
+
+  $B: #{&};
+  $OPEN: '.open';
 
   position: sticky;
   top: 0;
-  height: 100vh;
-  height: 100vh;
-  overflow: visible;
 
   align-self: flex-start;
   justify-content: flex-start;
+  height: 100vh;
+  height: 100vh;
+  margin: 0;
+  overflow: visible;
 
   width: $sidebar-width;
   max-width: $sidebar-width;
   flex: 0 1 $sidebar-width !important;
+  box-shadow: 1em 0 0 -1.5em rgba(black,0);
   
   z-index: 20;
 
   transition: .38s ease-out;
   transition-property: opacity transform margin-left;
+  
+  &#{$OPEN} {
+    box-shadow: .5em 0 3em -1.5em rgba(black,.3);
+  }
+  &:not(#{$OPEN}) {
+    transform: translateX(-100%);
+    margin-left: -$sidebar-width;
+  }
 
-  &:before {
+  &--ribbon {
     content: "Filters";
+    z-index: 0;
     position: absolute;
     top: 5.5rem;
     left: 100%;
     margin-left: $sidebar-width;
     padding: 0 1em;
-    background: #222;
-    color: #fafafa;
-    transition: inherit;
-    z-index: 0;
+    background: Color(dark);
+    color: Color(light);
+    font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    font-weight: 300;
-  }
-  &:hover:before {
-    margin-left: -$sidebar-width;
-    opacity: 0;
-  }
-  &:not(:hover){
-    transform: translateX(-100%);
-    margin-left: -$sidebar-width;
+    cursor: pointer;
+    user-select: none;
+    transition: inherit;
+    #{$B}#{$OPEN} & {
+      margin-left: -$sidebar-width;
+      opacity: 0;
+    }
   }
   &--inner {
     position: relative;
@@ -136,7 +148,7 @@ $sidebar-width: 16rem;
     bottom: 0;
     box-shadow: 1em 0 3em -1.5em rgba(black,.8);
     /deep/ .UiHeading { text-align: left !important }
-    &:before {
+    &--ribbon {
       top: 4rem;
     }
     + :last-child {
