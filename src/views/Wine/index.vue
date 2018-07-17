@@ -118,7 +118,7 @@ $ribbon-height: 2.25rem;
   
   &#{$OPEN} {
     // overflow: hidden;
-    box-shadow: 1.5em -1.5em 3em -1.5em rgba(black,.1);
+    box-shadow: 1.5em -1.5em 3em -1em rgba(black,.1);
   }
   &:not(#{$OPEN}) {
     transform: translateX(-100%);
@@ -128,27 +128,10 @@ $ribbon-height: 2.25rem;
   @at-root .UiBox:last-child {
     #{$B} + & {
       transition: filter .19s .19s ease-out;
-      &:before {
-        content: " ";
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background: rgba(0, 0, 0, .15);
-        z-index: 8;
-        opacity: 0;
-        transition: .38s ease;
-        pointer-events: none;
-      }
     }
     #{$B}#{$OPEN} + & {
-      filter: saturate(.5) opacity(.8);
-      mix-blend-mode: multiply;
-    //   &:before {
-    //     opacity: .25;
-    //     pointer-events: auto;
-    //   }
+      pointer-events: none;
+      // /deep/ .WineWidget { filter: saturate(.5) opacity(.8) }
     }
   }
 
