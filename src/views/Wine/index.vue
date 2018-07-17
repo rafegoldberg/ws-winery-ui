@@ -9,20 +9,20 @@
     </button>
     <div class="WineFilters--inner">
       <header class="WineFilters--header">
-        <UiHeading :level="4" v-text="'Filter Results'"/>
+        <UiHeading :level="4" v-text="'Sort & Filter'"/>
         <UiButton>Apply</UiButton>
       </header>
-      <FiltersGroup ref="vineyard" @filtered="test" title="Vineyard" :show="false" :wpx="wpapi=>wpapi
-        .categories()
-        .parent(73) // vineyards
-        .exclude([25,26]) // growers + estate vineyards
-        .perPage(50)
-        "/>
       <FiltersGroup ref="varietal" @filtered="test" title="Varietal" :show="true" :wpx="wpapi=>wpapi
         .categories()
         .parent(10) // wine/:varietal*
         //.exclude([62,5])
         .perPage(20)
+        "/>
+      <FiltersGroup ref="vineyard" @filtered="test" title="Vineyard" :show="false" :wpx="wpapi=>wpapi
+        .categories()
+        .parent(73) // vineyards
+        .exclude([25,26]) // growers + estate vineyards
+        .perPage(50)
         "/>
     </div>
   </div>
@@ -104,6 +104,7 @@ $ribbon-height: 2.25rem;
 
   height: 100vh;
   max-height: 100vh;
+  min-width: $sidebar-width;
   width: $sidebar-width;
   max-width: $sidebar-width;
   overflow: visible;
@@ -117,7 +118,7 @@ $ribbon-height: 2.25rem;
   
   &#{$OPEN} {
     // overflow: hidden;
-    box-shadow: 1.5em 0 3em -1.5em rgba(black,.15);
+    box-shadow: 1.5em -1.5em 3em -1.5em rgba(black,.1);
   }
   &:not(#{$OPEN}) {
     transform: translateX(-100%);
@@ -141,14 +142,14 @@ $ribbon-height: 2.25rem;
         pointer-events: none;
       }
     }
-    // #{$B}#{$OPEN} + & {
-    //   mix-blend-mode: multiply;
-    //   /deep/ .WineWidget { filter: saturate(.2) opacity(.5); }
+    #{$B}#{$OPEN} + & {
+      filter: saturate(.5) opacity(.8);
+      mix-blend-mode: multiply;
     //   &:before {
     //     opacity: .25;
     //     pointer-events: auto;
     //   }
-    // }
+    }
   }
 
   &--ribbon {
@@ -179,6 +180,7 @@ $ribbon-height: 2.25rem;
     border-width: 0 !important;
     outline: none;
     background: Color(dark);
+    box-shadow: .5em .25em 2em -.25em rgba(Color(dark),.3);
 
     transition: inherit;
 
@@ -188,6 +190,7 @@ $ribbon-height: 2.25rem;
       padding-left: nth($sidebar-pad,2);
       padding-right: nth($sidebar-pad,2);
       margin-left: -$sidebar-width;
+      color: Color(silver);
       box-shadow: 2px 0 0 0 Color(dark);
     }
 
@@ -200,8 +203,13 @@ $ribbon-height: 2.25rem;
     }
     #{$B}#{$OPEN} & .UiIcon {
       opacity: 1;
-      transition-delay: .38s;
+      transition-delay: 0s;
     }
+    #{$B}#{$OPEN} &:hover .UiIcon {
+      transition-delay: .38s;
+      &:hover { transition-delay: .0s !important }
+    }
+    #{$B}#{$OPEN} &:not(:hover) .UiIcon { filter: invert(.75) }
     
   }
   &--header {
@@ -221,29 +229,35 @@ $ribbon-height: 2.25rem;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
     margin-top: $ribbon-height;
-    padding: $sidebar-pad;
+    padding: 0 nth($sidebar-pad,2);
     background: transparent;
     background: Color(light);
     border-width: 0 1px 1px 0;
+    >:first-child { margin-top:    2rem }
+    >:last-child  { margin-bottom: 2rem }
   }
   @include Break( max-width Breaks(3) ){
-    z-index: 8;
-    &#{$OPEN} {
-      z-index: 9999;
+    & {
+      // z-index: 8;
+      // &#{$OPEN} { z-index: 9999 }
+      // position: fixed;
+      margin-top: 6.5rem;
+      top: -1px;
+      // left: 0;
+      // bottom: 0;
+      box-shadow: 1em 0 3em -1.5em rgba(black,.8);
     }
-    position: fixed;
-    margin-top: 0;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    box-shadow: 1em 0 3em -1.5em rgba(black,.8);
-    /deep/ .UiHeading { text-align: left !important }
+    &#{$OPEN} {
+      overflow: hidden;
+      margin-right: -$sidebar-width;
+    }
     &--inner {
       min-height: 100%;
+      >:last-child { margin-bottom: 3rem }
     }
-    + :last-child {
-      padding-top: 12rem;
-    }
+    + :last-child { padding-top: 12rem }
+    @at-root #WineFiltersWrap > .UiPanel { flex-flow: nowrap row }
+    /deep/ .UiHeading { text-align: left !important }
   }
 }
 </style>

@@ -1,11 +1,10 @@
 <template>
 <form :class="{show}" class="FiltersGroup" v-if="!context.loading" @change="$emit('filtered',filters)">
 
-  <header class="FiltersGroup--header UiHeading_push UiHeading_spaceHalf" v-if="title">
-    <UiHeading class="UiHeading_sans UiHeading_expand" :level="5">
-      <button @click.prevent="( show = show ? false : true )" v-html="title" style="all:unset"/>
-    </UiHeading>
-    <UiIcon :name="show ? 'CircleMinus' : 'CirclePlus'" width="1.3em" height="1.3em"/>
+    <button v-if="title" class="FiltersGroup--header" @click.prevent="(show=show?false:true)">
+      <UiHeading v-html="title" class="UiHeading_sans UiHeading_expand" :level="5"/>
+      <UiIcon :name="show ? 'CircleMinus' : 'CirclePlus'" width="1.3em" height="1.3em"/>
+    </button>
   </header>
   <FilterItem v-show="show" v-for="item in context" v-bind="item" :ref="item.slug" :key="item.slug"/>
 
@@ -54,16 +53,23 @@ export default {
     }
   }
   &--header {
+    $bgc: rgba(Color(light),.9);
+    
+    all: unset;
+
     z-index: 1;
     position: sticky;
     top: -1px;
-    padding: 2px 0;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    margin: 1.5em 0 .5em;
+    padding: 2px 0;
 
-    background: Color(light);
+    background: $bgc;
+    box-shadow: 0 2px 0 0 $bgc;
 
     .show > & .UiHeading { color: Color(theme); }
   }
