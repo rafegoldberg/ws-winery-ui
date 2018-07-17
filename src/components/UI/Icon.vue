@@ -40,10 +40,12 @@ export default {
       required: true
     },
     width: {
-      type: [String, Number]
+      type: [String, Number],
+      default: '2em',
     },
     height: {
-      type: [String, Number]
+      type: [String, Number],
+      default: '2em',
     },
     view: {
       type: [String, Array]
