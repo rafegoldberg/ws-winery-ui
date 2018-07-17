@@ -5,7 +5,7 @@
   <div class="WineFilters UiTheme_light" :class="{open:sidebar}" @mouseleave.self="(sidebar=false)">
     <div class="WineFilters--ribbon" v-text="'Filters'" @click="(sidebar=true)"/>
     <div class="WineFilters--inner">
-      <UiHeading>Filter</UiHeading>
+      <UiHeading @click="(sidebar=false)">Filter</UiHeading>
       <FiltersGroup ref="vineyard" @filtered="test" title="Vineyard" :show="false" :wpx="wpapi=>wpapi
         .categories()
         .parent(73) // vineyards
