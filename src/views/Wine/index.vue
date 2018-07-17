@@ -3,11 +3,14 @@
 <UiPanel class="UiTheme_light">
 
   <div class="WineFilters" :class="{open:sidebar}" off:mouseleave.self="(sidebar=false)">
-    <div class="WineFilters--ribbon" v-text="sidebar ? 'Close' : 'Filters'" @click="(sidebar=sidebar?false:true)"/>
+    <button class="WineFilters--ribbon" @click="(sidebar=sidebar?false:true)">
+      <span>{{sidebar ? 'Close' : 'Filters'}}</span>
+      <UiIcon name="CircleClose" width="1.66rem" height="1.66rem"></UiIcon>
+    </button>
     <div class="WineFilters--inner">
       <header class="WineFilters--header">
         <UiHeading :level="4" v-text="'Filter Results'"/>
-        <small><UiButton>Apply</UiButton></small>
+        <UiButton>Apply</UiButton>
       </header>
       <FiltersGroup ref="vineyard" @filtered="test" title="Vineyard" :show="false" :wpx="wpapi=>wpapi
         .categories()
@@ -36,6 +39,7 @@
 <script>
 import UiPanel from "@/components/UI/Panel"
 import UiBox from "@/components/UI/Box"
+import UiIcon from "@/components/UI/Icon"
 import UiHeading from "@/components/UI/Heading"
 import UiButton from "@/components/UI/Button"
 
@@ -48,6 +52,7 @@ export default {
   components:{
     UiPanel,
     UiBox,
+    UiIcon,
     UiHeading,
     UiButton,
     WineGrid,
@@ -72,6 +77,7 @@ export default {
 
 $sidebar-width: 18rem;
 $sidebar-pad:   2rem 1.5rem;
+$ribbon-height: 2.25rem;
 
 %rack {
   display: flex;
@@ -148,6 +154,7 @@ $sidebar-pad:   2rem 1.5rem;
   &--ribbon {
     content: "Filters";
     cursor: pointer;
+    appearance: none;
     user-select: none;
 
     z-index: 9;
@@ -156,21 +163,25 @@ $sidebar-pad:   2rem 1.5rem;
     top: 5.5rem;
     top: 0;
     
+    @extend %rack;
+
+    height: $ribbon-height;
     min-width: 5.5em;
     margin-left: $sidebar-width;
     padding: .1em nth($sidebar-pad,2);
 
-    background: Color(dark);
-    color: Color(light);
+    font: inherit;
     font-size: .9em;
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: .1em;
+    color: Color(light);
+    border-width: 0 !important;
+    outline: none;
+    background: Color(dark);
 
     transition: inherit;
 
-    @extend %rack;
-    // transition: .375s .05s ease-out;
     #{$B}#{$OPEN} & {
       // transition: .38s 0s ease-out;
       min-width: 100%;
@@ -179,18 +190,36 @@ $sidebar-pad:   2rem 1.5rem;
       margin-left: -$sidebar-width;
       box-shadow: 2px 0 0 0 Color(dark);
     }
+
+    & .UiIcon {
+      position: absolute;
+      right: nth($sidebar-pad,2);
+      margin-right: -4px;
+      opacity: 0;
+      transition: inherit;
+    }
+    #{$B}#{$OPEN} & .UiIcon {
+      opacity: 1;
+      transition-delay: .38s;
+    }
+    
   }
   &--header {
     @extend %rack;
+    .UiButton {
+      font-size: 0.7em;
+      margin-top: -0.25 * nth($sidebar-pad,2);
+      margin-right: -0.25 * nth($sidebar-pad,2);
+    }
   }
   &--inner {
     z-index: 1;
     position: relative;
     width: 100%;
     max-height: 100%;
-    overflow: hidden;
-    overflow-y: scroll;
-    margin-top: 2rem;
+    max-height: calc( 100% - #{$ribbon-height});
+    overflow: scroll;
+    margin-top: $ribbon-height;
     padding: $sidebar-pad;
     background: transparent;
     background: Color(light);
