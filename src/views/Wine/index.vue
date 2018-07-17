@@ -219,6 +219,7 @@ $ribbon-height: 2.25rem;
     max-height: 100%;
     max-height: calc( 100% - #{$ribbon-height});
     overflow: scroll;
+    -webkit-overflow-scrolling: touch;
     margin-top: $ribbon-height;
     padding: $sidebar-pad;
     background: transparent;
@@ -226,14 +227,16 @@ $ribbon-height: 2.25rem;
     border-width: 0 1px 1px 0;
   }
   @include Break( max-width Breaks(3) ){
+    z-index: 999999;
     position: fixed;
+    margin-top: 0;
     top: 0;
     left: 0;
     bottom: 0;
     box-shadow: 1em 0 3em -1.5em rgba(black,.8);
     /deep/ .UiHeading { text-align: left !important }
-    &--ribbon {
-      // top: 4rem;
+    &--inner {
+      min-height: 100%;
     }
     + :last-child {
       padding-top: 12rem;
