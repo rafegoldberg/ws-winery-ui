@@ -61,6 +61,7 @@ export default {
   &_expand   { line-height: 1.6          }
   &_contract { line-height: 1.0          }
   &_loosen   { letter-spacing: .06em     }
+  &_tighten  { letter-spacing:-.03em     }
   &_center   { text-align: center        }
   &_thin     { font-weight: lighter      }
   &_bold     { font-weight: bolder       }
