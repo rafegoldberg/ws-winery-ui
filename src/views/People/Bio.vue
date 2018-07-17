@@ -33,13 +33,15 @@
 
   <UiPanel id="content" class="UiTheme_light">
     <UiBox class="UiBox_stack wrap_flex_min">
-      <article v-html="context.acf.content"/>
-      <br>
-      <router-link to="/people" style="text-decoration: none">
-        <UiButton class="UiButton_outline UiButton_gold UiButton_flex">
-          <UiIcon name="ArrowRight" width="1em" height="1em"/>&nbsp; All Our People
-        </UiButton>
-      </router-link>
+      <div>
+        <article v-html="context.acf.content"/>
+        <br>
+        <router-link to="/people" style="text-decoration: none">
+          <UiButton class="UiButton_outline UiButton_gold UiButton_flex">
+            <UiIcon name="ArrowRight" width="1em" height="1em"/>&nbsp; All Our People
+          </UiButton>
+        </router-link>
+      </div>
     </UiBox>
   </UiPanel>
   

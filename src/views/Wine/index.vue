@@ -194,7 +194,7 @@ $ribbon-height: 2.25rem;
     & .UiIcon {
       position: absolute;
       right: nth($sidebar-pad,2);
-      margin-right: -4px;
+      margin-right: -5px;
       opacity: 0;
       transition: inherit;
     }
@@ -227,7 +227,10 @@ $ribbon-height: 2.25rem;
     border-width: 0 1px 1px 0;
   }
   @include Break( max-width Breaks(3) ){
-    z-index: 999999;
+    z-index: 8;
+    &#{$OPEN} {
+      z-index: 9999;
+    }
     position: fixed;
     margin-top: 0;
     top: 0;
