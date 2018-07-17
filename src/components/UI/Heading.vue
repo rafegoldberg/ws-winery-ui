@@ -34,9 +34,10 @@ export default {
 
   &_sans {
     font-family: $ff-sans;
-    text-transform: uppercase;
-    font-weight: 300;
-    letter-spacing: 0.05em;
+    font-weight: normal;
+    // text-transform: uppercase;
+    // font-weight: 300;
+    // letter-spacing: 0.05em;
   }
 
   @for $i from 1 through 6 {
@@ -59,7 +60,7 @@ export default {
   }
   &_caps     { text-transform: uppercase }
   &_expand   { line-height: 1.6          }
-  &_contract { line-height: 1.0          }
+  &_contract { line-height: 0.9          }
   &_loosen   { letter-spacing: .06em     }
   &_tighten  { letter-spacing:-.03em     }
   &_center   { text-align: center        }
