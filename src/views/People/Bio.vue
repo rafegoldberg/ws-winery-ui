@@ -99,16 +99,16 @@ export default {
     text-transform: capitalize;
   }
   &--role {
+    position: absolute;
     display: inline-block;
     font-size: 1.3rem;
     font-weight: 100;
     text-transform: uppercase;
-    transform: rotate(90deg) translateX(2.6rem);
+    transform: rotate(90deg);
     transform-origin: left top;
     letter-spacing: 0.15em;
     @include Break( max-width Breaks(3) ){
       font-size: 1.1rem;
-      transform: rotate(90deg) translateX(2.3rem);
     }
   }
   &--overview {
