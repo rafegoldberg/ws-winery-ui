@@ -1,12 +1,15 @@
+@import "~@/styles/theme/breaks";
+
 %wraps {
   margin: 0 auto;
   &Default {
     display: block;
-    // padding: 1px 1em;
   }
   &Flexbox {
-    flex-grow: 0 !important;
-    flex-shrink: 1 !important;
+    @include Break( min-width Breaks(3) ){
+      flex-grow: 0 !important;
+      flex-shrink: 1 !important;
+    }
   }
 }
 
@@ -25,17 +28,13 @@
     width: 36rem;
   }
   &_flex {
-    & {
+    &, &_mid, &_min {
       @extend %wraps, %wrapsFlexbox;
-      flex-basis: 72rem !important;
     }
-    &_mid {
-      @extend %wraps, %wrapsFlexbox;
-      flex-basis: 54rem !important;
-    }
-    &_min {
-      @extend %wraps, %wrapsFlexbox;
-      flex-basis: 36rem !important;
+    @include Break( min-width Breaks(3) ){
+      & {     flex-basis: 72rem !important }
+      &_mid { flex-basis: 54rem !important }
+      &_min { flex-basis: 36rem !important }
     }
   }
 }
