@@ -130,8 +130,7 @@ $ribbon-height: 2.25rem;
       transition: filter .19s .19s ease-out;
     }
     #{$B}#{$OPEN} + & {
-      pointer-events: none;
-      // /deep/ .WineWidget { filter: saturate(.5) opacity(.8) }
+      >* { pointer-events: none; }
     }
   }
 
