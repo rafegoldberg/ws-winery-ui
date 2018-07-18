@@ -1,6 +1,6 @@
 <template>
   <label class="FilterItem">
-    <input class="FilterItem--status" type="radio" v-model="$parent.filters" :value="id" :id="slug" :name="'filters'||name">
+    <input class="FilterItem--status" type="checkbox" v-model="$parent.filters" :value="id" :id="slug" :name="'filters'||name">
     <span class="FilterItem--label">{{name}}</span>
   </label>
 </template>
@@ -26,7 +26,7 @@ export default {
     width: $boxSize;
     height: $boxSize;
     margin-right: 1rem;
-    border-radius: 100%;
+    border-radius: 4px;
     padding: .1rem;
     background: rgba(Color(silver),.4);
     outline: none;

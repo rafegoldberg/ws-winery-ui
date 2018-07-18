@@ -10,19 +10,23 @@
     <div class="WineFilters--inner">
       <header class="WineFilters--header">
         <UiHeading :level="4" v-text="'Sort & Filter'"/>
-        <UiButton>Apply</UiButton>
+        <UiButton @click.native="(sidebar=false)">Apply</UiButton>
       </header>
-      <FiltersGroup ref="varietal" @filtered="test" title="Varietal" :show="true" :wpx="wpapi=>wpapi
+      <FiltersGroup ref="varietal" @filtered="filterCat" title="Varietal" :show="true" :wpx="wpapi=>wpapi
         .categories()
-        .parent(10) // wine/:varietal*
-        //.exclude([62,5])
+        .parent(10) // varietal
         .perPage(20)
         "/>
-      <FiltersGroup ref="vineyard" @filtered="test" title="Vineyard" :show="false" :wpx="wpapi=>wpapi
+      <FiltersGroup ref="vineyard" @filtered="filterCat" title="Vineyard" :show="true" :wpx="wpapi=>wpapi
         .categories()
         .parent(73) // vineyards
         .exclude([25,26]) // growers + estate vineyards
         .perPage(50)
+        "/>
+      <FiltersGroup ref="vintage" @filtered="filterTag" title="Vintage" :show="true" :wpx="wpapi=>wpapi
+        .tags()
+        .exclude([69]) // spring
+        .perPage(80)
         "/>
     </div>
   </div>
@@ -60,12 +64,16 @@ export default {
   },
   data:()=>({
     wpx: wpapi=> wpapi.categories([10]),
-    sidebar: false,
+    sidebar: true,
   }),
   methods:{
-    test(filters){
-      this.page = 1;
+    filterCat(filters){
+      // this.page = 1;
       this.wpx  = WP=>WP.categories( filters || [] )
+    },
+    filterTag(filters){
+      // this.page = 1;
+      this.wpx  = WP=>WP.tags( filters || [] )
     }
   },
 }
@@ -129,9 +137,7 @@ $ribbon-height: 2.25rem;
     #{$B} + & {
       transition: filter .19s .19s ease-out;
     }
-    #{$B}#{$OPEN} + & {
-      >* { pointer-events: none; }
-    }
+    // #{$B}#{$OPEN} + & {}
   }
 
   &--ribbon {

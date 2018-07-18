@@ -2,7 +2,12 @@
 <form :class="{show}" class="FiltersGroup" v-if="!context.loading" @change="$emit('filtered',filters)">
 
     <button v-if="title" class="FiltersGroup--header" @click.prevent="(show=show?false:true)">
-      <UiHeading v-html="title" class="UiHeading_sans UiHeading_expand" :level="5"/>
+      <UiHeading class="UiHeading_sans UiHeading_expand" :level="5">
+        <span v-html="title"/>
+      </UiHeading>
+      <small v-if="filters.length" style="margin: -2px .5rem 0 auto; font-family: Georgia, serif; color: #BBB;">
+        {{filters.length}}
+      </small>
       <UiIcon :name="show ? 'CircleMinus' : 'CirclePlus'" width="1.3em" height="1.3em"/>
     </button>
   </header>
