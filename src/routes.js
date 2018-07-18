@@ -1,4 +1,3 @@
-
 import Home from "./views"
 
 import Staff from "./views/People"

@@ -15,8 +15,14 @@
             v-html="context.title.rendered"/>
         </header>
 
-        <aside id="VineyardPage-overviewSidebar" v-if="tables.length">
-          <div v-for="tbl in tables" v-html="tbl"/>
+        <aside id="VineyardPage-overviewSidebar">
+          <template v-if="'vineyardStats' in context.acf && context.acf.vineyardStats">
+            <StatGroup
+              v-for="(stats,i) in context.acf.vineyardStats"
+              v-bind="stats"
+              :key="`statGroup-${i}`"/>
+          </template>
+          <div v-else-if="tables.length" v-for="tbl in tables" v-html="tbl"/>
         </aside>
 
         <div id="VineyardPage-overviewText">
@@ -69,6 +75,7 @@ import UiBox from '@/components/UI/Box'
 import UiBoxImg from '@/components/UI/Box/Image'
 import UiHeading from '@/components/UI/Heading'
 
+import StatGroup from "@/components/modules/StatGroup"
 import ReadMore from "@/components/modules/ReadMore"
 import WineGrid from "@/components/modules/Wine/grid";
 import StaticIconList from '@/components/static/icon-list'
@@ -102,6 +109,7 @@ export default {
     UiBoxImg,
     UiHeading,
 
+    StatGroup,
     ReadMore,
     VineyardsPageMenu,
     WineGrid,
