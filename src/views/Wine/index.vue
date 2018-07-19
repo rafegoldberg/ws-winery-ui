@@ -2,7 +2,7 @@
 <div id="WineFiltersWrap">
 <UiPanel class="UiTheme_light">
 
-  <div class="WineFilters" :class="{open:sidebar}" off:mouseleave.self="(sidebar=false)">
+  <div class="WineFilters" :class="{open:sidebar}">
     <button class="WineFilters--ribbon" @click="(sidebar=sidebar?false:true)">
       <span>{{sidebar ? 'Close' : 'Filters'}}</span>
       <UiIcon name="CircleClose" width="1.66rem" height="1.66rem"></UiIcon>
@@ -17,13 +17,13 @@
         .parent(10) // varietal
         .perPage(20)
         "/>
-      <FiltersGroup ref="vineyard" @filtered="filterCat" title="Vineyard" :show="true" :wpx="wpapi=>wpapi
+      <FiltersGroup ref="vineyard" @filtered="filterCat" title="Vineyard" :show="false" :wpx="wpapi=>wpapi
         .categories()
         .parent(73) // vineyards
         .exclude([25,26]) // growers + estate vineyards
         .perPage(50)
         "/>
-      <FiltersGroup ref="vintage" @filtered="filterTag" title="Vintage" :show="true" :wpx="wpapi=>wpapi
+      <FiltersGroup ref="vintage" @filtered="filterTag" title="Vintage" :show="false" :wpx="wpapi=>wpapi
         .tags()
         .exclude([69]) // spring
         .perPage(80)
@@ -31,9 +31,8 @@
     </div>
   </div>
 
-  <UiBox>
+  <UiBox @click.native="(sidebar=false)">
     <router-view :wpx="wpx" :page="page||1" paginate="12"/>
-    <!-- <WineGrid :wpx="wpx" :page="page||1"/> -->
   </UiBox>
 
 </UiPanel>
@@ -64,7 +63,7 @@ export default {
   },
   data:()=>({
     wpx: wpapi=> wpapi.categories([10]),
-    sidebar: true,
+    sidebar: false,
   }),
   methods:{
     filterCat(filters){
@@ -83,6 +82,7 @@ export default {
 @import "~@/styles/theme/colors";
 @import "~@/styles/theme/breaks";
 
+$topoff: 6rem;
 $sidebar-width: 18rem;
 $sidebar-pad:   2rem 1.5rem;
 $ribbon-height: 2.25rem;
@@ -103,7 +103,7 @@ $ribbon-height: 2.25rem;
   $OPEN: '.open';
 
   position: sticky;
-  top: 0;
+  top: -1px;
   z-index: 20;
 
   justify-content: flex-start;
@@ -116,9 +116,10 @@ $ribbon-height: 2.25rem;
   width: $sidebar-width;
   max-width: $sidebar-width;
   overflow: visible;
-  margin: 6rem 0 0;
+  margin: $topoff 0 0;
+  margin: $topoff 0 1px;
 
-  border-right: 1px solid rgba(13,13,13,.13);
+  // border-right: 1px solid rgba(13,13,13,.13);
   box-shadow: -.5em 0 0 -1.5em rgba(black,0);
   
   transition: .38s ease-out;
@@ -126,7 +127,8 @@ $ribbon-height: 2.25rem;
   
   &#{$OPEN} {
     // overflow: hidden;
-    box-shadow: 1.5em -1.5em 3em -1em rgba(black,.1);
+    // box-shadow: 0 0 3em 0 rgba(black,.1);
+    // box-shadow: 1.5em -1.5em 3em -1em rgba(black,.1);
   }
   &:not(#{$OPEN}) {
     transform: translateX(-100%);
@@ -135,13 +137,36 @@ $ribbon-height: 2.25rem;
 
   @at-root .UiBox:last-child {
     #{$B} + & {
-      transition: filter .19s .19s ease-out;
+      opacity: 1;
+      transition: .19s .19s ease-out;
     }
-    // #{$B}#{$OPEN} + & {}
+    #{$B}#{$OPEN} + & {
+      @include Break( max-width Breaks(3) ){
+        opacity: .5;
+        > * { pointer-events: none !important }
+      }
+    }
   }
 
+  &:after {
+    $matte: Color(light);
+    content: " ";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: -1px;
+    left: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      to top,
+      $matte 3px,
+      rgba($matte,.3) 2em,
+      rgba($matte,0) 3em
+      );
+    z-index: 2;
+  }
   &--ribbon {
-    content: "Filters";
+    // content: "Filters";
     cursor: pointer;
     appearance: none;
     user-select: none;
@@ -149,7 +174,6 @@ $ribbon-height: 2.25rem;
     z-index: 9;
     position: absolute;
     left: 100%;
-    top: 5.5rem;
     top: 0;
     
     @extend %rack;
@@ -180,6 +204,7 @@ $ribbon-height: 2.25rem;
       margin-left: -$sidebar-width;
       color: Color(silver);
       box-shadow: 2px 0 0 0 Color(dark);
+      box-shadow: 0 0 0 0 Color(dark);
     }
 
     & .UiIcon {
@@ -220,17 +245,23 @@ $ribbon-height: 2.25rem;
     padding: 0 nth($sidebar-pad,2);
     background: transparent;
     background: Color(light);
-    border-width: 0 1px 1px 0;
+    border-width: 0;
+
+    box-shadow: 1.5em -2.5em 3em -1.25em rgba(Color(dark),.08);
+    // box-shadow: 0 0 3em 0 rgba(black,.1);
+
     >:first-child { margin-top:    2rem }
     >:last-child  { margin-bottom: 2rem }
+  }
+  @include Break( max-width Breaks(4) ){
+    margin-top: 6.3rem;
   }
   @include Break( max-width Breaks(3) ){
     & {
       // z-index: 8;
       // &#{$OPEN} { z-index: 9999 }
       // position: fixed;
-      margin-top: 6.5rem;
-      top: -1px;
+      top: 0;
       // left: 0;
       // bottom: 0;
       box-shadow: 1em 0 3em -1.5em rgba(black,.8);
