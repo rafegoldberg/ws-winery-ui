@@ -264,7 +264,7 @@ $ribbon-height: 2.25rem;
       top: 0;
       // left: 0;
       // bottom: 0;
-      box-shadow: 1em 0 3em -1.5em rgba(black,.8);
+      box-shadow: 1em 0 4em -2em rgba(black,.63);
     }
     &#{$OPEN} {
       overflow: hidden;

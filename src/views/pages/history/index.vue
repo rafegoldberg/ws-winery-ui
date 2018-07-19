@@ -22,7 +22,10 @@
   </UiPanel>
 
   <UiPanel>
-    <UiBoxImage :img="img.casks" class="UiBoxImage_fixed UiBoxImage_vignette-z" style="height: 28rem; max-height: 70vh"/>
+    <UiBoxImage :img="img.casks" class="-UiBoxImage_fixed UiBoxImage_vignette-z" :style="{
+        height: "28rem",
+        maxHeight: "70vh",
+      }"/>
   </UiPanel>
 
   <UiPanel id="timeline" class="UiTheme_light">
