@@ -23,8 +23,8 @@
 
   <UiPanel>
     <UiBoxImage :img="img.casks" class="-UiBoxImage_fixed UiBoxImage_vignette-z" :style="{
-        height: "28rem",
-        maxHeight: "70vh",
+        height: '28rem',
+        maxHeight: '70vh',
       }"/>
   </UiPanel>
 
