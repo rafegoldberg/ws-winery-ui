@@ -59,13 +59,7 @@ export default [
     component: VineyardPage,
     props: true,
   },
-  
-  // {
-  //   name: "WineArchive",
-  //   path: "/category/:category",
-  //   component: WineArchive,
-  //   props: true,
-  // },
+
   {
     name: "Wine",
     path: "/wine/:page?",
