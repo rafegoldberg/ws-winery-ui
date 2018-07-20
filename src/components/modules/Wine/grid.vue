@@ -2,26 +2,33 @@
 <div id="WineGrid">
 
   <img v-if="context.loading" src="@/assets/preloader.gif" alt="Loading...">
-  <div v-else class="WineGrid">
-    <router-link v-for="item in context" :to="`/wines/${item.slug}`" :key="item.id" class="WineGrid--item">
-      <WineWidget
-        :name="item.title ? item.title.rendered : 'Shitpoopfuck'"
-        :image="media(item)"
-        :vintage="'Release-Date' in item['ws:fields'] && item['ws:fields']['Release-Date'][0]"
-        :price="'Release-Price' in item['ws:fields'] && item['ws:fields']['Release-Price'][0]"
-        />
-    </router-link>
-  </div>
 
-  <div class="WineGridPagination" v-if="paginate && !context.loading">
-    <router-link :to="`/wine/${ parseInt(page||1)>1 ? parseInt(page||1)-1 : pages.totalPages}`">
-      <UiIcon name="ArrowLeft" width="1rem" height="1rem"/>
-    </router-link>
-    <span>{{page||1}} of {{pages.totalPages}}</span>
-    <router-link :to="`/wine/${ parseInt(page||1)<pages.totalPages ? parseInt(page||1)+1 : 1 }`">
-      <UiIcon name="ArrowRight" width="1rem" height="1rem"/>
-    </router-link>
+  <div v-else-if="!context.length">
+    <slot name="error"/>
   </div>
+  
+  <template v-else>
+    <div class="WineGrid">
+      <router-link v-for="item in context" :to="`/wines/${item.slug}`" :key="item.id" class="WineGrid--item">
+        <WineWidget
+          :name="item.title ? item.title.rendered : 'Shitpoopfuck'"
+          :image="media(item)"
+          :vintage="'Release-Date' in item['ws:fields'] && item['ws:fields']['Release-Date'][0]"
+          :price="'Release-Price' in item['ws:fields'] && item['ws:fields']['Release-Price'][0]"
+          />
+      </router-link>
+    </div>
+
+    <div class="WineGridPagination" v-if="paginate && !context.loading && context.length">
+      <router-link :to="`/wine/${ parseInt(page||1)>1 ? parseInt(page||1)-1 : pages.totalPages}`">
+        <UiIcon name="ArrowLeft" width="1rem" height="1rem"/>
+      </router-link>
+      <span>{{page||1}} of {{pages.totalPages}}</span>
+      <router-link :to="`/wine/${ parseInt(page||1)<pages.totalPages ? parseInt(page||1)+1 : 1 }`">
+        <UiIcon name="ArrowRight" width="1rem" height="1rem"/>
+      </router-link>
+    </div>
+  </template>
 
 </div>
 </template>
@@ -57,10 +64,12 @@ export default {
     endpoint(){
       if( !this.API ) return
 
-      let endpoint = this.API.posts().category([this.category||'wine','wine'])
+      let endpoint = this.API.posts()
 
       if( typeof this.wpx == 'function' )
         endpoint = this.wpx( endpoint )
+      else 
+        endpoint = endpoint.category([this.category||'wine'])
 
       let
       per = this.paginate || 9,
@@ -76,7 +85,7 @@ export default {
   components:{ UiList, UiIcon, WineWidget },
   methods:{
     media(item){
-      if( this.context.loading ) return
+      if( this.context.loading || !this.context.length ) return
       if( "wp:featuredmedia" in item._embedded ){
         let
         src = item._embedded["wp:featuredmedia"][0].source_url
