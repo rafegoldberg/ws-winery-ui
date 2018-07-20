@@ -242,7 +242,7 @@ export default {
     margin: 1rem 0;
   }
 
-  table {
+  &-overview table {
     margin: 0;
     font-size: .8rem;
     * {
