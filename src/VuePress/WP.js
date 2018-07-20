@@ -11,7 +11,6 @@ URI = typeof WP_API_Settings == "object"
   ? WP_API_Settings.endpoint
   :"http://192.168.64.2/clients/ws3/",
 API = WpRest.discover(URI)
-
 /**
  * API Authorization
  */
@@ -56,8 +55,6 @@ API.then(WP =>
 
 export default API;
 
-API.then(wp=>{
-  if (process.env.NODE_ENV == "development")
-    window.API = wp
-  Vue.prototype.$API = wp;
-})
+if (process.env.NODE_ENV == "development"){
+  API.then(wp=>( window.API = wp ))
+}
