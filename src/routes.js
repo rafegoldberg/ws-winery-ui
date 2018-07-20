@@ -62,14 +62,14 @@ export default [
 
   {
     name: "Wine",
-    path: "/wine/:page?",
+    path: "/wines",
     redirect:['our-wines'],
     component: Wine,
     children:[
       { path: '',
         name: 'WineGrid',
         component: WineGrid,
-        props: true,
+        // props: true,
       }
     ],
   },

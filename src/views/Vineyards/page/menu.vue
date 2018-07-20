@@ -30,6 +30,8 @@ export default {
 @import "~@/styles/extend/text.label";
 
 #VineyardsPage--overviewNav {
+  margin-bottom: 0.5em;
+  
   > * + * {
     margin-left: 1rem;
   }
