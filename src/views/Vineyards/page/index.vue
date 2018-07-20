@@ -10,20 +10,23 @@
         <header>
           <VineyardsPageMenu/>
           <UiHeading id="VineyardPage-overviewHeader"
-            class="UiHeading_contract"
+            class="UiHeading_contract UiHeading_space÷2"
             :level="2"
+            :scale="3"
             v-html="context.title.rendered"/>
         </header>
 
+        <template v-if="'vineyardStats' in context.acf && context.acf.vineyardStats || tables.length">
         <aside id="VineyardPage-overviewSidebar">
-          <template v-if="'vineyardStats' in context.acf && context.acf.vineyardStats">
-            <StatGroup
-              v-for="(stats,i) in context.acf.vineyardStats"
-              v-bind="stats"
-              :key="`statGroup-${i}`"/>
-          </template>
+          <StatGroup
+            v-for="(stats,i) in context.acf.vineyardStats"
+            v-bind="stats"
+            v-if="'vineyardStats' in context.acf && context.acf.vineyardStats"
+            :key="`statGroup-${i}`"
+            />
           <div v-else-if="tables.length" v-for="tbl in tables" v-html="tbl"/>
         </aside>
+        </template>
 
         <div id="VineyardPage-overviewText">
           <blockquote v-html="text[0]"/>
@@ -144,7 +147,7 @@ export default {
       @include Break( max-width Breaks(4) ){
         margin: .5em auto;
         text-align: center;
-        max-width: 92%;
+        line-height: 1.1;
       }
     }
 

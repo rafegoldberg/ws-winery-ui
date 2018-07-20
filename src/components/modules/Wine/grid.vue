@@ -3,8 +3,8 @@
 
   <img v-if="context.loading" src="@/assets/preloader.gif" alt="Loading...">
 
-  <div v-else-if="!context.length">
-    <slot name="error"/>
+  <div v-else-if="context.error || !context.length" class="WineGrid--slot-error">
+    <slot name="error" v-bind="context.error"/>
   </div>
   
   <template v-else>
@@ -19,14 +19,40 @@
       </router-link>
     </div>
 
-    <div class="WineGridPagination" v-if="paginate && !context.loading && context.length">
-      <router-link :to="`/wine/${ parseInt(page||1)>1 ? parseInt(page||1)-1 : pages.totalPages}`">
+    <div class="WineGridPagination" :class="{ WineGridPagination_sticky: sticky }" v-if="paginate && !context.loading && context.length">
+      <span @click="( page = parseInt(page||1)>1 ? parseInt(page||1)-1 : pages.totalPages )">
         <UiIcon name="ArrowLeft" width="1rem" height="1rem"/>
-      </router-link>
-      <span>{{page||1}} of {{pages.totalPages}}</span>
-      <router-link :to="`/wine/${ parseInt(page||1)<pages.totalPages ? parseInt(page||1)+1 : 1 }`">
+      </span>
+      <span>
+        <input
+            v-model="page"
+            type="number"
+            :max="pages.totalPages"
+            :min="1"
+            :placeholder="1"
+            :step="1"
+            :style="{
+              appearance: 'none',
+              border: 'none',
+              font: 'inherit',
+              direction: 'rtl',
+              textAlign: 'center',
+              width: 'min-content',
+              maxWidth: 'max-content',
+              display: 'inline-block',
+              outline: 'none',
+              background: 'rgba(50,50,50,.07)',
+              borderRadius: '3px',
+              lineHeight: 1.6,
+              marginLeft: '-.5rem'
+            }"
+            />
+        <span :style="{ margin:[0,'.5em'] }">of</span>
+        <span v-text="pages.totalPages"/>
+      </span>
+      <span @click="( page = parseInt(page||1)<pages.totalPages ? parseInt(page||1)+1 : 1 )">
         <UiIcon name="ArrowRight" width="1rem" height="1rem"/>
-      </router-link>
+      </span>
     </div>
   </template>
 
@@ -38,6 +64,8 @@ import WpConnect from "@/VuePress/mix/connect"
 
 import UiList from "@/components/UI/List"
 import UiIcon from "@/components/UI/Icon"
+import UiHeading from "@/components/UI/Heading"
+
 import WineWidget from "@/components/modules/Wine"
 
 export default {
@@ -50,13 +78,22 @@ export default {
       type:[ Boolean, Number, String ],
       default: 10,
     },
-    page:{
-      type:[ Number, String ],
-    }
+    sticky:{
+      type: Boolean,
+      default: false,
+    },
   },
   inheritAttrs: true,
   mixins:[ WpConnect ],
   computed:{
+    page:{
+      get(){
+        return parseInt(this.$root.filters.page) || 1
+      },
+      set(v){
+        this.$set( this.$root.filters, 'page', parseInt(v) || 1 )
+      },
+    },
     pages(){
       if( !this.API && this.context.loading ) return
       return this.context._paging
@@ -64,25 +101,23 @@ export default {
     endpoint(){
       if( !this.API ) return
 
-      let endpoint = this.API.posts()
+      let endpoint = this.API.posts().page(this.page||1)
 
       if( typeof this.wpx == 'function' )
         endpoint = this.wpx( endpoint )
       else 
-        endpoint = endpoint.category([this.category||'wine'])
+        endpoint = endpoint
+          .category([this.category||'wine'])
 
       let
       per = this.paginate || 9,
       off = this.paginate  % 3
       per = per - off
       
-      return endpoint
-        .perPage(per)
-        .page(this.page||1)
-        .embed()
+      return endpoint.perPage(per).embed()
     }
   },
-  components:{ UiList, UiIcon, WineWidget },
+  components:{ UiList, UiIcon, UiHeading, WineWidget },
   methods:{
     media(item){
       if( this.context.loading || !this.context.length ) return
@@ -98,6 +133,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "~@/styles/theme/breaks";
+@import "~@/styles/theme/colors";
 #WineGrid {
   width: 100%;
 }
@@ -128,6 +164,13 @@ export default {
     /deep/ .WineWidget--detail td:not(:first-child) { display: none }
   }
 
+  &--slot {
+    &-error {
+      .UiHeading { color: Color(alt) }
+    }
+    // &-nullset {}
+  }
+
   &Pagination {
     display: flex;
     justify-content: center;
@@ -135,6 +178,13 @@ export default {
     margin-top: 2rem;
     > * {
       padding: 0.5rem
+    }
+    &_sticky {
+      z-index: 9;
+      position: sticky;
+      bottom: -1px;
+      margin-bottom: -2rem;
+      background: rgba(Color(light),.95);
     }
   }
   

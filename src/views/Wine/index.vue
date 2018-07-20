@@ -13,7 +13,6 @@
         <UiButton v-if="hasFilters()" class="UiTheme_rust" @click.native.prevent="clearFilters">Clear</UiButton>
       </header>
       <FiltersGroup
-        @filtered="filterOpt"
         title="Varietal"
         term="varietals"
         :show="true"
@@ -33,7 +32,6 @@
           .perPage(80)
         "/>
       <FiltersGroup
-        @filtered="filterOpt"
         title="Vineyard"
         type="radio"
         :show="false"
@@ -46,15 +44,22 @@
     </form>
   </div>
 
-  <UiBox @click.self.native="(isOpen=false)">
+  <UiBox @click.self.native="(isOpen=false)" :class="{wrap_flex_mid:testr()}" :style="{
+        paddingLeft:'1rem',
+        paddingRight:'1rem',
+        overflow:'visible'
+      }">
     <keep-alive>
-      <router-view :wpx="wpx" paginate="12">
+      <router-view :wpx="wpx" paginate="12" :sticky="true" ref="grid">
         <div slot="error" class="">
           <UiHeading :level="3" class="UiHeading_bold UiHeading_tighten" style="text-align: left">
             No Matches
           </UiHeading>
-          <p>We couldn't find any wine that matched. Clear your filters to start over.</p>
-          <UiButton class="UiTheme_rust" @click.native="clearFilters">Clear Filters</UiButton>
+          <p>We couldn't find any wines that matched your search. Try 
+            <button @click="(isOpen=true)" style="all:unset;cursor:pointer;font-weight:bold;text-decoration:underline;">updating your filters</button>, or 
+            <button @click="clearFilters" style="all:unset;cursor:pointer;">clear</button> them
+            to start over.</p>
+          <UiButton :class="{UiTheme_gold:isOpen,UiTheme_rust:!isOpen}" @click.native="clearFilters">Clear Filters</UiButton>
         </div>
       </router-view>
     </keep-alive>
@@ -76,6 +81,21 @@ import UiButton from "@/components/UI/Button"
 import WineGrid from "@/components/modules/Wine/grid"
 import FiltersGroup from "./filters/group"
 
+function hasFilters( filters = this.$root.filters ){
+  var
+  keys = Object.keys(filters),
+  vals = Object.values(filters)
+  vals = vals.filter( (v,i)=> keys[i]!=='page' && v.length | v || false)
+  return vals.length>0
+}
+function clearFilters(){
+  Object.keys(this.$root.filters).map(k=>{
+    var filter = this.$root.filters[k]
+    filter.splice && filter.splice(0,filter.length) || this.$set(this.$root.filters,k,[])
+  })
+}
+
+
 export default {
   name: "WineFilters",
   props:["page"],
@@ -90,24 +110,26 @@ export default {
   },
   data:()=>({
     wpx(WP){
-      return WP.param(this.$root.filters||{categories:[10]})
+      if( hasFilters(this.$root.filters) ){
+        return WP.param(this.$root.filters)
+      }
+      else
+        return WP.category(['wine'])
     }
   }),
   methods:{
-    filterOpt(filters){
-      this.wpx = wpt=> wpt.param(filters)
-    },
-    clearFilters(){
-      Object.keys(this.$root.filters).map(k=>{
-        var filter = this.$root.filters[k]
-        filter.splice && filter.splice(0,filter.length) || this.$set(this.$root.filters,k,[])
-      })
-    },
-    hasFilters(){
+    hasFilters,
+    clearFilters,
+    testr(){
       var
-      vals = Object.values(this.$root.filters)
-      vals = vals.filter( v=> v.length | v )
-      return vals.length ? true : false
+      ref = this.$refs.grid
+      
+      if( !ref ) return false
+
+      if( ref.context.error | !ref.context.length )
+        return true 
+      else
+        return false
     },
   },
   computed:{
@@ -183,7 +205,7 @@ $ribbon-height: 2.25rem;
   @at-root .UiBox:last-child {
     #{$B} + & {
       opacity: 1;
-      transition: .19s .19s ease-out;
+      transition: opacity .19s .19s ease-out;
     }
     #{$B}#{$OPEN} + & {
       @include Break( max-width Breaks(3) ){
@@ -318,7 +340,7 @@ $ribbon-height: 2.25rem;
     }
     + :last-child { padding-top: 12rem }
     @at-root #WineFiltersWrap > .UiPanel { flex-flow: nowrap row }
-    /deep/ .UiHeading { text-align: left !important }
+    .UiHeading { text-align: left !important }
   }
 }
 </style>

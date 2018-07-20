@@ -1,5 +1,5 @@
 <template>
-<div :class="{show}" class="FiltersGroup" v-if="!context.loading" @change="$emit('filtered',$root.filters)">
+<div :class="{show}" class="FiltersGroup" v-if="!context.loading" @change="($set($root.filters,'page',1)) | $emit('filtered',$root.filters)">
 
     <button v-if="title" class="FiltersGroup--header" @click.prevent="(show=show?false:true)">
       <UiHeading class="UiHeading_sans" :level="5">

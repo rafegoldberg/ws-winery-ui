@@ -128,7 +128,7 @@ export default {
     text-transform: uppercase;
     margin-top: 1.5em;
   }
-  /deep/ img {
+  img {
     max-height: 80vh;
     width: auto;
   }
