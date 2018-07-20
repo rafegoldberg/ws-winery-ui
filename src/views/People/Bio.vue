@@ -1,5 +1,5 @@
 <template>
-<main v-if="!context.loading" class="Bio  UiTheme_cream">
+<main id="StaffBio" v-if="!context.loading" class="Bio UiTheme_cream">
 
   <UiPanel class="UiTheme_cream wrap_mid" connect="down">
     <UiBox class="Bio--overview">
@@ -7,20 +7,16 @@
         position: 'relative',
         flex:[ 0, '50%' ],
         }">
-        <span class="Bio--role" v-html="context.acf.role.name"/>
-        <img :src="featured_img"
-          :alt="context.title.rendered"
-          :style="{
-            objectFit: 'cover',
-            width:  '100%',
-            height: '32em',
-          }">
+        <a href="#intro" class="Bio--role">
+          <span v-html="context.acf.role.name"/>
+          <UiIcon name="ArrowRight" width=".8em"/>
+        </a>
+        <img class="Bio--media"
+          :src="featured_img"
+          :alt="context.title.rendered">
       </div>
-      <div :style="{
-          flex:[ 0, '50%' ],
-          paddingLeft: '2em',
-          }">
-        <header>
+      <div id="intro" class="Bio--intro">
+        <header class="Bio--introHeader">
           <UiHeading :level="2" :scale="3" class="UiHeading_gold">
             {{context.title.rendered}}
           </UiHeading>
@@ -95,24 +91,45 @@ export default {
 <style lang="scss" scoped>
 @import "~@/styles/theme/breaks";
 .Bio {
+  &--intro {
+    flex: 0 50%;
+    padding-left: 2em;
+  }
   &--position {
     text-transform: capitalize;
   }
   &--role {
     position: absolute;
     display: inline-block;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 100;
     text-transform: uppercase;
     transform: rotate(90deg);
     transform-origin: left top;
-    letter-spacing: 0.15em;
-    @include Break( max-width Breaks(3) ){
-      font-size: 1.1rem;
+    letter-spacing: 0.175em;
+    text-decoration: none;
+    color: inherit;
+    > .UiIcon {
+      & {
+        vertical-align: -.68em;
+        margin-left: .25em;
+        opacity: .4;
+        cursor: pointer;
+      }
     }
+    @include Break( min-width Breaks(3) ){
+      & { pointer-events: none }
+      >.UiIcon { display: none }
+    }
+    @include Break( max-width Breaks(3) ){ font-size: 1.1rem }
   }
-  &--overview {
-    @include Break( max-width Breaks(3) ){
+  &--media {
+    width:  100%;
+    height: 32em;
+    object-fit: cover;
+  }
+  @include Break( max-width Breaks(3) ){
+    &--overview {
       flex-flow: nowrap column;
       padding-top: 8.5rem !important;
       >:first-child {
@@ -123,10 +140,20 @@ export default {
         padding-left: 0 !important;
         & > :not(p) { text-align: center !important }
       }
-      img:only-child {
-        min-width: 100%;
-        max-height: 22em;
-      }
+    }
+  }
+  &--media {
+    width: 100%;
+    height: 32em;
+    object-fit: cover;
+    @include Break( (min-width Breaks(1)) (max-width Breaks(3)) ){
+        object-fit: contain;
+        object-position: center 20%;
+    }
+    @include Break( max-width Breaks(1) ){
+      margin-right: -1rem;
+      width: 100%;
+      min-width: calc(100% + 2rem);
     }
   }
 }
