@@ -1,0 +1,9 @@
+@import "~@/styles/theme/colors";
+
+hr {
+  $edge: mix(Color(dark),Color(light));
+  border-style: solid;
+  border-width: 1px 0 0;
+  border-color: rgba($edge,.5);
+  margin: 1em 0;
+}
