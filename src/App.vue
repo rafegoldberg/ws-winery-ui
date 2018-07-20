@@ -13,6 +13,7 @@
 import AppFooter from "@/components/App/footer"
 import AppNav from "@/components/App/nav"
 import UiHeading from "@/components/UI/Heading"
+
 export default {
   name:"App",
   components:{
@@ -31,7 +32,4 @@ img[src*="preloader"][src*=".gif"] {
   height: 3rem;
   opacity: .3;
 }
-</style>
-<style lang="scss" id="@stage:css/nav" notes="hot take on the XD designs; temporary">
-@import "~@/styles/theme/breaks";
 </style>
