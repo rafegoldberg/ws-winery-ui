@@ -8,7 +8,7 @@
       <UiIcon :name="show ? 'CircleMinus' : 'CirclePlus'" width="1.3em" height="1.3em"/>
     </button>
   </header>
-  <FilterItem v-show="show" v-for="item in context" v-bind="item" :ref="item.slug" :key="item.slug"/>
+  <FilterItem v-show="show" v-for="item in context" v-if="item.count>0" v-bind="item" :ref="item.slug" :key="item.slug"/>
 
 </div>
 </template>

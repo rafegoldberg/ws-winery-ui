@@ -23,6 +23,16 @@
           .perPage(20)
         "/>
       <FiltersGroup
+        term="tags"
+        title="Vintage"
+        class="FiltersGroup_pills"
+        :show="true"
+        :wpx="wp=>wp
+          .tags()
+          .exclude([69,72]) // spring, port
+          .perPage(80)
+        "/>
+      <FiltersGroup
         @filtered="filterOpt"
         title="Vineyard"
         type="radio"
@@ -33,16 +43,6 @@
           .exclude([25,26]) // growers + estate vineyards
           .perPage(50)
         "/>
-      <FiltersGroup
-        term="tags"
-        title="Vintage"
-        class="FiltersGroup_pills"
-        :show="false"
-        :wpx="wp=>wp
-          .tags()
-          .exclude([69,72]) // spring, port
-          .perPage(80)
-        "/>
     </form>
   </div>
 
@@ -50,10 +50,10 @@
     <keep-alive>
       <router-view :wpx="wpx" paginate="12">
         <div slot="error" class="">
-          <UiHeading :level="3" class="UiHeading_bold UiHeading_tighten">
+          <UiHeading :level="3" class="UiHeading_bold UiHeading_tighten" style="text-align: left">
             No Matches
           </UiHeading>
-          <p>We don't have any wines that match those filters. Try clearing your filters to start over.</p>
+          <p>We couldn't find any wine that matched. Clear your filters to start over.</p>
           <UiButton class="UiTheme_rust" @click.native="clearFilters">Clear Filters</UiButton>
         </div>
       </router-view>
@@ -188,6 +188,7 @@ $ribbon-height: 2.25rem;
     #{$B}#{$OPEN} + & {
       @include Break( max-width Breaks(3) ){
         opacity: .5;
+        mix-blend-mode: multiply;
         > * { pointer-events: none !important }
       }
     }
@@ -298,17 +299,13 @@ $ribbon-height: 2.25rem;
     >:first-child { margin-top:    2rem }
     >:last-child  { margin-bottom: 2rem }
   }
-  @include Break( max-width Breaks(3) ){
-    margin-top: 6.45rem;
+  @include Break( (min-width Breaks(3)) (min-height 32rem) ){
+    max-height: calc(100vh - 75px);
   }
   @include Break( max-width Breaks(3) ){
     & {
-      // z-index: 8;
-      // &#{$OPEN} { z-index: 9999 }
-      // position: fixed;
+      margin-top: 6.45rem;
       top: 0;
-      // left: 0;
-      // bottom: 0;
       box-shadow: 1em 0 4em -2em rgba(black,.63);
     }
     &#{$OPEN} {
