@@ -2,37 +2,62 @@
 <div id="WineFiltersWrap">
 <UiPanel class="UiTheme_light">
 
-  <div class="WineFilters" :class="{open:sidebar}">
-    <button class="WineFilters--ribbon" @click="(sidebar=sidebar?false:true)">
-      <span>{{sidebar ? 'Close' : 'Filters'}}</span>
+  <div class="WineFilters" :class="{open:isOpen}">
+    <button class="WineFilters--ribbon" @click="(isOpen=isOpen?false:true)">
+      <span>{{isOpen ? 'Close' : 'Filters'}}</span>
       <UiIcon name="CircleClose" width="1.66rem" height="1.66rem"></UiIcon>
     </button>
-    <div class="WineFilters--inner">
+    <form class="WineFilters--inner">
       <header class="WineFilters--header">
         <UiHeading :level="4" v-text="'Sort & Filter'"/>
-        <UiButton @click.native="(sidebar=false)">Apply</UiButton>
+        <UiButton v-if="hasFilters()" class="UiTheme_rust" @click.native.prevent="clearFilters">Clear</UiButton>
       </header>
-      <FiltersGroup ref="varietal" @filtered="filterCat" title="Varietal" :show="true" :wpx="wpapi=>wpapi
-        .categories()
-        .parent(10) // varietal
-        .perPage(20)
+      <FiltersGroup
+        @filtered="filterOpt"
+        title="Varietal"
+        term="varietals"
+        :show="true"
+        :wpx="wpapi=>wpapi
+          .varietals()
+          .exclude([62,5])
+          .perPage(20)
         "/>
-      <FiltersGroup ref="vineyard" @filtered="filterCat" title="Vineyard" :show="false" :wpx="wpapi=>wpapi
-        .categories()
-        .parent(73) // vineyards
-        .exclude([25,26]) // growers + estate vineyards
-        .perPage(50)
+      <FiltersGroup
+        @filtered="filterOpt"
+        title="Vineyard"
+        type="radio"
+        :show="false"
+        :wpx="wpapi=>wpapi
+          .categories()
+          .parent(73) // vineyards
+          .exclude([25,26]) // growers + estate vineyards
+          .perPage(50)
         "/>
-      <FiltersGroup ref="vintage" @filtered="filterTag" title="Vintage" :show="false" :wpx="wpapi=>wpapi
-        .tags()
-        .exclude([69]) // spring
-        .perPage(80)
+      <FiltersGroup
+        term="tags"
+        title="Vintage"
+        class="FiltersGroup_pills"
+        :show="false"
+        :wpx="wp=>wp
+          .tags()
+          .exclude([69,72]) // spring, port
+          .perPage(80)
         "/>
-    </div>
+    </form>
   </div>
 
-  <UiBox @click.native="(sidebar=false)">
-    <router-view :wpx="wpx" :page="page||1" paginate="12"/>
+  <UiBox @click.self.native="(isOpen=false)">
+    <keep-alive>
+      <router-view :wpx="wpx" paginate="12">
+        <div slot="error" class="">
+          <UiHeading :level="3" class="UiHeading_bold UiHeading_tighten">
+            No Matches
+          </UiHeading>
+          <p>We don't have any wines that match those filters. Try clearing your filters to start over.</p>
+          <UiButton class="UiTheme_rust" @click.native="clearFilters">Clear Filters</UiButton>
+        </div>
+      </router-view>
+    </keep-alive>
   </UiBox>
 
 </UiPanel>
@@ -40,6 +65,8 @@
 </template>
 
 <script>
+import Vue from "vue"
+
 import UiPanel from "@/components/UI/Panel"
 import UiBox from "@/components/UI/Box"
 import UiIcon from "@/components/UI/Icon"
@@ -62,19 +89,37 @@ export default {
     FiltersGroup
   },
   data:()=>({
-    wpx: wpapi=> wpapi.categories([10]),
-    sidebar: false,
+    wpx(WP){
+      return WP.param(this.$root.filters||{categories:[10]})
+    }
   }),
   methods:{
-    filterCat(filters){
-      // this.page = 1;
-      this.wpx  = WP=>WP.categories( filters || [] )
+    filterOpt(filters){
+      this.wpx = wpt=> wpt.param(filters)
     },
-    filterTag(filters){
-      // this.page = 1;
-      this.wpx  = WP=>WP.tags( filters || [] )
-    }
+    clearFilters(){
+      Object.keys(this.$root.filters).map(k=>{
+        var filter = this.$root.filters[k]
+        filter.splice && filter.splice(0,filter.length) || this.$set(this.$root.filters,k,[])
+      })
+    },
+    hasFilters(){
+      var
+      vals = Object.values(this.$root.filters)
+      vals = vals.filter( v=> v.length | v )
+      return vals.length ? true : false
+    },
   },
+  computed:{
+    isOpen:{
+      get(){
+        return this.$root.showFilters
+      },
+      set(v){
+        this.$root.showFilters = v ? true : false
+      },
+    }
+  }
 }
 </script>
 
@@ -253,8 +298,8 @@ $ribbon-height: 2.25rem;
     >:first-child { margin-top:    2rem }
     >:last-child  { margin-bottom: 2rem }
   }
-  @include Break( max-width Breaks(4) ){
-    margin-top: 6.3rem;
+  @include Break( max-width Breaks(3) ){
+    margin-top: 6.45rem;
   }
   @include Break( max-width Breaks(3) ){
     & {

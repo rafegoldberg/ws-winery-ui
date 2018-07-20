@@ -1,19 +1,16 @@
 <template>
-<form :class="{show}" class="FiltersGroup" v-if="!context.loading" @change="$emit('filtered',filters)">
+<div :class="{show}" class="FiltersGroup" v-if="!context.loading" @change="$emit('filtered',$root.filters)">
 
     <button v-if="title" class="FiltersGroup--header" @click.prevent="(show=show?false:true)">
-      <UiHeading class="UiHeading_sans UiHeading_expand" :level="5">
+      <UiHeading class="UiHeading_sans" :level="5">
         <span v-html="title"/>
       </UiHeading>
-      <small v-if="filters.length" style="margin: -2px .5rem 0 auto; font-family: Georgia, serif; color: #BBB;">
-        {{filters.length}}
-      </small>
       <UiIcon :name="show ? 'CircleMinus' : 'CirclePlus'" width="1.3em" height="1.3em"/>
     </button>
   </header>
   <FilterItem v-show="show" v-for="item in context" v-bind="item" :ref="item.slug" :key="item.slug"/>
 
-</form>
+</div>
 </template>
 
 <script>
@@ -26,14 +23,18 @@ import FilterItem from "./item"
 export default {
   name: "FiltersGroup",
   mixins:[ WP ],
-  props:[ "wpx", "title" ],
+  props:{
+    wpx:{ type:Function },
+    title:{ type:String },
+    type:{ type:String, default:'checkbox' },
+    term:{ type:String, default:"categories" },
+  },
   components:{ UiHeading, UiList, UiIcon, FilterItem },
   created(){
     this.$attrs.show && (this.show = this.$attrs.show)
   },
   data:()=>({
-    filters:[],
-    show: false,
+    show: false
   }),
   computed:{
     endpoint(){
