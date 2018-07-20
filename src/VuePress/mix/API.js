@@ -4,7 +4,7 @@ export default {
   asyncComputed: {
     async API() {
       let API = await WP;
-      this.$emit("vp.ready");
+      this.$emit("vp:ready");
       return API;
     }
   }
