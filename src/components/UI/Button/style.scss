@@ -4,25 +4,32 @@
   & {
     appearance: none;
     cursor: pointer;
-
     padding: .8em 1.5em;
     font-size: .8em;
     font-family: $ff-sans;
     font-weight: 500;
-    color: Color(matte);
-    background: Color(theme);
-    border: none;
+    border: 1px solid rgba(Color(dark),.15);
     letter-spacing: .1em;
     text-transform: uppercase;
   }
-  
+  &:not([class*="UiTheme_"]):not(#{&}_outline){
+    color: Color(matte);
+    background: Color(theme);
+  }
   transition: .2s ease-in-out;
   opacity: .9;
   &:hover, &:focus, &:active { opacity: 1 }
-
+  
   outline: 1px dotted transparent;
   &:focus {
     outline: 1px dotted currentColor;
     outline-offset: -.25em;
+  }
+
+  &_outline {
+    color: Color(matte);
+    background-color: transparent;
+    border: 3px solid Color(matte);
+    &:not(:hover) { opacity: .8 }
   }
 }

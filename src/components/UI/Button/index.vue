@@ -21,11 +21,6 @@ export default {
   &_gold, &.gold {
     color: Color(theme);
   }
-  &_outline {
-    background-color: transparent;
-    border: 3px solid currentColor;
-    &:not(:hover) { opacity: .8 }
-  }
   &_flex {
     display: inline-flex;
     flex-flow: nowrap row;
