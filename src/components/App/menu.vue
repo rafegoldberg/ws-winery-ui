@@ -1,6 +1,10 @@
 <template>
 
-  <nav class="AppMenu" :class="{ AppMenu_open:open }">
+  <nav class="AppMenu"
+      :class="{ AppMenu_open:open }"
+      @mouseover="(open=true)"
+      @mouseout="(open=false)"
+      >
     <UiList :list="{
       'Our Vineyards': '/vineyards',
       'Our Wine': '/wines',
@@ -26,7 +30,7 @@ export default {
   components:{ UiList },
   data:()=> defaults,
   methods:{
-    toggle(){
+    toggle(setTo){
       this.open = this.open ? false : true
       if( this.open ) this.$emit('open')
       else this.$emit('close')
@@ -49,7 +53,6 @@ export default {
     right: 0;
     width: 12em;
     padding: 0 2em 0 1em;
-    // box-sizing: content-box;
     box-shadow: -4px 0 2rem 4px rgba( 48, 41, 3, .08 );
     border-left: 8px solid rgba(Color(theme), .25);
   }

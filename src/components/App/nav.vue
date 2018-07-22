@@ -16,7 +16,10 @@
     <button @click="toggleMenu">
       <small>MENU  </small><UiIcon name="menu" width="1em" height="1em"/>
     </button>
-    <AppMenu @click.stop ref="menu"/>
+    <AppMenu
+      @click.stop
+      ref="menu"
+      />
   </span>
 
 </nav>
@@ -31,8 +34,12 @@ export default {
   name: "AppNav",
   components:{ AppMenu, UiPanel, UiIcon },
   methods:{
-    toggleMenu(){
-      this.$refs.menu.toggle()
+    toggleMenu(setTo){
+      if( typeof this.setTo !== 'undefined' )
+        this.$refs.open = setTo
+      else
+        this.$refs.menu.toggle()
+      return this.$refs.open
     }
   }
 }
@@ -78,7 +85,7 @@ export default {
   @include Break( max-width Breaks(4) ){
     padding: 0 1em;
     height: 4rem;
-    background: rgba(250, 250, 250, 0.9);
+    background: rgba(250, 250, 250, .96);
     color: Color(slate) !important;
     box-shadow: -4px 0 2rem 4px rgba(48, 41, 3, 0.08);
     &-logo {
@@ -90,8 +97,10 @@ export default {
 <style lang="scss">
 @import "~@/styles/theme/breaks";
 #AppNav {
-  position: relative !important;
-  margin-bottom: -112px !important;
+  @include Break( min-width Breaks(3) ){
+    position: relative !important;
+    margin-bottom: -112px !important;
+  }
 }
 #AppNav + [id] >:first-child {
   &[class*="UiBox"],
