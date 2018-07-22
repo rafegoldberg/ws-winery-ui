@@ -48,6 +48,7 @@ export default {
     title:   { type: String        },
     fields:  { type:[Object,Array] },
     category:{ type:[Object,Array] },
+    acf:     { type:[Object,Array] },
   },
   components:{
     UiHeading

@@ -2,7 +2,7 @@
 <div id="WineFiltersWrap">
 <UiPanel class="UiTheme_light">
 
-  <div class="WineFilters" :class="{open:isOpen}">
+  <div class="WineFilters" :class="{open:isOpen}" @keydown.escape.stop="(isOpen=isOpen?false:true)">
     <button class="WineFilters--ribbon" @click="(isOpen=isOpen?false:true)">
       <span>{{isOpen ? 'Close' : 'Filters'}}</span>
       <UiIcon name="CircleClose" width="1.66rem" height="1.66rem"></UiIcon>
@@ -10,7 +10,7 @@
     <form class="WineFilters--inner">
       <header class="WineFilters--header">
         <UiHeading :level="4" v-text="'Sort & Filter'"/>
-        <UiButton v-if="hasFilters()" class="UiTheme_rust" @click.native.prevent="clearFilters">Clear</UiButton>
+        <UiButton v-show="hasFilters()" class="UiTheme_rust" @click.native.prevent="clearFilters">Clear</UiButton>
       </header>
       <FiltersGroup
         title="Varietal"
@@ -34,7 +34,7 @@
       <FiltersGroup
         title="Vineyard"
         type="radio"
-        :show="false"
+        :show="true"
         :wpx="wpapi=>wpapi
           .categories()
           .parent(73) // vineyards
@@ -45,18 +45,23 @@
   </div>
 
   <UiBox @click.self.native="(isOpen=false)" :class="{wrap_flex_mid:testr()}" :style="{
-        paddingLeft:'1rem',
-        paddingRight:'1rem',
+        paddingLeft:'1.5rem',
+        paddingRight:'1.5rem',
         overflow:'visible'
       }">
     <keep-alive>
-      <router-view :wpx="wpx" paginate="12" :sticky="true" ref="grid">
+      <router-view :wpx="wpx" paginate="10" :sticky="true" ref="grid">
         <div slot="error" class="">
           <UiHeading :level="3" class="UiHeading_bold UiHeading_tighten" style="text-align: left">
             No Matches
           </UiHeading>
           <p>We couldn't find any wines that matched your search. Try 
-            <button @click="(isOpen=true)" style="all:unset;cursor:pointer;font-weight:bold;text-decoration:underline;">updating your filters</button>, or 
+            <button @click="(isOpen=true)" :style="{
+                all: 'unset',
+                cursor: !isOpen ? 'pointer' : '',
+                fontWeight: !isOpen ? 'bold' : '',
+                textDecoration: !isOpen ? 'underline' : '',
+              }">updating your filters</button>, or 
             <button @click="clearFilters" style="all:unset;cursor:pointer;">clear</button> them
             to start over.</p>
           <UiButton :class="{UiTheme_gold:isOpen,UiTheme_rust:!isOpen}" @click.native="clearFilters">Clear Filters</UiButton>
@@ -171,7 +176,7 @@ $ribbon-height: 2.25rem;
 
   position: sticky;
   top: -1px;
-  z-index: 20;
+  z-index: 5;
 
   justify-content: flex-start;
   flex: 0 1 $sidebar-width !important;
@@ -219,6 +224,7 @@ $ribbon-height: 2.25rem;
   &:after {
     $matte: Color(light);
     content: " ";
+    z-index: 2;
     position: absolute;
     top: 0;
     right: 0;
@@ -231,7 +237,7 @@ $ribbon-height: 2.25rem;
       rgba($matte,.3) 2em,
       rgba($matte,0) 3em
       );
-    z-index: 2;
+    opacity: .9;
   }
   &--ribbon {
     // content: "Filters";
@@ -322,13 +328,13 @@ $ribbon-height: 2.25rem;
     >:last-child  { margin-bottom: 2rem }
   }
   @include Break( (min-width Breaks(3)) (min-height 32rem) ){
-    max-height: calc(100vh - 75px);
   }
   @include Break( max-width Breaks(3) ){
     & {
-      margin-top: 6.45rem;
-      top: 0;
-      box-shadow: 1em 0 4em -2em rgba(black,.63);
+      top: 4rem;
+      margin-top: 6.5rem;
+      max-height: calc(100vh - 75px); // TODO: set global $footerHeight to 75px
+      box-shadow: 1em 0 3em -1em rgba(black,.15);
     }
     &#{$OPEN} {
       overflow: hidden;

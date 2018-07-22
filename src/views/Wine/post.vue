@@ -1,27 +1,28 @@
 <template>
-<div id="WinePage" v-if="!context.loading">
+<div id="WinePage" class="WinePage" v-if="!context.loading">
 
-  <UiPanel id="WinePage--header" class="UiTheme_light">
-    <UiBox class="UiTheme_cream">
+  <UiPanel class="WinePage--header UiTheme_light">
+    <UiBox class="WinePage--stats UiTheme_cream">
       <WineStats
         :title="context.title.rendered"
         :fields="context['ws:fields']"
         :category="terms"
+        :acf="context.acf"
         />
     </UiBox>
     
-    <UiBox class="UiTheme_halves">
-      <img id="WineBottle" :src="media" :alt="context.title.rendered" />
+    <UiBox class="WinePage--media  UiTheme_halves">
+      <img :src="media" :alt="context.title.rendered"/>
     </UiBox>
 
-    <UiBox class="UiBox_stack">
+    <UiBox class="WinePage--intro UiBox_stack">
       <p class="wrap_min">{{sections[0].text | truncate}}</p>
       <br>
       <ReadMore href="#content" class="ReadMore_gold"/>
     </UiBox>
   </UiPanel>
 
-  <UiPanel>
+  <UiPanel style="border-top:1px solid #EEE">
     <UiBox><div style="text-align:center">
       <UiHeading>Technical Notes</UiHeading>
 
@@ -149,17 +150,73 @@ export default {
 </script>
 
 <style lang="scss">
-#WinePage {
-  &--header {
-    min-height: 88vh;
-  }
+@import "~@/styles/theme/colors";
+.UiTheme_halves {
+  background-image: linear-gradient(
+    to right,
+    Color(cream) 50%,
+    Color(light) 50%
+  );
 }
-img#WineBottle {
-  mix-blend-mode: multiply;
-  max-height: 42em;
-  max-width: 100%;
-  width: auto;
-  height: auto;
+</style>
+<style lang="scss">
+@import "~@/styles/theme/breaks";
+@import "~@/styles/theme/colors";
+.WinePage {
+  $B: #{&};
+  &--header {
+    @include Break( (max-width Breaks(4)) (min-width Breaks(2)) ){
+      flex-flow: wrap row !important;
+      > #{$B}--stats {
+        flex: 1 65%;
+        width: 65%;
+      }
+      > #{$B}--media {
+        flex: 1 35%;
+        width: 35%;
+      }
+      >:last-child {
+        min-width: 100%;
+      }
+    }
+    @include Break( min-width Breaks(3) ){
+      // min-height: 90vh;
+    }
+  }
+  // &--stats {}
+  &--media {
+    flex: 0 auto !important;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    @include Break( max-width Breaks(2) ){
+      order: -1;
+      margin-bottom: -9rem;
+      padding-top: 6rem !important;
+      background: Color(cream);
+    }
+    img {
+      mix-blend-mode: multiply;
+      max-height: 42em;
+      max-width: 100%;
+      width: auto;
+      height: auto;
+      @include Break( max-width Breaks(4) ){
+        max-height: 88vh;
+      }
+      @include Break( max-width Breaks(3) ){
+        max-height: 90vmin;
+      }
+    }
+    @include Break( max-width Breaks(3) ){
+      padding-top: 5rem !important;
+    }
+  }
+  &--intro {
+    @include Break( max-width Breaks(4) ){
+      padding-top: 3.5rem !important;
+      text-align: center;
+    }
+  }
 }
 </style>
 <style lang="scss">
@@ -198,17 +255,5 @@ img#WineBottle {
   }
   &Box { @extend %UiBox_compact; }
   p { line-height: 1.3 }
-}
-</style>
-<style lang="scss">
-@import "~@/styles/theme/colors";
-.UiTheme_halves {
-  flex: 0 auto !important;
-  padding: 2rem 1rem !important;
-  background-image: linear-gradient(
-    to right,
-    Color(cream) 50%,
-    Color(light) 50%
-  );
 }
 </style>
