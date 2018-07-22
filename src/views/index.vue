@@ -7,7 +7,7 @@
     <UiBoxImage :img="mock6" alt="Welcome">
       
       <header class="home--header  wrap" :style="{ margin:'auto', padding:0 }">
-        <UiHeading :level="2" :style="{maxWidth:'6em'}">
+        <UiHeading :level="2" :style="{maxWidth:'6em',textAlign:'left',lineHeight:1}">
           <b>Schedule a private visit.</b>
         </UiHeading>
         <p>Visits are reserved for List members and are by appointment only.</p>

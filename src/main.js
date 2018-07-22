@@ -15,7 +15,7 @@ import router from "@/includes/use/router"
 
 let
 options = {
-  showFilters: true,
+  showFilters: false,
   filters:{
     categories:[],
     tags:[],
