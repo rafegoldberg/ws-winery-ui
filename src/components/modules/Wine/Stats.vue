@@ -21,7 +21,9 @@
   
   <div v-if="vineyard" style="letter-spacing:.05em; line-height:1.1; margin:.5em 0; text-transform: uppercase;">
     <div class="gold" style="font-size:.8em">Location</div>
-    <div>{{vineyard}}</div>
+    <router-link :to="`/vineyards/${vineyardSlug}`" style="text-decoration:unset">
+      {{vineyard}}
+    </router-link>
   </div>
   
   <hr>
@@ -55,17 +57,23 @@ export default {
   },
   methods:{
     wpMetaParser,
+    getVineyardData( key ){
+      let
+      match = obj=>( JSON.stringify(obj).indexOf('vineyard') > 0 ),
+      entry = loFind( this.category, match )
+      if( !entry ) return false
+      return !entry ? false : (entry[key] || entry)// (entry.name || entry['#CDATA-SECTION'] || entry)
+    }
   },
   computed:{
     metas(){
       return wpMetaParser(this.fields)
     },
     vineyard(){
-      // return "Vineyard Name"
-      let
-      match = obj=>( JSON.stringify(obj).indexOf('vineyard') > 0 ),
-      entry = loFind( this.category, match )
-      return !entry ? false : (entry.name || entry['#CDATA-SECTION'] || entry)
+      return this.getVineyardData('name')
+    },
+    vineyardSlug(){
+      return this.getVineyardData('slug')
     },
     hold(){ 
       if( !this.metas.length ) return

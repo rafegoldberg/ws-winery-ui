@@ -49,7 +49,7 @@
         paddingRight:'1.5rem',
         overflow:'visible'
       }">
-    <keep-alive>
+    <!-- <keep-alive></keep-alive> -->
       <router-view :wpx="wpx" paginate="10" :sticky="true" ref="grid">
         <div slot="error" class="">
           <UiHeading :level="3" class="UiHeading_bold UiHeading_tighten" style="text-align: left">
@@ -67,7 +67,6 @@
           <UiButton :class="{UiTheme_gold:isOpen,UiTheme_rust:!isOpen}" @click.native="clearFilters">Clear Filters</UiButton>
         </div>
       </router-view>
-    </keep-alive>
   </UiBox>
 
 </UiPanel>
