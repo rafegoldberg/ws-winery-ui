@@ -2,7 +2,7 @@
 <div class="WineStats">
 
   <UiHeading :level="1" :scale="4">
-    <b>{{title}}</b>
+    <b v-html="title"/>
   </UiHeading>
 
   <span style="position: relative">
@@ -11,9 +11,8 @@
     <small style="position: absolute; left: 100%; top: 0;">Drink</small>
   </span>
 
-  <div class="gold" style="line-height:1.1; margin:.5em 0">
+  <div class="gold" style="line-height: 1.1; margin: 0 0 .5em 0">
     <em>{{metas.WpbDrinkwindow}}</em>
-    <br>
     <small>Optimal Drinking Window</small>
   </div>
   
@@ -58,11 +57,11 @@ export default {
     wpMetaParser,
     getVineyardData( key ){
       let
-      term = loFilter(this.terms,term=>{
-        return term.slug.indexOf('vineyard') >= 0
+      vineyard = loFilter(this.terms,term=>{
+        var jstr = JSON.stringify(term).toLowerCase()
+        return jstr.indexOf('vineyard') >= 0
         })[0]
-      this.$log(term)
-      return !term ? false : (term[key] || term)
+      return !vineyard ? false : (vineyard[key] || vineyard)
     }
   },
   computed:{
