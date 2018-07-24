@@ -199,6 +199,11 @@ export default {
       max-width: 100%;
       width: auto;
       height: auto;
+
+      height: auto;
+      // min-height: 75vh;
+      max-height: calc(88vh - 4rem);
+
       @include Break( max-width Breaks(4) ){
         max-height: 88vh;
       }
