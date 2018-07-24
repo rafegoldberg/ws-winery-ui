@@ -2,7 +2,6 @@
 <a class="ReadMore" :href="href">
   <slot>{{text}}</slot>
   <br>
-  {{$log($slots)}}
   <slot name="icon" v-if="icon">
     <UiIcon :name="icon" height="1em" width="1em"></UiIcon>
   </slot>
