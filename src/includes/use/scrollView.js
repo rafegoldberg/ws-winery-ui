@@ -7,11 +7,15 @@ let
 lastTheme,
 navOffset
 
-function getAppNavHeight( id='AppNav' ){
-  return document.getElementById(id).offsetHeight
+function getAppNavHeight( el='AppNav' ){
+  if( el = document.getElementById(el) )
+    return el.offsetHeight
+  else
+    return 0
 }
 
 Vue.prototype.$scrollIntersect = function(e){
+  if( !document.getElementById('AppNav') ) return
 
   let
   AppNav    = document.getElementById('AppNav'),
