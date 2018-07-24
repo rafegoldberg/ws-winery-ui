@@ -67,7 +67,7 @@ export default {
       if( this.exclude )
         ep = ep.exclude(this.exclude)
 
-      return ep
+      return ep.perPage(50)
     }
   },
 }
