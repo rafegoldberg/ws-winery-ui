@@ -9,6 +9,6 @@ register_taxonomy("varietals",'post',[
   'show_in_rest' => true,
   "meta_box_cb"  => false,
   'has_archive'  => false,
-  'hierarchical' => false,
+  'hierarchical' => true,
 ])
 ?>
