@@ -101,6 +101,7 @@ export default {
   &--role {
     position: absolute;
     display: inline-block;
+    white-space: nowrap;
     font-size: 1rem;
     font-weight: 100;
     text-transform: uppercase;
@@ -118,18 +119,25 @@ export default {
       }
     }
     @include Break( min-width Breaks(3) ){
-      & { pointer-events: none }
+      pointer-events: none;
       >.UiIcon { display: none }
     }
-    @include Break( max-width Breaks(3) ){ font-size: 1.1rem }
+    @include Break( max-width Breaks(3) ){
+      font-size: 1.1rem;
+      line-height: 1;
+    }
   }
   @include Break( max-width Breaks(3) ){
     &--overview {
       flex-flow: nowrap column;
-      padding-top: 8.5rem !important;
+        @include Break( max-width Breaks(4) ){
+          padding-top: 6rem !important;
+        }
       >:first-child {
-        min-width: 100%;
         margin-bottom: 1.5rem;
+        min-height: 300px;
+        @include Break( min-width Breaks(3) ){ min-width: 100% }
+        @include Break( max-width Breaks(1) ){ min-width: 100% }
       }
       >:last-child {
         padding-left: 0 !important;
@@ -146,6 +154,7 @@ export default {
         object-position: center top;
         height: auto;
         max-height: 32em;
+        width: auto;
     }
     @include Break( max-width Breaks(1) ){
       margin-right: -1rem;

@@ -1,6 +1,6 @@
 @import "~breakpoint-sass";
 
-$breaks: 28rem 38rem 52rem 68rem;
+$breaks: 29rem 38rem 52rem 68rem;
 
 @function Breaks( $i ){
   @return nth($breaks,$i);
