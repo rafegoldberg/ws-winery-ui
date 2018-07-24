@@ -185,11 +185,12 @@ export default {
   // &--stats {}
   &--media {
     flex: 0 auto !important;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
     @include Break( max-width Breaks(2) ){
       order: -1;
-      margin-bottom: -9rem;
+      margin-top: .5rem;
+      margin-bottom: -10rem;
       padding-top: 6rem !important;
       background: Color(cream);
     }
