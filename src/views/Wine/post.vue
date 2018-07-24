@@ -5,9 +5,8 @@
     <UiBox class="WinePage--stats UiTheme_cream">
       <WineStats
         :title="context.title.rendered"
-        :fields="context['ws:fields']"
-        :category="terms"
-        :acf="context.acf"
+        :fields="context.acf"
+        :terms="terms"
         />
     </UiBox>
     

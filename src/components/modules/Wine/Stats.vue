@@ -47,10 +47,9 @@ import UiHeading from "@/components/UI/Heading"
 export default {
   name: "WineStats",
   props:{
-    title:   { type: String        },
-    fields:  { type:[Object,Array] },
-    category:{ type:[Object,Array] },
-    acf:     { type:[Object,Array] },
+    title: { type: String        },
+    fields:{ type:[Object,Array] },
+    terms: { type:[Object,Array] },
   },
   components:{
     UiHeading
