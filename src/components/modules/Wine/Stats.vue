@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import loFind from 'lodash/find';
+import loFilter from 'lodash/filter';
 import wpMetaParser from "./wpMetaParser"
 
 import UiPanel from "@/components/UI/Panel"
@@ -58,10 +58,11 @@ export default {
     wpMetaParser,
     getVineyardData( key ){
       let
-      match = obj=>( JSON.stringify(obj).indexOf('vineyard') > 0 ),
-      entry = loFind( this.category, match )
-      if( !entry ) return false
-      return !entry ? false : (entry[key] || entry)// (entry.name || entry['#CDATA-SECTION'] || entry)
+      term = loFilter(this.terms,term=>{
+        return term.slug.indexOf('vineyard') >= 0
+        })[0]
+      this.$log(term)
+      return !term ? false : (term[key] || term)
     }
   },
   computed:{
