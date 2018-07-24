@@ -1,16 +1,18 @@
 <?/** WP Init Configuration
    */
-  function onInitWP(){
-
+  function onWpInit(){
     add_theme_support('post-thumbnails');
-    
-    add_filter( 'acf/settings/remove_wp_meta_box', '__return_false' );
     
     include "php/tax/staffRoles.php";
     include "php/tax/varietals.php";
-
+    
+    include "php/acf/config.php";
+    include "php/acf/options.php";
   }
-  add_action('init','onInitWP',0);
+  add_action('init','onWpInit',0);
+  ?>
+<?/** Admin Menu Customization
+   */
   ?>
   
 <?/** Custom Post Type Registration
