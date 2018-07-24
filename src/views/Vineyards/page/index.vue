@@ -1,75 +1,81 @@
 <template>
 
-<main id="VineyardPage" class="UiTheme_light" v-if="!context.loading" tag="main">
+  <main id="VineyardPage" class="UiTheme_light" v-if="!context.loading" tag="main">
 
-  <UiPanel id="VineyardPage-overview">
-    <UiBoxImg id="VineyardPage-overviewMedia" :img="media" class="UiTheme_cream" style="background-position: center 25%"/>
-    <UiBox id="VineyardPage-overviewContent" class="UiTheme_light wrap_mid">
-      <div id="VineyardPage-overviewContent-inner" v-if="text">
+    <UiPanel id="VineyardPage-overview">
+      <UiBoxImg id="VineyardPage-overviewMedia" :img="media" class="UiTheme_cream" style="background-position: center 25%" />
+      <UiBox id="VineyardPage-overviewContent" class="UiTheme_light wrap_mid">
+        <div id="VineyardPage-overviewContent-inner" v-if="text">
 
-        <header>
-          <VineyardsPageMenu/>
-          <UiHeading id="VineyardPage-overviewHeader"
-            class="UiHeading_contract UiHeading_space÷2"
-            :level="2"
-            :scale="3"
-            v-html="context.title.rendered"/>
-        </header>
+          <header>
+            <VineyardsPageMenu/>
+            <UiHeading
+              id="VineyardPage-overviewHeader"
+              class="UiHeading_contract UiHeading_space÷2"
+              :level="2"
+              :scale="3"
+              v-html="context.title.rendered"
+              />
+          </header>
 
-        <aside id="VineyardPage-overviewSidebar">
-          <StatGroup
-            v-if="Array.isArray(context.acf.vineyardStats)"
-            v-for="(stats,i) in context.acf.vineyardStats"
-            v-bind="stats"
-            :key="`statGroup-${i}`"
-            >
-          </StatGroup>
-          <div v-if="!Array.isArray(context.acf.vineyardStats)" v-for="tbl in tables" v-html="tbl"/>
-        </aside>
+          <aside id="VineyardPage-overviewSidebar">
+            <StatGroup
+              v-if="Array.isArray(context.acf.vineyardStats)"
+              v-for="(stats,i) in context.acf.vineyardStats"
+              v-bind="stats"
+              :key="`statGroup-${i}`"
+              />
+            <div
+              v-if="!Array.isArray(context.acf.vineyardStats)"
+              v-for="tbl in tables"
+              v-html="tbl"
+              />
+          </aside>
 
-        <div id="VineyardPage-overviewText">
-          <blockquote v-html="text[0]"/>
-          <p v-html="text[1]"/>
-          <ReadMore id="VineyardPage-overviewKick" v-if="text.length>2" href="#content"/>
+          <div id="VineyardPage-overviewText">
+            <blockquote v-html="text[0]" />
+            <p v-html="text[1]" />
+            <ReadMore id="VineyardPage-overviewKick" v-if="text.length>2" href="#content" />
+          </div>
+
         </div>
+      </UiBox>
+    </UiPanel>
 
-      </div>
-    </UiBox>
-  </UiPanel>
-  
-  <UiPanel id="content" v-if="text.length>2" class="UiTheme_cream" style="flex-direction: row-reverse">
-    <UiBox class="UiBox_stack">
-      <div id="VineyardPage--media" class="wrap_mid">
-        <span class="iframeWrap" v-if="iframe.length" v-html="iframe[0]"/>
-      </div>
-      <article id="VineyardPage--text" class="wrap_mid" style="columns: 18em; column-gap: 2rem;">
-        <p v-for="p in text.slice(2)" v-html="p"/>
-      </article>
-    </UiBox>
-  </UiPanel>
+    <UiPanel id="content" v-if="text.length>2" class="UiTheme_cream" style="flex-direction: row-reverse">
+      <UiBox class="UiBox_stack">
+        <div id="VineyardPage--media" class="wrap_mid">
+          <span class="iframeWrap" v-if="iframe.length" v-html="iframe[0]" />
+        </div>
+        <article id="VineyardPage--text" class="wrap_mid" style="columns: 18em; column-gap: 2rem;">
+          <p v-for="p in text.slice(2)" v-html="p" />
+        </article>
+      </UiBox>
+    </UiPanel>
 
-  <UiPanel class="UiTheme_light">
-    <UiBox class="UiBox_stack">
-      <UiHeading :level="2" :scale="3" class="UiHeading_space">
-        Our <span v-html="context.title.rendered"/> Wines
-      </UiHeading>
-      <WineGrid class="wrap" :category="slug"/>
-    </UiBox>
-  </UiPanel>
+    <UiPanel class="UiTheme_light">
+      <UiBox class="UiBox_stack">
+        <UiHeading :level="2" :scale="3" class="UiHeading_space">
+          Our
+          <span v-html="context.title.rendered" /> Wines
+        </UiHeading>
+        <WineGrid class="wrap" :category="slug" />
+      </UiBox>
+    </UiPanel>
 
-  <UiPanel class="UiTheme_dark">
-    <UiBox class="iconListBox">
-      <StaticIconList/>
-    </UiBox>
-  </UiPanel>
-  
-</main>
-<UiBox v-else style="text-align: center; min-height: 68vh">Loading...</UiBox>
+    <UiPanel class="UiTheme_dark">
+      <UiBox class="iconListBox">
+        <StaticIconList/>
+      </UiBox>
+    </UiPanel>
+
+  </main>
+  <UiBox v-else style="text-align: center; min-height: 68vh">Loading...</UiBox>
 
 </template>
 
 <script>
-import WpConnect from "@/VuePress/mix/item"
+import WpConnect from '@/VuePress/mix/item'
 import * as computed from './computed'
 
 import UiPanel from '@/components/UI/Panel'
@@ -77,35 +83,35 @@ import UiBox from '@/components/UI/Box'
 import UiBoxImg from '@/components/UI/Box/Image'
 import UiHeading from '@/components/UI/Heading'
 
-import StatGroup from "@/components/modules/StatGroup"
-import ReadMore from "@/components/modules/ReadMore"
-import WineGrid from "@/components/modules/Wine/grid";
+import StatGroup from '@/components/modules/StatGroup'
+import ReadMore from '@/components/modules/ReadMore'
+import WineGrid from '@/components/modules/Wine/grid'
 import StaticIconList from '@/components/static/icon-list'
 
-import VineyardsPageMenu from "./menu"
+import VineyardsPageMenu from './menu'
 
 export default {
-  name: "VineyardPage",
-  mixins:[ WpConnect ],
-  props:[
-    'type',
-    'category',
-    'slug'
-  ],
-  computed:{
-
+  name: 'VineyardPage',
+  mixins: [WpConnect],
+  props: ['type', 'category', 'slug'],
+  created() {
+    this.$set(this.$root.filters, 'page', 1)
+  },
+  computed: {
     ...computed,
-    
-    endpoint(){
-      if( this.API )
-        return this.API["posts"]().slug(this.slug).embed()
+
+    endpoint() {
+      if (this.API)
+        return this.API['posts']()
+          .slug(this.slug)
+          .embed()
     },
-    embedded(){
-      if( this.context.loading ) return
+    embedded() {
+      if (this.context.loading) return
       return this.context._embedded
     }
   },
-  components:{
+  components: {
     UiPanel,
     UiBox,
     UiBoxImg,
@@ -115,17 +121,17 @@ export default {
     ReadMore,
     VineyardsPageMenu,
     WineGrid,
-    StaticIconList,
-  },
+    StaticIconList
+  }
 }
 </script>
 
 <style lang="scss">
-@import "~@/styles/theme/colors";
-@import "~@/styles/theme/breaks";
-@import "~@/styles/theme/fonts";
+@import '~@/styles/theme/colors';
+@import '~@/styles/theme/breaks';
+@import '~@/styles/theme/fonts';
 
-@import "~@/styles/extend/text.label";
+@import '~@/styles/extend/text.label';
 
 #VineyardPage {
   &-overview {
@@ -133,18 +139,18 @@ export default {
 
     &Content {
       flex-basis: 33%;
-      @include Break( max-width Breaks(4) ){
+      @include Break(max-width Breaks(4)) {
         &-inner {
           display: flex;
           flex-direction: column;
         }
       }
     }
-    
+
     &Header {
       margin: 0 0 1rem;
-      @include Break( max-width Breaks(4) ){
-        margin: .5em auto;
+      @include Break(max-width Breaks(4)) {
+        margin: 0.5em auto;
         text-align: center;
         line-height: 1.1;
       }
@@ -153,19 +159,21 @@ export default {
     &Sidebar {
       float: left;
       width: $sidebar-width;
-      margin: 0 1.4rem 0 -.4rem;
+      margin: 0 1.4rem 0 -0.4rem;
       border-right: 1px solid Color(theme);
 
-      >:first-child caption { padding-top: .3rem }
-      >:not(:first-child) caption {
+      > :first-child caption {
+        padding-top: 0.3rem;
+      }
+      > :not(:first-child) caption {
         border-top: 1px solid;
         margin-top: 0.7rem;
-        @include Break( max-width Breaks(4) ){
+        @include Break(max-width Breaks(4)) {
           border-top: 3px solid;
         }
       }
 
-      @include Break( max-width Breaks(4) ){
+      @include Break(max-width Breaks(4)) {
         float: none;
         width: 100%;
         border-right: none;
@@ -173,20 +181,18 @@ export default {
       }
     }
     &Sidebar:not(:empty) + &Text {
-      @include Break( min-width Breaks(4) ){
+      @include Break(min-width Breaks(4)) {
         margin-left: $sidebar-width + 3%;
       }
-      
     }
-    
+
     &Kick {
       @extend %text-label;
     }
-    
   }
   &--media {
     margin-bottom: 1.5rem;
-    @include Break( max-width Breaks(2) ){
+    @include Break(max-width Breaks(2)) {
       min-width: 100vw;
       margin-left: -2rem;
     }
@@ -208,7 +214,7 @@ export default {
 }
 
 #VineyardPage > .UiPanel:first-child {
-  @include Break( min-width Breaks(4) ){
+  @include Break(min-width Breaks(4)) {
     & {
       min-height: 100vh;
       max-height: unset;
@@ -217,8 +223,8 @@ export default {
       max-height: 100vh;
       position: sticky;
       top: 0;
-      @include Break( min-width Breaks(3) ){
-        background-position: center !important
+      @include Break(min-width Breaks(3)) {
+        background-position: center !important;
       }
     }
   }
@@ -226,11 +232,10 @@ export default {
 </style>
 
 <style lang="scss">
-@import "~@/styles/theme/colors";
-@import "~@/styles/theme/fonts";
+@import '~@/styles/theme/colors';
+@import '~@/styles/theme/fonts';
 
 #VineyardPage {
-  
   blockquote {
     font-family: $ff-alt;
     font-style: italic;
@@ -246,7 +251,7 @@ export default {
 
   &-overview table {
     margin: 0;
-    font-size: .8rem;
+    font-size: 0.8rem;
     * {
       font-size: inherit;
       border: none;
@@ -256,10 +261,9 @@ export default {
       font-weight: 900;
       letter-spacing: 0;
       margin: 0;
-      padding: .8em .4em;
+      padding: 0.8em 0.4em;
       font-size: 1.2em;
     }
   }
-
 } // #VineyardPage
 </style>
