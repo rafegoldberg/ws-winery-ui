@@ -79,24 +79,30 @@ export default {
 <style lang="scss" scoped>
 @import "~@/styles/theme/breaks";
 #StaffList {
-  @include Break( min-width Breaks(4) ){
+  @include Break( min-width Breaks(2) ){
     .UiPanel:not(:nth-child(-n+2)) {
       &:nth-child(odd) {
         flex-direction: row-reverse;
-        >.UiBox:first-child { padding-right: 0 }
+        >.UiBox { padding-right: 0 !important }
         img:only-child { margin-right: 0 }
       }
       &:nth-child(even){
-        > .UiBox:first-child { padding-left: 0 }
+        flex-direction: row;
+        > .UiBox { padding-left: 0 !important }
         img:only-child { margin-left: 0 }
       }
       > .UiBox > img:only-child {
-        max-height: 32em;
-        width: auto;
+        // max-height: 32em;
+        width: 100%;
+        max-width: 50vw;
+        align-self: flex-start;
       }
     }
+    .UiPanel:last-child > .UiBox {
+      padding-bottom: 0 !important;
+    }
   }
-  @include Break( max-width Breaks(4) ){
+  @include Break( max-width Breaks(2) ){
     .UiPanel:not(:nth-child(-n+2)) .UiBox:first-child {
       width: 100vw;
       height: 18em;

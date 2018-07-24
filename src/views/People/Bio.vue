@@ -123,11 +123,6 @@ export default {
     }
     @include Break( max-width Breaks(3) ){ font-size: 1.1rem }
   }
-  &--media {
-    width:  100%;
-    height: 32em;
-    object-fit: cover;
-  }
   @include Break( max-width Breaks(3) ){
     &--overview {
       flex-flow: nowrap column;
@@ -148,7 +143,9 @@ export default {
     object-fit: cover;
     @include Break( (min-width Breaks(1)) (max-width Breaks(3)) ){
         object-fit: contain;
-        object-position: center 20%;
+        object-position: center top;
+        height: auto;
+        max-height: 32em;
     }
     @include Break( max-width Breaks(1) ){
       margin-right: -1rem;
