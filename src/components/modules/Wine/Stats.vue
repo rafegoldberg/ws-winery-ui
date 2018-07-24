@@ -12,7 +12,7 @@
   </span>
 
   <div class="gold" style="line-height: 1.1; margin: 0 0 .5em 0">
-    <em>{{metas.WpbDrinkwindow}}</em>
+    <em style="display: block">{{metas.WpbDrinkwindow}}</em>
     <small>Optimal Drinking Window</small>
   </div>
   
