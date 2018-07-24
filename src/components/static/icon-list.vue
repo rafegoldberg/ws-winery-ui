@@ -41,3 +41,29 @@ export default {
   components:{ UiIcon, UiButton }
 }
 </script>
+
+<style lang="scss" scoped>
+@import "~@/styles/theme/breaks";
+.iconList {
+  @include Break( max-width Breaks(2) ){
+    &--item {
+      flex-flow: wrap row;
+      >svg {
+        flex: 1 0 2.5rem;
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+      }
+      >p {
+        margin: 0;
+        flex: 1 calc(100% - 2.5rem);
+        padding: 0 0 0 1rem;
+      }
+      >button {
+        margin: 1rem auto 0 3.5rem !important;
+        font-size: 0.7rem !important;
+      }
+    }
+  }
+}
+</style>
+
