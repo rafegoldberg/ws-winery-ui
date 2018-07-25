@@ -44,11 +44,50 @@ export default {
 
 <style lang="scss" scoped>
 @import "~@/styles/theme/breaks";
+@import "~@/styles/theme/colors";
+
+@import "~@/components/UI/Box/style";
+
+.iconList {
+  min-width: 68%;
+  margin: 0 auto;
+  &--item {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    & + & {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid Color(theme);
+    }
+    > * {
+      margin: .5rem 2rem;
+      &:last-child { margin: .5rem 0 .5rem auto }
+    }
+    &--label {
+      text-transform: uppercase;
+      font-weight: 600;
+      color: Color(theme);
+      letter-spacing: 0.1em;
+    }
+  }
+  /deep/ .UiIcon {
+    margin: 0;
+    width: 3rem;
+    height: 3rem;
+    object-fit: contain;
+    .icon { fill: Color(theme) !important }
+    // /deep/ &, /deep/ &.icon { fill: currentColor !important }
+  }
+  &Box { @extend %UiBox_compact; }
+}
+
 .iconList {
   @include Break( max-width Breaks(2) ){
     &--item {
       flex-flow: wrap row;
       >svg {
+        align-self: flex-start !important;
         flex: 1 0 2.5rem;
         width: 2.5rem !important;
         height: 2.5rem !important;

@@ -222,43 +222,6 @@ export default {
       text-align: center;
     }
   }
-}
-</style>
-<style lang="scss">
-@import "~@/styles/theme/colors";
-@import "~@/components/UI/Box/style";
-.iconList {
-  min-width: 68%;
-  margin: 0 auto;
-  &--item {
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    & + & {
-      margin-top: 1rem;
-      padding-top: 1rem;
-      border-top: 1px solid Color(theme);
-    }
-    > * {
-      margin: .5rem 2rem;
-      &:last-child { margin: .5rem 0 .5rem auto }
-    }
-    &--label {
-      text-transform: uppercase;
-      font-weight: 600;
-      color: Color(theme);
-      letter-spacing: 0.1em;
-    }
-  }
-  &--icon,
-  .UiIcon {
-    margin: 0;
-    width: 3rem;
-    height: 3rem;
-    object-fit: contain;
-    .icon { fill: Color(theme) }
-  }
-  &Box { @extend %UiBox_compact; }
-  p { line-height: 1.3 }
+  .iconList p { line-height: 1.3 }
 }
 </style>
