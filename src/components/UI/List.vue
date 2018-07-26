@@ -3,7 +3,7 @@
 
   <li v-for="(val,key,ix) in list" :key="ix">
     <slot v-bind="{ item:val, index:key }">
-      {{val}}
+      <span v-html="val.text||val"/>
     </slot>
   </li>
 
@@ -36,8 +36,8 @@ export default {
     &:before {
       position: absolute;
       left: 0;
-      top: 50%;
-      transform: translateY(-50%);
+      top: .38em;
+      // transform: translateY(-50%);
       
       display: inline-block;
       content: " ";

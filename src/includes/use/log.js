@@ -8,6 +8,7 @@ logr.set     = console.groupCollapsed.bind(console)
 logr.set.end = console.groupEnd.bind(console)
 logr.warn    = console.warn.bind(console)
 logr.err     = console.error.bind(console)
+logr.tbl     = console.table.bind(console)
 
 if (process.env.NODE_ENV == "development")
   Vue.prototype.$log = logr;

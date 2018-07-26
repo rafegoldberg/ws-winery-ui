@@ -4,7 +4,7 @@
   <div class="ActionBox--content">
     <!-- @slot Customize the `<ActionBox/>` header. -->
     <slot name="header">
-      <UiHeading class="UiHeading" v-bind="{level,scale}">{{title}}</UiHeading>
+      <UiHeading class="UiHeading" v-bind="{level,scale}" v-if="title">{{title}}</UiHeading>
     </slot>
     <div v-if="layout=='float'"
         class="ActionBox--action"
@@ -15,7 +15,7 @@
     </div>
     <!-- @slot Add custom content to the box. -->
     <slot v-bind="content">
-      <p>{{content}}</p>
+      <div v-html="content"/>
     </slot>
   </div>
   
@@ -37,14 +37,13 @@ export default {
   props: {
     title: {
       type: String,
-      default: "Box Title"
     },
     content: {
       type: [ Array, String, Object ],
       default: ""
     },
     cta: {
-      type: String,
+      type: [String,Object],
     },
     layout: {
       type: String,
@@ -55,7 +54,7 @@ export default {
     },
     scale: {
       type: [String,Number]
-    }
+    },
   },
   components: { UiButton, UiHeading }
 };
@@ -65,6 +64,9 @@ export default {
 .ActionBox {
   &--action {
     margin-top: 1.5em;
+    &:empty {
+      display: none;
+    }
   }
   &--button {
     &_float {
@@ -75,20 +77,20 @@ export default {
 }</style>
 
 <docs>
-Render an `<ActionBox/>` with sub-components:
-  
-```vue
-<ActionBox cta="Drink" title="A, B, C">
-  <UiList :list="['easy as one, two, three','simple as do-re-mi']"></UiList>
-</ActionBox>
-```
+  Render an `<ActionBox/>` with sub-components:
+    
+  ```vue
+  <ActionBox cta="Drink" title="A, B, C">
+    <UiList :list="['easy as one, two, three','simple as do-re-mi']"></UiList>
+  </ActionBox>
+  ```
 
-Pass a custom `[layout]`:
+  Pass a custom `[layout]`:
 
-```vue
-<ActionBox cta="Drink Wine" layout="float">
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, delectus molestiae sapiente vel repudiandae in nulla facism? Harum facilis assumenda maiores vel aliquam. Nulla voluptatem unde nam tenetur repudiandae.
-  </p>
-</ActionBox>
-```
+  ```vue
+  <ActionBox cta="Drink Wine" layout="float">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, delectus molestiae sapiente vel repudiandae in nulla facism? Harum facilis assumenda maiores vel aliquam. Nulla voluptatem unde nam tenetur repudiandae.
+    </p>
+  </ActionBox>
+  ```
 </docs>

@@ -1,7 +1,7 @@
 <template>
 <ol class="Timeline">
 
-  <li v-for="(item,ix) in list" :key="ix" class="Timeline--tick">
+  <li v-for="(item,ix) in entries" :key="ix" class="Timeline--tick">
     <slot v-bind="item">
       <h3 class="Timeline--year">
         {{item.year}}
@@ -19,8 +19,15 @@ export default {
   props:{
     list:{
       type: Array,
-      required: true
     },
+    timeline:{
+      type: Array,
+    },
+  },
+  computed:{
+    entries(){
+      return this.list || this.timeline || []
+    }
   }
 }
 </script>

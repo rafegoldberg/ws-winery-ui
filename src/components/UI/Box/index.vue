@@ -36,9 +36,12 @@ export default {
     display: block;
   }
   &_tall {
-    height: 50vw;
-    max-height: 75vh;
-    min-height: min-content;
+    @include Break( min-width Breaks(4)){    
+      min-height: 65vh;
+      height: min-content;
+      max-height: 100%;
+      box-sizing: content-box;
+    }
   }
 }
 </style>

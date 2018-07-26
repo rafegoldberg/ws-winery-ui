@@ -1,3 +1,5 @@
+import BetaBuilder from "./views/page"
+
 import Home from "./views"
 
 import Staff from "./views/People"
@@ -11,9 +13,15 @@ import WinePost from "./views/Wine/post"
 import Vineyards from "./views/Vineyards"
 import VineyardPage from "./views/Vineyards/page"
 
-import HistoryPage from "./views/pages/history"
+import HistoryPage from "./views/page/history"
 
 export default [
+  { name: "BetaPage",
+    path: "/beta/:slug",
+    component: BetaBuilder,
+    props: true,
+  },
+
   {
     name: "Home",
     path: "/",

@@ -1,11 +1,6 @@
 @import "~@/styles/theme/scale";
 @import "~@/styles/theme/fonts";
 
-@import "./elements/all";
-@import "./elements/hr";
-@import "./elements/table";
-@import "./elements/article";
-
 :root {
   font-size: $root;
   @media (max-width:68rem){
@@ -43,3 +38,9 @@ p, ul, ol, dl, figure, blockquote {
 pre, code {
   font-family: $ff-mono;
 }
+
+@import "./elements/all";
+@import "./elements/hr";
+@import "./elements/blockquote";
+@import "./elements/table";
+@import "./elements/article";

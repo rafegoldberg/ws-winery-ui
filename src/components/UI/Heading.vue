@@ -4,7 +4,7 @@
   [`UiHeading_scale${scale||level}`]: true,
   }">
 
-  <slot/>
+  <slot>{{text}}</slot>
 
 </component>
 </template>
@@ -13,6 +13,7 @@
 export default {
   name: "UiHeading",
   props:{
+    text: "",
     level:{ type: [String,Number], default:3 },
     scale:{ type: [String,Number] },
   }

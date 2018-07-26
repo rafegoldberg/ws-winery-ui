@@ -7,11 +7,12 @@ Vue.config.productionTip = false
 import "@/includes/use/log"
 import "@/includes/use/async"
 import "@/includes/use/scrollView"
-import "@/includes/filters"
+import "@/includes/use/googleMaps"
 
 import App from "./App.vue"
 import router from "@/includes/use/router"
 
+import "@/includes/filters"
 
 let
 options = {

@@ -21,7 +21,7 @@
         </feMerge>
       </filter>
     </defs>
-    <g :fill="fill">
+    <g class="icon" :fill="fill">
       <slot>
         <component :is="`icon-${name}`"/>
       </slot>

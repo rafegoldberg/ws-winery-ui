@@ -27,14 +27,19 @@
     @extend %wraps, %wrapsDefault;
     width: 36rem;
   }
+  &_tiny {
+    @extend %wraps, %wrapsDefault;
+    width: 23rem;
+  }
   &_flex {
-    &, &_mid, &_min {
+    &, &_mid, &_min, &_tiny {
       @extend %wraps, %wrapsFlexbox;
     }
     @include Break( min-width Breaks(3) ){
       & {     flex-basis: 72rem !important }
       &_mid { flex-basis: 54rem !important }
       &_min { flex-basis: 36rem !important }
+      &_tiny{ flex-basis: 23rem !important }
     }
   }
 }
