@@ -55,11 +55,16 @@ export default {
   .UiBox > &:only-child {
     width: 100vw !important;
     min-height: 32vh;
-    @include Break( min-width Breaks(4) ){
-      position: absolute;
-      width: 100% !important;
-      height: 100% !important;
-    }
+    position: absolute;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+</style>
+<style lang="scss">
+.MapBoxWrap {
+  &.UiBox {
+    min-height: 16rem !important;
   }
 }
 </style>
