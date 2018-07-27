@@ -2,6 +2,7 @@
   <main :id="$route.name" v-if="!page.loading">
 
     <UiPanel v-for="(panel,i) in acf.panels"
+        v-if="panel.boxes"
         :connect="panel.connect || false"
         :class="panel.class||''">
 
@@ -11,16 +12,17 @@
           :is="box.img ? 'UiBoxImage' : 'UiBox' "
           :img="box.img || ''">
         
-        
-
         <component
           v-if="!box.wrap"
           :is="com.acf_fc_layout"
           v-for="com in box.components"
           v-bind="com.props"
           />
-        <div v-else :class="wrapClass(box.wrap)">
-          <component v-for="com in box.components" :is="com.acf_fc_layout" v-bind="com.props"/>
+        <div v-if="box.wrap" :class="wrapClass(box.wrap)">
+          <component
+            :is="com.acf_fc_layout"
+            v-for="com in box.components"
+            v-bind="com.props"/>
         </div>
 
       </component>
@@ -43,6 +45,7 @@ import MapBox from "@/components/modules/MapBox"
 import ActionBox from "@/components/modules/ActionBox"
 import DiscoverBox from "@/components/modules/DiscoverBox"
 import Timeline from "@/components/modules/Timeline"
+import FaqList from "@/components/modules/FaqList"
 
 export default {
   name: "Beta",
@@ -58,6 +61,7 @@ export default {
     ActionBox,
     DiscoverBox,
     Timeline,
+    FaqList
   },
   props:{
     slug: "",
