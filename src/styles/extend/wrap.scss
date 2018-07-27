@@ -36,10 +36,13 @@
       @extend %wraps, %wrapsFlexbox;
     }
     @include Break( min-width Breaks(3) ){
-      & {     flex-basis: 72rem !important }
-      &_mid { flex-basis: 54rem !important }
-      &_min { flex-basis: 36rem !important }
-      &_tiny{ flex-basis: 23rem !important }
+      // TODO: set these styles inside the following class wrap
+      //       to test this fix for wrappers in stacked UiBoxes
+      // :not(.UiBoxImage):not(.UiBox_stack) & {}
+        & {     flex-basis: 72rem !important }
+        &_mid { flex-basis: 54rem !important }
+        &_min { flex-basis: 36rem !important }
+        &_tiny{ flex-basis: 23rem !important }
     }
   }
 }
