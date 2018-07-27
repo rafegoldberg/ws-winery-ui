@@ -53,11 +53,19 @@ export default {
 
   &_space  {
     margin-bottom: 1.2em;
-    &÷2, &Half { margin-bottom: .6em }  
+    &÷2, &Half { margin-bottom: .6em }
+    @include Break( max-width Breaks(3) ){
+      margin-bottom: 1rem;
+      &÷2, &Half { margin-bottom: .4rem }
+    }
   }
   &_push   {
     margin-top: 1.2em;
     &÷2, &Half { margin-top: .6em }
+    @include Break( max-width Breaks(3) ){
+      margin-top: 1rem;
+      &÷2, &Half { margin-top: .4rem }
+    }
   }
   &_caps     { text-transform: uppercase }
   &_expand   { line-height: 1.6          }
