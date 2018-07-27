@@ -240,6 +240,8 @@ export default {
     font-family: $ff-alt;
     font-style: italic;
     color: Color(theme);
+    border-left: 0 solid transparent;
+    padding-left: 0;
   }
 
   hr {
