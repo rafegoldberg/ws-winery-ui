@@ -6,7 +6,7 @@
   </UiHeading>
   <table class="WineWidget--detail">
     <tr>
-      <td v-if="price">${{parseFloat(price).toFixed(2)}}</td>
+      <td v-if="price">${{parseFloat(price).toFixed(0)}}</td>
       <td>{{vintage || 'N/A'}}</td>
     </tr>
   </table>

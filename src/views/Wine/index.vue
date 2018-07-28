@@ -15,7 +15,7 @@
       <FiltersGroup
         title="Varietal"
         term="varietals"
-        :show="true"
+        :show="false"
         :wpx="wpapi=>wpapi
           .varietals()
           .exclude([62,5])
@@ -25,7 +25,7 @@
         term="tags"
         title="Vintage"
         class="FiltersGroup_pills"
-        :show="true"
+        :show="false"
         :wpx="wp=>wp
           .tags()
           .exclude([69,72]) // spring, port
@@ -34,7 +34,7 @@
       <FiltersGroup
         title="Vineyard"
         type="radio"
-        :show="true"
+        :show="false"
         :wpx="wpapi=>wpapi
           .categories()
           .parent(73) // vineyards

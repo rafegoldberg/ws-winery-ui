@@ -140,7 +140,7 @@ export default {
 .WineGrid {
   & {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 2em;
   }
   &--item {
@@ -157,8 +157,11 @@ export default {
     /deep/ .WineWidget--detail { font-size: .8em; }
   }
   @include Break( max-width Breaks(4) ){
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 1rem;
+  }
+  @include Break( max-width Breaks(3) ){
+    grid-template-columns: 1fr 1fr;
   }
   @include Break( max-width Breaks(2) ){
     /deep/ .WineWidget--detail td:not(:first-child) { display: none }
