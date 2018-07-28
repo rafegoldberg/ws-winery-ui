@@ -1,34 +1,35 @@
 <template>
   <main :id="$route.name" v-if="!page.loading">
-
     <UiPanel v-for="(panel,i) in acf.panels"
         v-if="panel.boxes"
         :connect="panel.connect || false"
-        :class="panel.class||''">
-
-      <component v-for="(box,i) in panel.boxes" :key="`box-${i}`"
-          :id="box.id"
+        :class="panel.class||''"
+        :key="panel.id"
+        >
+      <component v-for="(box,i) in panel.boxes" :key="box.id"
           :class="[ ...(box.class||[]), box.theme ].join(' ')"
           :is="box.img ? 'UiBoxImage' : 'UiBox' "
-          :img="box.img || ''">
+          :img="box.img || ''"
+          >
         
-        <component
-          v-if="!box.wrap"
-          :is="com.acf_fc_layout"
+        <component v-if="!box.wrap"
           v-for="com in box.components"
+          :key="`${box.id}--com${i}`"
+          :is="com.acf_fc_layout"
           v-bind="com.props"
           />
+
         <div v-if="box.wrap" :class="wrapClass(box.wrap)">
           <component
+            v-for="(com,i) in box.components"
+            :key="`${box.id}--com${i}`"
             :is="com.acf_fc_layout"
-            v-for="com in box.components"
-            v-bind="com.props"/>
+            v-bind="com.props"
+            />
         </div>
 
       </component>
-
     </UiPanel>
-
   </main>
 </template>
 
