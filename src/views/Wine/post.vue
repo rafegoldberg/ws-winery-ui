@@ -47,7 +47,7 @@
   </UiPanel>
 
   <UiPanel style="max-height:68vh; overflow: hidden;">
-    <UiBoxImg :img="img4" class="UiBoxImage_vignette"/>
+    <UiBoxImg :img="img4" class="UiBox_tall UiBoxImage_vignette"/>
   </UiPanel>
 
   <UiPanel v-if="sections[2]" class="UiTheme_dark">
@@ -67,11 +67,11 @@
   </UiPanel>
 
   <UiPanel style="max-height:62vh; overflow: hidden;">
-    <UiBoxImg :img="img3"/>
+    <UiBoxImg class="UiBox_tall" :img="img3"/>
   </UiPanel>
   
   <UiPanel class="UiTheme_dark">
-    <UiBox class="iconListBox">
+    <UiBox>
       <StaticIconList/>
     </UiBox>
   </UiPanel>
@@ -222,6 +222,9 @@ export default {
       text-align: center;
     }
   }
-  .iconList p { line-height: 1.3 }
+  // .iconList p {
+  //   margin-top: 1.5em;
+  //   line-height: 1.3;
+  // }
 }
 </style>
