@@ -6,13 +6,17 @@
       @mouseout="(open=false)"
       >
     <UiList :list="{
+      'Wine Library': '/wines',
+      'Our Wine': '/beta/our-wines',
       'Our Vineyards': '/vineyards',
-      'Our Wine': '/wines',
       'Our People': '/people',
-      'Our History': '/history',
+      'Our History': '/beta/history',
+      'Purchasing': '/beta/purchase',
+      'Visit Us': '/beta/visit',
+      'Contact Us': '/beta/contact',
       }">
       <router-link slot-scope="{ item, index }" :to="item" tag="li">
-        <a>{{index}}</a>
+        <a style="text-decoration: none">{{index}}</a>
       </router-link>
     </UiList>
   </nav>
@@ -41,6 +45,7 @@ export default {
 
 <style lang="scss">
 @import '~@/styles/theme/colors';
+@import '~@/styles/theme/fonts';
 @import '~@/styles/extend/themes';
 .AppMenu {
 
@@ -99,6 +104,21 @@ export default {
     // #AppNav.cream & {
     //   color: Color(theme);
     // }
+  }
+  .open,
+  .active {
+    a {
+      font-family: $ff-serif;
+      white-space: nowrap;
+    }
+  }
+  .open a {
+    font-weight: 600;
+    letter-spacing: -.015em;
+  }
+  .active a {
+    font-weight: 900;
+    letter-spacing: -.03em;
   }
 }
 </style>

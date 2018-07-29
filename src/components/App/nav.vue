@@ -1,13 +1,10 @@
 <template>
 <nav id="AppNav">
 
-  <router-link to="/">
-    <UiIcon
-      id="AppNav-logo"
-      name="logo"
+  <router-link id="AppNav-logo" to="/">
+    <UiIcon name="logo"
       height="auto"
-      width="9rem"
-      :view="[0,0,180,45.71]"
+      width="8.5rem"
       filter="url(#dropshadow)"
       />
   </router-link>
@@ -82,15 +79,23 @@ export default {
     transition-duration: .3s !important;
     transition-timing-function: ease-in-out !important;
   }
+  &-logo {
+    >svg {
+      pointer-events: none;
+    }
+    @include Break( min-width Breaks(4) ){
+      align-self: flex-start !important;
+    }
+    @include Break( max-width Breaks(4) ){
+      >svg:only-child { width: 5rem !important }
+    }
+  }
   @include Break( max-width Breaks(4) ){
     padding: 0 1em;
     height: 4rem;
     background: rgba(250, 250, 250, .96);
     color: Color(slate) !important;
     box-shadow: -4px 0 2rem 4px rgba(48, 41, 3, 0.08);
-    &-logo {
-      width: 7.75rem !important;
-    }
   }
 }
 </style>
