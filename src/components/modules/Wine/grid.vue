@@ -110,8 +110,8 @@ export default {
           .category([this.category||'wine'])
 
       let
-      per = this.paginate || 9,
-      off = this.paginate  % 3
+      per = this.paginate || 12,
+      off = this.paginate  % 4
       per = per - off
       
       return endpoint.perPage(per).embed()

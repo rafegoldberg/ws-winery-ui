@@ -50,7 +50,7 @@
         overflow:'visible'
       }">
     <!-- <keep-alive></keep-alive> -->
-      <router-view :wpx="wpx" paginate="10" :sticky="true" ref="grid">
+      <router-view :wpx="wpx" paginate="12" :sticky="true" ref="grid">
         <div slot="error" class="">
           <UiHeading :level="3" class="UiHeading_bold UiHeading_tighten" style="text-align: left">
             No Matches
