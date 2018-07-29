@@ -7,6 +7,7 @@
         :key="panel.id"
         >
       <component v-for="(box,i) in panel.boxes" :key="box.id"
+          :id="box.id"
           :class="[ ...(box.class||[]), box.theme ].join(' ')"
           :is="box.img ? 'UiBoxImage' : 'UiBox' "
           :img="box.img || ''"
@@ -47,6 +48,8 @@ import ActionBox from "@/components/modules/ActionBox"
 import DiscoverBox from "@/components/modules/DiscoverBox"
 import Timeline from "@/components/modules/Timeline"
 import FaqList from "@/components/modules/FaqList"
+import IconList from "@/components/static/icon-list"
+import ContactForm from "@/components/static/contact-form"
 
 export default {
   name: "Beta",
@@ -62,7 +65,9 @@ export default {
     ActionBox,
     DiscoverBox,
     Timeline,
-    FaqList
+    FaqList,
+    IconList,
+    ContactForm,
   },
   props:{
     slug: "",
