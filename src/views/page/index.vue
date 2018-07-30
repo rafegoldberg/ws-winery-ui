@@ -1,74 +1,18 @@
 <template>
-  <main :id="$route.name" v-if="!page.loading">
-    <UiPanel v-for="(panel,i) in acf.panels"
-        v-if="panel.boxes"
-        :connect="panel.connect || false"
-        :class="panel.class||''"
-        :key="panel.id"
-        >
-      <component v-for="(box,i) in panel.boxes" :key="box.id"
-          :id="box.id"
-          :class="[ ...(box.class||[]), box.theme ].join(' ')"
-          :is="box.img ? 'UiBoxImage' : 'UiBox' "
-          :img="box.img || ''"
-          >
-        
-        <component v-if="!box.wrap"
-          v-for="com in box.components"
-          :key="`${box.id}--com${i}`"
-          :is="com.acf_fc_layout"
-          v-bind="com.props"
-          />
+<div :id="$route.name">
 
-        <div v-if="box.wrap" :class="wrapClass(box.wrap)">
-          <component
-            v-for="(com,i) in box.components"
-            :key="`${box.id}--com${i}`"
-            :is="com.acf_fc_layout"
-            v-bind="com.props"
-            />
-        </div>
+  <PageBuilder v-if="!page.loading" :panels="acf.panels"/>
 
-      </component>
-    </UiPanel>
-  </main>
+</div>
 </template>
-
 <script>
 import API from "@/VuePress/mix/API"
-
-import UiPanel from "@/components/UI/Panel"
-import UiBox from "@/components/UI/Box"
-import UiBoxImage from "@/components/UI/Box/Image"
-
-import UiHeading from "@/components/UI/Heading"
-import UiList from "@/components/UI/List"
-import MapBox from "@/components/modules/MapBox"
-import ActionBox from "@/components/modules/ActionBox"
-import DiscoverBox from "@/components/modules/DiscoverBox"
-import Timeline from "@/components/modules/Timeline"
-import FaqList from "@/components/modules/FaqList"
-import IconList from "@/components/static/icon-list"
-import ContactForm from "@/components/static/contact-form"
+import PageBuilder from "@/components/PageBuilder"
 
 export default {
-  name: "Beta",
+  name: "Page",
   mixins:[ API ],
-  components:{
-    UiPanel,
-    UiBox,
-    UiBoxImage,
-
-    UiHeading,
-    UiList,
-    MapBox,
-    ActionBox,
-    DiscoverBox,
-    Timeline,
-    FaqList,
-    IconList,
-    ContactForm,
-  },
+  components:{ PageBuilder },
   props:{
     slug: "",
     fetch:{
@@ -80,11 +24,6 @@ export default {
         return ept
       }
     }
-  },
-  methods:{
-    wrapClass( size ){
-      return size.replace( '_', "wrap_flex_" )
-    },
   },
   computed:{
     endpoint(){
