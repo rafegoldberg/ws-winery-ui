@@ -12,8 +12,8 @@ export default new Router({
   mode: "history",
   linkActiveClass: "open",
   linkExactActiveClass: "active",
-  scrollBehavior (to, from, savedPosition) {
+/*   scrollBehavior (to, from, savedPosition) {
     return { x:0, y:0 }
   }
-
+ */
 });
