@@ -1,12 +1,12 @@
 <template>
-  <a class="DiscoverBox" :href="link">
+  <router-link class="DiscoverBox" :to="link">
     <header class="DiscoverBox--header">
       <small class="DiscoverBox--discoverText">Discover</small>
       <UiHeading v-bind="header"/>
     </header>
     <UiIcon v-bind="icon"/>
     <!-- <pre v-html="{header,link,icon}"/> -->
-  </a>
+  </router-link>
 </template>
 
 <script>
