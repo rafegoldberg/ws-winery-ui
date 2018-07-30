@@ -7,7 +7,7 @@
       >
     <UiList :list="{
       'Wine Library': '/wines',
-      'Our Wine': '/beta/our-wines',
+      'Our Wines': '/beta/our-wines',
       'Our Vineyards': '/vineyards',
       'Our People': '/people',
       'Our History': '/beta/history',

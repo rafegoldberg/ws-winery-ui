@@ -19,12 +19,12 @@ add_action( 'send_headers', 'API_EnableCrossOrigin' );
 
 <? 
 function API_EnableMetaFields(){
-  
+  # TODO remove; action adds additional data
+  #      to _all_ API calls, slows load...
   register_rest_field('post','ws:fields',array(
     'get_callback'=> function($object){
       //get the id of the post object array
       $post_id = $object['id'];
-      
       //return the post meta
       return get_post_meta( $post_id );
     },

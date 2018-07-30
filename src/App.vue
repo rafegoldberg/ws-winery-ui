@@ -1,7 +1,6 @@
 <template>
   <div id="app">
 
-
     <AppNav/>
     <router-view :key="$route.fullPath" />
     <AppFooter class="UiTheme_dark" />

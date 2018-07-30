@@ -13,8 +13,6 @@ import WinePost from "./views/Wine/post"
 import Vineyards from "./views/Vineyards"
 import VineyardPage from "./views/Vineyards/page"
 
-import HistoryPage from "./views/page/history"
-
 export default [
   { name: "BetaPage",
     path: "/beta/:slug",
@@ -26,13 +24,6 @@ export default [
     name: "Home",
     path: "/",
     component: Home,
-  },
-
-  {
-    name: "History",
-    path: "/history",
-    component: HistoryPage,
-    props: { default: true, type:"pages" }
   },
 
   {
