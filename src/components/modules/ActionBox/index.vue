@@ -24,6 +24,7 @@
     <slot name="action" v-bind="{cta}">
       <UiButton v-if="cta">{{cta}}</UiButton>
     </slot>
+    <ReadMore v-if="ReadMore" :href="ReadMore.indexOf('#')==0 ? ReadMore:'#' + ReadMore"/>
   </div>
   
 </div>
@@ -32,6 +33,7 @@
 <script>
 import UiButton from "@/components/UI/Button"
 import UiHeading from "@/components/UI/Heading"
+import ReadMore from "@/components/modules/ReadMore"
 export default {
   name: "ActionBox",
   props: {
@@ -45,6 +47,10 @@ export default {
     cta: {
       type: [String,Object],
     },
+    ReadMore: {
+      type: [String,Boolean],
+      default: false,
+    },
     layout: {
       type: String,
       default: ""
@@ -56,14 +62,22 @@ export default {
       type: [String,Number]
     },
   },
-  components: { UiButton, UiHeading }
+  components: { UiButton, UiHeading, ReadMore }
 };
 </script>
 
 <style lang="scss" scoped>
 .ActionBox {
   &--action {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     margin-top: 1.5em;
+    > .ReadMore {
+      display: inline-block;
+      width: unset;
+      &:not(:first-child) { margin-left: 1em }
+    }
     &:empty {
       display: none;
     }
