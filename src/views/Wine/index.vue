@@ -51,6 +51,9 @@
       }">
     <!-- <keep-alive></keep-alive> -->
       <router-view :wpx="wpx" paginate="12" :sticky="true" ref="grid">
+        <div slot="pagination-first" style="cursor: pointer; opacity: .5" @click="(isOpen=true)">
+          {{getFilters().join(' / ')}}
+        </div>
         <div slot="error" class="">
           <UiHeading :level="3" class="UiHeading_bold UiHeading_tighten" style="text-align: left">
             No Matches
@@ -61,7 +64,8 @@
                 cursor: !isOpen ? 'pointer' : '',
                 fontWeight: !isOpen ? 'bold' : '',
                 textDecoration: !isOpen ? 'underline' : '',
-              }">updating your filters</button>, or 
+              }">updating your filters</button>, 
+            or 
             <button @click="clearFilters" style="all:unset;cursor:pointer;">clear</button> them
             to start over.</p>
           <UiButton :class="{UiTheme_gold:isOpen,UiTheme_rust:!isOpen}" @click.native="clearFilters">Clear Filters</UiButton>
@@ -124,6 +128,13 @@ export default {
   methods:{
     hasFilters,
     clearFilters,
+    getFilters(){
+      var
+      dom = document.querySelectorAll('.WineFilters form:only-of-type :checked'),
+      arr = Array.from(dom)
+
+      return arr.map(el=>el.attributes['label'].value)
+    },
     testr(){
       var
       ref = this.$refs.grid
