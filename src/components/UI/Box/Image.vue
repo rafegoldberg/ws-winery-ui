@@ -67,6 +67,12 @@ export default {
     );
   }
   
+  &_sticky {
+    min-height: 100vh;
+    max-height: 100vh;
+    position: sticky;
+    top: 0;
+  }
   &_fixed {
     background-attachment: fixed;
     background-size: cover;
