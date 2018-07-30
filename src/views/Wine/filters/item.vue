@@ -2,6 +2,7 @@
   <label class="FilterItem">
     <input class="FilterItem--status"
       v-model="$root.filters[$parent.term||taxonomy]"
+      :label="name"
       :type="$parent.type||checkbox"
       :name="$parent.title"
       :value="id">
