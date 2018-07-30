@@ -20,6 +20,9 @@
     </div>
 
     <div class="WineGridPagination" :class="{ WineGridPagination_sticky: sticky }" v-if="paginate && !context.loading && context.length">
+      <div style="margin-right:auto">
+        <slot name="pagination-first"/>
+      </div>
       <span @click="( page = parseInt(page||1)>1 ? parseInt(page||1)-1 : pages.totalPages )">
         <UiIcon name="ArrowLeft" width="1rem" height="1rem"/>
       </span>
@@ -53,6 +56,9 @@
       <span @click="( page = parseInt(page||1)<pages.totalPages ? parseInt(page||1)+1 : 1 )">
         <UiIcon name="ArrowRight" width="1rem" height="1rem"/>
       </span>
+      <div style="margin-left:auto">
+        <slot name="pagination-last"/>
+      </div>
     </div>
   </template>
 
