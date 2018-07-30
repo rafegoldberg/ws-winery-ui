@@ -1,9 +1,7 @@
 <template>
-<div :id="$route.name">
 
-  <PageBuilder v-if="!page.loading" :panels="acf.panels"/>
+<PageBuilder v-if="!page.loading" :panels="acf.panels" :id="$route.name"/>
 
-</div>
 </template>
 <script>
 import API from "@/VuePress/mix/API"
