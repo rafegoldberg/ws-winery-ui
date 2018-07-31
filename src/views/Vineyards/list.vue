@@ -1,6 +1,6 @@
 <template>
   <UiBox id="VineyardsList" v-if="!context.loading">
-    <MediaList :list="context" :title="title">
+    <MediaList :list="[...context].reverse()" :title="title">
       <router-link :to="item.slug"
                     append
                     slot-scope="{item}">

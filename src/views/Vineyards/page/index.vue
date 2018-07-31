@@ -8,7 +8,11 @@
         <div id="VineyardPage-overviewContent-inner" v-if="text">
 
           <header>
-            <VineyardsPageMenu/>
+            <VineyardsPageMenu
+              all="/vineyards"
+              :next="adjacent.next && adjacent.next.slug"
+              :prev="adjacent.prev && adjacent.prev.slug"
+              />
             <UiHeading
               id="VineyardPage-overviewHeader"
               class="UiHeading_contract UiHeading_space÷2"
@@ -106,6 +110,12 @@ export default {
           .slug(this.slug)
           .embed()
     },
+
+    adjacent(){
+      if (this.context.loading) false
+      return this.context.adjacent
+    },
+
     embedded() {
       if (this.context.loading) return
       return this.context._embedded
@@ -159,7 +169,7 @@ export default {
     &Sidebar {
       float: left;
       width: $sidebar-width;
-      margin: 0 1.4rem 0 -0.4rem;
+      margin: 0 1.4rem 0 -.4rem;
       border-right: 1px solid Color(theme);
 
       > :first-child caption {
@@ -177,7 +187,8 @@ export default {
         float: none;
         width: 100%;
         border-right: none;
-        padding: 0 1rem;
+        margin: 0;
+        padding: 0;
       }
     }
     &Sidebar:not(:empty) + &Text {
@@ -241,6 +252,7 @@ export default {
     font-style: italic;
     color: Color(theme);
     border-left: 0 solid transparent;
+    margin-left: 0;
     padding-left: 0;
   }
 

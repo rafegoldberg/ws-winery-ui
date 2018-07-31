@@ -1,17 +1,17 @@
 <template>
 <nav id="VineyardsPage--overviewNav">
 
-  <a href="#prior">
+  <router-link v-if="prev" :to="prev">
     <UiIcon name="arrow-left" width=".75em" height=".75em"></UiIcon>
     Prior
-  </a>
+  </router-link>
 
-  <router-link to="/vineyards">All</router-link>
+  <router-link :to="all">All</router-link>
 
-  <a href="#next">
+  <router-link v-if="next" :to="next">
     Next
     <UiIcon name="arrow-right" width=".75em" height=".75em"></UiIcon>
-  </a>
+  </router-link>
   
 </nav>
 </template>
@@ -20,6 +20,11 @@
 import UiIcon from "@/components/UI/Icon"
 export default {
   name: "VineyardsPageMenu",
+  props:{
+    all: { type:String, default:"." },
+    next:{ type:String },
+    prev:{ type:String },
+  },
   components:{ UiIcon },
 }
 </script>
@@ -30,8 +35,16 @@ export default {
 @import "~@/styles/extend/text.label";
 
 #VineyardsPage--overviewNav {
-  margin-bottom: 0.5em;
-  
+  & {
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    line-height: 2;
+    @include Break( max-width Breaks(3) ) {
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+  }
   > * + * {
     margin-left: 1rem;
   }
@@ -40,8 +53,24 @@ export default {
     @extend %text-label;
     display: inline-flex;
     align-items: center;
-    &:first-child .UiIcon { margin-right: .4em }
-    &:last-child  .UiIcon { margin-left:  .3em }
+    text-decoration: none;
+    .UiIcon {
+      transition: .2s ease-out;
+    }
+    &:first-child {
+      .UiIcon {
+        right: 100%;
+        margin-right: .2em;
+      }
+      // &:hover .UiIcon { transform: translateX(-.36em) }
+    }
+    &:last-child  {
+      .UiIcon {
+        left: 100%;
+        margin-left: .1em;
+      }
+      // &:hover .UiIcon { transform: translateX(.36em) }
+    }
   }
   
   @include Break( max-width Breaks(4) ){
