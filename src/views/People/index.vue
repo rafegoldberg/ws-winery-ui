@@ -1,7 +1,7 @@
 <template>
 <div id="StaffList">
   <UiPanel class="UiTheme_dark" connect="down">
-    <UiBoxImage :img="imgs.cover" style="min-height:70vh"/>
+    <UiBoxImage :img="imgs.cover"/>
     <UiBox>
       <div>
         <UiHeading :level="2" class="UiHeading_gold">Our People</UiHeading>

@@ -65,13 +65,16 @@ export default {
       rgba(0,0,0,.63) 68%, 
       rgba(0,0,0,.75) 88%
     );
+    pointer-events: none;
   }
   
   &_sticky {
-    min-height: 100vh;
-    max-height: 100vh;
-    position: sticky;
-    top: 0;
+    @include Break( min-width Breaks(3) ){
+      min-height: 100vh;
+      max-height: 100vh;
+      position: sticky;
+      top: 0;
+    }
   }
   &_fixed {
     background-attachment: fixed;

@@ -5,7 +5,11 @@
     <i v-if="typeof connect == 'string'" class="UiPanel--connect" :class="{
         [`UiPanel--connect-${connect}`]: connect
       }">
-      <slot name="connect"/>
+      <slot name="connect">
+        <small v-if="connect=='down'" @click="$el.nextElementSibling.scrollIntoView(true)">
+          Scroll for More
+        </small>
+      </slot>
     </i>
   </component>
 
@@ -31,9 +35,12 @@ export default {
 @import "~@/styles/theme/colors";
 @import "~@/styles/theme/fonts";
 
+.UiPanel.UiPanel_connected > .UiBoxImage {
+  padding-bottom: 5rem !important;
+}
 .UiPanel--connect {
   
-  $height: 4em;
+  $height: 4.5em;
   $slot-offset: -1.9rem;
   
   // @at-root .UiPanel_connected {

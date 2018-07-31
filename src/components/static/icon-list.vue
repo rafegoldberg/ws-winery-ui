@@ -8,7 +8,7 @@
       <br>
       <small>Visit our wine library to find a specific bottle or peruse our full collection.</small>
     </p>
-    <UiButton>Library</UiButton>
+    <router-link class="UiButton" to="/wines">Library</router-link>
   </div>
   <div class="iconList--item">
     <UiIcon name="barrels" width="3rem" height="3rem"/>
@@ -17,7 +17,7 @@
       <br>
       <small>Our wines are available twice a year for purchase.</small>
     </p>
-    <UiButton>Purchasing</UiButton>
+    <router-link class="UiButton" to="/beta/purchase">Purchasing</router-link>
   </div>
   <div class="iconList--item">
     <UiIcon name="glasses" width="3rem" height="3rem"/>
@@ -26,7 +26,7 @@
       <br>
       <small>Arrange a private tour and tasting tailored specifically for you.</small>
     </p>
-    <UiButton>Visiting</UiButton>
+    <router-link class="UiButton" to="/beta/visit">Visiting</router-link>
   </div>
 
 </section>

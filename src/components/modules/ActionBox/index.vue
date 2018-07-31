@@ -67,6 +67,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~@/styles/theme/colors";
+@import "~@/styles/theme/breaks";
 .ActionBox {
   &--action {
     display: flex;
@@ -76,7 +78,16 @@ export default {
     > .ReadMore {
       display: inline-block;
       width: unset;
+      text-decoration: none;
+      color: Color(theme);
+      font-weight: bold;
       &:not(:first-child) { margin-left: 1em }
+      &:only-child {
+        @include Break( max-width Breaks(3) ){
+          margin-left:  auto;
+          margin-right: auto;
+        }
+      }
     }
     &:empty {
       display: none;

@@ -31,6 +31,7 @@ export default {
   & {
     font-family: $ff-serif;
     font-weight: 300;
+    line-height: 1.2;
   }
 
   &_sans {

@@ -6,7 +6,7 @@
     position: relative;
 
     align-self: stretch;
-    padding: 4rem;
+    padding: 5rem 4rem;
     max-width: 100%;
     overflow: hidden;
   }
@@ -21,7 +21,7 @@
     padding-right: 0;
   }
   @include Break( max-width Breaks(-1)){
-    padding: 3.5rem 2.5rem;
+    padding: 4.25rem 3.25rem;
   }
   @include Break( max-width Breaks(2)){
     padding: 3rem 2rem;

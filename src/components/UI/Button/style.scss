@@ -4,13 +4,17 @@
   & {
     appearance: none;
     cursor: pointer;
-    padding: .8em 1.5em;
+    padding: .5em 1.2em;
     font-size: .8em;
     font-family: $ff-sans;
     font-weight: 500;
     border: 1px solid rgba(Color(dark),.15);
     letter-spacing: .1em;
     text-transform: uppercase;
+    line-height: 2em;
+    &, >a:only-child {
+      text-decoration: none;
+    }
   }
   &:not([class*="UiTheme_"]):not(#{&}_outline){
     color: Color(matte);
