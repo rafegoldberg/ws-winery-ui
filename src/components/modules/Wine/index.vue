@@ -1,6 +1,6 @@
 <template>
 <div class="WineWidget">
-  <img :src="image" class="WineWidget--image">
+  <img @error="$log($refs.media.src)" :src="image" class="WineWidget--image" ref="media">
   <UiHeading :level="6" class="WineWidget--title">
     <span v-html="name"/>
   </UiHeading>

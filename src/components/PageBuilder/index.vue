@@ -9,7 +9,7 @@
       <component v-for="(box,i) in panel.boxes" :key="box.id"
           :id="box.id"
           :class="[ ...(box.class||[]), box.theme ].join(' ')"
-          :is="box.img ? 'UiBoxImage' : 'UiBox' "
+          :is="box.img ? 'UiBoxImage' : 'UiBox'"
           :img="box.img || ''"
           >
         
