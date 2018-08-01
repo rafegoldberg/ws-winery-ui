@@ -73,9 +73,14 @@ import UiIcon from "@/components/UI/Icon"
 import UiHeading from "@/components/UI/Heading"
 
 import WineWidget from "@/components/modules/Wine"
+import fallback from "@/assets/bottles/default.png"
 
 export default {
   name: "WineGrid",
+  mixins:[ WpConnect ],
+  components:{ UiList, UiIcon, UiHeading, WineWidget },
+
+  inheritAttrs: true,
   props:{
     wpx:{
       type: Function
@@ -89,8 +94,6 @@ export default {
       default: false,
     },
   },
-  inheritAttrs: true,
-  mixins:[ WpConnect ],
   computed:{
     page:{
       get(){
@@ -123,14 +126,16 @@ export default {
       return endpoint.perPage(per).embed()
     }
   },
-  components:{ UiList, UiIcon, UiHeading, WineWidget },
+
   methods:{
     media(item){
       if( this.context.loading || !this.context.length ) return
       if( "wp:featuredmedia" in item._embedded ){
         let
         src = item._embedded["wp:featuredmedia"][0].source_url
-        return src.replace(/.*\/wp-content\//gim,'https://www.williamsselyem.com/wp-content/')
+        return src
+          ? src.replace(/.*\/wp-content\//gim,'https://www.williamsselyem.com/wp-content/')
+          : fallback
       }
     }
   }
