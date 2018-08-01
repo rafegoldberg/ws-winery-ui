@@ -23,7 +23,7 @@
           <b class="Bio--position">{{context.acf.position}}</b>
         </header>
         <p>{{context.acf.intro}}</p>
-        <ReadMore href="#content" class="ReadMore_gold" :icon="false"/>
+        <ReadMore href="#content" class="ReadMore_gold"/>
       </div>
     </UiBox>
     <!-- <span slot="connect">
@@ -38,7 +38,7 @@
         <br>
         <router-link to="/people" style="display: block; text-align: center; text-decoration: none">
           <UiButton class="UiButton_outline UiButton_gold UiButton_flex">
-            <UiIcon name="ArrowRight" width="1em" height="1em"/>&nbsp; All Our People
+            Back to Our People
           </UiButton>
         </router-link>
       </div>
