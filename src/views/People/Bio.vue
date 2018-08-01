@@ -1,15 +1,15 @@
 <template>
 <main id="StaffBio" v-if="!context.loading" class="Bio UiTheme_cream">
 
-  <UiPanel class="UiTheme_cream wrap_mid" connect="down">
+  <UiPanel class="UiTheme_cream wrap_mid">
     <UiBox class="Bio--overview">
       <div :style="{
         position: 'relative',
         flex:[ 0, '50%' ],
         }">
         <a href="#intro" class="Bio--role">
-          <span v-html="context.acf.role.name"/>
-          <UiIcon name="ArrowRight" width=".8em"/>
+          <!-- <UiIcon name="ArrowLeft" width=".8em"/> -->
+          <b v-html="context.acf.role.name"/>
         </a>
         <img class="Bio--media"
           :src="featured_img"
@@ -102,15 +102,18 @@ export default {
     position: absolute;
     display: inline-block;
     white-space: nowrap;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 100;
     text-transform: uppercase;
-    transform: rotate(90deg);
-    transform-origin: left top;
-    letter-spacing: 0.175em;
+    transform: rotate(-90deg);
+    transform-origin: right bottom;
+    bottom: 100%;
+    right: 100%;
+    letter-spacing: .1em;
     text-decoration: none;
     color: inherit;
     > .UiIcon {
+      opacity: 0 !important;
       & {
         vertical-align: -.68em;
         margin-left: .25em;
@@ -124,7 +127,24 @@ export default {
     }
     @include Break( max-width Breaks(3) ){
       font-size: 1.1rem;
-      line-height: 1;
+      line-height: 1.8;
+    }
+  }
+  &--media {
+    width: 100%;
+    height: 32em;
+    object-fit: cover;
+    @include Break( (min-width Breaks(1)) (max-width Breaks(3)) ){
+        object-fit: contain;
+        object-position: center top;
+        height: auto;
+        max-height: 32em;
+        width: auto;
+    }
+    @include Break( max-width Breaks(1) ){
+      margin-right: -1rem;
+      width: 100%;
+      min-width: calc(100% + 2rem);
     }
   }
   @include Break( max-width Breaks(3) ){
@@ -143,23 +163,6 @@ export default {
         padding-left: 0 !important;
         & > :not(p) { text-align: center !important }
       }
-    }
-  }
-  &--media {
-    width: 100%;
-    height: 32em;
-    object-fit: cover;
-    @include Break( (min-width Breaks(1)) (max-width Breaks(3)) ){
-        object-fit: contain;
-        object-position: center top;
-        height: auto;
-        max-height: 32em;
-        width: auto;
-    }
-    @include Break( max-width Breaks(1) ){
-      margin-right: -1rem;
-      width: 100%;
-      min-width: calc(100% + 2rem);
     }
   }
 }

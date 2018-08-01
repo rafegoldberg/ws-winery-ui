@@ -30,11 +30,16 @@ export default {
   display: block;
   width: 100%;
   line-height: 1.2;
+  &, >:only-child {
+    text-decoration: none;
+    font-weight: bold;
+  }
   @include Break( max-width Breaks(3) ){
     text-align: center;
   }
   &_gold {
-    @extend .ReadMore, %text-label;
+    @extend .ReadMore;
+    color: Color(theme);
   }
   &_center {
     text-align: center;
