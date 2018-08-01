@@ -3,29 +3,26 @@
   
   <div class="iconList--item">
     <UiIcon name="bottles" width="3rem" height="3rem"/>
-    <p>
+    <div class="iconList--item--text">
       <span class="iconList--item--label">All Our Wines</span>
-      <br>
-      <small>Visit our wine library to find a specific bottle or peruse our full collection.</small>
-    </p>
+      <div>Visit our wine library to find a specific bottle or peruse our full collection.</div>
+    </div>
     <router-link class="UiButton" to="/wines">Library</router-link>
   </div>
   <div class="iconList--item">
     <UiIcon name="barrels" width="3rem" height="3rem"/>
-    <p>
+    <div class="iconList--item--text">
       <span class="iconList--item--label">How To Purchase</span>
-      <br>
-      <small>Our wines are available twice a year for purchase.</small>
-    </p>
+      <div>Our wines are available twice a year for purchase.</div>
+    </div>
     <router-link class="UiButton" to="/beta/purchase">Purchasing</router-link>
   </div>
   <div class="iconList--item">
     <UiIcon name="glasses" width="3rem" height="3rem"/>
-    <p>
+    <div class="iconList--item--text">
       <span class="iconList--item--label">Visit The Winery</span>
-      <br>
-      <small>Arrange a private tour and tasting tailored specifically for you.</small>
-    </p>
+      <div>Arrange a private tour and tasting tailored specifically for you.</div>
+    </div>
     <router-link class="UiButton" to="/beta/visit">Visiting</router-link>
   </div>
 
@@ -92,14 +89,19 @@ export default {
         width: 2.5rem !important;
         height: 2.5rem !important;
       }
-      >p {
-        margin: 0;
+      &--label {
+        display: block;
+        margin: .5rem 0;
+      }
+      &--text {
         flex: 1 calc(100% - 2.5rem);
+        margin: 0;
+        line-height: 1.75;
         padding: 0 0 0 1rem;
       }
-      >button {
-        margin: 1rem auto 0 3.5rem !important;
-        font-size: 0.7rem !important;
+      .UiButton {
+        margin: 1rem auto .3rem 3.5rem !important;
+        font-size: .75rem !important;
       }
     }
   }
