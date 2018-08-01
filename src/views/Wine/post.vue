@@ -190,7 +190,7 @@ export default {
     @include Break( max-width Breaks(2) ){
       order: -1;
       margin-top: .5rem;
-      margin-bottom: -10rem;
+      margin-bottom: -9rem;
       padding-top: 6rem !important;
       background: Color(cream);
     }
