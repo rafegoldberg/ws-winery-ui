@@ -108,7 +108,7 @@ export default {
   .open,
   .active {
     a {
-      font-family: $ff-serif;
+      font-family: #{$ff-serif};
       white-space: nowrap;
     }
   }

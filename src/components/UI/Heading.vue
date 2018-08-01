@@ -29,7 +29,7 @@ export default {
 
 .UiHeading {
   & {
-    font-family: $ff-serif;
+    font-family: #{$ff-serif};
     font-weight: 300;
     line-height: 1.2;
   }
