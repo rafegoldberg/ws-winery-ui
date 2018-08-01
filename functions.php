@@ -4,6 +4,7 @@
     add_theme_support('post-thumbnails');
     
     // include "php/tax/classNames.php";
+    include "php/tax/vitAreas.php";
     include "php/tax/staffRoles.php";
     include "php/tax/varietals.php";
     
