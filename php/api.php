@@ -24,18 +24,18 @@ function API_addNextPrev(){
     'get_callback'=> function($post){
       global $post;
 
-      $next = get_adjacent_post( true, '', false, 'category' );
-      $prev = get_adjacent_post( true, '', true,  'category' );
+      $next = get_adjacent_post( true, '', false );
+      $prev = get_adjacent_post( true, '', true  );
       $adj  = [];
   
       $adj['next'] = is_a($next,'WP_Post')
-        ? [ "id"=> $next->ID,
-            "slug"=> $next->post_name ]
+        ? [ "id"   => $next->ID,
+            "slug" => $next->post_name ]
         : null;
 
       $adj['prev'] = is_a($prev,'WP_Post')
-        ? [ "id"=> $prev->ID,
-            "slug"=> $prev->post_name ]
+        ? [ "id"   => $prev->ID,
+            "slug" => $prev->post_name ]
         : null;
 
       return $adj;
@@ -56,6 +56,9 @@ function API_addWSMetas(){
     'schema'=> null,
   ));
 }
+?>
+
+<?
 add_action( 'rest_api_init', 'API_addWSMetas'  );
 add_action( 'rest_api_init', 'API_addNextPrev' );
 ?>
