@@ -1,90 +1,94 @@
 <template>
-<div id="WinePage" class="WinePage" v-if="!context.loading">
+  <div id="WinePage" class="WinePage" v-if="!context.loading">
 
-  <UiPanel class="WinePage--header UiTheme_light">
-    <UiBox class="WinePage--stats UiTheme_cream">
-      <WineStats
-        :title="context.title.rendered"
-        :fields="context.acf"
-        :terms="terms"
-        />
-    </UiBox>
-    
-    <UiBox class="WinePage--media  UiTheme_halves">
-      <img :src="media" :alt="context.title.rendered"/>
-    </UiBox>
-
-    <UiBox class="WinePage--intro UiBox_stack">
-      <p class="wrap_min">{{sections[0].text | truncate}}</p>
-      <br>
-      <ReadMore href="#content" class="ReadMore_gold"/>
-    </UiBox>
-  </UiPanel>
-
-  <UiPanel style="border-top:1px solid #EEE">
-    <UiBox><div style="text-align:center">
-      <UiHeading>Technical Notes</UiHeading>
-
-      <table>
-        <tr>
-          <th></th>
-          <td></td>
-        </tr>
-      </table>
+    <UiPanel class="WinePage--header UiTheme_light">
+      <UiBox class="WinePage--stats UiTheme_cream">
+        <WineStats2
+          :name="context.title.rendered"
+          :fields="context.acf"
+          :vineyard="vineyard"
+          :AVA="terms.AVA[0]"
+          />
+      </UiBox>
       
-      <UiButton class="UiButton_outline gold">Download</UiButton>
-    </div></UiBox>
-  </UiPanel>
+      <UiBox class="WinePage--media  UiTheme_halves">
+        <img :src="media" :alt="context.title.rendered"/>
+      </UiBox>
 
-  <UiPanel id="content" v-if="sections[0]" class="UiTheme_cream">
-    <UiBoxImg :img="img1"></UiBoxImg>
-    <UiBox class="UiBox_tall">
-      <div>
-        <UiHeading :level="3" v-html="sections[0].heading"/>
-        <p v-html="sections[0].text"/>
-      </div>
-    </UiBox>
-  </UiPanel>
+      <UiBox class="WinePage--intro UiBox_stack">
+        <p class="wrap_min">{{sections[0].text | truncate}}</p>
+        <br>
+        <ReadMore href="#content" class="ReadMore_gold"/>
+      </UiBox>
+    </UiPanel>
 
-  <UiPanel style="max-height:68vh; overflow: hidden;">
-    <UiBoxImg :img="img4" class="UiBox_tall UiBoxImage_vignette"/>
-  </UiPanel>
+    <UiPanel style="border-top:1px solid #EEE">
+      <UiBox><div style="text-align:center">
+        <UiHeading>Technical Notes</UiHeading>
 
-  <UiPanel v-if="sections[2]" class="UiTheme_dark">
-    <UiBox>
-      <div>
-        <UiHeading :level="3" v-html="sections[2].heading"/>
-        <p v-html="sections[2].text"/>
-      </div>
-    </UiBox>
-    <UiBoxImg :img="img2"></UiBoxImg>
-  </UiPanel>
+        <table>
+          <tr>
+            <th></th>
+            <td></td>
+          </tr>
+        </table>
+        
+        <UiButton class="UiButton_outline gold">Download</UiButton>
+      </div></UiBox>
+    </UiPanel>
 
-  <UiPanel>
-    <UiBox><div style="text-align:center">
-      <UiHeading :level="3" :scale="4">Reviews &amp; Scores</UiHeading>
-    </div></UiBox>
-  </UiPanel>
+    <UiPanel id="content" v-if="sections[0]" class="UiTheme_cream">
+      <UiBoxImg :img="img1"></UiBoxImg>
+      <UiBox class="UiBox_tall">
+        <div>
+          <UiHeading :level="3" v-html="sections[0].heading"/>
+          <p v-html="sections[0].text"/>
+        </div>
+      </UiBox>
+    </UiPanel>
 
-  <UiPanel style="max-height:62vh; overflow: hidden;">
-    <UiBoxImg class="UiBox_tall" :img="img3"/>
-  </UiPanel>
-  
-  <UiPanel class="UiTheme_dark">
-    <UiBox>
-      <StaticIconList/>
-    </UiBox>
-  </UiPanel>
-  
-</div>
-<UiBox v-else style="text-align: center; min-height: 68vh">Loading...</UiBox>
+    <UiPanel style="max-height:68vh; overflow: hidden;">
+      <UiBoxImg :img="img4" class="UiBox_tall UiBoxImage_vignette"/>
+    </UiPanel>
+
+    <UiPanel v-if="sections[2]" class="UiTheme_dark">
+      <UiBox>
+        <div>
+          <UiHeading :level="3" v-html="sections[2].heading"/>
+          <p v-html="sections[2].text"/>
+        </div>
+      </UiBox>
+      <UiBoxImg :img="img2"></UiBoxImg>
+    </UiPanel>
+
+    <UiPanel>
+      <UiBox><div style="text-align:center">
+        <UiHeading :level="3" :scale="4">Reviews &amp; Scores</UiHeading>
+      </div></UiBox>
+    </UiPanel>
+
+    <UiPanel style="max-height:62vh; overflow: hidden;">
+      <UiBoxImg class="UiBox_tall" :img="img3"/>
+    </UiPanel>
+    
+    <UiPanel class="UiTheme_dark">
+      <UiBox>
+        <IconList/>
+      </UiBox>
+    </UiPanel>
+    
+  </div>
+  <UiBox v-else style="text-align: center; min-height: 68vh">
+    Loading...
+  </UiBox>
 </template>
 
 <script>
 import WpConnect from "@/VuePress/mix/item"
 
-import loFlat from "lodash/flatten"
-import loPick from "lodash/pick"
+import loFind  from "lodash/find"
+import loFlat  from "lodash/flatten"
+import loGroup from "lodash/groupBy"
 
 import UiPanel from '@/components/UI/Panel'
 import UiBox from '@/components/UI/Box'
@@ -93,14 +97,15 @@ import UiIcon from '@/components/UI/Icon'
 import UiButton from '@/components/UI/Button'
 import UiHeading from '@/components/UI/Heading'
 
-import ReadMore from '@/components/modules/ReadMore'
-import WineStats from '@/components/modules/Wine/Stats'
+import WineStats  from '@/components/modules/Wine/Stats'
+import WineStats2 from './stats'
 
 import getTexts from "./lib/parse.wpContent"
 import getTerm  from "./lib/get.wpTerm"
 import getImage from "./lib/get.wpImage"
 
-import StaticIconList from "@/components/static/icon-list"
+import IconList from "@/components/static/icon-list"
+import ReadMore from '@/components/modules/ReadMore'
 
 import img1 from "@/assets/mock/table.png"
 import img2 from "@/assets/mock/vineyard.png"
@@ -121,24 +126,34 @@ export default {
     UiBoxImg,
     UiButton,
     UiHeading,
-    ReadMore,
+
     WineStats,
-    StaticIconList,
+    WineStats2,
+    
+    ReadMore,
+    IconList,
   },
   methods:{ getTerm },
   computed:{
     media:    getImage,
     sections: getTexts,
-    embed(){ 
+    embed(){
       if( this.context.loading ) return
       return this.context._embedded
     },
     terms(){
       if( this.context.loading || !this.embed ) return
-      // return this.embed['wp:term']
-      return loFlat(this.embed['wp:term'])
+      var
+      terms = this.embed['wp:term']
+      terms = loFlat(terms)
+      return loGroup(terms,'taxonomy')
     },
-
+    vineyard(){
+      if( this.context.loading || !this.terms ) return
+      var
+      terms = this.terms.category
+      return loFind( terms, cat=> cat.link.toLowerCase().indexOf('vineyard') )
+    },
     img1: ()=> img1,
     img2: ()=> img2,
     img3: ()=> img3,
