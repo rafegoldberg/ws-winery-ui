@@ -2,7 +2,7 @@
   <div id="app">
 
     <AppNav/>
-    <router-view :key="$route.fullPath" />
+    <router-view :key="$route.fullPath"/>
     <AppFooter class="UiTheme_dark" />
       
     <!-- <template v-if="$route.name.toLowerCase().indexOf('beta')<0">

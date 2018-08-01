@@ -30,14 +30,14 @@ export default {
 @import "./style.scss";
 .UiBoxImage {
 
-  min-height: 38vh;
+  min-height: 32vmin;
 
   & {
     position: relative;
     z-index: 1;
     
     flex-flow: nowrap column;
-    justify-content: flex-end;
+    // justify-content: flex-end;
     align-items: center;
 
     color: #FFF;
@@ -47,7 +47,7 @@ export default {
 
     &:only-child {
       // min-height: 90vh;
-      @media (max-width:800px) { min-height: 63vh }
+      // @media (max-width:800px) { min-height: 63vh }
     }
   }
   &:not(:empty):before {
