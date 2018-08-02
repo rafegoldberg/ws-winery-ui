@@ -25,8 +25,9 @@
       class="WineStats--location-AVA"
       />
     <router-link
-      :to="`/vineyards/${vineyard.slug}`"
+      v-if="vineyard.name.toLowerCase().indexOf('vineyard')>=0"
       v-text="vineyard.name"
+      :to="`/vineyards/${vineyard.slug}`"
       class="WineStats--location-vineyard"
       />
     </router-link>

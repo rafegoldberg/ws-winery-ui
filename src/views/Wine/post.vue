@@ -12,13 +12,16 @@
       </UiBox>
       
       <UiBox class="WinePage--media  UiTheme_halves">
-        <img :src="media" :alt="context.title.rendered"/>
+        <img :src="media" :alt="context.title.rendered" @error="setFallback" ref="bottleImg"/>
       </UiBox>
 
       <UiBox class="WinePage--intro UiBox_stack">
-        <p class="wrap_min">{{sections[0].text | truncate}}</p>
-        <br>
-        <ReadMore href="#content" class="ReadMore_gold"/>
+        <template v-if="sections[0].text">
+          <p v-if="sections[0]" class="wrap_min">{{sections[0].text | truncate}}</p>
+          <br>
+          <ReadMore href="#content" class="ReadMore_gold"/>
+        </template>
+        <ReadMore v-else href="#content" class="ReadMore_center ReadMore_gold"/>
       </UiBox>
     </UiPanel>
 
@@ -107,6 +110,8 @@ import getImage from "./lib/get.wpImage"
 import IconList from "@/components/static/icon-list"
 import ReadMore from '@/components/modules/ReadMore'
 
+import fallback from "@/assets/bottles/default.png"
+
 import img1 from "@/assets/mock/table.png"
 import img2 from "@/assets/mock/vineyard.png"
 import img3 from "@/assets/mock/harvest.png"
@@ -133,7 +138,12 @@ export default {
     ReadMore,
     IconList,
   },
-  methods:{ getTerm },
+  methods:{
+    getTerm,
+    setFallback(){
+      this.$refs.bottleImg.src = fallback
+    }
+  },
   computed:{
     media:    getImage,
     sections: getTexts,

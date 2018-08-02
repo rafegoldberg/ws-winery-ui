@@ -1,6 +1,6 @@
 <template>
 <div class="WineWidget">
-  <img @error="$log($refs.media.src)" :src="image" class="WineWidget--image" ref="media">
+  <img :src="image" class="WineWidget--image" @error="setFallbackImg" ref="media">
   <UiHeading :level="6" class="WineWidget--title">
     <span v-html="name"/>
   </UiHeading>
@@ -15,7 +15,7 @@
 
 <script>
 import UiHeading from "@/components/UI/Heading"
-import fallback_img from "./mock/generic.png"
+import fallback_img from "@/assets/bottles/default.png"
 
 export default {
   name: "WineWidget",
@@ -37,7 +37,12 @@ export default {
       default: 0,
     },
   },
-  components:{ UiHeading }
+  components:{ UiHeading },
+  methods:{
+    setFallbackImg(){
+      this.$refs.media.src = fallback_img
+    }
+  }
 }
 </script>
 
