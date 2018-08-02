@@ -3,6 +3,7 @@
  * @param {String} value The value string.
  */
 export function truncate( value, length=170, affix='…' ){
+  if( !value ) return
   if( value.length < length ) return value
 
   length = length - 3
