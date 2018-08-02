@@ -9,12 +9,19 @@
   
   <template v-else>
     <div class="WineGrid">
-      <router-link v-for="item in context" :to="`/wines/${item.slug}`" :key="item.id" class="WineGrid--item">
+      <router-link
+          v-for="item in context"
+          v-if="item.categories.indexOf(10) /*extra check to only show wines!*/"
+          :to="`/wines/${item.slug}`"
+          :key="item.id"
+          class="WineGrid--item"
+          >
+        {{$log(item)}}
         <WineWidget
-          :name="item.title ? item.title.rendered : 'Shitpoopfuck'"
+          :name="item.title ? item.title.rendered : ''"
           :image="media(item)"
-          :vintage="'Release-Date' in item['ws:fields'] && item['ws:fields']['Release-Date'][0]"
-          :price="'Release-Price' in item['ws:fields'] && item['ws:fields']['Release-Price'][0]"
+          :vintage="'Release-Date' in item.acf && item.acf['Release-Date']"
+          :price="'Release-Price' in item.acf && item.acf['Release-Price']"
           />
       </router-link>
     </div>
