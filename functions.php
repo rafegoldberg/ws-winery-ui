@@ -8,6 +8,8 @@
     include "php/tax/staffRoles.php";
     include "php/tax/varietals.php";
     
+    include "php/shortcodes.php"; 
+
     include "php/acf/config.php";
     include "php/acf/options.php";
   }
