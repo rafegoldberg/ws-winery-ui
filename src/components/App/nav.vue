@@ -9,15 +9,18 @@
       />
   </router-link>
   
-  <span class="AppMenuTrigger">
-    <button @click="toggleMenu">
-      <small>MENU  </small><UiIcon name="menu" width="1em" height="1em"/>
-    </button>
-    <AppMenu
-      @click.stop
-      ref="menu"
-      />
-  </span>
+  <div id="AppNav-menu">
+    <a id="AppNav-menuJoin" href="#list">Join the List</a>
+    <span id="AppNav-menuTrigger" class="AppMenuTrigger">
+      <button @click="toggleMenu">
+        <small>MENU  </small><UiIcon name="menu" width="1em" height="1em"/>
+      </button>
+      <AppMenu
+        @click.stop
+        ref="menu"
+        />
+    </span>
+  </div>
 
 </nav>
 </template>
@@ -89,6 +92,25 @@ export default {
     @include Break( max-width Breaks(4) ){
       >svg:only-child { width: 5rem !important }
     }
+  }
+  &-menu {
+    --c: #{Color(theme)};
+    color: var(--c);
+  }
+  &-menuJoin {
+    display: inline-block;
+    margin: 0 .6em 0 0;
+    padding: 0 .6em 1px .7em;
+    line-height: 1.5;
+    font-size: .88em;
+    font-weight: 600;
+    font-variant: small-caps;
+    text-decoration: none;
+    text-transform: lowercase;
+    letter-spacing: .05em;
+    color: var(--c);
+    border: 2px solid var(--c);
+    border-radius: 6em;
   }
   @include Break( max-width Breaks(4) ){
     padding: 0 1em;

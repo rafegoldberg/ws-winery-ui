@@ -75,7 +75,7 @@ export default {
     $pop: mix( Color(theme), Color(dark), 98% );
 
     position: relative;
-    color: Color(theme);
+    // color: Color(theme);
 
     >:first-child {
       

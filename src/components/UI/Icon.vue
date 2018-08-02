@@ -23,7 +23,7 @@
     </defs>
     <g class="icon" :fill="fill">
       <slot>
-        <component :is="`icon-${name}`"/>
+        <component :is="`icon-${name}`" v-bind="options"/>
       </slot>
     </g>
   </svg>
@@ -56,9 +56,7 @@ export default {
     },
     options: {
       type: Object,
-      default: () => ({
-        compact: false
-      })
+      default:()=>( {} )
     },
     filter: {
       // filter="url(#dropshadow)"
