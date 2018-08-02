@@ -30,7 +30,7 @@ export default {
 @import "./style.scss";
 .UiBoxImage {
 
-  min-height: 32vmin;
+  min-height: 38vmin;
 
   & {
     position: relative;
@@ -45,10 +45,10 @@ export default {
     background-position: center;
     background-size: cover;
 
-    &:only-child {
-      // min-height: 90vh;
-      // @media (max-width:800px) { min-height: 63vh }
-    }
+    // &:only-child {
+    //   min-height: 90vh;
+    //   // @media (max-width:800px) { min-height: 63vh }
+    // }
   }
   &:not(:empty):before {
     content: " ";
@@ -58,7 +58,7 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: .75;
+    opacity: .6;
     background-image: linear-gradient(
       to bottom,
       rgba(0,0,0,.15) 08%,
