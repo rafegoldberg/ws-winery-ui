@@ -3,7 +3,7 @@
 <div id="AppFooterWrap">
 
   <slot name="left">
-    © Williams Selyem
+    © 2018 Williams Selyem Winery. All Rights Reserved.
   </slot>
 
   <slot name="right">
@@ -25,7 +25,7 @@
     display: flex;
     justify-content: space-between;
     padding: 1rem 0;
-    color: Color(silver);
+    color: Color(creamDark);
   }
 }
 </style>

@@ -8,9 +8,9 @@ $colors:(
   slate:   lighten($c-black,15%), // #323232,
   silver:  lighten($c-black,67%), // #B8B8B8
   cream:   lighten(desaturate(adjust-hue($c-theme,7deg),14),42), // #F5F3ED,
+  creamDark: #BFB4A0,
   light:   mix( white, $c-matte, 69% ), // #F6F4EE
   matte:   $c-matte, // #F0F0F0
-  
   theme:   $c-theme, // #BA9454
   alt:     $c-alt,
 );
