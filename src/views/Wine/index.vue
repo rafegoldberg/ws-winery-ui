@@ -57,28 +57,27 @@
         paddingRight:'1.5rem',
         overflow:'visible'
       }">
-    <!-- <keep-alive></keep-alive> -->
-      <router-view :wpx="wpx" paginate="12" :sticky="true" ref="grid">
-        <div slot="pagination-first" style="cursor: pointer; opacity: .5" @click="(isOpen=true)">
-          {{getFilters().join(' / ')}}
-        </div>
-        <div slot="error" class="">
-          <UiHeading :level="3" class="UiHeading_bold UiHeading_tighten" style="text-align: left">
-            No Matches
-          </UiHeading>
-          <p>We couldn't find any wines that matched your search. Try 
-            <button @click="(isOpen=true)" :style="{
-                all: 'unset',
-                cursor: !isOpen ? 'pointer' : '',
-                fontWeight: !isOpen ? 'bold' : '',
-                textDecoration: !isOpen ? 'underline' : '',
-              }">updating your filters</button>, 
-            or 
-            <button @click="clearFilters" style="all:unset;cursor:pointer;">clear</button> them
-            to start over.</p>
-          <UiButton :class="{UiTheme_gold:isOpen,UiTheme_rust:!isOpen}" @click.native="clearFilters">Clear Filters</UiButton>
-        </div>
-      </router-view>
+    <router-view :wpx="wpx" paginate="12" :sticky="true" ref="grid">
+      <div slot="pagination-first" style="cursor: pointer; opacity: .5" @click="(isOpen=true)">
+        {{getFilters().join(' / ')}}
+      </div>
+      <div slot="error" class="">
+        <UiHeading :level="3" class="UiHeading_bold UiHeading_tighten" style="text-align: left">
+          No Matches
+        </UiHeading>
+        <p>We couldn't find any wines that matched your search. Try 
+          <button @click="(isOpen=true)" :style="{
+              all: 'unset',
+              cursor: !isOpen ? 'pointer' : '',
+              fontWeight: !isOpen ? 'bold' : '',
+              textDecoration: !isOpen ? 'underline' : '',
+            }">updating your filters</button>, 
+          or 
+          <button @click="clearFilters" style="all:unset;cursor:pointer;">clear</button> them
+          to start over.</p>
+        <UiButton :class="{UiTheme_gold:isOpen,UiTheme_rust:!isOpen}" @click.native="clearFilters">Clear Filters</UiButton>
+      </div>
+    </router-view>
   </UiBox>
 
 </UiPanel>
@@ -283,7 +282,7 @@ $ribbon-height: 2.25rem;
     color: Color(light);
     border-width: 0 !important;
     outline: none;
-    background: Color(dark);
+    background: Color(theme);
     box-shadow: .5em .25em 2em -.25em rgba(Color(dark),.3);
 
     transition: inherit;
@@ -294,7 +293,8 @@ $ribbon-height: 2.25rem;
       padding-left: nth($sidebar-pad,2);
       padding-right: nth($sidebar-pad,2);
       margin-left: -$sidebar-width;
-      color: Color(silver);
+      color: Color(light);
+      background: Color(slate);
       box-shadow: 2px 0 0 0 Color(dark);
       box-shadow: 0 0 0 0 Color(dark);
     }
@@ -307,14 +307,14 @@ $ribbon-height: 2.25rem;
       transition: inherit;
     }
     #{$B}#{$OPEN} & .UiIcon {
-      opacity: 1;
+      opacity: .5;
       transition-delay: 0s;
     }
     #{$B}#{$OPEN} &:hover .UiIcon {
       transition-delay: .38s;
       &:hover { transition-delay: .0s !important }
     }
-    #{$B}#{$OPEN} &:not(:hover) .UiIcon { filter: invert(.75) }
+    // #{$B}#{$OPEN} .UiIcon { filter: invert(.75) }
     
   }
   &--header {

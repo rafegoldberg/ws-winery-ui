@@ -49,7 +49,9 @@ export default {
   }
 
   @include Break( max-width Breaks(2) ){
-    text-align: center;
+    .UiBox > &:only-child {
+      text-align: center;
+    }
   }
 
   &_space  {

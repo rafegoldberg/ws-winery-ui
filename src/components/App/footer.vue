@@ -3,7 +3,7 @@
 <div id="AppFooterWrap">
 
   <slot name="left">
-    © 2018 Williams Selyem Winery. All Rights Reserved.
+    © 2018 Williams Selyem Winery
   </slot>
 
   <slot name="right">

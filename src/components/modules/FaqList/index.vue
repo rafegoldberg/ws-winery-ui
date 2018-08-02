@@ -1,24 +1,26 @@
 <template>
 <dl class="FAQ">
-  <li v-for="(item,ix) in questions">
-    <dt>
-      <UiHeading
-        class="UiHeading_push"
-        v-html="item.question"
-        :level="3"
-        :scale="5"/>
-    </dt>
-    <dd v-html="item.answer"/>
-  </li>
+  <FaqItem v-for="(item,ix) in questions" v-bind="item" :key="ix">
+    <UiHeading
+      slot="question"
+      class="UiHeading_push"
+      :level="3"
+      :scale="5">
+      <UiIcon name="CirclePlus" width="1em" height="1em"/>
+      <div v-html="item.question"/>
+    </UiHeading>
+  </FaqItem>
 </dl>
 </template>
 
 <script>
 import UiHeading from '@/components/UI/Heading'
+import UiIcon from '@/components/UI/Icon'
+import FaqItem from './item'
 export default {
   name: "FaqList",
   props:[ 'questions' ],
-  components:{ UiHeading },
+  components:{ UiHeading, UiIcon, FaqItem },
 }
 </script>
 
@@ -46,6 +48,14 @@ export default {
   }
   .UiHeading {
     text-align: left;
+    .UiIcon {
+      float: right;
+      margin-left: .5em;
+      transition: .3s ease-out;
+    }
+  }
+  .FaqItem.open .UiIcon {
+    transform: rotate(45deg);
   }
 }
 </style>

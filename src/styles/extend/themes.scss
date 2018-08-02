@@ -36,6 +36,7 @@ $themes: cream light dark rust !default;
 %dark {
   @extend .UiTheme;
   color: Color(silver);
+  // color: Color(creamDark);
   background: Color(dark);
 }
 %dark_translucent {

@@ -16,7 +16,7 @@
           :key="item.id"
           class="WineGrid--item"
           >
-        {{$log(item)}}
+        <!-- {{$log(item)}} -->
         <WineWidget
           :name="item.title ? item.title.rendered : ''"
           :image="media(item)"
