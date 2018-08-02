@@ -59,6 +59,6 @@ function API_addWSMetas(){
 ?>
 
 <?
-add_action( 'rest_api_init', 'API_addWSMetas'  );
+// add_action( 'rest_api_init', 'API_addWSMetas'  );
 add_action( 'rest_api_init', 'API_addNextPrev' );
 ?>
