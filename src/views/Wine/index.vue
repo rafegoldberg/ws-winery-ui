@@ -41,6 +41,14 @@
           .exclude([25,26]) // growers + estate vineyards
           .perPage(50)
         "/>
+      <FiltersGroup
+        title="Area"
+        term="AVA"
+        :show="false"
+        :wpx="wpapi=>wpapi
+          .AVA()
+          .perPage(20)
+        "/>
     </form>
   </div>
 

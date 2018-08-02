@@ -20,7 +20,8 @@ options = {
   filters:{
     categories:[],
     tags:[],
-    varietals:[]
+    varietals:[],
+    AVA:[]
   }
 }
 
