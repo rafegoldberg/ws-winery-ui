@@ -89,6 +89,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~@/styles/theme/colors";
 @import "~@/styles/theme/breaks";
 .Bio {
   &--intro {
@@ -146,6 +147,23 @@ export default {
       width: 100%;
       min-width: calc(100% + 2rem);
     }
+  }
+  #content {
+    >.UiBox:only-child {
+      padding-top: 7.5rem;
+      padding-bottom: 10rem;
+    }
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      width: 1px;
+      height: 8rem;
+      background: Color(theme);
+    }
+    &:before { top:   -1.5rem }
+    &:after  { bottom: 0      }
   }
   @include Break( max-width Breaks(3) ){
     &--overview {
