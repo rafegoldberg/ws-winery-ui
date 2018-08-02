@@ -18,12 +18,17 @@
   
   <hr>
   
-  <div v-if="true/*vineyard*/" class="WineStats--location">
-    <div class="WineStats--location-AVA">
-      {{AVA.name}}
-    </div>
-    <router-link :to="`/vineyards/${vineyard.slug}`" class="WineStats--location-vineyard">
-      {{vineyard.name}}
+  <div class="WineStats--location">
+    <div
+      v-text="AVA.name"
+      v-if="AVA"
+      class="WineStats--location-AVA"
+      />
+    <router-link
+      :to="`/vineyards/${vineyard.slug}`"
+      v-text="vineyard.name"
+      class="WineStats--location-vineyard"
+      />
     </router-link>
   </div>
   

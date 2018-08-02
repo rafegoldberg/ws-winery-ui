@@ -7,7 +7,7 @@
           :name="context.title.rendered"
           :fields="context.acf"
           :vineyard="vineyard"
-          :AVA="terms.AVA[0]"
+          :AVA="terms.AVA && terms.AVA[0]"
           />
       </UiBox>
       
