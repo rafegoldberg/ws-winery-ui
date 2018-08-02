@@ -46,6 +46,7 @@ export default {
 <style lang="scss">
 @import '~@/styles/theme/colors';
 @import '~@/styles/theme/fonts';
+@import '~@/styles/theme/breaks';
 @import '~@/styles/extend/themes';
 .AppMenu {
 
@@ -94,6 +95,10 @@ export default {
       >small {
         line-height: 1.6;
         transform: translateY(1px);
+        @include Break( max-width Breaks(2) ){
+          width: 0;
+          overflow: hidden;
+        }
       }
     }
     >:first-child:hover,
