@@ -5,7 +5,7 @@
 </template>
 <script>
 import API from "@/VuePress/mix/API"
-import PageBuilder from "@/components/PageBuilder"
+import PageBuilder from "@/components/modules/PageBuilder"
 
 export default {
   name: "Page",
