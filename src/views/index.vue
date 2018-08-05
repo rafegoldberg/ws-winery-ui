@@ -1,71 +1,71 @@
 <template>
-<div id="HomePage" :class="{
-  [`UiTheme_${theme}`]: theme,
-  }">
+<UiPanel id="HomePage" class="UiTheme_dark" :style="{
+  position: 'relative',
+  zIndex: 1,
+}">
 
-  <UiPanel id="HomePage-feature" class="UiTheme_dark">
-    <UiBoxImage :img="mock6" alt="Welcome">
-      
-      <header class="home--header  wrap" :style="{ margin:'auto', padding:0 }">
-        <UiHeading :level="2" :style="{maxWidth:'6em',textAlign:'left',lineHeight:1}">
-          <b>Schedule a private visit.</b>
-        </UiHeading>
-        <p>Visits are reserved for List members and are by appointment only.</p>
-        <UiButton class="UiButton_outline">Reserve</UiButton>
-      </header>
+  <Slider
+    v-if="!page.loading"
+    :slides="acf.panels"
+    :settings="{
+      direction: 'vertical',
+      lazy: true,
+      preloadImages: false,
+    }"/>
 
-    </UiBoxImage>
-  </UiPanel>
-
-</div>
+</UiPanel>
 </template>
 
 <script>
+import API from "@/VuePress/mix/API"
+import Slider from "@/components/modules/Slider"
+
 import UiPanel from "@/components/UI/Panel"
-import UiBox from "@/components/UI/Box"
-import UiBoxImage from "@/components/UI/Box/Image"
-import UiHeading from "@/components/UI/Heading"
-import UiList from "@/components/UI/List"
-import UiButton from "@/components/UI/Button"
-
-import ActionBox from "@/components/modules/ActionBox"
-import MediaList from "@/components/modules/MediaList"
-import WineWidget from "@/components/modules/Wine"
-
-import mock0 from "@/components/modules/ActionBox"
-import mock2 from "@/assets/mock/welcome.png"
-import mock6 from "@/assets/mock/visit.png"
-
-let
-settings = {
-  theme: 'light'
-}
-if( window ) window.UiSettings = settings
 
 export default {
   name: "HomePage",
-  components: {
-    UiPanel, UiBox, UiBoxImage,
-    UiHeading, UiList, UiButton,
-    ActionBox, MediaList,
-    WineWidget,
+  mixins:[ API ],
+  components:{ UiPanel, Slider },
+  asyncComputed:{
+    page:{
+      default:{ loading:true },
+      async get(){
+        if(!( this.API && this.endpoint )) return {loading:true}
+
+        let
+        err = false,
+        xhr = await this.endpoint.get().catch(e=>( err = e ))
+
+        if (err) return { error:err }
+        return xhr
+      }
+    }
   },
-  data: ()=> settings,
   computed:{
-    mock0:()=> mock0,
-    mock6:()=> mock6,
-  }
+    endpoint(){
+      if( !this.API ) return false
+      return this.API.namespace('ws/v1').front()
+    },
+    acf(){
+      if( !this.page.loading )
+        return this.page.acf
+    }
+  },
 }
 </script>
 
 <style lang="scss">
-@import "~@/styles/theme/colors";
+/**
+ * App Overrides
+ */
+#AppFooter {
+  display: none;
+}
+</style>
+<style lang="scss">
+/**
+ * Page Styles
+ */
 #HomePage {
-  &-feature {
-    min-height: 88vh;
-    > .UiBox {
-      min-height: inherit;
-    }
-  }
 }
 </style>
