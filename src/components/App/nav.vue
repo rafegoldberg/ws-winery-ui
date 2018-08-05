@@ -122,6 +122,9 @@ export default {
     color: var(--c);
     border: 2px solid var(--c);
     border-radius: 6em;
+    &.open {
+      display: none;
+    }
   }
   @include Break( max-width Breaks(4) ){
     padding: 0 1em;
