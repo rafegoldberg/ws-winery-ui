@@ -22,7 +22,8 @@
       freeModeSticky: true,
       breakpoints: {
         610:{
-          direction: 'horizontal'
+          direction: 'horizontal',
+          freeMode: false,
         }
       }
     }"/>
@@ -79,7 +80,9 @@ export default {
   .swiper {
     $left-offset: 4rem;
     &-slide {
-      padding-left: $left-offset;
+      @media( min-width:610px ){
+        padding-left: $left-offset;
+      }
     }
     &-pagination {
       &-bullets {
@@ -87,9 +90,11 @@ export default {
         flex-flow: nowrap column;
         justify-content: stretch;
         align-items: center;
-        height: 50vh;
-        right: unset !important;
-        left: $left-offset / 1.75;
+        @media( min-width:610px ){
+          height: 50vh;
+          right: unset !important;
+          left: $left-offset / 1.75;
+        }
         @media( max-width:610px ){
           flex-flow: nowrap row;
           height: 8px;
@@ -127,8 +132,11 @@ export default {
             bottom: 100%;
             @media( min-width:610px ){
               top: 50%;
+              left: unset;
+              bottom: unset;
               right: 100%;
               transform: translateY(-50%) rotate(-90deg);
+              margin-right: .5em;
               text-align: right;
             }
           }

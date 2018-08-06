@@ -67,8 +67,8 @@ export default {
       /**
        * Default Swiper Options
        */
-      observer: true,
-      watchOverflow: true,
+      // observer: true,
+      // watchOverflow: true,
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
