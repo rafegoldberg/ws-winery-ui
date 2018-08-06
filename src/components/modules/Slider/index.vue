@@ -17,10 +17,10 @@
         webkitallowfullscreen
         ></iframe> -->
       <!-- <VimeoPlayer v-if="slide.video" :video-id="getVimeoID(slide.video)"/> -->
-      <template>
-        <h2 v-html="slide.title"/>
-        <div v-html="slide.content"/>
-      </template>
+
+      <ActionBox v-bind="slide" class="wrap_min" style="margin: 0 auto 0 0"/>
+      <!-- <h2 v-html="slide.title"/>
+      <div v-html="slide.content"/> -->
 
       <div v-if="slide.image" class="swiper-lazy-preloader"/>
         
@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <!-- <div v-if="pagination" class="swiper-pagination"></div> -->
+  <div class="swiper-pagination"></div>
 
   <!-- <template v-if="adjacent">
     <div class="swiper-button-prev"></div>
@@ -41,39 +41,39 @@
 </template>
 
 <script>
-// import loMerge from 'lodash/merge'
+import loMerge from 'lodash/merge'
 
 import Swiper from "swiper"
 import "swiper/dist/css/swiper.min.css"
 
-import {vueVimeoPlayer as VimeoPlayer} from 'vue-vimeo-player'
+// import {vueVimeoPlayer as VimeoPlayer} from 'vue-vimeo-player'
+import ActionBox from '@/components/modules/ActionBox'
 
 export default {
   name: "Slider",
-  components:{ VimeoPlayer },
+  components:{ ActionBox },
   props:[
     'slides',
     'settings',
   ],
+  create(){
+    },
   mounted(){
-    this.swiper = new Swiper(this.$el,this.settings||{})
+    this.opts = loMerge({},this.defaults,this.settings||{})
+    this.swiper = new Swiper(this.$el,this.opts)
   },
   data:()=>({
-    options:{
+    defaults:{
       /**
-       * Default Options
+       * Default Swiper Options
        */
+      observer: true,
       watchOverflow: true,
+      pagination: {
+        el: '.swiper-pagination',
+      },
     }
   }),
-  computed:{
-    opts:{
-      get(){ return this.settings },
-      set(opts){
-        this.settings = loMerge(this.settings,opts)
-      }
-    },
-  },
   methods:{
     getVimeoID( str ){
       let
@@ -105,6 +105,24 @@ export default {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    position: relative;
+    z-index: 0;
+    &:before {
+      position: relative;
+      z-index: -1;
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom left,
+        #{"rgba(0,0,0,0)"} 42%,
+        rgba(0,0,0,.88)
+        );
+      pointer-events: none;
+    }
   }
 }
 </style>

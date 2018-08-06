@@ -11,6 +11,15 @@
       direction: 'vertical',
       lazy: true,
       preloadImages: false,
+      pagination: {
+        type: 'bullets'
+      },
+      mousewheel: {
+        sensitivity: 1,
+        releaseOnEdges: true,
+      },
+      freeMode: true,
+      freeModeSticky: true
     }"/>
 
 </UiPanel>
@@ -58,8 +67,51 @@ export default {
 /**
  * App Overrides
  */
-#AppFooter {
-  display: none;
+#HomePage {
+  +#AppFooter {
+    display: none;
+  }
+  .swiper {
+    $left-offset: 4rem;
+    &-slide {
+      padding-left: $left-offset;
+    }
+    &-pagination {
+      &-bullets {
+        display: flex;
+        flex-flow: nowrap column;
+        justify-content: stretch;
+        align-items: center;
+        height: 50vh;
+        right: unset !important;
+        left: $left-offset / 1.75;
+      }
+      &-bullet {
+        all: unset;
+        flex: 1;
+        width: 8px;
+        margin: 0 !important;
+        background: rgba(255,255,255,.25);
+        transition: .3s ease;
+        & + * {
+          margin-top: 2px !important;
+        }
+        &-active {
+          position: relative;
+          background: #bb9353;
+          &:after {
+            content: "Slide";
+            position: absolute;
+            top: 50%;
+            right: 100%;
+            transform: translateY(-50%) rotate(-90deg);
+            // margin-right: 2px;
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
 }
 </style>
 <style lang="scss">
