@@ -19,7 +19,12 @@
         releaseOnEdges: true,
       },
       freeMode: true,
-      freeModeSticky: true
+      freeModeSticky: true,
+      breakpoints: {
+        610:{
+          direction: 'horizontal'
+        }
+      }
     }"/>
 
 </UiPanel>
@@ -85,16 +90,30 @@ export default {
         height: 50vh;
         right: unset !important;
         left: $left-offset / 1.75;
+        @media( max-width:610px ){
+          flex-flow: nowrap row;
+          height: 8px;
+          width: 88vw;
+          right: 6vw !important;
+          left: unset;
+          bottom: 1.5rem;
+        }
       }
       &-bullet {
         all: unset;
         flex: 1;
         width: 8px;
+        height: 8px;
         margin: 0 !important;
         background: rgba(255,255,255,.25);
         transition: .3s ease;
         & + * {
-          margin-top: 2px !important;
+          @media( min-width:610px ){
+            margin-top: 2px !important;
+          }
+          @media( max-width:610px ){
+            margin-left: 2px !important;
+          }
         }
         &-active {
           position: relative;
@@ -102,11 +121,16 @@ export default {
           &:after {
             content: "Slide";
             position: absolute;
-            top: 50%;
-            right: 100%;
-            transform: translateY(-50%) rotate(-90deg);
-            // margin-right: 2px;
-            text-align: right;
+            text-align: center;
+            width: 100%;
+            left: 0;
+            bottom: 100%;
+            @media( min-width:610px ){
+              top: 50%;
+              right: 100%;
+              transform: translateY(-50%) rotate(-90deg);
+              text-align: right;
+            }
           }
         }
       }

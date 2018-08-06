@@ -71,6 +71,7 @@ export default {
       watchOverflow: true,
       pagination: {
         el: '.swiper-pagination',
+        clickable: true,
       },
     }
   }),
@@ -124,6 +125,11 @@ export default {
       pointer-events: none;
     }
   }
+  &-pagination {
+    &-bullet {
+      &, & * { cursor: pointer }
+    }
+  }
 }
 </style>
 <style lang="scss">
@@ -134,7 +140,6 @@ export default {
   transform: translate(-50%,-50%);
   width: 100vw !important;
   min-height: 110vh !important;
-  // transform: translate(0,-50vh);
   > * {
     width: 100%;
     height: 100vw;
