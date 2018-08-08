@@ -1,0 +1,26 @@
+@import "~@/styles/theme/breaks";
+
+// set global
+$_: '' !default;
+
+@mixin BreakClass( $mq: max-width ){
+  
+  // data
+  $screens: (
+    mobile:  2, 
+    tablet:  4,
+  );
+  
+  // loop
+  @each $c, $q in $screens {
+    $_: $c !global; // update globals
+    &_#{$c} {
+      @include Break( $mq Breaks($q) ){
+        @content
+      }
+    }
+  };
+
+  // reset globals
+  $_: '' !global;
+}

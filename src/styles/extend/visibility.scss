@@ -1,0 +1,7 @@
+@import "~@/styles/tools/BreakClass";
+
+.hide {
+  @include BreakClass {
+    &:not(.show_#{$_}) { display: none !important }
+  }
+}

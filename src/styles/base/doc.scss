@@ -1,10 +1,14 @@
+@import "~@/styles/theme/breaks";
 @import "~@/styles/theme/scale";
 @import "~@/styles/theme/fonts";
 
 :root {
   font-size: $root;
-  @media (max-width:68rem){
-    font-size: calc(12pt + .33vmin);
+  @include Break( max-width Breaks(4) ){
+    font-size: $root - 1pt;
+  }
+  @include Break( max-width Breaks(2) ){
+    font-size: $root - 2pt;
   }
 }
 
@@ -14,6 +18,7 @@ html, body {
 }
 html {
   font-family: "futura-pt", Futura, sans-serif;
+  text-size-adjust: 100%;
 }
 body {
   font-size: 100%;

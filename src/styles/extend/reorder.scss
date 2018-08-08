@@ -1,0 +1,10 @@
+@import "~@/styles/tools/BreakClass";
+
+.reorder {
+  &First {
+    @include BreakClass { order: -1 !important }
+  }
+  &Last {
+    @include BreakClass { order: 9999999 !important }
+  }
+}
