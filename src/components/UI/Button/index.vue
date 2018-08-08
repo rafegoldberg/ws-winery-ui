@@ -1,6 +1,6 @@
 <template>
 
-  <component :is="tag" class="UiButton">
+  <component :is="tag" class="UiButton" :href="url" :to="url">
     <!-- @slot Add rich markup to your button. -->
     <slot>{{cta}}</slot>
   </component>
@@ -10,8 +10,9 @@
 export default {
   name: "UiButton",
   props: {
-    tag: { type:String, default:"button"},
-    cta: { type:String, required:false }
+    url: { type:String, default:''       },
+    tag: { type:String, default:"button" },
+    cta: { type:String, required:false   }
   }
 }
 </script>

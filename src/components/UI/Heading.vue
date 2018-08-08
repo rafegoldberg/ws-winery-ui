@@ -48,8 +48,9 @@ export default {
     }
   }
 
-  @include Break( max-width Breaks(2) ){
-    .UiBox > &:only-child {
+  .UiBox > &:only-child {
+    .UiPanel:first-child > & { margin-top: auto }
+    @include Break( max-width Breaks(3) ){
       text-align: center;
     }
   }

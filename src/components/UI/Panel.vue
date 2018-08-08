@@ -89,10 +89,11 @@ export default {
     text-align: center;
     transform: translateX(-50%);
     text-transform: uppercase;
-    letter-spacing: .1em;
+    letter-spacing: .15em;
     font-style: normal;
     font-family: $ff-sans;
     text-decoration: none;
+    text-shadow: -1px 1px 6px rgba(0,0,0,.7);
   }
 
 

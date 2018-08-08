@@ -30,7 +30,7 @@ export default {
 @import "./style.scss";
 .UiBoxImage {
 
-  min-height: 38vmin;
+  min-height: 45vmin;
 
   & {
     position: relative;
