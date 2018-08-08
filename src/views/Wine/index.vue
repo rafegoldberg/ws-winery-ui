@@ -53,6 +53,7 @@
   </div>
 
   <UiBox @click.self.native="(isOpen=false)" :class="{wrap_flex_mid:testr()}" :style="{
+        paddingTop:'6rem',
         paddingLeft:'1.5rem',
         paddingRight:'1.5rem',
         overflow:'visible'
@@ -345,12 +346,11 @@ $ribbon-height: 2.25rem;
     >:first-child { margin-top:    2rem }
     >:last-child  { margin-bottom: 2rem }
   }
-  @include Break( (min-width Breaks(3)) (min-height 32rem) ){
-  }
   @include Break( max-width Breaks(3) ){
     & {
       top: 4rem;
-      margin-top: 6.5rem;
+      // margin-top: 6.5rem;
+      margin-top: 2rem;
       max-height: calc(100vh - 75px); // TODO: set global $footerHeight to 75px
       box-shadow: 1em 0 3em -1em rgba(black,.15);
     }

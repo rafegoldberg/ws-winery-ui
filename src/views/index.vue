@@ -1,8 +1,5 @@
 <template>
-<UiPanel id="HomePage" class="UiTheme_dark" :style="{
-  position: 'relative',
-  zIndex: 1,
-}">
+<UiPanel id="HomePage" class="UiTheme_dark">
 
   <Slider
     v-if="!page.loading"
@@ -29,7 +26,7 @@
       },
 
       breakpoints: {
-        610:{
+        1088:{ // Breaks(4)
           direction: 'horizontal',
           freeMode: false,
         }
@@ -78,21 +75,43 @@ export default {
 </script>
 
 <style lang="scss">
-/**
- * App Overrides
- */
+@import "~@/styles/theme/breaks";
+
 #HomePage {
+
+  $top-offset: 6rem;
+  $top-offset--M: 4rem;
+  $left-offset: 5rem;
+  
   & {
+    z-index: 1;
+    position: relative;
+    height: 100vh;
     color: #FAFAFA;
+    @include Break( max-width Breaks(4) ){
+      margin-top: -$top-offset--M;
+    }
   }
   +#AppFooter {
     display: none;
   }
   .swiper {
-    $left-offset: 5rem;
+    &-container {
+      @include Break( min-width Breaks(4) ){
+        position: relative;
+        height: 100%;
+        // padding-top: $top-offset;
+        // margin-top: -$top-offset;
+      }
+      @include Break( max-width Breaks(4) ){
+        position: absolute;
+        height: 100%;
+        // margin-top: -$top-offset--M;
+      }
+    }
     &-slide {
       padding: 1.5rem 2rem;
-      @media( min-width:610px ){
+      @include Break( min-width Breaks(4) ){
         padding: 9rem 4rem 4rem;
         padding-left: $left-offset;
       }
@@ -103,13 +122,13 @@ export default {
         flex-flow: nowrap column;
         justify-content: stretch;
         align-items: center;
-        @media( min-width:610px ){
+        @include Break( min-width Breaks(4) ){
           height: 50vh;
           right: unset !important;
           left: $left-offset / 1.75;
-          top: 25vh;
+          top: 50%;
         }
-        @media( max-width:610px ){
+        @include Break( max-width Breaks(4) ){
           flex-flow: nowrap row;
           height: 8px;
           width: 88vw;
@@ -127,10 +146,10 @@ export default {
         background: rgba(255,255,255,.25);
         transition: .3s ease;
         & + * {
-          @media( min-width:610px ){
+          @include Break( min-width Breaks(4) ){
             margin-top: 2px !important;
           }
-          @media( max-width:610px ){
+          @include Break( max-width Breaks(4) ){
             margin-left: 2px !important;
           }
         }
@@ -144,7 +163,7 @@ export default {
             width: 100%;
             left: 0;
             bottom: 100%;
-            @media( min-width:610px ){
+            @include Break( min-width Breaks(4) ){
               top: 50%;
               left: unset;
               bottom: unset;

@@ -61,3 +61,9 @@ export default {
   }
 }
 </script>
+
+<style>
+#map, [id^="map"], [id$="map"] {
+  min-height: 66vmin !important;
+}
+</style>
