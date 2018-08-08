@@ -29,8 +29,9 @@ export default {
 .FAQ {
   & {
     margin: unset;
-    margin-left: -15px;
-    margin-right: -15px;
+    margin: 0;
+    // margin-left: -15px;
+    // margin-right: -15px;
   }
   li {
     list-style: none;
@@ -48,10 +49,14 @@ export default {
   }
   .UiHeading {
     text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     .UiIcon {
-      float: right;
-      margin-left: .5em;
+      order: 1;
       transition: .3s ease-out;
+      flex: 0 0 1em;
+      margin-left: 0.6em;
     }
   }
   .FaqItem.open .UiIcon {

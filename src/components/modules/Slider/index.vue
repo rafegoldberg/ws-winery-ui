@@ -28,9 +28,7 @@
     </div>
   </div>
 
-  <div class="swiper-pagination"
-    data-swiper-parallax-y="18%"
-    />
+  <div class="swiper-pagination"/>
 
   <!-- <template v-if="adjacent">
     <div class="swiper-button-prev"></div>
@@ -95,8 +93,8 @@ export default {
 <style lang="scss" scoped>
 .swiper {
   &-container {
-    min-height: 100vh;
-    height: 100vh;
+    // min-height: 100vh;
+    // height: 100vh;
     width: 100vw;
     // position: fixed;
     // top: 0;

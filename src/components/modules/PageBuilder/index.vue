@@ -6,28 +6,28 @@
         :class="panel.class||''"
         :key="panel.id"
         >
-      <component v-for="(box,i) in panel.boxes" :key="box.id"
+      <component v-for="(box,i) in panel.boxes"
           :id="box.id"
-          :class="[ ...(box.class||[]), box.theme ].join(' ')"
+          :class="classList(box).join(' ')"
           :is="box.img ? 'UiBoxImage' : 'UiBox'"
           :img="box.img || ''"
+          :key="box.id"
           >
         
-        <component v-if="!box.wrap"
-          v-for="com in box.components"
-          :key="`${box.id}--com${i}`"
-          :is="com.acf_fc_layout"
-          v-bind="com.props"
-          />
-
         <div v-if="box.wrap" :class="wrapClass(box.wrap)">
           <component
             v-for="(com,i) in box.components"
-            :key="`${box.id}--com${i}`"
-            :is="com.acf_fc_layout"
             v-bind="com.props"
+            :is="com.acf_fc_layout"
+            :key="`com-${i}`"
             />
         </div>
+        <component v-else
+          v-for="(com,i) in box.components"
+          :key="`com-${i}`"
+          :is="com.acf_fc_layout"
+          v-bind="com.props"
+          />
 
       </component>
     </UiPanel>
@@ -69,6 +69,14 @@ export default {
   methods:{
     wrapClass( size ){
       return size.replace( '_', "wrap_flex_" )
+    },
+    classList( box ){
+      let
+      classes = box.class || [],
+      hiders  = box.hide  || [],
+      order   = box.order || '',
+      theme   = box.theme || ''
+      return [ ...classes, ...hiders, order, theme ]
     },
   },
   props:{
