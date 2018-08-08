@@ -64,7 +64,7 @@ export default {
   & {
     & { // outer layout
       position: sticky;
-      position: fixed;
+      // position: fixed;
       z-index: 10;
       top: 0;
       left: 0;
@@ -137,14 +137,13 @@ export default {
 </style>
 <style lang="scss">
 @import "~@/styles/theme/breaks";
-/* 
-  #AppNav {
-    // @include Break( min-width Breaks(3) ){
-    //   position: relative !important;
-    //   margin-bottom: -112px !important;
-    // }
+
+#AppNav {
+  @include Break( min-width Breaks(3) ){
+    position: relative !important;
+    margin-bottom: -96px !important;
   }
- */
+}
 #AppNav + [id] >:first-child {
   &[class*="UiBox"],
    [class*="UiBox"]{
