@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import WineList from "@/components/modules/Wine/grid"
+import WineList from "@/views/Wine/grid"
 export default {
   name: "WineArchive",
   props:['category'],

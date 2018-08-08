@@ -6,6 +6,7 @@
     <div v-for="(slide,i) in slides"
         class="swiper-slide swiper-lazy"
         :data-background="slide.image.url"
+        :data-hash="i+1"
         >
     <slot v-bind="slide">
 
@@ -112,7 +113,7 @@ export default {
     position: relative;
     z-index: 0;
     // @media (max-width) {}
-    &:before {
+    &[style*="background-image"]:before {
       position: relative;
       z-index: -1;
       content: "";

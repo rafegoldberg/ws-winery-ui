@@ -6,7 +6,7 @@ import Staff from "./views/People"
 import StaffBio from "./views/People/Bio"
 
 import Wine from "./views/Wine"
-import WineGrid from "@/components/modules/Wine/grid"
+import WineGrid from "@/views/Wine/grid"
 
 import WinePost from "./views/Wine/post"
 

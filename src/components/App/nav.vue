@@ -35,16 +35,39 @@ import AppMenu from "./menu"
 import UiPanel from "@/components/UI/Panel"
 import UiIcon from "@/components/UI/Icon"
 
+import debounce from "lodash/debounce"
+
+let
+lastScroll = 0;
+
 export default {
   name: "AppNav",
   components:{ AppMenu, UiPanel, UiIcon },
+  mounted(){
+    // window.addEventListener('scroll',this.handleScroll)
+  },
+  destroyed(){
+    // window.removeEventListener('scroll',this.handleScroll)
+  },
   data:()=>({
     cta:{
       link: "/beta/join",
       text: "Join the List"
-    }
+    },
+    scrollDirection: 'up',
+    scrollLast: 0,
   }),
   methods:{
+    handleScroll: debounce(function(e){
+      let
+      now = window.scrollY,
+      pre = this.scrollLast,
+      dir = now<=pre ? 'up' : 'down'
+      // this.$set(this.$data,'scrollLast',now)
+      // this.$set(this.$data,'scrollDirection',dir)
+      this.scrollLast = now
+      this.scrollDirection = dir
+    },100),
     toggleMenu(setTo){
       if( typeof this.setTo !== 'undefined' )
         this.$refs.open = setTo
@@ -82,11 +105,19 @@ export default {
   }
   & { // theme
 
-    color: Color(slate);
+    color: inherit;
     &.light { color: Color(slate) }
     &.cream { color: Color(dark)  }
     &.dark  { color: Color(light) }
     &.rust  { color: mix(Color(theme),Color(cream)) }
+
+    &.cream, &.light {
+      /deep/ .icon--ornament {
+        path, rect {
+          fill: Color(alt) !important;
+        }
+      }
+    }
   }
   & { // transition
     transition: color .2s 0s ease-in-out;
@@ -131,20 +162,51 @@ export default {
     padding: 0 1em;
     height: 4rem;
     background: rgba(250, 250, 250, .96);
-    color: Color(slate) !important;
+    color: Color(slate);
     box-shadow: -4px 0 2rem 4px rgba(48, 41, 3, 0.08);
-
+    transition: .4s ease-out;
+    &:before{ 
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      transition: opacity .4s ease-out;
+      opacity: 0;
+      background: linear-gradient(
+        to right,
+        rgba( Color(light), .5),
+        rgba( Color(light), 0)
+      );
+    }
+    /deep/ .icon--ornament {
+      path, rect {
+        fill: Color(alt) !important;
+      }
+    }
     &.light {
-      color: Color(slate);
+      background-color: rgba( Color(light), .88);
+      color: Color(dark);
+      #AppNav-menu { --c: #{Color(theme)} }
+      // &:before { opacity: 1 }
     }
     &.cream {
-      color: Color(dark) ;
+      background-color: rgba( Color(cream), .88);
+      color: Color(slate);
+      #AppNav-menu { --c: #{Color(theme)} }
     }
     &.dark  {
-      color: Color(light);
+      background: rgba( Color(light), .88);
+      color: Color(slate);
+      // &:before { opacity: 1 }
+      #AppNav-menu { --c: #{Color(theme)} }
     }
     &.rust  {
-      color: mix(Color(theme),Color(cream));
+      background-color: rgba( Color(alt), .88);
+      color: Color(light);
+      #AppNav-menu { --c: #{Color(light)} }
     }
   }
 }
@@ -159,7 +221,6 @@ export default {
     margin-bottom: -6rem !important;
     + [id] >:first-child [class*="UiBox"] {
       padding-top: 9rem;
-      // margin-top: -6rem;
     }
   }
 }

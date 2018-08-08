@@ -5,32 +5,34 @@
     v-if="!page.loading"
     :slides="acf.panels"
     :settings="{
+      breakpoints: {
+        1088: {
+          direction: 'horizontal',
+          freeMode: false
+        }
+      },
       direction: 'vertical',
-      parallax: true,
-
-      speed: 400,
-
       freeMode: true,
       freeModeSticky: true,
-      mousewheel: {
-        sensitivity: 1,
-        releaseOnEdges: true,
+      hashNavigation: {
+        watchState: true,
+        replaceState: true
       },
       keyboard: true,
-      
-      lazy: true,
-      preloadImages: false,
-
+      lazy: {
+        loadPrevNext: true,
+        loadOnTransitionStart: true,
+      },
+      // preloadImages: false,
+      mousewheel: {
+        releaseOnEdges: true,
+        sensitivity: 1
+      },
       pagination: {
         type: 'bullets'
       },
-
-      breakpoints: {
-        1088:{ // Breaks(4)
-          direction: 'horizontal',
-          freeMode: false,
-        }
-      }
+      parallax: true,
+      speed: 400
     }"/>
 
 </UiPanel>
@@ -172,6 +174,7 @@ export default {
               margin-right: .5em;
               text-align: right;
             }
+            display: none !important;
           }
         }
       }

@@ -3,7 +3,7 @@
 
     <UiPanel class="WinePage--header UiTheme_light">
       <UiBox class="WinePage--stats UiTheme_cream">
-        <WineStats2
+        <WineStats
           :name="context.title.rendered"
           :fields="context.acf"
           :vineyard="vineyard"
@@ -100,8 +100,7 @@ import UiIcon from '@/components/UI/Icon'
 import UiButton from '@/components/UI/Button'
 import UiHeading from '@/components/UI/Heading'
 
-import WineStats  from '@/components/modules/Wine/Stats'
-import WineStats2 from './stats'
+import WineStats from './stats'
 
 import getTexts from "./lib/parse.wpContent"
 import getTerm  from "./lib/get.wpTerm"
@@ -133,7 +132,6 @@ export default {
     UiHeading,
 
     WineStats,
-    WineStats2,
     
     ReadMore,
     IconList,
@@ -214,9 +212,10 @@ export default {
     padding-right: 1rem !important;
     @include Break( max-width Breaks(2) ){
       order: -1;
-      margin-top: .5rem;
-      margin-bottom: -9rem;
-      padding-top: 6rem !important;
+      margin-bottom: -2rem;
+      // margin-top: .5rem;
+      // margin-bottom: -9rem;
+      // padding-top:  !important;
       background: Color(cream);
     }
     img {
@@ -238,7 +237,7 @@ export default {
       }
     }
     @include Break( max-width Breaks(3) ){
-      padding-top: 5rem !important;
+      // padding-top: 5rem !important;
     }
   }
   &--intro {

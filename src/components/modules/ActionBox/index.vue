@@ -24,9 +24,13 @@
   <div class="ActionBox--action" v-if="layout!=='float'">
     <!-- @slot Custom action item or footer. -->
     <slot name="action" v-bind="{cta}">
-      <UiButton v-if="cta" v-bind="{
-        cta, url,
-        tag: url.indexOf('mailto:')==0 ? 'a' : 'router-link'
+      <UiButton
+        :target="url.indexOf('mailto:')==0 && '_blank'" 
+        v-if="cta"
+        v-bind="{
+          cta,
+          url,
+          tag: url.indexOf('mailto:')==0 ? 'a' : 'router-link'
         }"/>
     </slot>
     <ReadMore v-if="ReadMore" :href="ReadMore.indexOf('#')==0 ? ReadMore:'#' + ReadMore"/>

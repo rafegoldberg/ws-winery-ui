@@ -6,7 +6,11 @@
       @mouseout="(open=false)"
       >
     <router-link to="/" class="AppMenu--brand" @click.native="toggle(false)">
-      <UiIcon name="Logo" width="32vmin" height="100%"/>
+      <UiIcon
+        name="Logo"
+        width="32vmin"
+        height="100%"
+        :detail="{ ornament:'#7D1214' }"/>
     </router-link>
     <UiList :list="{
       'Wine Library': '/wines',
@@ -154,11 +158,14 @@ export default {
   }
   &--brand {
     display: inline-block;
-    max-width: 18em;
+    max-width: 12em;
+    .UiIcon {
+      max-width: 100%;
+    }
   }
   @include Break( min-width Breaks(4) ){
     &--brand {
-      margin-right: 12vmin;
+      margin-right: 15vw;
     }
   }
   @include Break( max-width Breaks(4) ){

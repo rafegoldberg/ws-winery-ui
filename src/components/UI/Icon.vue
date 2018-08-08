@@ -13,7 +13,7 @@
         <feGaussianBlur in="SourceAlpha" stdDeviation="1"/> 
         <feOffset dx="-1" dy="0" result="offsetblur"/>
         <feComponentTransfer>
-          <feFuncA type="linear" slope="0.13"/>
+          <feFuncA type="linear" slope=""/>
         </feComponentTransfer>
         <feMerge> 
           <feMergeNode/>
@@ -21,7 +21,7 @@
         </feMerge>
       </filter>
     </defs>
-    <g class="icon" :fill="fill">
+    <g class="icon" :fill="fill||''">
       <slot>
         <component :is="`icon-${name}`" v-bind="options"/>
       </slot>
@@ -51,8 +51,12 @@ export default {
       type: [String, Array]
     },
     fill: {
-      type: String,
+      type: [String,Boolean],
       default: "currentColor"
+    },
+    detail: {
+      type: Object,
+      default:()=>( {} )
     },
     options: {
       type: Object,

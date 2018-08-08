@@ -94,7 +94,7 @@ import UiIcon from "@/components/UI/Icon"
 import UiHeading from "@/components/UI/Heading"
 import UiButton from "@/components/UI/Button"
 
-import WineGrid from "@/components/modules/Wine/grid"
+import WineGrid from "@/views/Wine/grid"
 import FiltersGroup from "./filters/group"
 
 function hasFilters( filters = this.$root.filters ){

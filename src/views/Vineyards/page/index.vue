@@ -89,7 +89,7 @@ import UiHeading from '@/components/UI/Heading'
 
 import StatGroup from '@/components/modules/StatGroup'
 import ReadMore from '@/components/modules/ReadMore'
-import WineGrid from '@/components/modules/Wine/grid'
+import WineGrid from '@/views/Wine/grid'
 import StaticIconList from '@/components/static/icon-list'
 
 import VineyardsPageMenu from './menu'
