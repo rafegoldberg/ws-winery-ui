@@ -5,6 +5,9 @@
       @mouseover="(open=true)"
       @mouseout="(open=false)"
       >
+    <router-link to="/" class="AppMenu--brand" @click.native="toggle(false)">
+      <UiIcon name="Logo" width="32vmin" height="100%"/>
+    </router-link>
     <UiList :list="{
       'Wine Library': '/wines',
       'Our Wines': '/beta/our-wines',
@@ -15,23 +18,25 @@
       'Visit Us': '/beta/visit',
       'Contact Us': '/beta/contact',
       }">
-      <router-link slot-scope="{ item, index }" :to="item" tag="li">
+      <router-link slot-scope="{ item, index }" :to="item" tag="li" @click.native="toggle(false)">
         <a style="text-decoration: none">{{index}}</a>
       </router-link>
     </UiList>
+    <UiIcon class="AppMenu--close" name="CirclePlus" width="1.5em" height="1.5em" @click.native="toggle"/>
   </nav>
 
 </template>
 
 <script>
 import UiList from "@/components/UI/List"
+import UiIcon from "@/components/UI/Icon"
 
 let
 defaults = { open:false }
 
 export default {
   name: "AppMenu",
-  components:{ UiList },
+  components:{ UiList, UiIcon },
   data:()=> defaults,
   methods:{
     toggle(setTo){
@@ -124,6 +129,52 @@ export default {
   .active a {
     font-weight: 900;
     letter-spacing: -.03em;
+  }
+}
+</style>
+
+<style lang="scss" scoped>
+@import '~@/styles/theme/breaks';
+.AppMenu {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  top: 0;
+  left: 0;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &--close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    transform: rotate(45deg);
+  }
+  &--brand {
+    display: inline-block;
+    max-width: 18em;
+  }
+  @include Break( min-width Breaks(4) ){
+    &--brand {
+      margin-right: 12vmin;
+    }
+  }
+  @include Break( max-width Breaks(4) ){
+    flex-flow: nowrap column;
+    &--brand {
+      margin-bottom: 1rem;
+    }
+  }
+  @include Break( max-width Breaks(2) ){
+    &--close {
+      top: 1rem;
+      right: 1rem;
+    }
+    &--brand .UiIcon {
+      min-width: 12rem;
+    }
   }
 }
 </style>

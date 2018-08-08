@@ -20,6 +20,9 @@ import UiHeading from "@/components/UI/Heading"
 
 export default {
   name:"App",
+  beforeCreate() {
+    document.addEventListener("touchstart", function(){}, true);
+  },
   components:{
     AppNav,
     AppFooter,

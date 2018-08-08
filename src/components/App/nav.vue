@@ -60,6 +60,7 @@ export default {
 @import "~@/styles/theme/breaks";
 @import "~@/styles/theme/colors";
 @import "~@/styles/extend/wrap";
+
 #AppNav {
   & {
     & { // outer layout
@@ -132,23 +133,34 @@ export default {
     background: rgba(250, 250, 250, .96);
     color: Color(slate) !important;
     box-shadow: -4px 0 2rem 4px rgba(48, 41, 3, 0.08);
+
+    &.light {
+      color: Color(slate);
+    }
+    &.cream {
+      color: Color(dark) ;
+    }
+    &.dark  {
+      color: Color(light);
+    }
+    &.rust  {
+      color: mix(Color(theme),Color(cream));
+    }
   }
 }
 </style>
+
 <style lang="scss">
 @import "~@/styles/theme/breaks";
 
 #AppNav {
-  @include Break( min-width Breaks(3) ){
+  @include Break( min-width Breaks(4) ){
     position: relative !important;
     margin-bottom: -6rem !important;
-  }
-}
-#AppNav + [id] >:first-child {
-  &[class*="UiBox"],
-   [class*="UiBox"]{
-    &:first-child { padding-top: 9rem }
-    @include Break( min-width Breaks(3) ){ padding-top: 9rem }
+    + [id] >:first-child [class*="UiBox"] {
+      padding-top: 9rem;
+      // margin-top: -6rem;
+    }
   }
 }
 </style>
