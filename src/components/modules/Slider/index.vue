@@ -28,7 +28,9 @@
     </div>
   </div>
 
-  <div class="swiper-pagination"></div>
+  <div class="swiper-pagination"
+    data-swiper-parallax-y="18%"
+    />
 
   <!-- <template v-if="adjacent">
     <div class="swiper-button-prev"></div>
@@ -93,21 +95,25 @@ export default {
 <style lang="scss" scoped>
 .swiper {
   &-container {
+    min-height: 100vh;
     height: 100vh;
     width: 100vw;
+    // position: fixed;
+    // top: 0;
+    // left: 0;
   }
   &-slide {
     display: flex;
     flex-flow: nowrap column;
     justify-content: center;
     align-items: flex-start;
-    padding: 9rem 3rem 3rem;
 
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
     z-index: 0;
+    // @media (max-width) {}
     &:before {
       position: relative;
       z-index: -1;
@@ -123,6 +129,15 @@ export default {
         rgba(0,0,0,.88)
         );
       pointer-events: none;
+    }
+    &.swiper-lazy {
+      // children
+      > * { transition: opacity .3s .15s ease-out }
+      &:not(.swiper-lazy-loaded) > *:not(.swiper-lazy-preloader) { opacity: 0 !important }
+      
+      // pseudos
+      &:before { transition: .3s .15s ease-out }
+      &:not(.swiper-lazy-loaded):before { opacity: 0 !important }
     }
   }
   &-pagination {

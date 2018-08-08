@@ -4,7 +4,9 @@
   <div class="ActionBox--content">
     <!-- @slot Customize the `<ActionBox/>` header. -->
     <slot name="header">
-      <UiHeading class="UiHeading" v-bind="{level,scale}" v-if="title">{{title}}</UiHeading>
+      <UiHeading class="UiHeading" v-bind="{level,scale}" v-if="title">
+        {{title}}
+      </UiHeading>
     </slot>
     <div v-if="layout=='float'"
         class="ActionBox--action"

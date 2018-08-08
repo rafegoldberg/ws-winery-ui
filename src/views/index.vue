@@ -9,17 +9,25 @@
     :slides="acf.panels"
     :settings="{
       direction: 'vertical',
-      lazy: true,
-      preloadImages: false,
-      pagination: {
-        type: 'bullets'
-      },
+      parallax: true,
+
+      speed: 400,
+
+      freeMode: true,
+      freeModeSticky: true,
       mousewheel: {
         sensitivity: 1,
         releaseOnEdges: true,
       },
-      freeMode: true,
-      freeModeSticky: true,
+      keyboard: true,
+      
+      lazy: true,
+      preloadImages: false,
+
+      pagination: {
+        type: 'bullets'
+      },
+
       breakpoints: {
         610:{
           direction: 'horizontal',
@@ -74,13 +82,18 @@ export default {
  * App Overrides
  */
 #HomePage {
+  & {
+    color: #FAFAFA;
+  }
   +#AppFooter {
     display: none;
   }
   .swiper {
-    $left-offset: 4rem;
+    $left-offset: 5rem;
     &-slide {
+      padding: 1.5rem 2rem;
       @media( min-width:610px ){
+        padding: 9rem 4rem 4rem;
         padding-left: $left-offset;
       }
     }
@@ -94,6 +107,7 @@ export default {
           height: 50vh;
           right: unset !important;
           left: $left-offset / 1.75;
+          top: 25vh;
         }
         @media( max-width:610px ){
           flex-flow: nowrap row;

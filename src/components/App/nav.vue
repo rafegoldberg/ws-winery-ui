@@ -137,12 +137,14 @@ export default {
 </style>
 <style lang="scss">
 @import "~@/styles/theme/breaks";
-#AppNav {
-  @include Break( min-width Breaks(3) ){
-    position: relative !important;
-    margin-bottom: -112px !important;
+/* 
+  #AppNav {
+    // @include Break( min-width Breaks(3) ){
+    //   position: relative !important;
+    //   margin-bottom: -112px !important;
+    // }
   }
-}
+ */
 #AppNav + [id] >:first-child {
   &[class*="UiBox"],
    [class*="UiBox"]{

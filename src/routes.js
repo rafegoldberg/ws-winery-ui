@@ -1,4 +1,4 @@
-import BetaBuilder from "./views/page"
+import Page from "./views/page"
 
 import Home from "./views"
 
@@ -16,7 +16,7 @@ import VineyardPage from "./views/Vineyards/page"
 export default [
   { name: "BetaPage",
     path: "/beta/:slug",
-    component: BetaBuilder,
+    component: Page,
     props: true,
   },
 
