@@ -141,7 +141,7 @@ export default {
 #AppNav {
   @include Break( min-width Breaks(3) ){
     position: relative !important;
-    margin-bottom: -96px !important;
+    margin-bottom: -6rem !important;
   }
 }
 #AppNav + [id] >:first-child {
