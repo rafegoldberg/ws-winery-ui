@@ -25,7 +25,6 @@ export default [
     path: "/people/:slug",
     component: ()=> import("./views/People/Bio"),
     props: true,
-    error: ()=> import('@/views/error')
   },
 
   {
