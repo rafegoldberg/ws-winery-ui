@@ -22,11 +22,11 @@ export default {
   &:not(.open):not(:last-child) dt {
     margin-bottom: .6rem;
   }
-}
-dt {
-  &, * {
-    user-select: none;
-    cursor: pointer;
+  dt {
+    &, * {
+      user-select: none;
+      cursor: pointer;
+    }
   }
 }
 </style>

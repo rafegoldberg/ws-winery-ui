@@ -57,10 +57,23 @@ export default {
       transition: .3s ease-out;
       flex: 0 0 1em;
       margin-left: 0.6em;
+      /deep/ path {
+        stroke: #b99453;
+        stroke-width: 0;
+        transition: all .6s 0s ease-out;
+      }
+      /deep/ circle {
+        transition: all .6s .2s ease-out;
+      }
     }
   }
   .FaqItem.open .UiIcon {
     transform: rotate(45deg);
+    /deep/ circle {
+      stroke: transparent;
+      transition: all .3s .2s ease-out;
+    }
+    /deep/ path { stroke-width: 2px }
   }
 }
 </style>
