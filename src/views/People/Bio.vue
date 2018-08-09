@@ -1,5 +1,8 @@
 <template>
-<main id="StaffBio" v-if="!context.loading" class="Bio UiTheme_cream">
+<AppLoad
+  v-if="context.loading"
+  />
+<main v-else id="StaffBio" class="Bio UiTheme_cream">
 
   <UiPanel class="UiTheme_cream wrap_mid">
     <UiBox class="Bio--overview">
@@ -8,8 +11,7 @@
         flex:[ 0, '50%' ],
         }">
         <a href="#intro" class="Bio--role">
-          <!-- <UiIcon name="ArrowLeft" width=".8em"/> -->
-          <b v-html="context.acf.role.name"/>
+          <b v-html="context.acf.role ? context.acf.role.name : 'Our People' "/>
         </a>
         <img class="Bio--media"
           :src="featured_img"
@@ -26,9 +28,6 @@
         <ReadMore href="#content" class="ReadMore_gold"/>
       </div>
     </UiBox>
-    <!-- <span slot="connect">
-        <ReadMore href="#content" class="ReadMore_gold" :icon="false"/>
-    </span> -->
   </UiPanel>
 
   <UiPanel id="content" class="UiTheme_light">
@@ -36,22 +35,22 @@
       <div>
         <article v-html="context.acf.content"/>
         <br>
-        <router-link to="/people" style="display: block; text-align: center; text-decoration: none">
-          <UiButton class="UiButton_outline UiButton_gold UiButton_flex">
-            Back to Our People
-          </UiButton>
-        </router-link>
+
+        <AdjacentNav
+          v-bind="context.adjacent"
+          class="AdjacentNav_center"/>
       </div>
     </UiBox>
   </UiPanel>
   
   
 </main>
-<UiBox v-else style="text-align: center; min-height: 68vh">Loading...</UiBox>
+
 </template>
 
 <script>
 import WpConnect from "@/VuePress/mix/item"
+import AppLoad from "@/components/App/load"
 
 import UiPanel from '@/components/UI/Panel'
 import UiBox from '@/components/UI/Box'
@@ -60,18 +59,21 @@ import UiButton from '@/components/UI/Button'
 import UiIcon from '@/components/UI/Icon'
 
 import ReadMore from '@/components/modules/ReadMore'
+import AdjacentNav from '@/components/modules/AdjacentNav'
 
 export default {
   name: "Bio",
   props:[ 'slug', 'category' ],
   mixins:[ WpConnect ],  
   components:{
+    AppLoad,
     UiPanel,
     UiBox,
     UiButton,
     UiHeading,
     UiIcon,
     ReadMore,
+    AdjacentNav
   },
   computed:{
     featured_img(){

@@ -1,5 +1,8 @@
 <template>
-<div id="StaffList">
+<AppLoad
+  v-if="context.loading"
+  />
+<div id="StaffList" v-else>
   <UiPanel class="UiTheme_dark" connect="down">
     <UiBoxImage :img="imgs.cover"/>
     <UiBox class="UiBox_tall">
@@ -24,7 +27,7 @@
   </UiPanel>
   <UiPanel id="StaffLists--group" v-for="(term) in context" :key="term.id">
     <UiBox>
-      <img :src="imgs[term.slug]" :alt="term.slug">
+      <img :src="term.acf.image" :alt="term.slug">
     </UiBox>
     <UiBox class="UiBox_stack" style="padding-bottom: 0; padding-top: 0">
         <UiHeading v-html="term.name" style="width: 100%"/>
@@ -41,19 +44,14 @@ import UiPanel from '@/components/UI/Panel'
 import UiBox from '@/components/UI/Box'
 import UiBoxImage from '@/components/UI/Box/Image'
 import UiHeading from '@/components/UI/Heading'
-import RoleList from '@/views/beta/RoleList'
+import RoleList from '@/components/modules/RoleList'
 
 import cover from "./assets/cover.png"
-import hospitality from "./assets/hospitality.png"
-import operations from "./assets/operations.png"
-import winemaking from "./assets/winemaking.png"
 import proprietors from "./assets/proprietors.png"
+
 let
 imgs = {
   cover,
-  hospitality,
-  operations,
-  winemaking,
   proprietors,
 }
 
