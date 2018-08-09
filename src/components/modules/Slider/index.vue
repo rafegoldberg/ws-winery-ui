@@ -4,7 +4,9 @@
   <div class="swiper-wrapper">
     <!-- Slides -->
     <div v-for="(slide,i) in slides"
-        class="swiper-slide swiper-lazy"
+        class="swiper-slide swiper-lazy" :class="{
+          'swiper-slide-video': slide.video
+        }"
         :data-background="slide.image.url"
         :data-hash="i+1"
         >
@@ -92,14 +94,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~@/styles/theme/breaks";
 .swiper {
   &-container {
-    // min-height: 100vh;
-    // height: 100vh;
     width: 100vw;
-    // position: fixed;
-    // top: 0;
-    // left: 0;
   }
   &-slide {
     display: flex;
@@ -112,22 +110,41 @@ export default {
     background-repeat: no-repeat;
     position: relative;
     z-index: 0;
-    // @media (max-width) {}
-    &[style*="background-image"]:before {
-      position: relative;
-      z-index: -1;
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        to bottom left,
-        #{"rgba(0,0,0,0)"} 42%,
-        rgba(0,0,0,.88)
-        );
-      pointer-events: none;
+    &[style*="background-image"]:not(.swiper-slide-video) {
+      &:before, &:after {
+        position: relative;
+        z-index: -1;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          233deg,
+          rgba(black, 0) 50%,
+          rgba(black, 1) 88%
+          );
+        pointer-events: none;
+      }
+      &:before {
+        mix-blend-mode: overlay;
+        opacity: .6;
+      }
+      &:after {
+        mix-blend-mode: saturation;
+        opacity: .3;
+      }
+      @include Break( max-width Breaks(3) ){
+        &:after  { display: none }
+        &:before {
+          background: transparent;
+          transition: .4s .1s ease-in-out;
+        }
+        &.swiper-slide-active:before {
+          backdrop-filter: blur(8px);
+        }
+      }
     }
     &.swiper-lazy {
       // children
