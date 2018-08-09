@@ -10,7 +10,8 @@
         name="Logo"
         width="32vmin"
         height="100%"
-        :detail="{ ornament:'#7D1214' }"/>
+        fill="#D21034"
+        :detail="{ ornament:'#0E0E0E' }"/>
     </router-link>
     <UiList :list="{
       'Wine Library': '/wines',

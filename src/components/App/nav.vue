@@ -84,6 +84,16 @@ export default {
 @import "~@/styles/theme/colors";
 @import "~@/styles/extend/wrap";
 
+@mixin DualToneIcon {
+  /deep/ .icon--text path,
+  /deep/ .icon--ornament--rule {
+    fill: Color(alt) !important;
+  }
+  /deep/ .icon--ornament--rinceau {
+    fill: Color(dark) !important;
+  }
+}
+
 #AppNav {
   & {
     & { // outer layout
@@ -112,11 +122,7 @@ export default {
     &.rust  { color: mix(Color(theme),Color(cream)) }
 
     &.cream, &.light {
-      /deep/ .icon--ornament {
-        path, rect {
-          fill: Color(alt) !important;
-        }
-      }
+      @include DualToneIcon;
     }
   }
   & { // transition
@@ -137,7 +143,7 @@ export default {
     }
   }
   &-menu {
-    --c: #{Color(theme)};
+    --c: #{Color(silver)};
     color: var(--c);
   }
   &-menuJoin {
@@ -165,32 +171,11 @@ export default {
     color: Color(slate);
     box-shadow: -4px 0 2rem 4px rgba(48, 41, 3, 0.08);
     transition: .4s ease-out;
-    &:before{ 
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      transition: opacity .4s ease-out;
-      opacity: 0;
-      background: linear-gradient(
-        to right,
-        rgba( Color(light), .5),
-        rgba( Color(light), 0)
-      );
-    }
-    /deep/ .icon--ornament {
-      path, rect {
-        fill: Color(alt) !important;
-      }
-    }
+    @include DualToneIcon;
     &.light {
       background-color: rgba( Color(light), .88);
       color: Color(dark);
       #AppNav-menu { --c: #{Color(theme)} }
-      // &:before { opacity: 1 }
     }
     &.cream {
       background-color: rgba( Color(cream), .88);
@@ -200,7 +185,6 @@ export default {
     &.dark  {
       background: rgba( Color(light), .88);
       color: Color(slate);
-      // &:before { opacity: 1 }
       #AppNav-menu { --c: #{Color(theme)} }
     }
     &.rust  {
