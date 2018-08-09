@@ -1,5 +1,9 @@
 <template>
-<UiPanel id="HomePage" class="UiTheme_dark">
+<AppLoad
+  v-if="page.loading"
+  theme="dark"
+  />
+<UiPanel id="HomePage" class="UiTheme_dark" v-else>
 
   <Slider
     v-if="!page.loading"
