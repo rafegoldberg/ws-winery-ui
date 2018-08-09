@@ -143,7 +143,7 @@ export default {
     }
   }
   &-menu {
-    --c: #{Color(silver)};
+    --c: #{Color(theme)};
     color: var(--c);
   }
   &-menuJoin {

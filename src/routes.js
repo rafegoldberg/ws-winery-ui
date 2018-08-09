@@ -1,35 +1,20 @@
-import Page from "./views/page"
-
-import Home from "./views"
-
-import Staff from "./views/People"
-import StaffBio from "./views/People/Bio"
-
-import Wine from "./views/Wine"
-import WineGrid from "@/views/Wine/grid"
-
-import WinePost from "./views/Wine/post"
-
-import Vineyards from "./views/Vineyards"
-import VineyardPage from "./views/Vineyards/page"
-
 export default [
   { name: "BetaPage",
     path: "/beta/:slug",
-    component: Page,
+    component: ()=> import("./views/page"),
     props: true,
   },
 
   {
     name: "Home",
     path: "/",
-    component: Home,
+    component: ()=> import("./views"),
   },
 
   {
     name: "Staff",
     path: "/people",
-    component: Staff,
+    component: ()=> import("./views/People"),
     props: {
       default: true,
       type: "taxonomy", // slug: 'people',
@@ -38,14 +23,15 @@ export default [
   {
     name: "Bio",
     path: "/people/:slug",
-    component: StaffBio,
+    component: ()=> import("./views/People/Bio"),
     props: true,
+    error: ()=> import('@/views/error')
   },
 
   {
     name: "Vineyards",
     path: "/vineyards/",
-    component: Vineyards,
+    component: ()=> import("./views/Vineyards"),
     props: {
       type: 'categories',
       parent: 73,
@@ -55,7 +41,7 @@ export default [
   {
     name: "VineyardPage",
     path: "/vineyards/:permalink?/:slug",
-    component: VineyardPage,
+    component: ()=> import("./views/Vineyards/page"),
     props: true,
   },
 
@@ -63,11 +49,11 @@ export default [
     name: "Wine",
     path: "/wines",
     redirect:['our-wines'],
-    component: Wine,
+    component: ()=> import("./views/Wine"),
     children:[
       { path: '',
         name: 'WineGrid',
-        component: WineGrid,
+        component: ()=> import("@/views/Wine/grid"),
         // props: true,
       }
     ],
@@ -75,7 +61,7 @@ export default [
   {
     name: "WinePost",
     path: "/:category+/:slug",
-    component: WinePost,
+    component: ()=> import("./views/Wine/post"),
     props: true,
   },
 ];
