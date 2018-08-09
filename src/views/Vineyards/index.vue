@@ -1,5 +1,9 @@
 <template>
-  <main id="VineyardsListPage" v-if="!context.loading">
+
+  <AppLoad
+    v-if="context.loading"
+    />
+  <main id="VineyardsListPage" v-else>
     
     <UiPanel :connect="'down'">
       <UiBoxImage :img="imgs.feat" class="UiBox_tall">

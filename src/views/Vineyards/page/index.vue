@@ -1,6 +1,9 @@
 <template>
 
-  <main id="VineyardPage" class="UiTheme_light" v-if="!context.loading" tag="main">
+  <AppLoad
+    v-if="context.loading"
+    />
+  <main id="VineyardPage" class="UiTheme_light" v-else>
 
     <UiPanel id="VineyardPage-overview">
       <UiBoxImg id="VineyardPage-overviewMedia" :img="media" class="UiTheme_cream" style="background-position: center 25%" />
@@ -8,11 +11,7 @@
         <div id="VineyardPage-overviewContent-inner" v-if="text">
 
           <header>
-            <VineyardsPageMenu
-              all="/vineyards"
-              :next="adjacent.next && adjacent.next.slug"
-              :prev="adjacent.prev && adjacent.prev.slug"
-              />
+            <AdjacentNav all="/vineyards" v-bind="adjacent"/>
             <UiHeading
               id="VineyardPage-overviewHeader"
               class="UiHeading_contract UiHeading_space÷2"
@@ -92,7 +91,7 @@ import ReadMore from '@/components/modules/ReadMore'
 import WineGrid from '@/views/Wine/grid'
 import StaticIconList from '@/components/static/icon-list'
 
-import VineyardsPageMenu from './menu'
+import AdjacentNav from '@/components/modules/AdjacentNav'
 
 export default {
   name: 'VineyardPage',
@@ -129,7 +128,7 @@ export default {
 
     StatGroup,
     ReadMore,
-    VineyardsPageMenu,
+    AdjacentNav,
     WineGrid,
     StaticIconList
   }
