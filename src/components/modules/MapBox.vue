@@ -1,5 +1,6 @@
 <template>
   <GMap
+    ref="map"
     class="MapBox"
     :center="mapCenter"
     :zoom="14"
@@ -18,6 +19,7 @@
       ],
     }">
     <GMark
+      v-if="mark.icon | mark.label"
       :label="mark.label"
       :position="mapCenter"
       :options="{
@@ -31,21 +33,42 @@
 </template>
 
 <script>
+import {gmapApi as GM} from 'vue2-google-maps'
+
 import GMap  from 'vue2-google-maps/src/components/map'
 import GMark from 'vue2-google-maps/src/components/marker'
 
 export default {
   name: "MapBox",
-  props:[ 'map', 'mark' ],
+  props:[ 'map', 'mark', 'kml' ],
   components:{ GMap, GMark },
+  mounted(){
+    this.$refs.map.$mapPromise.then(this.setKML)
+  },
   computed:{
-    mapCenter(){
+    Google: GM,
+    gKML(){
       let
-      lat = parseFloat(this.map.lat),
-      lng = parseFloat(this.map.lng)
+      mid = this.kml.split(/\?id=(.*)&/)[1],
+      url = `http://www.google.com/maps/d/kml?forcekml=1&mid=${mid}`
+      return url
+    },
+    mapCenter(){
+      if( !this.map ) return { lat:0, lng:0 }
+      let
+      lat = parseFloat(this.map.lat||0),
+      lng = parseFloat(this.map.lng||0)
       return {lat,lng}
     }
   },
+  methods:{
+    setKML(map){
+      new this.Google.maps.KmlLayer({
+        map,
+        url: this.gKML
+      });
+    }
+  }
 }
 </script>
 
