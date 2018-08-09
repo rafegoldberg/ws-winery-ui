@@ -119,7 +119,7 @@ export default {
     &.light { color: Color(slate) }
     &.cream { color: Color(dark)  }
     &.dark  { color: Color(light) }
-    &.rust  { color: mix(Color(theme),Color(cream)) }
+    &.rust  { color: Color(light) }
 
     &.cream, &.light {
       @include DualToneIcon;
@@ -131,6 +131,13 @@ export default {
     transition-duration: .3s !important;
     transition-timing-function: ease-in-out !important;
   }
+  &-menu {
+    --c: #{Color(theme)};
+    color: var(--c);
+  }
+  &.rust #{&}-menu {
+    --c: #{Color(silver)};
+  }
   &-logo {
     >svg {
       pointer-events: none;
@@ -141,10 +148,6 @@ export default {
     @include Break( max-width Breaks(4) ){
       >svg:only-child { width: 5rem !important }
     }
-  }
-  &-menu {
-    --c: #{Color(theme)};
-    color: var(--c);
   }
   &-menuJoin {
     display: inline-block;
