@@ -14,6 +14,9 @@ import router from "@/includes/use/router"
 
 import "@/includes/filters"
 
+import AppLoad from "@/components/App/load"
+Vue.component('AppLoad',AppLoad)
+
 let
 options = {
   showFilters: false,

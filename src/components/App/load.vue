@@ -1,9 +1,11 @@
 <template>
   <div id="AppLoad">
-    <UiPanel class="UiTheme_cream">
+    <UiPanel :class="{
+        [`UiTheme_${theme}`]: theme
+        }">
       <UiBox class="UiBox_stack">
         <img :src="spinner">
-        Loading...
+        <!-- Loading... -->
       </UiBox>
     </UiPanel>
   </div>
@@ -15,7 +17,8 @@ import spinner from '@/assets/preloader.gif'
 export default {
   name: "Loading",
   components:{ UiPanel, UiBox },
-  data:()=>({ spinner })
+  data:()=>({ spinner }),
+  props:[ 'theme' ]
 }
 </script>
 

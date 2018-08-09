@@ -36,8 +36,12 @@ export default {
 @import '~@/styles/extend/themes';
 
 img[src*='preloader'][src*='.gif'] {
-  width: 3rem;
-  height: 3rem;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  width: 12vmin;
+  height: 12vmin;
+  max-width: 4rem;
+  max-height: 4rem;
   opacity: 0.3;
 }
 
