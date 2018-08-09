@@ -1,5 +1,8 @@
 <template>
-  <div id="WinePage" class="WinePage" v-if="!context.loading">
+  <AppLoad
+    v-if="context.loading"
+    />
+  <div id="WinePage" class="WinePage" v-else>
 
     <UiPanel class="WinePage--header UiTheme_light">
       <UiBox class="WinePage--stats UiTheme_cream">
