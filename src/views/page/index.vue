@@ -1,6 +1,9 @@
 <template>
 
-<PageBuilder v-if="!page.loading" :panels="acf.panels" :id="$route.name"/>
+<AppLoad
+  v-if="page.loading"
+  />
+<PageBuilder :panels="acf.panels" :id="$route.name" v-else/>
 
 </template>
 <script>
