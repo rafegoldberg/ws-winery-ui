@@ -55,8 +55,9 @@ export default {
   &--discoverText {
     text-transform: uppercase;
     letter-spacing: .3em;
-    font-weight: lighter;
+    // font-weight: lighter;
     color: Color(theme);
+    text-shadow: 0 1px 5px rgba(25,25,25,.75)
   }
 }
 </style>
