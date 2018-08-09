@@ -1,18 +1,13 @@
 <?
-// display default WP custom fields metabox
+// Allow WP Default Custom
+// Fields Metabox Inputs
+// 
 add_filter( 'acf/settings/remove_wp_meta_box', '__return_false' );
 
-// Google Maps API authentication
+// Authenticate the
+// Google Maps' API 
 add_filter('acf/fields/google_map/api',function($API){
-	$API['key'] = 'AIzaSyA3ozyFU65U2MA4v9j6tJhz1R28MQjJ-qc';
+	$API['key'] = 'AIzaSyC3gcuuHZfpmw51P0pWDKRnTEFhwr05K4w';
 	return $API;
 });
-
-
-// hide the default ACF options page
-add_action('admin_menu',function(){
-  remove_menu_page('acf-options');
-  remove_menu_page('index.php');
-  remove_menu_page('seo');
-},99);
 ?>
