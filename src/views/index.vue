@@ -81,6 +81,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "~@/styles/theme/colors";
 @import "~@/styles/theme/breaks";
 
 #HomePage {
@@ -93,7 +94,7 @@ export default {
     z-index: 1;
     position: relative;
     height: 100vh;
-    color: #FAFAFA;
+    color: Color(light);
     @include Break( max-width Breaks(4) ){
       margin-top: -$top-offset--M;
     }
@@ -149,7 +150,7 @@ export default {
         width: 8px;
         height: 8px;
         margin: 0 !important;
-        background: rgba(255,255,255,.25);
+        background: rgba(Color(light),.25);
         transition: .3s ease;
         & + * {
           @include Break( min-width Breaks(4) ){
@@ -161,7 +162,15 @@ export default {
         }
         &-active {
           position: relative;
-          background: #bb9353;
+          background: Color(theme);
+          box-shadow:
+            3px 0 0 Color(theme),
+            -3px 0 0 Color(theme);
+          @include Break( max-width Breaks(4) ){
+            box-shadow:
+              0  3px 0 Color(theme),
+              0 -3px 0 Color(theme);
+          }
           &:after {
             content: "Slide";
             position: absolute;
