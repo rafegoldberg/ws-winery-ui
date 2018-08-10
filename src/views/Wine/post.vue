@@ -7,7 +7,7 @@
     <UiPanel class="WinePage--header UiTheme_light">
       <UiBox class="WinePage--stats UiTheme_cream">
         <WineStats
-          :name="context.title.rendered"
+          :name="title"
           :fields="context.acf"
           :vineyard="vineyard"
           :AVA="terms.AVA && terms.AVA[0]"
@@ -28,18 +28,38 @@
       </UiBox>
     </UiPanel>
 
-    <UiPanel style="border-top:1px solid #EEE">
+    <UiPanel class="WinePage--detail">
       <UiBox><div style="text-align:center">
-        <UiHeading>Technical Notes</UiHeading>
+        <UiHeading style="flex:1 100%">Technical Notes</UiHeading>
 
-        <table>
-          <tr>
-            <th></th>
-            <td></td>
-          </tr>
-        </table>
-        
-        <UiButton class="UiButton_outline gold">Download</UiButton>
+        <div class="WinePage--detail-tables">
+          <table>
+            <tr>
+              <th>Alc.</th>
+              <td>{{acf.TA}}</td>
+            </tr>
+            <tr>
+              <th>pH</th>
+              <td>{{acf.pH}}</td>
+            </tr>
+            <tr>
+              <th>TA</th>
+              <td>{{acf.Alc}}</td>
+            </tr>
+          </table>
+          <table>
+            <tr>
+              <th>Barrel Description</th>
+              <td>{{acf['Barrel-Aged']}}</td>
+            </tr>
+            <tr>
+              <th>Barrel Aged</th>
+              <td>{{acf['Barrel-Description']}}</td>
+            </tr>
+          </table>
+        </div>
+
+        <a :href="download" class="UiButton UiButton_outline gold" :download="title">Download PDF</a>
       </div></UiBox>
     </UiPanel>
 
@@ -123,9 +143,14 @@ import bottles from "@/assets/icons/bottles.svg"
 import barrels from "@/assets/icons/barrels.svg"
 import glasses from "@/assets/icons/glasses.svg"
 
+const Window = window || {}
+
 export default {
   name: "WinePost",
   props:[ 'slug', 'category' ],
+  data: ()=>({
+    Window,
+  }),
   mixins:[ WpConnect ],  
   components:{
     UiPanel,
@@ -151,6 +176,24 @@ export default {
     embed(){
       if( this.context.loading ) return
       return this.context._embedded
+    },
+    title(){
+      if( this.context.loading ) return ''
+      return this.context.title.rendered
+    },
+    download(){
+      if( this.context.loading ) return
+
+      let
+      PDF = this.acf['Wine-PDF'],
+      rgx = /.*\/wp-content\//gim,
+      rep = 'https://www.williamsselyem.com/wp-content/'
+
+      return PDF.replace(rgx,rep)
+    },
+    acf(){
+      if( this.context.loading ) return
+      return this.context.acf
     },
     terms(){
       if( this.context.loading || !this.embed ) return
@@ -206,6 +249,44 @@ export default {
     }
     @include Break( min-width Breaks(3) ){
       // min-height: 90vh;
+    }
+  }
+  &--detail {
+    &-tables {
+      display: flex;
+      margin: 1.5rem 0;
+      min-width: 42vw;
+      
+      border-color: Color(theme) !important;
+      border-style: solid !important;
+      border-width: 0/*1px*/ 0;
+      border-width: 0;
+      
+      table {
+        &, th, td { border-color: inherit !important }
+        border-bottom: 0/*1px*/ solid;
+        margin: 0 .75rem/*0*/ 0/*-1px*/;
+        &:not(:last-child) { 
+          // border-right: 1px solid;
+        }
+        th {
+          text-align: right;
+          + td { text-align: left }
+        }
+      }
+    }
+    @include Break( max-width Breaks(2) ){
+      &-tables {
+        width: 100%;
+        flex-flow: nowrap column;
+        table {
+          &:not(:last-child) { margin-bottom: 0 }
+          + table {
+            margin-top: 0;
+            border-top: 1px solid;
+          }
+        }
+      }
     }
   }
   // &--stats {}

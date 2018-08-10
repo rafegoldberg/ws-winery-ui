@@ -25,7 +25,7 @@ caption {
 }
 
 th, td {
-  padding: .4em .5em;
+  padding: .5em .6em;
   border: solid Color(theme);
   border-width: 0;
   vertical-align: top;
@@ -33,5 +33,5 @@ th, td {
   & + &     { border-left-width: 1px }
 }
 th {
-  text-transform: capitalize;
+  font-weight: 600
 }  
