@@ -10,7 +10,7 @@
     <p class="Review--blurb" v-html="Blurb"/>
   </div>
 </div>
-  
+
 </template>
 
 <script>
@@ -68,7 +68,7 @@ export default {
       letter-spacing: 0.05em;
     }
   }
-  &--blurb  {}
+  // &--blurb  {}
   @include Break( max-width Breaks(3) ){
     & {
       display: block;
