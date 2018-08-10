@@ -23,11 +23,12 @@
             v-html="context.title.rendered"
             :level="2"
             :scale="3"
-            class="UiHeading_gold"/>
+            class="UiHeading_gold"
+            />
           <b class="Bio--position">{{context.acf.position}}</b>
         </header>
         <p>{{context.acf.intro}}</p>
-        <ReadMore href="#content" class="ReadMore_gold"/>
+        <ReadMore v-if="context.acf.content" href="#content" class="ReadMore_gold"/>
       </div>
     </UiBox>
   </UiPanel>
