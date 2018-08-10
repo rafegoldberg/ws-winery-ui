@@ -4,8 +4,9 @@
   <div class="ActionBox--content">
     <!-- @slot Customize the `<ActionBox/>` header. -->
     <slot name="header">
-      <UiHeading class="UiHeading" v-bind="{level,scale}" v-if="title">
-        {{title}}
+      <!-- {{$log({OG:{level,cta},heading})}} -->
+      <UiHeading class="UiHeading" v-bind="heading||{level,cta}" v-if="heading.text||title">
+        {{heading.text||title}}
       </UiHeading>
     </slot>
     <div v-if="layout=='float'"
@@ -23,15 +24,8 @@
   
   <div class="ActionBox--action" v-if="layout!=='float'">
     <!-- @slot Custom action item or footer. -->
-    <slot name="action" v-bind="{cta}">
-      <UiButton
-        :target="url.indexOf('mailto:')==0 && '_blank'" 
-        v-if="cta"
-        v-bind="{
-          cta,
-          url,
-          tag: url.indexOf('mailto:')==0 ? 'a' : 'router-link'
-        }"/>
+    <slot name="action" v-bind="{button}" v-if="cta||button.cta">
+      <UiButton v-bind="button"/>
     </slot>
     <ReadMore v-if="ReadMore" :href="ReadMore.indexOf('#')==0 ? ReadMore:'#' + ReadMore"/>
   </div>
@@ -46,33 +40,33 @@ import ReadMore from "@/components/modules/ReadMore"
 export default {
   name: "ActionBox",
   props: {
-    title: {
-      type: String,
-    },
     content: {
       type: [ Array, String, Object ],
       default: ""
     },
-    cta: {
-      type: [String,Object],
-    },
-    url: {
-      type: String,
-    },
+
     ReadMore: {
       type: [String,Boolean],
       default: false,
     },
+    
     layout: {
       type: String,
       default: ""
     },
-    level: {
-      type: [String,Number]
+
+    heading: {
+      type: Object
     },
-    scale: {
-      type: [String,Number]
+    title: { type: String },
+    level: { type: [String,Number] },
+    scale: { type: [String,Number] },
+
+    button: {
+      type: Object
     },
+    cta: { type: [String,Object] },
+    url: { type: String },
   },
   components: { UiButton, UiHeading, ReadMore }
 };

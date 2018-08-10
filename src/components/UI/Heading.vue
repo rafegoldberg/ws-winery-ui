@@ -1,7 +1,7 @@
 <template>
 <component :is="`h${level}`" :class="{
-  UiHeading: true,
-  [`UiHeading_scale${scale||level}`]: true,
+    UiHeading: true,
+    [`UiHeading_scale${scale||level}`]: true,
   }">
 
   <slot>{{text}}</slot>
