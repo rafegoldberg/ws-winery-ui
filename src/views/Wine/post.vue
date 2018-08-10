@@ -34,27 +34,27 @@
 
         <div class="WinePage--detail-tables">
           <table>
-            <tr>
+            <tr v-if="acf.TA">
               <th>Alc.</th>
               <td>{{acf.TA}}</td>
             </tr>
-            <tr>
+            <tr v-if="acf.pH">
               <th>pH</th>
               <td>{{acf.pH}}</td>
             </tr>
-            <tr>
+            <tr v-if="acf.Alc">
               <th>TA</th>
               <td>{{acf.Alc}}</td>
             </tr>
           </table>
           <table>
-            <tr>
+            <tr v-if="acf['Barrel-Description']">
               <th>Barrel Description</th>
-              <td>{{acf['Barrel-Aged']}}</td>
-            </tr>
-            <tr>
-              <th>Barrel Aged</th>
               <td>{{acf['Barrel-Description']}}</td>
+            </tr>
+            <tr v-if="acf['Barrel-Aged']">
+              <th>Barrel Aged</th>
+              <td>{{acf['Barrel-Aged']}}</td>
             </tr>
           </table>
         </div>
@@ -63,37 +63,42 @@
       </div></UiBox>
     </UiPanel>
 
-    <UiPanel id="content" v-if="sections[0]" class="UiTheme_cream">
+    <UiPanel id="content" v-if="sections[0]">
       <UiBoxImg :img="img1"></UiBoxImg>
-      <UiBox class="UiBox_tall">
+      <UiBox class="UiTheme_cream UiBox_tall">
         <div>
-          <UiHeading :level="3" v-html="sections[0].heading"/>
+          <UiHeading :level="3" v-html="sections[0].heading" class="UiHeading_gold"/>
           <p v-html="sections[0].text"/>
         </div>
       </UiBox>
     </UiPanel>
 
-    <UiPanel style="max-height:68vh; overflow: hidden;">
+    <UiPanel>
       <UiBoxImg :img="img4" class="UiBox_tall UiBoxImage_vignette"/>
     </UiPanel>
 
     <UiPanel v-if="sections[2]" class="UiTheme_dark">
       <UiBox>
         <div>
-          <UiHeading :level="3" v-html="sections[2].heading"/>
+          <UiHeading :level="3" v-html="sections[2].heading" class="UiHeading_gold"/>
           <p v-html="sections[2].text"/>
         </div>
       </UiBox>
       <UiBoxImg :img="img2"></UiBoxImg>
     </UiPanel>
 
-    <UiPanel>
-      <UiBox><div style="text-align:center">
-        <UiHeading :level="3" :scale="4">Reviews &amp; Scores</UiHeading>
-      </div></UiBox>
+    <UiPanel class="UiTheme_light">
+      <UiBox class="UiBox_stack">
+        <UiHeading :level="2" :scale="3" class="UiHeading_space">
+          Reviews &amp; Scores
+        </UiHeading>
+        <div class="WinePage--reviews wrap_mid">
+          <Review v-for="review in acf.reviews" v-bind="review" :key="review.name"/>
+        </div>
+      </UiBox>
     </UiPanel>
 
-    <UiPanel style="max-height:62vh; overflow: hidden;">
+    <UiPanel>
       <UiBoxImg class="UiBox_tall" :img="img3"/>
     </UiPanel>
     
@@ -131,6 +136,7 @@ import getImage from "./lib/get.wpImage"
 
 import IconList from "@/components/static/icon-list"
 import ReadMore from '@/components/modules/ReadMore'
+import Review   from '@/components/modules/Review'
 
 import fallback from "@/assets/bottles/default.png"
 
@@ -163,6 +169,7 @@ export default {
     
     ReadMore,
     IconList,
+    Review,
   },
   methods:{
     getTerm,
@@ -255,7 +262,7 @@ export default {
     &-tables {
       display: flex;
       margin: 1.5rem 0;
-      min-width: 42vw;
+      min-width: 50vw;
       
       border-color: Color(theme) !important;
       border-style: solid !important;
@@ -264,18 +271,25 @@ export default {
       
       table {
         &, th, td { border-color: inherit !important }
-        border-bottom: 0/*1px*/ solid;
-        margin: 0 .75rem/*0*/ 0/*-1px*/;
-        &:not(:last-child) { 
-          // border-right: 1px solid;
-        }
+        border-bottom: 0 solid;
+        margin: 0 .75rem 0;
+        tr:only-child { td, th {
+          border-bottom: 1px solid;
+        } }
         th {
-          text-align: right;
+          vertical-align: middle;
+          line-height: 1.2;
           + td { text-align: left }
         }
       }
     }
-    @include Break( max-width Breaks(2) ){
+    @include Break( min-width Breaks(3) ){
+      &-tables table th {
+        text-align: right;
+        white-space: nowrap;
+      }
+    }
+    @include Break( max-width Breaks(3) ){
       &-tables {
         width: 100%;
         flex-flow: nowrap column;
@@ -285,6 +299,7 @@ export default {
             margin-top: 0;
             border-top: 1px solid;
           }
+          th { width: 33% }
         }
       }
     }
