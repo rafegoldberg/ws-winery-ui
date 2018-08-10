@@ -19,9 +19,11 @@
       </div>
       <div id="intro" class="Bio--intro">
         <header class="Bio--introHeader">
-          <UiHeading :level="2" :scale="3" class="UiHeading_gold">
-            {{context.title.rendered}}
-          </UiHeading>
+          <UiHeading
+            v-html="context.title.rendered"
+            :level="2"
+            :scale="3"
+            class="UiHeading_gold"/>
           <b class="Bio--position">{{context.acf.position}}</b>
         </header>
         <p>{{context.acf.intro}}</p>
