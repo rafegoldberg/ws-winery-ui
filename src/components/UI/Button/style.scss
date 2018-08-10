@@ -2,6 +2,7 @@
 @import "~@/styles/theme/colors";
 .UiButton {
   & {
+    display: inline-block;
     appearance: none;
     cursor: pointer;
     padding: .5em 1.2em;
@@ -32,8 +33,8 @@
 
   &_outline {
     color: Color(matte);
-    background-color: transparent;
-    border: 3px solid Color(matte);
+    background-color: transparent !important;
+    border: 3px solid currentColor !important;
     &:not(:hover) { opacity: .8 }
   }
 }

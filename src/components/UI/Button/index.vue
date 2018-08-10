@@ -1,6 +1,17 @@
 <template>
 
-  <component :is="tag" class="UiButton" :href="url" :to="url">
+  <component
+      :is="url
+        ?( url.indexOf('mailto:')==0 ? 'a' : 'router-link' )
+        : tag"
+      :class="{
+        UiButton: true,
+        UiButton_outline: outline
+      }"
+      :target="url.indexOf('mailto:')==0 && '_blank'" 
+      :href="url"
+      :to="url"
+      >
     <!-- @slot Add rich markup to your button. -->
     <slot>{{cta}}</slot>
   </component>
@@ -12,7 +23,8 @@ export default {
   props: {
     url: { type:String, default:''       },
     tag: { type:String, default:"button" },
-    cta: { type:String, required:false   }
+    cta: { type:String, required:false   },
+    outline: false
   }
 }
 </script>
