@@ -35,10 +35,9 @@ import AppMenu from "./menu"
 import UiPanel from "@/components/UI/Panel"
 import UiIcon from "@/components/UI/Icon"
 
-import debounce from "lodash/debounce"
-
-let
-lastScroll = 0;
+// import debounce from "lodash/debounce"
+// let
+// lastScroll = 0;
 
 export default {
   name: "AppNav",
@@ -54,20 +53,20 @@ export default {
       link: "/beta/join",
       text: "Join the List"
     },
-    scrollDirection: 'up',
-    scrollLast: 0,
+    // scrollDirection: 'up',
+    // scrollLast: 0,
   }),
   methods:{
-    handleScroll: debounce(function(e){
-      let
-      now = window.scrollY,
-      pre = this.scrollLast,
-      dir = now<=pre ? 'up' : 'down'
-      // this.$set(this.$data,'scrollLast',now)
-      // this.$set(this.$data,'scrollDirection',dir)
-      this.scrollLast = now
-      this.scrollDirection = dir
-    },100),
+    // handleScroll: debounce(function(e){
+    //   let
+    //   now = window.scrollY,
+    //   pre = this.scrollLast,
+    //   dir = now<=pre ? 'up' : 'down'
+    //   // this.$set(this.$data,'scrollLast',now)
+    //   // this.$set(this.$data,'scrollDirection',dir)
+    //   this.scrollLast = now
+    //   this.scrollDirection = dir
+    // },100),
     toggleMenu(setTo){
       if( typeof this.setTo !== 'undefined' )
         this.$refs.open = setTo
@@ -91,6 +90,9 @@ export default {
   }
   /deep/ .icon--ornament--rinceau {
     fill: Color(dark) !important;
+  }
+  /deep/ .icon--text {
+    filter: none !important;
   }
 }
 
