@@ -9,14 +9,16 @@ import "@/includes/use/async"
 import "@/includes/use/scrollView"
 import "@/includes/use/googleMaps"
 
-import App from "./App.vue"
-import router from "@/includes/use/router"
-
-import "@/includes/filters"
+import {truncate} from "@/includes/filters/truncate"
+import {round} from "@/includes/filters/round"
+Vue.filter( "truncate", truncate )
+Vue.filter( "round", round )
 
 import AppLoad from "@/components/App/load"
 Vue.component('AppLoad',AppLoad)
 
+import App from "./App.vue"
+import router from "@/includes/use/router"
 let
 options = {
   showFilters: false,
