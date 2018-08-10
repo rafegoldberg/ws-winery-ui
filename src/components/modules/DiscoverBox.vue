@@ -5,7 +5,6 @@
       <UiHeading v-bind="header"/>
     </header>
     <UiIcon v-bind="icon"/>
-    <!-- <pre v-html="{header,link,icon}"/> -->
   </router-link>
 </template>
 
@@ -14,7 +13,11 @@ import UiHeading from '@/components/UI/Heading'
 import UiIcon from '@/components/UI/Icon'
 export default {
   name: "DiscoverBox",
-  props:[ 'header', 'link', 'icon' ],
+  props:{
+    header: { type: Object },
+    link:   { type: String },
+    icon:   { type: Object }
+  },
   components:{
     UiHeading,
     UiIcon,
