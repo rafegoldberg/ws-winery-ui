@@ -14,20 +14,20 @@
           :key="box.id"
           >
         
-        <div v-if="box.wrap" :class="wrapClass(box.wrap)">
-          <component
+          <div v-if="box.wrap" :class="wrapClass(box.wrap)">
+            <component
+              v-for="(com,i) in box.components"
+              v-bind="com.props"
+              :is="com.acf_fc_layout"
+              :key="`com-${i}`"
+              />
+          </div>
+          <component v-else
             v-for="(com,i) in box.components"
             v-bind="com.props"
             :is="com.acf_fc_layout"
             :key="`com-${i}`"
             />
-        </div>
-        <component v-else
-          v-for="(com,i) in box.components"
-          :key="`com-${i}`"
-          :is="com.acf_fc_layout"
-          v-bind="com.props"
-          />
 
       </component>
     </UiPanel>
