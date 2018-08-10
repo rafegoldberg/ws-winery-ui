@@ -16,11 +16,10 @@
           :key="item.id"
           class="WineGrid--item"
           >
-        <!-- {{$log(item)}} -->
         <WineWidget
           :name="item.title ? item.title.rendered : ''"
           :image="media(item)"
-          :vintage="'Release-Date' in item.acf && item.acf['Release-Date']"
+          :vintage="getTagVintage(item)"
           :price="'Release-Price' in item.acf && item.acf['Release-Price']"
           />
       </router-link>
@@ -74,6 +73,10 @@
 
 <script>
 import WpConnect from "@/VuePress/mix/connect"
+
+import loFind  from "lodash/find"
+import loLast  from "lodash/findLast"
+import loFlat from "lodash/flatten"
 
 import UiList from "@/components/UI/List"
 import UiIcon from "@/components/UI/Icon"
@@ -131,7 +134,7 @@ export default {
       per = per - off
       
       return endpoint.perPage(per).embed()
-    }
+    },
   },
 
   methods:{
@@ -144,7 +147,15 @@ export default {
           ? src.replace(/.*\/wp-content\//gim,'https://www.williamsselyem.com/wp-content/')
           : fallback
       }
-    }
+    },
+    getTagVintage( wpx ){
+      let
+      terms = loFlat(wpx._embedded['wp:term']),
+      tag   = loFind( terms, {taxonomy:"post_tag"} )
+      if( !parseInt(tag.name) )
+        tag = loLast( terms, {taxonomy:"post_tag"} )
+      return tag.name
+    },
   }
 }
 </script>
