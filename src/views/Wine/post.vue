@@ -6,7 +6,9 @@
 
     <UiPanel class="WinePage--header UiTheme_light">
       <UiBox class="WinePage--stats UiTheme_cream">
+
         <WineStats
+          :hold="holdProgress"
           :name="title"
           :fields="context.acf"
           :vineyard="vineyard"
@@ -59,7 +61,7 @@
           </table>
         </div>
 
-        <a :href="download" class="UiButton UiButton_outline gold" :download="title">Download PDF</a>
+        <a v-if="download" :href="download" class="UiButton UiButton_outline gold" :download="title">Download PDF</a>
       </div></UiBox>
     </UiPanel>
 
@@ -188,14 +190,38 @@ export default {
       if( this.context.loading ) return ''
       return this.context.title.rendered
     },
+    holdProgress(){
+      if( this.context.loading ) return
+
+      let
+      Parse = fmt=> new Date( typeof str=='string' ? Date.parse(fmt) : fmt ),
+      hold  = Parse( this.context.date          ),
+      until = Parse( this.acf['_wpb_drinkhold'] ),
+      now   = Parse( Date.now()                 )
+      
+
+      // this.$log({
+      //   date:{ hold, until, now },
+      //   calc:{
+      //     total: until - hold,
+      //     prog:  now - hold,
+      //     perc:  (now-hold)/(until-hold)
+      //   }
+      // })
+
+      let
+      progress = (now - hold) / (until - hold)
+      return progress
+    },
     download(){
       if( this.context.loading ) return
 
       let
-      PDF = this.acf['Wine-PDF'],
+      PDF = this.acf['Wine - PDF'],
       rgx = /.*\/wp-content\//gim,
       rep = 'https://www.williamsselyem.com/wp-content/'
 
+      if( !PDF ) return ''
       return PDF.replace(rgx,rep)
     },
     acf(){

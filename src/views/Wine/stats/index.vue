@@ -7,7 +7,7 @@
 
   <span style="position: relative">
     <span class="WineStats--label" style="position: absolute; right: 100%; top: 0;">Hold</span>
-    <progress :value=".6/*hold*/" max="1"></progress>
+    <progress :value="hold" max="1"></progress>
     <span class="WineStats--label" style="position: absolute; left: 100%; top: 0;">Drink</span>
   </span>
 
@@ -58,6 +58,7 @@ export default {
     fields:{ type:[Object,Array] },
     vineyard:{ type:[String,Object] },
     AVA:{ type:[Number,String,Object] },
+    hold:{ type:Number, default: 0, }
   },
   components:{
     UiHeading
