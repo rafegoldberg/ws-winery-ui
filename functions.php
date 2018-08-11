@@ -2,6 +2,7 @@
    */
   // include "php/wp/mimeTypes.php";
   include "php/wp/shortcodes/gold.php";
+  include "php/wp/shortcodes/heading.php";
 
   include "php/api/adjacent.php";
   include "php/api/CORS.php";
