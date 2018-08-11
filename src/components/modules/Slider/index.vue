@@ -12,15 +12,15 @@
         >
     <slot v-bind="slide">
 
-      <!-- <iframe v-if="slide.video"
-        :src="getVimeoSRC(slide.video)"
-        frameborder="0"
-        allowfullscreen
-        mozallowfullscreen
-        webkitallowfullscreen
-        ></iframe> -->
-      <!-- <VimeoPlayer v-if="slide.video" :video-id="getVimeoID(slide.video)"/> -->
-
+      <div v-if="slide.video" class="swiper-slide-video-bg">
+        <VimeoPlayer
+          :video-id="getVimeoID(slide.video)"
+          :loop="true"
+          :autoplay="true"
+          ref="vimeo"
+          :options="{ title:0, byline:0, portrait:0, muted:1 }"
+          @loaded="startPlayer($refs.vimeo[0])"/>
+      </div>
       <ActionBox v-bind="slide" class="wrap_min" style="margin: 0 auto 0 0"/>
       <!-- <h2 v-html="slide.title"/>
       <div v-html="slide.content"/> -->
@@ -45,16 +45,17 @@
 
 <script>
 import loMerge from 'lodash/merge'
+import loOnce from 'lodash/once'
 
 import Swiper from "swiper"
 import "swiper/dist/css/swiper.min.css"
 
-// import {vueVimeoPlayer as VimeoPlayer} from 'vue-vimeo-player'
+import {vueVimeoPlayer as VimeoPlayer} from 'vue-vimeo-player'
 import ActionBox from '@/components/modules/ActionBox'
 
 export default {
   name: "Slider",
-  components:{ ActionBox },
+  components:{ ActionBox, VimeoPlayer },
   props:[
     'slides',
     'settings',
@@ -64,6 +65,7 @@ export default {
   mounted(){
     this.opts = loMerge({},this.defaults,this.settings||{})
     this.swiper = new Swiper(this.$el,this.opts)
+    this.$log(this.$refs.vimeo)
   },
   data:()=>({
     defaults:{
@@ -79,6 +81,10 @@ export default {
     }
   }),
   methods:{
+    startPlayer: function( vimeo ){
+      this.$log(vimeo,vimeo.player)
+      vimeo.player.play()
+    },
     getVimeoID( str ){
       let
       src = str.split(/src="(.*?)"/g)[1] || str
@@ -164,16 +170,25 @@ export default {
 }
 </style>
 <style lang="scss">
-.video-bg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  width: 100vw !important;
-  min-height: 110vh !important;
-  > * {
-    width: 100%;
-    height: 100vw;
+.swiper-slide-video {
+  &-bg {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    > * {
+      pointer-events: none;
+    }
+  }
+  iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 150vw !important;
+    min-height: 150vh !important;
   }
 }
 </style>

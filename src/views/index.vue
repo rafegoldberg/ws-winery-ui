@@ -88,7 +88,7 @@ export default {
 
   $top-offset: 6rem;
   $top-offset--M: 4rem;
-  $left-offset: 5rem;
+  $left-offset: 11rem;
   
   & {
     z-index: 1;
@@ -132,8 +132,9 @@ export default {
         @include Break( min-width Breaks(4) ){
           height: 50vh;
           right: unset !important;
-          left: $left-offset / 1.75;
+          left: $left-offset / 2;
           top: 50%;
+          top: calc(50% + 1.5rem);
         }
         @include Break( max-width Breaks(4) ){
           flex-flow: nowrap row;
@@ -164,12 +165,12 @@ export default {
           position: relative;
           background: Color(theme);
           box-shadow:
-            3px 0 0 Color(theme),
-            -3px 0 0 Color(theme);
+            2px 0 0 Color(theme),
+            -2px 0 0 Color(theme);
           @include Break( max-width Breaks(4) ){
             box-shadow:
-              0  3px 0 Color(theme),
-              0 -3px 0 Color(theme);
+              0  2px 0 Color(theme),
+              0 -2px 0 Color(theme);
           }
           &:after {
             content: "Slide";
@@ -193,12 +194,5 @@ export default {
       }
     }
   }
-}
-</style>
-<style lang="scss">
-/**
- * Page Styles
- */
-#HomePage {
 }
 </style>

@@ -89,7 +89,7 @@
       <UiBoxImg :img="img2"></UiBoxImg>
     </UiPanel>
 
-    <UiPanel class="UiTheme_light" v-if="reviews in acf && acf.reviews.length">
+    <UiPanel class="UiTheme_light" v-if="'reviews' in acf && acf.reviews.length">
       <UiBox class="UiBox_stack">
         <UiHeading :level="2" :scale="3" class="UiHeading_space">
           Reviews &amp; Scores
