@@ -1,4 +1,4 @@
-import API from "@/VuePress/WP"
+// import API from "@/VuePress/WP"
 import Vue from "vue"
 
 Vue.config.devtools = true
@@ -27,7 +27,8 @@ options = {
     tags:[],
     varietals:[],
     AVA:[]
-  }
+  },
+  classes:[ 'app' ],
 }
 
 new Vue({

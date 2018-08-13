@@ -1,5 +1,8 @@
 <template>
-  <div id="app">
+  <div id="app" :class="[
+      ...$root.classes,
+      `route_${$route.name}`
+    ]">
 
     <AppNav/>
     <router-view :key="$route.fullPath"/>
@@ -18,6 +21,14 @@ import AppFooter from "@/components/App/footer"
 import AppNav from "@/components/App/nav"
 import UiHeading from "@/components/UI/Heading"
 
+/**
+  import { transform as inflect } from 'inflection'
+  export default {
+    //...etc
+    methods:{ inflect }
+  }
+ */
+
 export default {
   name:"App",
   beforeCreate() {
@@ -27,7 +38,7 @@ export default {
     AppNav,
     AppFooter,
     UiHeading,
-  }
+  },
 }
 </script>
 
