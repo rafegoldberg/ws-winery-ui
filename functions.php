@@ -8,7 +8,9 @@
   include "php/api/CORS.php";
   include "php/api/metaQuery.php";
   include "php/api/wsMetas.php";
-  include "php/api/route.frontpage.php";
+
+  include "php/api/ws/frontpage.php";
+  include "php/api/ws/reviews.php";
 ?>
 
 <?/** Post Types
