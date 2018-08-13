@@ -10,8 +10,8 @@
   <template v-else>
     <div class="WineGrid">
       <router-link
+          v-if="item.categories.indexOf(10)>=0 /*extra check to only show wines!*/"
           v-for="item in context"
-          v-if="item.categories.indexOf(10) /*extra check to only show wines!*/"
           :to="`/wine/${item.slug}`"
           :key="item.id"
           class="WineGrid--item"
@@ -152,6 +152,7 @@ export default {
       let
       terms = loFlat(wpx._embedded['wp:term']),
       tag   = loFind( terms, {taxonomy:"post_tag"} )
+      if( !tag ) return false
       if( !parseInt(tag.name) )
         tag = loLast( terms, {taxonomy:"post_tag"} )
       return tag.name
