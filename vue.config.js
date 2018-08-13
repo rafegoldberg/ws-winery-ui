@@ -1,10 +1,13 @@
 const
+BASE = '/',
 PROD = process.env.NODE_ENV === 'production',
-BASE = '/' // PROD ? '/clients/ws3/' : '/'
+path = require('path');
 
 module.exports = {
 
   baseUrl: BASE,
+  assetsDir: PROD ? '/wp-content/themes/ws-ui/dist/' : '.',
+
 
   configureWebpack: {
     devtool: "source-map",
