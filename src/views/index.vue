@@ -89,18 +89,24 @@ export default {
 .app.route_HomePage {
   @include Break( max-width Breaks(3) ){
     #AppNav {
-      background: rgba(#FAFAFA,.7) !important;
-      color: #FAFAFA !important;
-      border-bottom: 1px solid rgba(#FAFAFA,.3);
-      overflow: hidden;
+      background: linear-gradient(
+        to bottom,
+      #FAFAFA 5%,
+        rgba(#FAFAFA,.6)
+      ) !important;
+      // color: #FAFAFA !important;
+      box-shadow:
+        0 .5em 1em -.3em rgba(Color(dark),.2),
+        0 1px 0 rgba(#FAFAFA,.65);
+        ;
       &:before {
         z-index: -1;
         content: '';
         position: absolute;
-        top: -1rem;
-        right: -1rem;
+        top: -1px;
+        right: 0;
         bottom: 0;
-        left: -1rem;
+        left: 0;
         backdrop-filter: blur(9px);
         pointer-events: none;
       }
