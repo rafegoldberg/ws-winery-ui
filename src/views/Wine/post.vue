@@ -74,12 +74,12 @@
       </UiBox>
     </UiPanel>
 
-    <UiPanel>
+    <UiPanel v-if="checkTechSpecs">
       <UiBoxImg :img="img4" class="UiBox_tall UiBoxImage_vignette"/>
     </UiPanel>
 
     <UiPanel v-if="sections[2]" class="UiTheme_dark">
-      <UiBox>
+      <UiBox :collapse="true" class="UiTheme_dark">
         <div>
           <UiHeading :level="3" v-html="sections[2].heading" class="UiHeading_gold"/>
           <p v-html="sections[2].text"/>
@@ -190,7 +190,7 @@ export default {
         'Barrel-Description' in this.acf && this.acf['Barrel-Description'] ? true : false,
         'Barrel-Aged'        in this.acf && this.acf['Barrel-Aged']        ? true : false,
       ]
-      return true in checks
+      return checks.indexOf(true)>=0
     },
     embed(){
       if( this.context.loading ) return
@@ -290,6 +290,7 @@ export default {
 <style lang="scss">
 @import "~@/styles/theme/breaks";
 @import "~@/styles/theme/colors";
+
 .WinePage {
   $B: #{&};
   & {
@@ -329,16 +330,22 @@ export default {
       border-width: 0;
       
       table {
-        &, th, td { border-color: inherit !important }
-        border-bottom: 0 solid;
         margin: 0 .75rem 0;
+        border-bottom: 0 solid;
+        &, th, td { border-color: inherit !important }
         tr:only-child { td, th {
           border-bottom: 1px solid;
         } }
         th {
           vertical-align: middle;
           line-height: 1.2;
-          + td { text-align: left }
+          + td {
+            max-width: 12rem;
+            text-align: left;
+            @include Break( min-width Breaks(3) ){
+              white-space: nowrap;
+            }
+          }
         }
       }
     }
@@ -408,5 +415,11 @@ export default {
   //   margin-top: 1.5em;
   //   line-height: 1.3;
   // }
+  .UiBox_expanded.UiTheme_dark:not(:only-child) {
+    // truncated harvest notes
+    width: 100vw;
+    margin-right: -100vw;
+    z-index: 2;
+  }
 }
 </style>

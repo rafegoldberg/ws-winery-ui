@@ -1,10 +1,4 @@
 export default [
-  { name: "BetaPage",
-    path: "/beta/:slug",
-    component: ()=> import("./views/page"),
-    props: true,
-  },
-
   {
     name: "HomePage",
     path: "/",
@@ -59,8 +53,14 @@ export default [
   },
   {
     name: "WinePost",
-    path: "/:category+/:slug",
+    path: "/wine/:category+/:slug",
     component: ()=> import("./views/Wine/post"),
+    props: true,
+  },
+
+  { name: "Page",
+    path: "/:slug",
+    component: ()=> import("./views/page"),
     props: true,
   },
 ];

@@ -89,15 +89,15 @@ export default {
 .app.route_HomePage {
   @include Break( max-width Breaks(3) ){
     #AppNav {
-      background: linear-gradient(
-        to bottom,
-      #FAFAFA 5%,
-        rgba(#FAFAFA,.6)
-      ) !important;
+      background-color: rgba(#FAFAFA,.75);
+      // background-image:
+      //   linear-gradient( to bottom, , rgba(#FAFAFA,.25) 75% ),
+      //   linear-gradient( to left, rgba(#FAFAFA,.5), transparet 25%, transparet 75%, rgba(#FAFAFA,.5) )
+      //   !important;
       // color: #FAFAFA !important;
       box-shadow:
-        0 .5em 1em -.3em rgba(Color(dark),.2),
-        0 1px 0 rgba(#FAFAFA,.65);
+        0 .3em 1em rgba(Color(dark),.1),
+        0 1px 0 rgba(#FFF,.7);
         ;
       &:before {
         z-index: -1;
@@ -108,6 +108,7 @@ export default {
         bottom: 0;
         left: 0;
         backdrop-filter: blur(9px);
+        -webkit-backdrop-filter: blur(9px);
         pointer-events: none;
       }
     }
