@@ -6,7 +6,7 @@ path = require('path');
 module.exports = {
 
   baseUrl: BASE,
-  // assetsDir: PROD ? '/wp-content/themes/ws-ui/dist/' : '.',
+  assetsDir: PROD ? './wp-content/themes/ws-ui/dist/' : '.',
 
 
   configureWebpack: {
