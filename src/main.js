@@ -1,4 +1,6 @@
-__webpack_public_path__ = process.env.NODE_ENV=='production' ? '/wp-content/themes/ws-ui/dist/' : '/'
+const
+assetPath = process.env.NODE_ENV=='production' ? '/wp-content/themes/ws-ui/dist/' : '/'
+__webpack_public_path__ = new URL( assetPath, window.location.origin )
 
 // import API from "@/VuePress/WP"
 import Vue from "vue"
