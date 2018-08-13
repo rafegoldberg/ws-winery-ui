@@ -4,9 +4,8 @@
     />
   <div id="WinePage" class="WinePage" v-else>
 
-    <UiPanel class="WinePage--header UiTheme_light">
+    <UiPanel class="WinePage--header UiTheme_light reorderFirst_mobile">
       <UiBox class="WinePage--stats UiTheme_cream">
-
         <WineStats
           :hold="holdProgress"
           :name="title"
@@ -15,12 +14,12 @@
           :AVA="terms.AVA && terms.AVA[0]"
           />
       </UiBox>
-      
+
       <UiBox class="WinePage--media  UiTheme_halves">
         <img :src="media" :alt="context.title.rendered" @error="setFallback" ref="bottleImg"/>
       </UiBox>
 
-      <UiBox class="WinePage--intro UiBox_stack">
+      <UiBox class="WinePage--intro UiBox_stack hide_mobile">
         <template v-if="sections[0].text">
           <p v-if="sections[0]" class="wrap_min">{{sections[0].text | truncate}}</p>
           <br>
@@ -30,7 +29,7 @@
       </UiBox>
     </UiPanel>
 
-    <UiPanel class="WinePage--detail">
+    <UiPanel v-if="checkTechSpecs" class="WinePage--detail">
       <UiBox><div style="text-align:center">
         <UiHeading style="flex:1 100%">Technical Notes</UiHeading>
 
@@ -65,8 +64,8 @@
       </div></UiBox>
     </UiPanel>
 
-    <UiPanel id="content" v-if="sections[0]">
-      <UiBoxImg :img="img1"></UiBoxImg>
+    <UiPanel id="content" class="reorderFirst_mobile" v-if="sections[0]">
+      <UiBoxImg :img="img1" class="reorderLast_mobile"/>
       <UiBox class="UiTheme_cream UiBox_tall">
         <div>
           <UiHeading :level="3" v-html="sections[0].heading" class="UiHeading_gold"/>
@@ -89,18 +88,18 @@
       <UiBoxImg :img="img2"></UiBoxImg>
     </UiPanel>
 
-    <UiPanel class="UiTheme_light" v-if="'reviews' in acf && acf.reviews.length">
+    <UiPanel class="UiTheme_light" v-if="acf.reviews || oldReviews && !oldReviews.loading">
       <UiBox class="UiBox_stack">
         <UiHeading :level="2" :scale="3" class="UiHeading_space">
           Reviews &amp; Scores
         </UiHeading>
         <div class="WinePage--reviews wrap_mid">
-          <Review v-for="review in acf.reviews" v-bind="review" :key="review.name"/>
+          <Review v-for="review in (acf.reviews||oldReviews)" v-bind="review" :key="review.name"/>
         </div>
       </UiBox>
     </UiPanel>
 
-    <UiPanel>
+    <UiPanel v-if="!(acf.reviews||oldReviews)">
       <UiBoxImg class="UiBox_tall" :img="img3"/>
     </UiPanel>
     
@@ -182,6 +181,17 @@ export default {
   computed:{
     media:    getImage,
     sections: getTexts,
+    checkTechSpecs(){
+      let
+      checks = [
+        'TA'                 in this.acf && this.acf['TA']                 ? true : false,
+        'pH'                 in this.acf && this.acf['pH']                 ? true : false,
+        'Alc'                in this.acf && this.acf['Alc']                ? true : false,
+        'Barrel-Description' in this.acf && this.acf['Barrel-Description'] ? true : false,
+        'Barrel-Aged'        in this.acf && this.acf['Barrel-Aged']        ? true : false,
+      ]
+      return true in checks
+    },
     embed(){
       if( this.context.loading ) return
       return this.context._embedded
@@ -246,7 +256,24 @@ export default {
     img3: ()=> img3,
     img4: ()=> img4,
     icon: ()=> ({ bottles, barrels, glasses, }),
-  }
+  },
+  asyncComputed:{
+    oldReviews: {
+      default: {loading:true},
+      async get(){
+        if( !this.API || this.context.loading ) return {loading:true}
+        let
+        error = false,
+        data  = await this.API.namespace('ws/v1').reviews().id(this.context.id)
+          .get()
+          .catch(e=>( error = e ))
+
+        if (error) return {error}
+        return data
+      },
+      lazy: true,
+    },
+  },
 }
 </script>
 
@@ -265,6 +292,12 @@ export default {
 @import "~@/styles/theme/colors";
 .WinePage {
   $B: #{&};
+  & {
+    @include Break( max-width Breaks(2) ){
+      display: flex;
+      flex-flow: nowrap column;
+    }
+  }
   &--header {
     @include Break( (max-width Breaks(4)) (min-width Breaks(2)) ){
       flex-flow: wrap row !important;

@@ -4,7 +4,6 @@
   theme="dark"
   />
 <UiPanel id="HomePage" class="UiTheme_dark" v-else>
-
   <Slider
     v-if="!page.loading"
     :slides="acf.panels"
@@ -52,6 +51,9 @@ export default {
   name: "HomePage",
   mixins:[ API ],
   components:{ UiPanel, Slider },
+  created() {
+    this.$log(this.$root.classes,'')
+  },
   asyncComputed:{
     page:{
       default:{ loading:true },
@@ -83,6 +85,28 @@ export default {
 <style lang="scss">
 @import "~@/styles/theme/colors";
 @import "~@/styles/theme/breaks";
+
+.app.route_HomePage {
+  @include Break( max-width Breaks(3) ){
+    #AppNav {
+      background: rgba(#FAFAFA,.7) !important;
+      color: #FAFAFA !important;
+      border-bottom: 1px solid rgba(#FAFAFA,.3);
+      overflow: hidden;
+      &:before {
+        z-index: -1;
+        content: '';
+        position: absolute;
+        top: -1rem;
+        right: -1rem;
+        bottom: 0;
+        left: -1rem;
+        backdrop-filter: blur(9px);
+        pointer-events: none;
+      }
+    }
+  }
+}
 
 #HomePage {
 

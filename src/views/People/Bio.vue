@@ -15,7 +15,8 @@
         </a>
         <img class="Bio--media"
           :src="featured_img"
-          :alt="context.title.rendered">
+          :alt="context.title.rendered"
+          @error="e=>$log(e.target.style.opacity = 0)">
       </div>
       <div id="intro" class="Bio--intro">
         <header class="Bio--introHeader">

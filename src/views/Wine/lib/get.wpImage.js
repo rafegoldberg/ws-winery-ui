@@ -1,7 +1,9 @@
 export default function update(){
   if( !this || this.context.loading ) return
   let
-  src = (this.embed||this.context._embedded)['wp:featuredmedia'][0].source_url
+  src = (this.embed||this.context._embedded)
+  if(!( 'wp:featuredmedia' in src )) return ''
+  src = src['wp:featuredmedia'][0].source_url
   src = src.replace(/.*\/wp-content\//gim,'https://www.williamsselyem.com/wp-content/')
   return src
 }
