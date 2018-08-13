@@ -6,7 +6,7 @@ export default [
   },
 
   {
-    name: "Home",
+    name: "HomePage",
     path: "/",
     component: ()=> import("./views"),
   },

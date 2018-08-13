@@ -12,8 +12,9 @@ export default new Router({
   mode: "history",
   linkActiveClass: "open",
   linkExactActiveClass: "active",
-/*   scrollBehavior (to, from, savedPosition) {
-    return { x:0, y:0 }
+
+  scrollBehavior (to, from, savedPosition) {
+    // console.log({to,from,savedPosition})
+    if( to.hash=='top' || to.hash && !savedPosition ) return { x:0, y:0 }
   }
- */
 });
