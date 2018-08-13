@@ -33,15 +33,22 @@ export default [
   },
   {
     name: "VineyardPage",
-    path: "/vineyards/:permalink?/:slug",
+    path: "/vineyards/:slug",
+    alias: [ "/estate-vineyards/:slug", "/growers-vineyards/:slug" ],
     component: ()=> import("./views/Vineyards/page"),
     props: true,
   },
 
   {
+    name: "WinePost",
+    path: "/wine/:slug",
+    component: ()=> import("./views/Wine/post"),
+    props: true,
+  },
+
+  {
     name: "Wine",
-    path: "/wines",
-    redirect:['our-wines'],
+    path: "/wine",
     component: ()=> import("./views/Wine"),
     children:[
       { path: '',
@@ -50,12 +57,6 @@ export default [
         // props: true,
       }
     ],
-  },
-  {
-    name: "WinePost",
-    path: "/wine/:category+/:slug",
-    component: ()=> import("./views/Wine/post"),
-    props: true,
   },
 
   { name: "Page",

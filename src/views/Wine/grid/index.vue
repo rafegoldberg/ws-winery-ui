@@ -12,7 +12,7 @@
       <router-link
           v-for="item in context"
           v-if="item.categories.indexOf(10) /*extra check to only show wines!*/"
-          :to="`/wines/${item.slug}`"
+          :to="`/wine/${item.slug}`"
           :key="item.id"
           class="WineGrid--item"
           >

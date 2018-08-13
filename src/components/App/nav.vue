@@ -50,7 +50,7 @@ export default {
   },
   data:()=>({
     cta:{
-      link: "/beta/join",
+      link: "/join",
       text: "Join the List"
     },
     // scrollDirection: 'up',

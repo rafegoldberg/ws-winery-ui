@@ -14,14 +14,14 @@
         :detail="{ ornament:'#0E0E0E' }"/>
     </router-link>
     <UiList :list="{
-      'Wine Library': '/wines',
-      'Our Wines': '/beta/our-wines',
+      'Wine Library': '/wine',
+      'Our Wines': '/our-wines',
       'Our Vineyards': '/vineyards',
       'Our People': '/people',
-      'Our History': '/beta/history',
-      'Purchasing': '/beta/purchase',
-      'Visit Us': '/beta/visit',
-      'Contact Us': '/beta/contact',
+      'Our History': '/history',
+      'Purchasing': '/purchase',
+      'Visit Us': '/visit',
+      'Contact Us': '/contact',
       }">
       <router-link slot-scope="{ item, index }" :to="item" tag="li" @click.native="toggle(false)">
         <a style="text-decoration: none">{{index}}</a>
