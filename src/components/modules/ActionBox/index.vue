@@ -9,22 +9,24 @@
         {{heading.text||title}}
       </UiHeading>
     </slot>
-    <div v-if="layout=='float'"
+
+    <div v-if="button.cta && layout=='float'"
         class="ActionBox--action"
         :class="{
           'ActionBox--button_float': layout
         }">
-      <UiButton>{{cta}}</UiButton>
+      <UiButton v-bind="button"/>
     </div>
+
     <!-- @slot Add custom content to the box. -->
     <slot v-bind="content">
       <div v-html="content"/>
     </slot>
   </div>
-  
-  <div class="ActionBox--action" v-if="layout!=='float'">
+
+  <div class="ActionBox--action" v-if="layout!='float'">
     <!-- @slot Custom action item or footer. -->
-    <slot name="action" v-bind="{button}" v-if="cta||button.cta">
+    <slot name="action" v-bind="{button}" v-if="button.cta">
       <UiButton v-bind="button"/>
     </slot>
     <ReadMore v-if="ReadMore" :href="ReadMore.indexOf('#')==0 ? ReadMore:'#' + ReadMore"/>

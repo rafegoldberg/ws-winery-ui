@@ -1,14 +1,14 @@
 <template>
 <nav class="AdjacentNav">
 
-  <router-link :class="{ hide:!prev }" :to="prev ? prev.slug : '#prev'">
+  <router-link :class="{ hide:!prev }" :to="prev ? `${prev.slug}#top` : '#prev'">
     <UiIcon name="arrow-left" width=".75em" height=".75em"></UiIcon>
     Prior
   </router-link>
 
-  <router-link :to="all">All</router-link>
+  <router-link :to="`${all}#top`">All</router-link>
 
-  <router-link :class="{ hide:!next }" :to="next ? next.slug : '#next'">
+  <router-link :class="{ hide:!next }" :to="next ? `${next.slug}#top` : '#next'">
     Next
     <UiIcon name="arrow-right" width=".75em" height=".75em"></UiIcon>
   </router-link>

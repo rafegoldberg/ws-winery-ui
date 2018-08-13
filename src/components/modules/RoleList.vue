@@ -64,7 +64,7 @@ export default {
         align-items: center;
         color: Color(theme);
         font-size: 1.1em;
-        @at-root /deep/ .UiIcon {
+        /deep/ .UiIcon {
           [fill] { fill: Color(slate) !important }
           opacity: .25;
           transition: all .4s 1s ease-in-out;

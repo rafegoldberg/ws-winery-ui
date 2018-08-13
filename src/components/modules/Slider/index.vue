@@ -60,12 +60,12 @@ export default {
     'slides',
     'settings',
   ],
-  create(){
-    },
+  // created(){
+  // },
   mounted(){
     this.opts = loMerge({},this.defaults,this.settings||{})
     this.swiper = new Swiper(this.$el,this.opts)
-    this.$log(this.$refs.vimeo)
+    // this.$log(this.$refs.vimeo)
   },
   data:()=>({
     defaults:{
@@ -82,7 +82,7 @@ export default {
   }),
   methods:{
     startPlayer: function( vimeo ){
-      this.$log(vimeo,vimeo.player)
+      // this.$log(vimeo,vimeo.player)
       vimeo.player.play()
     },
     getVimeoID( str ){
@@ -170,6 +170,8 @@ export default {
 }
 </style>
 <style lang="scss">
+@import "~@/styles/theme/breaks";
+
 .swiper-slide-video {
   &-bg {
     position: absolute;
@@ -187,8 +189,14 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    width: 150vw !important;
-    min-height: 150vh !important;
+    width: 188vmax !important;
+    min-height: 188vmax !important;
+    @include Break( max-width Breaks(3) ){
+      @include Break( (orientation landscape) (min-height Breaks(1)) ){
+        width: 100vmax !important;
+        min-height: 100vmax !important;
+      }
+    }
   }
 }
 </style>
