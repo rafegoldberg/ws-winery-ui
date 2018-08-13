@@ -31,33 +31,39 @@
 
     <UiPanel v-if="checkTechSpecs" class="WinePage--detail">
       <UiBox><div style="text-align:center">
-        <UiHeading style="flex:1 100%">Technical Notes</UiHeading>
+        <UiHeading class="UiHeading_space" style="flex:1 100%">
+          Technical Notes
+        </UiHeading>
 
         <div class="WinePage--detail-tables">
-          <table>
-            <tr v-if="acf.TA">
-              <th>Alc.</th>
-              <td>{{acf.TA}}</td>
-            </tr>
-            <tr v-if="acf.pH">
-              <th>pH</th>
-              <td>{{acf.pH}}</td>
-            </tr>
-            <tr v-if="acf.Alc">
-              <th>TA</th>
-              <td>{{acf.Alc}}</td>
-            </tr>
-          </table>
-          <table>
-            <tr v-if="acf['Barrel-Description']">
-              <th>Barrel Description</th>
-              <td>{{acf['Barrel-Description']}}</td>
-            </tr>
-            <tr v-if="acf['Barrel-Aged']">
-              <th>Barrel Aged</th>
-              <td>{{acf['Barrel-Aged']}}</td>
-            </tr>
-          </table>
+          <span>
+            <table>
+              <tr v-if="acf.TA">
+                <th>Alc.</th>
+                <td>{{acf.TA}}</td>
+              </tr>
+              <tr v-if="acf.pH">
+                <th>pH</th>
+                <td>{{acf.pH}}</td>
+              </tr>
+              <tr v-if="acf.Alc">
+                <th>TA</th>
+                <td>{{acf.Alc}}</td>
+              </tr>
+            </table>
+          </span>
+          <span>
+            <table>
+              <tr v-if="acf['Barrel-Description']">
+                <th>Barrel Description</th>
+                <td>{{acf['Barrel-Description']}}</td>
+              </tr>
+              <tr v-if="acf['Barrel-Aged']">
+                <th>Barrel Aged</th>
+                <td>{{acf['Barrel-Aged']}}</td>
+              </tr>
+            </table>
+          </span>
         </div>
 
         <a v-if="download" :href="download" class="UiButton UiButton_outline gold" :download="title">Download PDF</a>
@@ -74,18 +80,18 @@
       </UiBox>
     </UiPanel>
 
-    <UiPanel v-if="checkTechSpecs">
+    <!-- <UiPanel v-if="checkTechSpecs">
       <UiBoxImg :img="img4" class="UiBox_tall UiBoxImage_vignette"/>
-    </UiPanel>
+    </UiPanel> -->
 
     <UiPanel v-if="sections[2]" class="UiTheme_dark">
       <UiBox :collapse="true" class="UiTheme_dark">
-        <div>
+        <div class="wrap_min">
           <UiHeading :level="3" v-html="sections[2].heading" class="UiHeading_gold"/>
           <p v-html="sections[2].text"/>
         </div>
       </UiBox>
-      <UiBoxImg :img="img2"></UiBoxImg>
+      <UiBoxImg :img="img2" class="UiBox_tall"></UiBoxImg>
     </UiPanel>
 
     <UiPanel class="UiTheme_light" v-if="acf.reviews || oldReviews && !oldReviews.loading">
@@ -99,7 +105,7 @@
       </UiBox>
     </UiPanel>
 
-    <UiPanel v-if="!(acf.reviews||oldReviews)">
+    <UiPanel v-if="!(acf.reviews||oldReviews)" class="hide_tablet">
       <UiBoxImg class="UiBox_tall" :img="img3"/>
     </UiPanel>
     
@@ -322,17 +328,23 @@ export default {
     &-tables {
       display: flex;
       margin: 1.5rem 0;
-      min-width: 50vw;
+      // min-width: 50vw;
       
       border-color: Color(theme) !important;
       border-style: solid !important;
       border-width: 0/*1px*/ 0;
       border-width: 0;
       
+      > * {
+        display: inline-block;
+        @include Break( min-width Breaks(3) ){
+          padding: 0 .75rem;
+        }
+      }
       table {
-        margin: 0 .75rem 0;
+        margin: 0;
         border-bottom: 0 solid;
-        &, th, td { border-color: inherit !important }
+        &, th, td { border-color: Color(theme) !important }
         tr:only-child { td, th {
           border-bottom: 1px solid;
         } }
@@ -342,9 +354,6 @@ export default {
           + td {
             max-width: 12rem;
             text-align: left;
-            @include Break( min-width Breaks(3) ){
-              white-space: nowrap;
-            }
           }
         }
       }
@@ -352,18 +361,17 @@ export default {
     @include Break( min-width Breaks(3) ){
       &-tables table th {
         text-align: right;
-        white-space: nowrap;
+        // white-space: nowrap;
       }
     }
     @include Break( max-width Breaks(3) ){
       &-tables {
         width: 100%;
         flex-flow: nowrap column;
-        table {
-          &:not(:last-child) { margin-bottom: 0 }
-          + table {
+        > * {
+          + * {
             margin-top: 0;
-            border-top: 1px solid;
+            border-top: 1px solid Color(theme);
           }
           th { width: 33% }
         }

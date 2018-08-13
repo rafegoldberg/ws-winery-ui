@@ -51,8 +51,8 @@ img[src*='preloader'][src*='.gif'] {
   min-height: 2.5rem;
   width: 12vmin;
   height: 12vmin;
-  max-width: 4rem;
-  max-height: 4rem;
+  max-width: 3rem;
+  max-height: 3rem;
   opacity: 0.3;
 }
 

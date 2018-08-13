@@ -15,7 +15,7 @@
       <span class="iconList--item--label">How To Purchase</span>
       <div>Our wines are available twice a year for purchase.</div>
     </div>
-    <router-link class="UiButton" to="/beta/purchase">Purchasing</router-link>
+    <router-link class="UiButton" to="/purchase">Purchasing</router-link>
   </div>
   <div class="iconList--item">
     <UiIcon name="glasses" width="3rem" height="3rem"/>
@@ -23,7 +23,7 @@
       <span class="iconList--item--label">Visit The Winery</span>
       <div>Arrange a private tour and tasting tailored specifically for you.</div>
     </div>
-    <router-link class="UiButton" to="/beta/visit">Visiting</router-link>
+    <router-link class="UiButton" to="/visit">Visiting</router-link>
   </div>
 
 </section>
