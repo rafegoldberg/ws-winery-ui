@@ -16,7 +16,10 @@
         <img class="Bio--media"
           :src="featured_img"
           :alt="context.title.rendered"
-          @error="e=>$log(e.target.style.opacity = 0)">
+          @error="e=>{
+            e.target.style.opacity = 0
+            e.target.style.maxHeight = '300px'
+            }">
       </div>
       <div id="intro" class="Bio--intro">
         <header class="Bio--introHeader">
@@ -176,6 +179,7 @@ export default {
       flex-flow: nowrap column;
         @include Break( max-width Breaks(4) ){
           padding-top: 6rem !important;
+          margin-top: -4.5rem;
         }
       >:first-child {
         margin-bottom: 1.5rem;
