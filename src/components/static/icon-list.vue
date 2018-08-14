@@ -7,7 +7,7 @@
       <span class="iconList--item--label">All Our Wines</span>
       <div>Visit our wine library to find a specific bottle or peruse our full collection.</div>
     </div>
-    <router-link class="UiButton" to="/wines">Library</router-link>
+    <router-link class="UiButton" to="/wine">Library</router-link>
   </div>
   <div class="iconList--item">
     <UiIcon name="barrels" width="3rem" height="3rem"/>
