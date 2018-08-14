@@ -31,6 +31,7 @@
   // include "php/acf/localize.php";
   include "php/acf/config.php";
   include "php/acf/options.php";
+  include "php/acf/wpFields.php";
 ?>
 
 <?/** WP Init
