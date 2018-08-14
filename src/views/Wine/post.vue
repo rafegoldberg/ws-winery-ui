@@ -20,7 +20,7 @@
       </UiBox>
 
       <UiBox class="WinePage--intro UiBox_stack hide_mobile">
-        <template v-if="sections[0].text">
+        <template v-if="sections[0]">
           <p v-if="sections[0]" class="wrap_min">{{sections[0].text | truncate}}</p>
           <br>
           <ReadMore href="#content" class="ReadMore_gold"/>
@@ -74,7 +74,7 @@
       <UiBoxImg :img="img1" class="reorderLast_mobile"/>
       <UiBox class="UiTheme_cream UiBox_tall">
         <div>
-          <UiHeading :level="3" v-html="sections[0].heading" class="UiHeading_gold"/>
+          <UiHeading :level="3" class="UiHeading_gold">Winemakers Notes</UiHeading>
           <p v-html="sections[0].text"/>
         </div>
       </UiBox>
@@ -87,7 +87,7 @@
     <UiPanel v-if="sections[2]" class="UiTheme_dark">
       <UiBox :collapse="true" class="UiTheme_dark">
         <div class="wrap_min">
-          <UiHeading :level="3" v-html="sections[2].heading" class="UiHeading_gold"/>
+          <UiHeading :level="3" class="UiHeading_gold">Harvest Notes</UiHeading>
           <p v-html="sections[2].text"/>
         </div>
       </UiBox>
@@ -187,6 +187,16 @@ export default {
   computed:{
     media:    getImage,
     sections: getTexts,
+    useNewParser(){
+      let useNew;
+      try {
+        useNew = !this.context.content.rendered.match(/<h\d/gi).length
+      }
+      catch (error) {
+        useNew = false
+      }
+      return useNew
+    },
     checkTechSpecs(){
       let
       checks = [
@@ -233,7 +243,7 @@ export default {
       if( this.context.loading ) return
 
       let
-      PDF = this.acf['Wine - PDF'],
+      PDF = this.acf['Wine-PDF'],
       rgx = /.*\/wp-content\//gim,
       rep = 'https://www.williamsselyem.com/wp-content/'
 
