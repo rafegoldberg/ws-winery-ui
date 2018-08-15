@@ -40,16 +40,19 @@
     </div>
   </div>
 
-  <div class="ActionBox--action" v-if="layout!='float'">
+  <div class="ActionBox--action">
 
-    <slot name="action" v-bind="{button}" v-if="button.cta">
-      <UiButton v-bind="button"/>
-    </slot>
-    <UiButton class="ActionBox--expand" v-if="collapse && !expanded" @click.native="(expanded = true)">
-      <span>𝒊</span>
-    </UiButton>
+    <template v-if="layout!='float'">
+      <slot name="action" v-bind="{button}" v-if="button.cta">
+        <UiButton v-bind="button"/>
+      </slot>
+      <UiButton class="ActionBox--expand" v-if="collapse && !expanded" @click.native="(expanded = true)">
+        <span>𝒊</span>
+      </UiButton>
+    </template>
 
     <ReadMore v-if="ReadMore" :href="ReadMore.indexOf('#')==0 ? ReadMore:'#' + ReadMore"/>
+    
   </div>
   
 </div>
@@ -145,13 +148,13 @@ export default {
     /deep/ p:last-child {
       margin-bottom: 0 !important;
     }
-    @include Break( min-width Breaks(2) ){
+    @include Break( min-width Breaks(3) ){
       #{$B}--unexpand,
       #{$B}--expand {
         display: none;
       }
     }
-    @include Break( max-width Breaks(2) ){
+    @include Break( max-width Breaks(3) ){
       &:not(#{$B}_expanded) {
         & {
           height: 30vh;
