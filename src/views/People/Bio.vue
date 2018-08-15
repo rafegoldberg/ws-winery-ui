@@ -4,6 +4,10 @@
   />
 <main v-else id="StaffBio" class="Bio UiTheme_cream">
 
+  <AdjacentNav
+    v-bind="context.adjacent"
+    class="AdjacentNav_center"/>
+
   <UiPanel class="UiTheme_cream wrap_mid">
     <UiBox class="Bio--overview">
       <div :style="{
@@ -41,11 +45,9 @@
     <UiBox class="UiBox_stack wrap_flex_min">
       <div>
         <article v-html="context.acf.content"/>
-        <br>
-
-        <AdjacentNav
-          v-bind="context.adjacent"
-          class="AdjacentNav_center"/>
+        <div style="text-align:center; margin-top: 1.6rem">
+          <UiButton class="UiButton_outline UiButton_gold" url="/people">Back to Our People</UiButton>
+        </div>
       </div>
     </UiBox>
   </UiPanel>
@@ -173,6 +175,16 @@ export default {
     }
     &:before { top:   -1.5rem }
     &:after  { bottom: 0      }
+  }
+  .AdjacentNav {
+    z-index: 99;
+    position: relative;
+    margin: 0;
+    padding-top: 7rem;
+    @include Break( max-width Breaks(3) ){
+      margin: 0 0 .6rem;
+      padding-top: 2.6rem;
+    }
   }
   @include Break( max-width Breaks(3) ){
     &--overview {

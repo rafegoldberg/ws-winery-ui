@@ -3,18 +3,18 @@
   v-if="context.loading"
   />
 <div id="StaffList" v-else>
-  <UiPanel class="UiTheme_dark" connect="down">
+  <UiPanel class="UiTheme_dark" connect="down" :connectText="''">
     <UiBoxImage :img="imgs.cover"/>
     <UiBox class="UiBox_tall">
-      <div>
+      <div class="wrap_tiny">
         <UiHeading :level="2" class="UiHeading_gold">Our People</UiHeading>
         <p>More than two decades after Williams Selyem Winery produced its first vintage of Pinot Noir in 1981, everyone at the winery, from the owners and winemaking team to the temporary crush help, is still as passionate about making the most luscious, flavorful wines as the crew who made that first vintage. Every person, no matter what his or her job, is truly proud to be a part of the creation of the most highly prized Pinot Noir, Chardonnay and Zinfandel.</p>
       </div>
     </UiBox>
   </UiPanel>
-  <UiPanel id="theOwners">
+  <UiPanel id="theOwners" class="UiTheme_cream">
     <UiBox class="UiBox_stack">
-      <UiHeading :level="4" class="UiHeading_space">
+      <UiHeading :level="3" class="UiHeading_space">
         <router-link to="john-and-kathe-dyson" append>Proprietors</router-link>
       </UiHeading>
       <router-link to="john-and-kathe-dyson" append>
@@ -128,8 +128,8 @@ export default {
   }
   label {
     color: Color(theme);
-    font-weight: bold;
-    text-transform: uppercase;
+    // font-weight: bold;
+    // text-transform: uppercase;
     margin-top: 1.5em;
   }
   img {
