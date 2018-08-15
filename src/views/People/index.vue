@@ -80,14 +80,14 @@ export default {
   @include Break( min-width Breaks(2) ){
     .UiPanel:not(:nth-child(-n+2)) {
       &:nth-child(odd) {
-        flex-direction: row-reverse;
-        >.UiBox { padding-right: 0 !important }
-        img:only-child { margin-right: 0 }
+        flex-direction: row;
+        >.UiBox { padding-left: 0 !important }
+        img:only-child { margin-left: 0 }
       }
       &:nth-child(even){
-        flex-direction: row;
-        > .UiBox { padding-left: 0 !important }
-        img:only-child { margin-left: 0 }
+        flex-direction: row-reverse;
+        > .UiBox { padding-right: 0 !important }
+        img:only-child { margin-right: 0 }
       }
       > .UiBox > img:only-child {
         // max-height: 32em;

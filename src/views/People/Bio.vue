@@ -177,7 +177,7 @@ export default {
     &:after  { bottom: 0      }
   }
   .AdjacentNav {
-    z-index: 99;
+    z-index: 8;
     position: relative;
     margin: 0;
     padding-top: 7rem;
