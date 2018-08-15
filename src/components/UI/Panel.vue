@@ -7,7 +7,7 @@
       }">
       <slot name="connect">
         <small v-if="connect=='down'" @click="$el.nextElementSibling.scrollIntoView(true)">
-          Scroll for More
+          {{connectText}}
         </small>
       </slot>
     </i>
@@ -27,6 +27,10 @@ export default {
       type:[ String, Boolean ],
       default: false
     },
+    connectText:{
+      type: String,
+      default: 'Scroll for More',
+    }
   }
 }
 </script>
