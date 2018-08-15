@@ -7,6 +7,9 @@
     :options="{
       disableDefaultUI: true,
       styles:[
+        //{elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+        //{elementType: 'labels.text.fill', stylers: [{color: '#FF0000'}]},
+        
         { featureType: 'poi.business',
           stylers: [{visibility: 'off'}]
           },
@@ -19,15 +22,18 @@
       ],
     }">
     <GMark
-      v-if="mark.icon | mark.label"
+      v-if="!this.kml"
       :label="mark.label"
       :position="mapCenter"
       :options="{
-        title: mark.label,
+        label: {
+          text: mark.label,
+          color: '#D21034',
+        },
         icon:{
           url: mark.icon,
-          labelOrigin:{ x:90, y:65 }
-        }
+          labelOrigin:{ x:90, y:65 },
+        },
       }"/>
   </GMap>
 </template>
@@ -43,7 +49,8 @@ export default {
   props:[ 'map', 'mark', 'kml' ],
   components:{ GMap, GMark },
   mounted(){
-    this.$refs.map.$mapPromise.then(this.setKML)
+    if( this.kml )
+      this.$refs.map.$mapPromise.then(this.setKML)
   },
   computed:{
     Google: GM,
