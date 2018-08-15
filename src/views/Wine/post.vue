@@ -66,7 +66,7 @@
           </span>
         </div>
 
-        <a v-if="download" :href="download" class="UiButton UiButton_outline gold" :download="title">Download PDF</a>
+        <a v-if="download" :href="download" class="UiButton UiButton_outline gold" :download="title">Technical Notes PDF</a>
       </div></UiBox>
     </UiPanel>
 
@@ -105,7 +105,7 @@
       </UiBox>
     </UiPanel>
 
-    <UiPanel v-if="!(acf.reviews||oldReviews)" class="hide_tablet">
+    <UiPanel>
       <UiBoxImg class="UiBox_tall" :img="img3"/>
     </UiPanel>
     

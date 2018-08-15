@@ -27,6 +27,7 @@ let
 options = {
   showFilters: false,
   filters:{
+    search: "",
     categories:[],
     tags:[],
     varietals:[],

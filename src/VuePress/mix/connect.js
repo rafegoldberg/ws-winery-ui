@@ -45,6 +45,12 @@ export default {
           .catch(e=>( error = e ))
 
         if (error) return {error}
+        else this.$emit('wp:load',{
+          results: [...data],
+          total:   data._paging ? data._paging.total : 0,
+          pages:   data._paging ? data._paging.totalPages : 0,
+        })
+
         return data
       },
       watch() { return this.$route.params }

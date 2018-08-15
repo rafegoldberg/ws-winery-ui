@@ -50,13 +50,6 @@ export default [
     name: "Wine",
     path: "/wine",
     component: ()=> import("./views/Wine"),
-    children:[
-      { path: '',
-        name: 'WineGrid',
-        component: ()=> import("@/views/Wine/grid"),
-        // props: true,
-      }
-    ],
   },
 
   { name: "Page",

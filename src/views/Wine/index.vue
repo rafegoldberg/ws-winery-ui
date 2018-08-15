@@ -12,6 +12,9 @@
         <UiHeading :level="4" v-text="'Sort & Filter'"/>
         <UiButton v-show="hasFilters()" class="UiTheme_rust" @click.native.prevent="clearFilters">Clear</UiButton>
       </header>
+      
+      <WineSearch @keydown.native.enter.prevent="$event.target.blur()" @reset="$log('reset',$event.target)"/>
+
       <FiltersGroup
         title="Varietal"
         term="varietals"
@@ -21,6 +24,7 @@
           .exclude([62,5])
           .perPage(20)
         "/>
+
       <FiltersGroup
         term="tags"
         title="Vintage"
@@ -31,6 +35,7 @@
           .exclude([69,72]) // spring, port
           .perPage(80)
         "/>
+
       <FiltersGroup
         title="Vineyard"
         type="radio"
@@ -41,6 +46,7 @@
           .exclude([25,26]) // growers + estate vineyards
           .perPage(50)
         "/>
+
       <FiltersGroup
         title="Area"
         term="AVA"
@@ -49,16 +55,20 @@
           .AVA()
           .perPage(20)
         "/>
+
     </form>
   </div>
 
-  <UiBox @click.self.native="(isOpen=false)" :class="{wrap_flex_mid:testr()}" :style="{
+  <UiBox @click.self.native="(isOpen=false)" :class="{ UiBox_stack:true, wrap_flex_mid:testr() }" :style="{
         paddingTop:'6rem',
         paddingLeft:'1.5rem',
         paddingRight:'1.5rem',
         overflow:'visible'
       }">
-    <router-view :wpx="wpx" paginate="12" :sticky="true" ref="grid">
+
+
+    <WineSearch ref="gridSearch" v-if="!testr()" :class="{ hidden: isOpen }"/>
+    <WineGrid :wpx="wpx" paginate="12" :sticky="true" @wp:load="$set($refs.gridSearch,'results',$event)" ref="grid">
       <div slot="pagination-first" style="cursor: pointer; opacity: .5" @click="(isOpen=true)">
         {{getFilters().join(' / ')}}
       </div>
@@ -78,7 +88,8 @@
           to start over.</p>
         <UiButton :class="{UiTheme_gold:isOpen,UiTheme_rust:!isOpen}" @click.native="clearFilters">Clear Filters</UiButton>
       </div>
-    </router-view>
+    </WineGrid>
+
   </UiBox>
 
 </UiPanel>
@@ -95,6 +106,7 @@ import UiHeading from "@/components/UI/Heading"
 import UiButton from "@/components/UI/Button"
 
 import WineGrid from "@/views/Wine/grid"
+import WineSearch from "./search"
 import FiltersGroup from "./filters/group"
 
 function hasFilters( filters = this.$root.filters ){
@@ -122,15 +134,16 @@ export default {
     UiHeading,
     UiButton,
     WineGrid,
+    WineSearch,
     FiltersGroup
   },
   data:()=>({
-    wpx(WP){
+    wpx( endpoint ){
       if( hasFilters(this.$root.filters) ){
-        return WP.param(this.$root.filters)
+        return endpoint.param(this.$root.filters)
       }
       else
-        return WP.category(['wine'])
+        return endpoint.category(['wine'])
     }
   }),
   methods:{
@@ -163,8 +176,8 @@ export default {
       set(v){
         this.$root.showFilters = v ? true : false
       },
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -367,4 +380,45 @@ $ribbon-height: 2.25rem;
     .UiHeading { text-align: left !important }
   }
 }
+
+.WineSearch {
+  &.hidden {
+    opacity: 0;
+  }
+  .UiBox_stack > & {
+    min-height: 2.4rem;
+    margin: 0 0 2.6rem !important;
+    transition: .38s .1s ease-out;
+
+    @include Break( min-width Breaks(3) ){
+      padding-left: 6rem;
+      /deep/ input {
+        margin-left: auto;
+      }
+    }
+    @include Break( max-width Breaks(3) ){
+      flex-flow: nowrap column-reverse;
+      justify-content: flex-start;
+      align-items: center;
+      transform: translateY(-3.8rem);
+      margin: 0 !important;
+      // /deep/ > * { margin: 0 auto !important }
+      /deep/ > input {
+        margin-left: auto;
+        margin-bottom: 1.5rem !important;
+      }
+    }
+  }
+  .WineFilters & {
+    margin: 2rem 0;
+    /deep/ input { 
+      width: 100%;
+      margin: 0 !important;
+    }
+    .UiHeading {
+      display: none !important;
+    }
+  }
+}
+
 </style>
