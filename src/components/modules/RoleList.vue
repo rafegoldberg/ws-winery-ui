@@ -10,7 +10,7 @@
       tag="li">
     <a class="RoleList--itemDetails">
       <span class="RoleList--itemDetailsName">
-        <b v-html="person.title.rendered"/>
+        <span v-html="person.title.rendered"/>
         <UiIcon name="ArrowRight" width=".8em" height=".8em"/>
       </span>
       <small class="RoleList--itemDetailsTitle" v-html="person.acf.position"/>
@@ -80,9 +80,9 @@ export default {
       &Title {
         margin-left: auto;
         padding-left: 0.5rem;
-        font-weight: 600;
+        // font-weight: 600;
         text-align: right;
-        color: Color(silver);
+        color: Color(slate);
       }
       @include Break( max-width Breaks(3) ){
         flex-flow: nowrap column;
