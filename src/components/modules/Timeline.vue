@@ -7,6 +7,7 @@
         {{item.year}}
       </h3>
       <div class="Timeline--text" v-html="item.text"/>
+      <img class="Timeline--media" :src="item.img">
     </slot>
   </li>
 
@@ -43,7 +44,7 @@ export default {
   & { // BASE RULESET
     & {
       list-style: none;
-      margin: 1rem auto;
+      margin: 0 auto;
       width: 100%;
       max-width: $maxw;
     }
@@ -63,6 +64,8 @@ export default {
       // padding-right: 1rem;
     }
     &--tick {
+      position: relative;
+      z-index: 1;
       padding: 1em 2rem 1em 0;
       border-right: 1px solid Color(theme);
       &:first-child { padding-top:    0 !important }
@@ -121,6 +124,17 @@ export default {
         background: Color(theme);
       }
     }
+    &--media {
+      position: relative;
+      width: 75%;
+      max-height: 75%;
+      object-fit: contain;
+      object-position: center;
+      margin-top: 2rem;
+      margin-right: -2rem;
+      transform: translateX(1px);
+      z-index: -1;
+    }
   }
 
   @include Break( min-width Breaks(2) ){ // DESKTOP
@@ -128,7 +142,9 @@ export default {
       & {
         width: 50%;
         max-width: $maxw / 2;
-        padding-top: 0;
+        // margin: 0 0 2rem;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
       }
       &:nth-child(even) {
         margin-left: auto;
@@ -161,6 +177,22 @@ export default {
           margin: 0;
           transform: translate(.5em,.04em);
         }
+      }
+    }
+    &--media {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      margin: 0;
+      transform: translateY(-50%);
+      margin-top: .5rem;
+      #{$B}--tick:nth-child(odd) & {
+        left: 100%;
+        padding-left: 2rem;
+      }
+      #{$B}--tick:nth-child(even) & {
+        right: 100%;
+        padding-right: 2rem;
       }
     }
   }
