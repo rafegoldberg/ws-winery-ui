@@ -147,6 +147,14 @@ export default {
       width: 100%;
     }
   }
+  &_compact {
+    margin-top: -2rem;
+    margin-bottom: -3rem;
+    > .UiBox {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+  }
 }
 </style>
 

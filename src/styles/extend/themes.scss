@@ -59,4 +59,11 @@ $themes: cream light dark rust !default;
     transition: 0s ease-out;
   }
   & { @include UI_THEMES_EXTEND; }
+
+  &_half\&half {
+    &-down  { background: linear-gradient(to bottom, Color(cream) 50%, Color(light) 50%) }
+    &-up    { background: linear-gradient(to top,    Color(cream) 50%, Color(light) 50%) }
+    &-left  { background: linear-gradient(to left,   Color(cream) 50%, Color(light) 50%) }
+    &-right { background: linear-gradient(to right,  Color(cream) 50%, Color(light) 50%) }
+  }
 }

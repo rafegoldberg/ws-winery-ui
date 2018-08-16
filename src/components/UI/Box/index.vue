@@ -167,6 +167,9 @@ export default {
       &:after  { bottom: 0 }
     }
   }
+  &_overflow {
+    overflow: visible;
+  }
 }
 </style>
 <docs>

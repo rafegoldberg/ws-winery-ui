@@ -86,6 +86,8 @@ export default {
     width: 100vw !important;
     min-height: 32vh;
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100% !important;
     height: 100% !important;
   }
