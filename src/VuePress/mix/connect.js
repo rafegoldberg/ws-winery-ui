@@ -1,6 +1,9 @@
 import API from "./API";
 export default {
   mixins: [ API ],
+  data:()=>({
+    loading: true,
+  }),
   props: {
     type: {
       type: String,
@@ -36,6 +39,8 @@ export default {
       async get() {
         if ( !this.API || !this.endpoint )
           return {loading:true}
+        else
+          this.$set(this,'loading',true)
 
         let
         error = false,
@@ -45,11 +50,10 @@ export default {
           .catch(e=>( error = e ))
 
         if (error) return {error}
-        else this.$emit('wp:load',{
-          results: [...data],
-          total:   data._paging ? data._paging.total : 0,
-          pages:   data._paging ? data._paging.totalPages : 0,
-        })
+        else {
+          this.$set(this,'loading',false)
+          this.$emit('wp:load',data)
+        }
 
         return data
       },

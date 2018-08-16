@@ -37,4 +37,7 @@
     border: 3px solid currentColor !important;
     &:not(:hover) { opacity: .8 }
   }
+  &_gold, &.gold {
+    color: Color(theme);
+  }
 }

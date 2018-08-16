@@ -68,7 +68,7 @@
 
 
     <WineSearch ref="gridSearch" v-if="!testr()" :class="{ hidden: isOpen }"/>
-    <WineGrid :wpx="wpx" paginate="12" :sticky="true" @wp:load="$set($refs.gridSearch,'results',$event)" ref="grid">
+    <WineGrid :wpx="wpx" paginate="12" :sticky="true" @wp:load="$set($refs.gridSearch,'results',$event||{})" ref="grid">
       <div slot="pagination-first" style="cursor: pointer; opacity: .5" @click="(isOpen=true)">
         {{getFilters().join(' / ')}}
       </div>

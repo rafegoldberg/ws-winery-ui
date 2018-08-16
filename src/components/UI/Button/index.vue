@@ -31,9 +31,6 @@ export default {
 <style lang="scss">
 @import "./style.scss";
 .UiButton {
-  &_gold, &.gold {
-    color: Color(theme);
-  }
   &_flex {
     display: inline-flex;
     flex-flow: nowrap row;

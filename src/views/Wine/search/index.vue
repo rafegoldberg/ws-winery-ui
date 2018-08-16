@@ -1,7 +1,7 @@
 <template>
 <div class="WineSearch">
   <UiHeading v-if="$root.filters.search && results">
-    {{results && results.total}} Results
+    {{results && results._paging.total}} Results
   </UiHeading>
   <input
     type="search"

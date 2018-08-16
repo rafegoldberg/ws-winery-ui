@@ -9,6 +9,7 @@ import iconCirclePlus  from "./circle.plus"
 import iconCircleMinus  from "./circle.minus"
 
 import iconArrowDown  from "./arrow.down"
+import iconArrowUp  from "./arrow.up"
 import iconArrowLeft  from "./arrow.left"
 import iconArrowRight from "./arrow.right"
 
@@ -22,6 +23,7 @@ export default {
   iconCirclePlus,
   iconCircleMinus,
   iconArrowDown,
+  iconArrowUp,
   iconArrowLeft,
   iconArrowRight,
 }

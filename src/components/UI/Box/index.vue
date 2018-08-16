@@ -147,6 +147,26 @@ export default {
       box-sizing: content-box;
     }
   }
+  &_connected {
+    &:before, &:after,
+    &Top:before,
+    &Bottom:after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      width: 1px;
+      height: 8rem;
+      background: Color(theme);
+    }
+    &, &Top {
+      padding-top: 7.5rem;
+      &:before { top: -1.5rem }
+    }
+    &, &Bottom {
+      padding-bottom: 10rem;
+      &:after  { bottom: 0 }
+    }
+  }
 }
 </style>
 <docs>

@@ -1,9 +1,9 @@
 <template>
-<div id="WineGrid">
+<img v-if="context.loading | loading" src="@/assets/preloader.gif" alt="Loading...">
+<div id="WineGrid" v-else>
 
-  <img v-if="context.loading" src="@/assets/preloader.gif" alt="Loading...">
 
-  <div v-else-if="context.error || !context.length" class="WineGrid--slot-error">
+  <div v-if="context.error || !context.length" class="WineGrid--slot-error">
     <slot name="error" v-bind="context.error"/>
   </div>
   
