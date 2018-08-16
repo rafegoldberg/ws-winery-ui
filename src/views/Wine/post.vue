@@ -20,12 +20,14 @@
       </UiBox>
 
       <UiBox class="WinePage--intro UiBox_stack hide_mobile">
-        <template v-if="sections[0]">
+        <template v-if="sections[0] && sections[0].text">
           <p v-if="sections[0]" class="wrap_min">{{sections[0].text | truncate}}</p>
           <br>
-          <ReadMore href="#content" class="ReadMore_gold"/>
+          <ReadMore href="#content" class="ReadMore_gold">
+            <b>Read More</b>
+          </ReadMore>
         </template>
-        <ReadMore v-else href="#content" class="ReadMore_center ReadMore_gold"/>
+        <ReadMore v-else href="#content" class="ReadMore_center ReadMore_serif ReadMore_gold"/>
       </UiBox>
     </UiPanel>
 
@@ -75,7 +77,7 @@
       <UiBox class="UiTheme_cream UiBox_tall">
         <div>
           <UiHeading :level="3" class="UiHeading_gold">Winemakers Notes</UiHeading>
-          <p v-html="sections[0].text"/>
+          <p v-html="sections[0].text || 'Coming soon.'"/>
         </div>
       </UiBox>
     </UiPanel>

@@ -35,7 +35,7 @@
   
   <hr>
   
-  <span class="WineStats--label">Release Price</span>
+  <span class="WineStats--label WineStats--label_price">Release Price</span>
   <UiHeading :level="2" :scale="4">
     <span class="WineStats--price">
       <sup>$</sup>{{price}}
@@ -119,6 +119,9 @@ export default {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-size: .75rem;
+    &_price {
+      color: Color(theme);
+    }
   }
   &--location {
     letter-spacing: .05em;
