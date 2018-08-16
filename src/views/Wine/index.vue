@@ -13,7 +13,8 @@
         <UiButton v-show="hasFilters()" class="UiTheme_rust" @click.native.prevent="clearFilters">Clear</UiButton>
       </header>
       
-      <WineSearch @keydown.native.enter.prevent="$event.target.blur()" @reset="$log('reset',$event.target)"/>
+      <WineSearch
+        @keydown.native.enter.prevent="$event.target.blur() | (isOpen = false)"/>
 
       <FiltersGroup
         title="Varietal"
@@ -59,20 +60,35 @@
     </form>
   </div>
 
-  <UiBox @click.self.native="(isOpen=false)" :class="{ UiBox_stack:true, wrap_flex_mid:testr() }" :style="{
-        paddingTop:'6rem',
-        paddingLeft:'1.5rem',
-        paddingRight:'1.5rem',
-        overflow:'visible'
-      }">
+  <UiBox
+    @click.self.native="(isOpen = false)"
+    :class="{
+      WineGridWrapper: true,
+      UiBox_stack: true,
+      wrap_flex_mid: testr()
+    }"
+    >
 
-
-    <WineSearch ref="gridSearch" v-if="!testr()" :class="{ hidden: isOpen }"/>
-    <WineGrid :wpx="wpx" paginate="12" :sticky="true" @wp:load="$set($refs.gridSearch,'results',$event||{})" ref="grid">
-      <div slot="pagination-first" style="cursor: pointer; opacity: .5" @click="(isOpen=true)">
-        {{getFilters().join(' / ')}}
+    <WineSearch
+        ref="gridSearch"
+        v-if="!testr()"
+        :class="{ hidden: isOpen }"
+        >
+      <div class="FilterChits">
+        <span v-for="item in getFilters()">
+          {{item}}
+        </span>
       </div>
-      <div slot="error" class="">
+    </WineSearch>
+      
+    <WineGrid
+        :wpx="wpx"
+        paginate="12"
+        :sticky="true"
+        @wp:load="$set($refs.gridSearch,'results',$event||{})"
+        ref="grid"
+        >
+      <div slot="error">
         <UiHeading :level="3" class="UiHeading_bold UiHeading_tighten" style="text-align: left">
           No Matches
         </UiHeading>
@@ -185,7 +201,7 @@ export default {
 @import "~@/styles/theme/colors";
 @import "~@/styles/theme/breaks";
 
-$topoff: 6rem;
+$topoff: 8rem;
 $sidebar-width: 18rem;
 $sidebar-pad:   2rem 1.5rem;
 $ribbon-height: 2.25rem;
@@ -199,7 +215,17 @@ $ribbon-height: 2.25rem;
 
 .WineGrid {
   flex: 1;
+  &Wrapper {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    overflow: visible;
+    padding-top: 8rem !important;
+    @include Break( max-width Breaks(3) ){
+      padding-top: 6rem !important;
+    }
+  }
 }
+
 .WineFilters {
 
   $B: #{&};
@@ -236,6 +262,16 @@ $ribbon-height: 2.25rem;
   &:not(#{$OPEN}) {
     transform: translateX(-100%);
     margin-left: -$sidebar-width;
+    #{$B}--ribbon {
+      padding-right: 3rem;
+      /deep/ .UiIcon {
+        opacity: 1 !important;
+        right: 1.5rem!important;
+        margin: 0 !important;
+        transform: translateX(25%) rotate(45deg) !important;
+        path { fill: #b99453 }
+      }
+    }
   }
 
   @at-root .UiBox:last-child {
@@ -375,7 +411,6 @@ $ribbon-height: 2.25rem;
       min-height: 100%;
       >:last-child { margin-bottom: 3rem }
     }
-    + :last-child { padding-top: 12rem }
     @at-root #WineFiltersWrap > .UiPanel { flex-flow: nowrap row }
     .UiHeading { text-align: left !important }
   }
@@ -391,9 +426,15 @@ $ribbon-height: 2.25rem;
     transition: .38s .1s ease-out;
 
     @include Break( min-width Breaks(3) ){
-      padding-left: 6rem;
+      justify-content: flex-end;
+      align-items: center;
+      padding-left: 7.5rem;
+      transition: .33s 0s ease;
+      .WineFilters.open ~ & {
+        padding-left: 0;
+      }
       /deep/ input {
-        margin-left: auto;
+        // margin-left: auto;
       }
     }
     @include Break( max-width Breaks(3) ){
@@ -405,7 +446,7 @@ $ribbon-height: 2.25rem;
       // /deep/ > * { margin: 0 auto !important }
       /deep/ > input {
         margin-left: auto;
-        margin-bottom: 1.5rem !important;
+        margin-bottom: 2rem !important;
       }
     }
   }
@@ -421,4 +462,26 @@ $ribbon-height: 2.25rem;
   }
 }
 
+.FilterChits {
+  margin-left: auto;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  max-width: 80%;
+  overflow: hidden;
+  > * {
+    display: inline-flex;
+    color: Color(silver);
+    & + * {
+      margin-left: 0.3rem;
+    }
+    &:not(:last-child):after {
+      content: '/';
+      margin-left: 0.3rem;
+    }
+  }
+  @include Break( max-width Breaks(3) ){
+    margin: 0 auto;
+    order: -1;
+  }
+}
 </style>

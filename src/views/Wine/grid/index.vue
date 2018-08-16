@@ -29,37 +29,21 @@
       <div style="margin-right:auto">
         <slot name="pagination-first"/>
       </div>
-      <span @click="( page = parseInt(page||1)>1 ? parseInt(page||1)-1 : pages.totalPages )">
+      <span @click="( page = getPrevPage() )" :class="{ disabled: page==1 }">
         <UiIcon name="ArrowLeft" width="1rem" height="1rem"/>
       </span>
-      <span>
-        <input
-            v-model="page"
-            type="number"
-            :max="pages.totalPages"
-            :min="1"
-            :placeholder="1"
-            :step="1"
-            :style="{
-              appearance: 'none',
-              border: 'none',
-              font: 'inherit',
-              direction: 'rtl',
-              textAlign: 'center',
-              width: 'min-content',
-              maxWidth: 'max-content',
-              display: 'inline-block',
-              outline: 'none',
-              background: 'rgba(50,50,50,.07)',
-              borderRadius: '3px',
-              lineHeight: 1.6,
-              marginLeft: '-.5rem'
-            }"
-            />
-        <span :style="{ margin:[0,'.5em'] }">of</span>
-        <span v-text="pages.totalPages"/>
+
+      <span class="pageChit" v-text="'…'" v-if="page > 3"/>
+      <span class="pageChit" v-for="i in [2,1]" v-if="page-i > 0" @click="(page = getPrevPage(i))">
+        {{page-i}}
       </span>
-      <span @click="( page = parseInt(page||1)<pages.totalPages ? parseInt(page||1)+1 : 1 )">
+      <b class="pageChit" v-text="page"/>
+      <span class="pageChit" v-for="i in [1,2]" v-if="page+i <= pages.totalPages" @click="(page = getNextPage(i))">
+        {{page+i}}
+      </span>
+      <span class="pageChit" v-text="'…'" v-if="page < pages.totalPages - 2"/>
+      
+      <span class="pageChit" @click="( page = getNextPage() )" :class="{ disabled: page==pages.totalPages }">
         <UiIcon name="ArrowRight" width="1rem" height="1rem"/>
       </span>
       <div style="margin-left:auto">
@@ -138,6 +122,19 @@ export default {
   },
 
   methods:{
+    getNextPage( i=1 ){
+      let
+      page = this.page,
+      pages = this.pages
+      return parseInt(page||1)<pages.totalPages ? parseInt(page||1)+i : 1
+    },
+    getPrevPage( i=1 ){
+      let
+      page = this.page,
+      pages = this.pages
+      return parseInt(page||1)>1 ? parseInt(page||1)-i : pages.totalPages
+    },
+
     media(item){
       if( this.context.loading || !this.context.length ) return
       if( "wp:featuredmedia" in item._embedded ){
@@ -205,12 +202,19 @@ export default {
   }
 
   &Pagination {
+    color: Color(theme);
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 2rem;
+    user-select: none;
     > * {
       padding: 0.5rem
+    }
+    .disabled {
+      color: Color(silver);
+      opacity: 0.5;
+      cursor: default;
     }
     &_sticky {
       z-index: 9;
@@ -219,7 +223,10 @@ export default {
       margin-bottom: -2rem;
       background: rgba(Color(light),.95);
     }
-  }
-  
+  }  
+}
+.pageChit {
+  width: 2rem;
+  text-align: center;
 }
 </style>

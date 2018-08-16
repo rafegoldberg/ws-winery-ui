@@ -68,7 +68,7 @@
           </span>
         </div>
 
-        <a v-if="download" :href="download" class="UiButton UiButton_outline gold" :download="title">Technical Notes PDF</a>
+        <a v-if="download" :href="download" class="UiButton UiButton_outline gold" :download="title" target="_BLANK">Technical Notes PDF</a>
       </div></UiBox>
     </UiPanel>
 

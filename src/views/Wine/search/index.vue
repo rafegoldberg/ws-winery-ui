@@ -3,6 +3,7 @@
   <UiHeading v-if="$root.filters.search && results">
     {{results && results._paging.total}} Results
   </UiHeading>
+  <slot/>
   <input
     type="search"
     :value="$root.filters.search"
