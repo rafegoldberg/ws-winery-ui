@@ -40,7 +40,7 @@ export default {
     },
     textFirst:{
       type: Boolean,
-      default: true
+      default: false
     },
     classes: {
       type: Array,
