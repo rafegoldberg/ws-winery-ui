@@ -4,7 +4,9 @@
     [`UiHeading_scale${scale||level}`]: true,
   }">
 
-  <slot>{{text}}</slot>
+  <slot>
+    <span v-html="text"/>
+  </slot>
 
 </component>
 </template>

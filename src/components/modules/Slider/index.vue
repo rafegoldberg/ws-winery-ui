@@ -21,9 +21,10 @@
           :options="{ title:0, byline:0, portrait:0, muted:1 }"
           @loaded="startPlayer($refs.vimeo[0])"/>
       </div>
+
       <ActionBox v-bind="slide" class="wrap_min" style="margin: 0 auto 0 0"/>
-      <!-- <h2 v-html="slide.title"/>
-      <div v-html="slide.content"/> -->
+
+      
 
       <div v-if="slide.image" class="swiper-lazy-preloader"/>
         

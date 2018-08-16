@@ -34,7 +34,8 @@
   &_outline {
     color: Color(matte);
     background-color: transparent !important;
-    border: 3px solid currentColor !important;
+    border: 1px solid currentColor !important;
+    box-shadow: inset 0 0 0 3px currentColor !important;
     &:not(:hover) { opacity: .8 }
   }
   &_gold, &.gold {

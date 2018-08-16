@@ -1,19 +1,23 @@
 <template>
-<a class="ReadMore" :href="href">
+<a class="ReadMore" :class="classes.join(' ')" :href="href">
 
-  <slot name="icon" v-if="icon && !textFirst">
-    <UiIcon :name="icon" height="1em" width="1em"></UiIcon>
+  <template v-if="textFirst">
+  <slot name="icon">
+    <UiIcon :name="icon || 'ArrowUp'" height="1em" width="1em"></UiIcon>
     <br>
   </slot>
+  </template>
 
   <slot>
-    <b>{{text}}</b>
+    <span v-html="text"/>
   </slot>
   
-  <slot name="icon" v-if="icon && textFirst">
+  <template v-if="!textFirst">
+  <slot name="icon-last">
     <br>
-    <UiIcon :name="icon" height="1em" width="1em"></UiIcon>
+    <UiIcon :name="icon || 'ArrowDown'" height="1em" width="1em"></UiIcon>
   </slot>
+  </template>
 
 </a>
 </template>
@@ -33,11 +37,14 @@ export default {
     },
     icon:{
       type: [String,Boolean],
-      default: "arrow-down"
     },
     textFirst:{
       type: Boolean,
       default: true
+    },
+    classes: {
+      type: Array,
+      default: []
     }
   },
   components:{ UiIcon }
@@ -47,6 +54,7 @@ export default {
 <style lang="scss" scoped>
 @import "~@/styles/theme/breaks";
 @import "~@/styles/theme/colors";
+@import "~@/styles/theme/fonts";
 @import "~@/styles/extend/text.label";
 
 .ReadMore {
@@ -56,8 +64,15 @@ export default {
   &, >:only-child {
     text-decoration: none;
   }
+  
   @include Break( max-width Breaks(3) ){
     text-align: center;
+  }
+
+  &_serif, &.serif {
+    font-family: $ff-serif;
+    font-weight: 500;
+    font-style: italic;
   }
   &_gold, &.gold {
     @extend .ReadMore;

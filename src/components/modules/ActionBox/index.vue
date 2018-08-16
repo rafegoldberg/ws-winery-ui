@@ -1,7 +1,9 @@
 <template>
 <div class="ActionBox" :class="{
+    [`ActionBox_${layout}`]: layout,
     ActionBox_collapse: collapse,
     ActionBox_expanded: collapse && expanded,
+    ActionBox_columns:  columns,
   }">
 
   <div class="ActionBox--main">
@@ -21,7 +23,7 @@
       </UiHeading>
     </slot>
 
-    <div v-if="button.cta && layout=='float'"
+    <div v-if="button.url && layout=='float'"
         class="ActionBox--action"
         :class="{
           'ActionBox--button_float': layout
@@ -42,7 +44,7 @@
 
   <div class="ActionBox--action">
 
-    <template v-if="layout!='float'">
+    <template v-if="layout!='float' && button.url">
       <slot name="action" v-bind="{button}" v-if="button.cta">
         <UiButton v-bind="button"/>
       </slot>
@@ -51,7 +53,7 @@
       </UiButton>
     </template>
 
-    <ReadMore v-if="ReadMore" :href="ReadMore.indexOf('#')==0 ? ReadMore:'#' + ReadMore"/>
+    <ReadMore v-if="ReadMore.href" v-bind="ReadMore"/>
     
   </div>
   
@@ -75,13 +77,17 @@ export default {
     },
 
     ReadMore: {
-      type: [String,Boolean],
+      type: [String,Object,Boolean],
       default: false,
     },
     
     layout: {
       type: String,
       default: ""
+    },
+    columns: {
+      type: Boolean,
+      default: false
     },
 
     heading: {
@@ -123,13 +129,17 @@ export default {
       width: unset;
       text-decoration: none;
       color: Color(theme);
-      font-weight: bold;
+      width: 100%;
       &:not(:first-child) { margin-left: 1em }
       &:only-child {
         @include Break( max-width Breaks(3) ){
           margin-left:  auto;
           margin-right: auto;
         }
+      }
+      &_center:not(:only-child){
+        justify-content: flex-end;
+        text-align: right;
       }
     }
     &:empty {
@@ -184,6 +194,16 @@ export default {
         float: right;
         margin-top: .4rem;
         transform: rotate(45deg);
+      }
+    }
+  }
+
+  &_columns {
+    #{$B}--content {
+      columns: 2 16rem;
+      column-gap: 2rem;
+      /deep/ p {
+        margin-top: 0 !important
       }
     }
   }
