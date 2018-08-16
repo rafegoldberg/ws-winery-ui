@@ -143,6 +143,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~@/styles/theme/breaks";
 @import "~@/components/UI/Button/style";
 .UiPanel[id$="-vineyards"] {
   display: block !important;
@@ -153,6 +154,16 @@ export default {
       &:first-child { margin: -15rem 3rem 0 auto }
       &:last-child { margin: 15rem auto 0 3rem  }
     }
+
+    $mq: (Breaks(2) + Breaks(3))/2;
+    @include Break( max-width Breaks(3) ){
+      flex-flow: nowrap column;
+      & > * {
+        margin: 3rem 0 0 !important;
+        &:first-child { margin-top: 0 !important }
+      }
+    }
+
   }
   &--list {
     &-readMore {
