@@ -4,10 +4,8 @@
       :is="url
         ?( url.indexOf('mailto:')==0 ? 'a' : 'router-link' )
         : tag"
-      :class="{
-        UiButton: true,
-        UiButton_outline: outline
-      }"
+      class="UiButton"
+      :class="classes"
       :target="url.indexOf('mailto:')==0 && '_blank'" 
       :href="url"
       :to="url"
@@ -24,7 +22,10 @@ export default {
     url: { type:String, default:''       },
     tag: { type:String, default:"button" },
     cta: { type:String, required:false   },
-    outline: false
+    classes: {
+      type: [String,Array,Object],
+      default: ""
+    }
   }
 }
 </script>
