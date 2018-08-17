@@ -6,8 +6,15 @@
 @import "~@/styles/extend/visibility.scss";
 @import "~@/styles/extend/reorder.scss";
 
+//=Staging Area=>
+//
+
 a { color: inherit }
 
 .serif {
   font-family: $ff-serif;
 }
+
+//=Module Partials=>
+//
+@import "~@/styles/modules/targetList.scss";
