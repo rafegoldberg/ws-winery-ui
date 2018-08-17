@@ -20,6 +20,8 @@
       'Our People': '/people',
       'Our History': '/history',
       'Purchasing': '/purchase',
+      'Growing': '/growing-ava',
+      'When to Drink': '/when-to-drink',
       'Visit Us': '/visit',
       'Contact Us': '/contact',
       }">

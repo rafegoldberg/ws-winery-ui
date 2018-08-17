@@ -36,7 +36,7 @@
           <b class="Bio--position">{{context.acf.position}}</b>
         </header>
         <p>{{context.acf.intro}}</p>
-        <ReadMore v-if="context.acf.content" href="#content" class="ReadMore_gold"/>
+        <ReadMore v-if="context.acf.content" href="#content" class="ReadMore_gold" style="text-transform: uppercase"/>
       </div>
     </UiBox>
   </UiPanel>
