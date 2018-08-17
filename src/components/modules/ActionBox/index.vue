@@ -198,6 +198,15 @@ export default {
     }
   }
 
+  &_center {
+    .UiHeading:first-child {
+      text-align: center;
+    }
+    #{$B}--action {
+      justify-content: center;
+    }
+  }
+
   &_columns {
     #{$B}--content {
       columns: 2 16rem;
@@ -207,7 +216,8 @@ export default {
       }
     }
   }
-}</style>
+}
+</style>
 
 <docs>
   Render an `<ActionBox/>` with sub-components:
