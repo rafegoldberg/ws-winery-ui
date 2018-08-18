@@ -148,7 +148,10 @@ export default {
     height: 100vh;
     color: Color(light);
     @include Break( max-width Breaks(4) ){
+      position: absolute;
       margin-top: -$top-offset--M;
+      width: 100%;
+      height: 100%;
     }
   }
   +#AppFooter {

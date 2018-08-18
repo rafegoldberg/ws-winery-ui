@@ -159,12 +159,12 @@ export default {
         pointer-events: none;
       }
       &:before {
-        mix-blend-mode: overlay;
-        opacity: .6;
+        // mix-blend-mode: overlay;
+        opacity: .4;
       }
       &:after {
-        mix-blend-mode: saturation;
-        opacity: .3;
+        // mix-blend-mode: saturation;
+        opacity: .4;
       }
       @include Break( max-width Breaks(3) ){
         &:after  { display: none }
