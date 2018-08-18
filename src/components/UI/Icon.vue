@@ -3,7 +3,7 @@
     :viewBox="viewBox" 
     :width="width" 
     :height="height"
-    :style="{ width, height }"
+    :style="styles || { width, height }"
     :aria-labelledby="name" 
     xmlns="http://www.w3.org/2000/svg" 
     role="presentation">
@@ -35,6 +35,9 @@ export default {
   name: "UiIcon",
   components: { ...Icons },
   props: {
+    styles:{
+      type: Object,
+    },
     name: {
       type: String,
       required: true

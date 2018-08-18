@@ -5,6 +5,7 @@
   />
 <UiPanel id="HomePage" class="UiTheme_dark" v-else>
   <Slider
+    ref="slider"
     v-if="!page.loading"
     :slides="acf.panels"
     :settings="{
@@ -32,12 +33,27 @@
         sensitivity: 1
       },
       pagination: {
-        type: 'bullets'
+        type: 'bullets',
+        renderBullet(ix,className){
+          let
+          panel = acf.panels[ix]
+          return `<div class='${className}'>
+            <span class='${className}-text'>${panel.label}</span>
+          </div>`;
+        },
       },
       parallax: true,
-      speed: 400
-    }"/>
-
+      speed: 400,
+    }">
+    <div slot="swiper-post" slot-scope="swiper">
+      <div :class="{
+          'swiper-scroll': true,
+          'hidden': !(swiper.activeIndex+1 < acf.panels.length)
+        }" @click="nextSlide">
+        Scroll Down
+      </div>
+    </div>
+  </Slider>
 </UiPanel>
 </template>
 
@@ -79,6 +95,11 @@ export default {
         return this.page.acf
     }
   },
+  methods:{
+    nextSlide(){
+      this.$refs.slider.swiper.slideNext()
+    }
+  }
 }
 </script>
 
@@ -134,6 +155,34 @@ export default {
     display: none;
   }
   .swiper {
+    & { // custom elems
+      &-scroll {
+        z-index: 9;
+        position: fixed;
+        bottom: 0;
+        font-size: .75em;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: .3s ease-in;
+        &:after {
+          content: '';
+          height: 4em;
+          width: 1px;
+          background: white;
+          display: block;
+          margin: 0 auto;
+        }
+        &.hidden {
+          opacity: 0;
+          pointer-events: none;
+        }
+        @include Break( max-width Breaks(4) ) {
+          display: none !important;
+        }
+      }
+    }
     &-container {
       @include Break( min-width Breaks(4) ){
         position: relative;
@@ -153,22 +202,27 @@ export default {
         padding: 9rem 4rem 4rem;
         padding-left: $left-offset;
       }
+      @include Break( max-width Breaks(2) ){
+        * {
+          text-align: center;
+          justify-content: center;
+          align-items: center;
+        }
+      }
     }
     &-pagination {
-      &-bullets {
-        display: flex;
-        flex-flow: nowrap column;
-        justify-content: stretch;
-        align-items: center;
+      &-wrapper {
+        position: absolute;
+        z-index: 99;
         @include Break( min-width Breaks(4) ){
           height: 50vh;
           right: unset !important;
           left: $left-offset / 2;
           top: 50%;
           top: calc(50% + 1.5rem);
+          transform: translate(-50%,-50%);
         }
         @include Break( max-width Breaks(4) ){
-          flex-flow: nowrap row;
           height: 8px;
           width: 88vw;
           right: 6vw !important;
@@ -176,8 +230,24 @@ export default {
           bottom: 1.5rem;
         }
       }
+      &-bullets {
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        left: 0 !important;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-flow: nowrap column;
+        justify-content: stretch;
+        align-items: center;
+        @include Break( max-width Breaks(4) ){
+          flex-flow: nowrap row;
+        }
+      }
       &-bullet {
         all: unset;
+        position: relative;
         flex: 1;
         width: 8px;
         height: 8px;
@@ -192,35 +262,58 @@ export default {
             margin-left: 2px !important;
           }
         }
+
+        &-text {
+          position: absolute;
+          text-align: center;
+          width: 100%;
+          left: 0;
+          bottom: calc(100% + 1em);
+          font-size: 0.9em;
+          text-shadow: 0 0 12px rgba(black,.8);
+          @include Break( min-width Breaks(4) ){
+            top: 0;
+            right: calc(100% + 1em);
+            bottom: unset;
+            left: unset;
+            line-height: 1;
+            
+            width: calc(50vh / 3);
+            height: initial;
+
+            transform: rotate(-90deg) translate(0,-125%);
+            transform-origin: top right;
+          }
+        }
         &-active {
           position: relative;
           background: Color(theme);
-          box-shadow:
+          /* box-shadow:
             2px 0 0 Color(theme),
             -2px 0 0 Color(theme);
           @include Break( max-width Breaks(4) ){
             box-shadow:
               0  2px 0 Color(theme),
               0 -2px 0 Color(theme);
-          }
-          &:after {
-            content: "Slide";
-            position: absolute;
-            text-align: center;
-            width: 100%;
-            left: 0;
-            bottom: 100%;
-            @include Break( min-width Breaks(4) ){
-              top: 50%;
-              left: unset;
-              bottom: unset;
-              right: 100%;
-              transform: translateY(-50%) rotate(-90deg);
-              margin-right: .5em;
-              text-align: right;
-            }
-            display: none !important;
-          }
+          } */
+        }
+        > * {
+          opacity: 0;
+          transition: .3s .2s ease-out;
+        }
+        &-active > * {
+          opacity: 1;
+        }
+      }
+      &-wrapper .UiIcon {
+        z-index: 99;
+        position: absolute;
+        transition: .3s ease;
+        transform: translate(0,-50%);
+        @include Break( min-width Breaks(4) ){ left: calc(-1em - 4px) !important }
+        @include Break( max-width Breaks(4) ){
+          top: 0px !important;
+          transform: translate(-50%, -50%) rotate(90deg) !important;
         }
       }
     }

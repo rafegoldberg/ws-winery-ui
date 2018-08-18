@@ -13,6 +13,8 @@ import iconArrowUp  from "./arrow.up"
 import iconArrowLeft  from "./arrow.left"
 import iconArrowRight from "./arrow.right"
 
+import iconIndicator from "./indicator"
+
 export default {
   iconBarrels,
   iconBottles,
@@ -26,4 +28,5 @@ export default {
   iconArrowUp,
   iconArrowLeft,
   iconArrowRight,
+  iconIndicator,
 }

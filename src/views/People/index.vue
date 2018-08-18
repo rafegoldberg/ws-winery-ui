@@ -93,11 +93,11 @@ export default {
         // max-height: 32em;
         width: 100%;
         max-width: 50vw;
-        align-self: flex-start;
+        // align-self: flex-start;
       }
     }
     .UiPanel:last-child > .UiBox {
-      padding-bottom: 0 !important;
+      // padding-bottom: 0 !important;
     }
   }
   @include Break( max-width Breaks(2) ){
@@ -114,9 +114,9 @@ export default {
       }
     }
   }
-  .UiPanel:nth-child(3) .UiBox:first-child {
-    padding-top: 0;
-  }
+  // .UiPanel:nth-child(3) .UiBox:first-child {
+  //   padding-top: 0;
+  // }
 }
 </style>
 

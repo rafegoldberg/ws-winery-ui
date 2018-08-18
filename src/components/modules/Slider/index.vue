@@ -10,29 +10,31 @@
         :data-background="slide.image.url"
         :data-hash="i+1"
         >
-    <slot v-bind="slide">
 
-      <div v-if="slide.video" class="swiper-slide-video-bg">
-        <VimeoPlayer
-          :video-id="getVimeoID(slide.video)"
-          :loop="true"
-          :autoplay="true"
-          ref="vimeo"
-          :options="{ title:0, byline:0, portrait:0, muted:1 }"
-          @loaded="startPlayer($refs.vimeo[0])"/>
-      </div>
-
-      <ActionBox v-bind="slide" class="wrap_min" style="margin: 0 auto 0 0"/>
-
+      <slot v-bind="slide">
+        <div v-if="slide.video" class="swiper-slide-video-bg">
+          <VimeoPlayer
+            :video-id="getVimeoID(slide.video)"
+            :loop="true"
+            :autoplay="true"
+            ref="vimeo"
+            :options="{ title:0, byline:0, portrait:0, muted:1 }"
+            @loaded="startPlayer($refs.vimeo[0])"/>
+        </div>
+        <ActionBox v-bind="slide" class="wrap_min" style="margin: 0 auto 0 0"/>
+        <div v-if="slide.image" class="swiper-lazy-preloader"/>
+      </slot>
       
-
-      <div v-if="slide.image" class="swiper-lazy-preloader"/>
-        
-    </slot>
     </div>
   </div>
 
-  <div class="swiper-pagination"/>
+  <div class="swiper-pagination-wrapper">
+    <div class="swiper-pagination"/>
+    <UiIcon name="Indicator" :styles="{
+      top:  `calc( ${this.indicatorPosition}% + (33% / 2) )`,
+      left: `calc( ${this.indicatorPosition}% + (33% / 2) )`
+    }"/>
+  </div>
 
   <!-- <template v-if="adjacent">
     <div class="swiper-button-prev"></div>
@@ -40,6 +42,8 @@
   </template> -->
 
   <!-- <div v-if="scrollbar" class="swiper-scrollbar"></div> -->
+
+  <slot name="swiper-post" v-bind="swiper"/>
 
 </div>
 </template>
@@ -52,23 +56,33 @@ import Swiper from "swiper"
 import "swiper/dist/css/swiper.min.css"
 
 import {vueVimeoPlayer as VimeoPlayer} from 'vue-vimeo-player'
+
+import UiIcon from '@/components/UI/Icon'
 import ActionBox from '@/components/modules/ActionBox'
 
 export default {
   name: "Slider",
-  components:{ ActionBox, VimeoPlayer },
+  components:{ UiIcon, ActionBox, VimeoPlayer },
   props:[
     'slides',
     'settings',
   ],
-  // created(){
-  // },
   mounted(){
-    this.opts = loMerge({},this.defaults,this.settings||{})
+    this.opts = loMerge({}, this.defaults, this.settings||{}, {init:false})
     this.swiper = new Swiper(this.$el,this.opts)
-    // this.$log(this.$refs.vimeo)
+
+    let setIndicatorPosition = (val=> (this.indicatorPosition = val)).bind(this)
+    this.swiper.on('init',function(){
+      setIndicatorPosition(this.activeIndex)
+    });
+    this.swiper.on('slideChange',function(){
+      setIndicatorPosition(this.activeIndex)
+    });
+
+    this.swiper.init()
   },
   data:()=>({
+    indicatorPosition_store: 0,
     defaults:{
       /**
        * Default Swiper Options
@@ -81,6 +95,16 @@ export default {
       },
     }
   }),
+  computed:{
+    indicatorPosition:{
+      get(){
+        return this.indicatorPosition_store
+      },
+      set(v){
+        this.indicatorPosition_store = (v / this.slides.length) * 100
+      }
+    },
+  },
   methods:{
     startPlayer: function( vimeo ){
       // this.$log(vimeo,vimeo.player)
