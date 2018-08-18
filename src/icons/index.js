@@ -16,6 +16,10 @@ import iconArrowRightLong from "./arrow.right.long"
 
 import iconIndicator from "./indicator"
 
+import iconFacebook from "./social.facebook"
+import iconInsta from "./social.insta"
+import iconTwitter from "./social.twitter"
+
 export default {
   iconBarrels,
   iconBottles,
@@ -31,4 +35,7 @@ export default {
   iconArrowRight,
   iconArrowRightLong,
   iconIndicator,
+  iconFacebook,
+  iconInsta,
+  iconTwitter ,
 }

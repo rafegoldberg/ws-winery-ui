@@ -30,7 +30,7 @@
         <a v-if="slide.button.url" :href="slide.button.url" :style="{
               position: 'absolute',
               top: '50%',
-              right: '10px',
+              right: '2rem',
               transform: 'translateY(-50%)',
               textDecoration: 'none',
             }">

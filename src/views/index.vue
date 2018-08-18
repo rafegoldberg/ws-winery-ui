@@ -52,6 +52,11 @@
         }" @click="nextSlide">
         Scroll Down
       </div>
+      <div class="swiper-social">
+        <UiIcon name="Facebook" width="1em" height="1em"/>
+        <UiIcon name="Insta" width="1em" height="1em"/>
+        <UiIcon name="Twitter" width="1em" height="1em"/>
+      </div>
     </div>
   </Slider>
 </UiPanel>
@@ -62,11 +67,12 @@ import API from "@/VuePress/mix/API"
 import Slider from "@/components/modules/Slider"
 
 import UiPanel from "@/components/UI/Panel"
+import UiIcon from "@/components/UI/Icon"
 
 export default {
   name: "HomePage",
   mixins:[ API ],
-  components:{ UiPanel, Slider },
+  components:{ UiPanel, UiIcon, Slider },
   created() {
     this.$log(this.$root.classes,'')
   },
@@ -159,6 +165,16 @@ export default {
   }
   .swiper {
     & { // custom elems
+      &-social {
+        z-index: 9;
+        position: fixed;
+        bottom: 2rem;
+        right: 3rem;
+        display: inline-flex;
+        > * + * {
+          margin-left: 1rem;
+        }
+      }
       &-scroll {
         z-index: 9;
         position: fixed;
@@ -172,7 +188,7 @@ export default {
         cursor: pointer;
         &:after {
           content: '';
-          height: 4em;
+          height: 3rem;
           width: 1px;
           background: white;
           display: block;
