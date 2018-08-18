@@ -12,6 +12,7 @@
         >
 
       <slot v-bind="slide">
+        
         <div v-if="slide.video" class="swiper-slide-video-bg">
           <VimeoPlayer
             :video-id="getVimeoID(slide.video)"
@@ -21,8 +22,22 @@
             :options="{ title:0, byline:0, portrait:0, muted:1 }"
             @loaded="startPlayer($refs.vimeo[0])"/>
         </div>
+
         <ActionBox v-bind="slide" class="wrap_min" style="margin: 0 auto 0 0"/>
+        
         <div v-if="slide.image" class="swiper-lazy-preloader"/>
+
+        <a v-if="slide.button.url" :href="slide.button.url" :style="{
+              position: 'absolute',
+              top: '50%',
+              right: '10px',
+              transform: 'translateY(-50%)',
+              textDecoration: 'none',
+            }">
+          Learn More
+          <UiIcon name="ArrowRightLong" width="3rem"/>
+        </a>
+
       </slot>
       
     </div>

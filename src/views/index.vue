@@ -169,6 +169,7 @@ export default {
         left: 50%;
         transform: translateX(-50%);
         transition: .3s ease-in;
+        cursor: pointer;
         &:after {
           content: '';
           height: 4em;
