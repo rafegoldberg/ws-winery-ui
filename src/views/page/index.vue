@@ -1,19 +1,27 @@
 <template>
 
-<AppLoad
-  v-if="page.loading"
-  />
-<PageBuilder :panels="acf.panels" :id="$route.name" v-else/>
+  <AppLoad
+    v-if="page.loading"
+    />
+  <PageBuilder
+    v-else
+    :panels="acf.panels"
+    :id="$route.name"
+    >
+    <DiscoveryBoxes v-if="acf.showDiscoveryBoxes" v-bind="acf.discoveryBoxes"/>  
+  </PageBuilder>
 
 </template>
 <script>
 import API from "@/VuePress/mix/API"
+
 import PageBuilder from "@/components/modules/PageBuilder"
+import DiscoveryBoxes from "@/components/static/discovery-boxes"
 
 export default {
   name: "Page",
   mixins:[ API ],
-  components:{ PageBuilder },
+  components:{ PageBuilder, DiscoveryBoxes },
   props:{
     slug: "",
     fetch:{

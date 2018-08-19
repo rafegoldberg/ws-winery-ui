@@ -4,25 +4,33 @@
     {{results && results._paging.total}} Results
   </UiHeading>
   <slot/>
-  <input
-    type="search"
-    :value="$root.filters.search"
-    @change="setSearchFilter"
-    placeholder="Search">
+  <span class="WineSearch--inputWrap">
+    <input
+      ref="search"
+      type="search"
+      :value="$root.filters.search"
+      @change="setSearchFilter"
+      placeholder="Search for your bottle...">
+    <span class="WineSearch--icon" @click="$refs.search.focus()">
+      <UiIcon name="search" width=".9em" height=".9em"/>
+    </span>
+  </span>
 </div>
 </template>
 
 <script>
 import UiHeading from "@/components/UI/Heading"
+import UiIcon from "@/components/UI/Icon"
 export default {
   name: "WineSearch",
   data:()=>({
     results: false
   }),
-  components: { UiHeading },
+  components: { UiHeading, UiIcon },
   methods:{
     setSearchFilter(e){
       this.$set(this.$root.filters,'search',e.target.value)
+      this.$refs.search.value = e.target.value
     }
   }
 }
@@ -40,16 +48,43 @@ export default {
 }
 input {
   all: unset;
-  margin-left: 1.5rem;
+  // margin-left: 1.5rem;
   box-sizing: border-box;
-  background: Color(light);
-  border: 1px solid Color(silver);
+  background: transparent;
+  border: 1px solid;
   padding: 5px;
   line-height: 1.3;
   min-width: 12rem;
-  border-radius: 1px;
-  &:focus {
-    border-color: Color(theme);
+  border-radius: 1px 0 0 1px;
+  border-radius: 2px 0 0 2px;
+}
+.WineSearch {
+  &--inputWrap {
+    display: inline-flex;
+    align-items: stretch;
+    align-content: center;
+    * { border-color: Color(silver) }
+    &:focus-within * { border-color: Color(theme) }
+  }
+  .UiTheme_dark &--inputWrap * {
+    border-color: Color(theme) !important;
+  }
+  &--icon {
+    display: inline-block;
+    margin-left: -1px;
+    padding: 5px 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 0 2px 2px 0;
+    line-height: 1;
+    color: Color(theme);
+    background: transparent;
+    transition: .2s ease;
+  }
+  &:focus-within &--icon {
+    background: Color(theme);
+    color: Color(light);
+    border-color: rgba(Color(dark),.2);
   }
 }
 </style>

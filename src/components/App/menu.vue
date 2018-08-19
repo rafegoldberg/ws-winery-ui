@@ -3,7 +3,7 @@
   <nav class="AppMenu"
       :class="{ AppMenu_open:open }"
       @mouseover="(open=true)"
-      @mouseout="(open=false)"
+      at-mouseout="(open=false)"
       >
     <router-link to="/" class="AppMenu--brand" @click.native="toggle(false)">
       <UiIcon
@@ -28,6 +28,7 @@
           <ul>
             <router-link
               v-for="(url,key,ix) in data"
+              :key="url"
               :to="url"
               tag="li"
               @click.native="toggle(false)"
@@ -49,7 +50,7 @@
     </ol> -->
     <UiIcon class="AppMenu--close" name="CirclePlus" width="1.5em" height="1.5em" @click.native="toggle"/>
 
-    <WineSearch class="UiTheme_dark" :style="{
+    <WineSearch @blur="$log($router)" class="UiTheme_dark" :style="{
       position: 'absolute',
       left: 0,
       right: 0,
@@ -58,6 +59,7 @@
       justifyContent: 'center',
       margin: 0,
       padding: '1rem',
+      borderColor: '#BA9454'
     }"/>
     
   </nav>
@@ -252,19 +254,42 @@ export default {
         // left: 100%;
         // top: 0;
         margin: 0;
-        transition: .3s ease;
         white-space: nowrap;
+        &, > * { transition: .3s ease }
+        &:before,
+        &:after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          margin-top: -8px;
+          width: 0;
+          height: 0;
+          color: #b9b9b9;
+          border-top: 8px solid transparent;
+          border-bottom: 8px solid transparent;
+          border-left: 8px solid currentColor;
+          transition: .3s 0 ease;
+          opacity: 0;
+        }
+        &:after {
+          color: #f6f4ed;
+          margin-left: -1.25px;
+          z-index: 9999;
+        }
       }
       &:not(:hover) > ul {
         opacity: 0;
         pointer-events: none;
-        transform: translateX(-1rem);
+        > * { transform: translateX(-1rem) }
       }
       &:hover > ul,
       > ul:hover {
         opacity: 1;
         pointer-events: initial;
         z-index: 2;
+        &:before, &:after {
+          opacity: 1;
+        }
       }
     }
     &-link {
@@ -272,6 +297,7 @@ export default {
       padding: 0.5rem 1rem;
       text-align: right;
       cursor: pointer;
+      transition: .2s ease;
       &:hover {
         color: Color(theme);
       }
@@ -283,6 +309,7 @@ export default {
       border-right: 1px solid Color(silver);
       font-family: $ff-serif;
       text-transform: uppercase;
+      letter-spcaing: .1em;
     }
     &-item:not(:first-child) > &-link {
       border-top: 1px solid Color(silver);
@@ -319,5 +346,8 @@ export default {
       }
     }
    */
+   .open {
+     font-weight: bold;
+   }
 }
 </style>

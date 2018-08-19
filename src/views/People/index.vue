@@ -34,6 +34,7 @@
         <RoleList v-if="!context.loading" v-bind="term"/>
     </UiBox>
   </UiPanel>
+  <DiscoveryBoxes/>
 </div>
 </template>
 
@@ -44,10 +45,13 @@ import UiPanel from '@/components/UI/Panel'
 import UiBox from '@/components/UI/Box'
 import UiBoxImage from '@/components/UI/Box/Image'
 import UiHeading from '@/components/UI/Heading'
+
 import RoleList from '@/components/modules/RoleList'
+import DiscoveryBoxes from "@/components/static/discovery-boxes"
 
 import cover from "./assets/cover.png"
 import proprietors from "./assets/proprietors.png"
+
 
 let
 imgs = {
@@ -69,7 +73,8 @@ export default {
     UiBox,
     UiBoxImage,
     UiHeading,
-    RoleList
+    RoleList,
+    DiscoveryBoxes,
   }
 }
 </script>

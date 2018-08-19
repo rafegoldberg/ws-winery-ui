@@ -451,10 +451,12 @@ $ribbon-height: 2.25rem;
     }
   }
   .WineFilters & {
-    margin: 2rem 0;
-    /deep/ input { 
+    margin: 1.3rem 0 .7rem;
+    /deep/ &--inputWrap {
       width: 100%;
-      margin: 0 !important;
+      input {
+        flex: 1;
+      }
     }
     .UiHeading {
       display: none !important;

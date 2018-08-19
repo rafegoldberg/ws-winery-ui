@@ -40,8 +40,6 @@
     "wpapi": "^1.1.2"
   },
   "browserslist": [
-    "> 0%",
-    "last 2 versions",
-    "not ie <= 8"
+    ">0%"
   ]
 }

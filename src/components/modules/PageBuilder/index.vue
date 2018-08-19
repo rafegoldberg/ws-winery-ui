@@ -31,6 +31,7 @@
 
       </component>
     </UiPanel>
+    <slot/>
   </component>
 </template>
 
@@ -87,7 +88,7 @@ export default {
     panels:{
       type: Array,
       required: true
-    }
+    },
   },
 }
 </script>

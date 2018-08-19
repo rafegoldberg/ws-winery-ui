@@ -62,5 +62,10 @@ export default {
     color: Color(theme);
     text-shadow: 0 1px 5px rgba(25,25,25,.75);
   }
+  @include Break( max-width Breaks(3) ){
+    &--discoverText {
+      color: Color(light);
+    }
+  }
 }
 </style>

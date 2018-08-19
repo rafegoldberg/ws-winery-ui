@@ -20,6 +20,8 @@ import iconFacebook from "./social.facebook"
 import iconInsta from "./social.insta"
 import iconTwitter from "./social.twitter"
 
+import iconSearch from "./search"
+
 export default {
   iconBarrels,
   iconBottles,
@@ -37,5 +39,6 @@ export default {
   iconIndicator,
   iconFacebook,
   iconInsta,
-  iconTwitter ,
+  iconTwitter,
+  iconSearch,
 }

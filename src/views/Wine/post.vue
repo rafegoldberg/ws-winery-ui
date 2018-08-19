@@ -118,8 +118,6 @@
       </UiBox>
     </UiPanel>
     
-    {{currentRelease}}
-    
   </div>
   <UiBox v-else style="text-align: center; min-height: 68vh">
     Loading...
