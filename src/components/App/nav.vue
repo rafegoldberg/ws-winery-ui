@@ -165,7 +165,6 @@ export default {
     color: var(--c);
     border: 2px solid var(--c);
     border-radius: 6em;
-    backdrop-filter: blur(10px);
     &.open {
       display: none;
     }
