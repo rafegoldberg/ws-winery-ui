@@ -3,7 +3,7 @@
   <nav class="AppMenu"
       :class="{ AppMenu_open:open }"
       @mouseover="(open=true)"
-      ATmouseout="(open=false)"
+      @mouseout="(open=false)"
       >
     <router-link to="/" class="AppMenu--brand" @click.native="toggle(false)">
       <UiIcon

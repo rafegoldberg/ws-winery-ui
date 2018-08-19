@@ -11,7 +11,7 @@
     <span class="WineStats--label" style="position: absolute; left: 100%; top: 0;">Drink</span>
   </span>
 
-  <div class="WineStats--drinkWindow">
+  <div class="WineStats--drinkWindow gold">
     <em v-text="drinkWindow" class="WineStats--drinkWindow-date"/>
     <span class="WineStats--label">Optimal Drinking Window</span>
   </div>

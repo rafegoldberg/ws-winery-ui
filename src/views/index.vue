@@ -174,6 +174,9 @@ export default {
         > * + * {
           margin-left: 1rem;
         }
+        @include Break( max-width Breaks(3) ) {
+          display: none;
+        }
       }
       &-scroll {
         z-index: 9;

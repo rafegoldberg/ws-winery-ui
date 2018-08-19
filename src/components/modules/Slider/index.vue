@@ -27,13 +27,7 @@
         
         <div v-if="slide.image" class="swiper-lazy-preloader"/>
 
-        <a v-if="slide.button.url" :href="slide.button.url" :style="{
-              position: 'absolute',
-              top: '50%',
-              right: '2rem',
-              transform: 'translateY(-50%)',
-              textDecoration: 'none',
-            }">
+        <a v-if="slide.button.url" :href="slide.button.url" class="swiper-more-arrow">
           Learn More
           <UiIcon name="ArrowRightLong" width="3rem"/>
         </a>
@@ -205,6 +199,22 @@ export default {
   &-pagination {
     &-bullet {
       &, & * { cursor: pointer }
+    }
+  }
+  &-more-arrow {
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+    text-decoration: none;
+    .UiIcon {
+      transition: .3s ease;
+    }
+    /deep/ &:hover .UiIcon {
+      transform: translateX(.8rem);
+    }
+    @include Break( max-width Breaks(3) ) {
+      display: none;
     }
   }
 }
