@@ -1,4 +1,4 @@
-<?if( false ):
+<?if( true ):
   $classGroups = get_field('classGroups','options');
   foreach ($classGroups as $group) {
     /* ?><script>
