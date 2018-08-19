@@ -6,7 +6,16 @@
   </UiHeading>
   <table class="WineWidget--detail">
     <tr>
-      <td v-if="price">${{parseFloat(price).toFixed(0)}}</td>
+      <td style="padding: .15em; color: #5C5C5C" colspan="2">
+        <small style="font-size: .75em; letter-spacing: .1em">{{current ? 'CURRENT' : 'PAST'}} RELEASE</small>
+      </td>
+    </tr>
+    <tr>
+      <td v-if="price">
+        <span style="position: relative; font-family:Georgia,serif">
+          <sup style="position: absolute; right: 100%"><small>$</small></sup>{{parseFloat(price).toFixed(0)}}
+        </span>
+      </td>
       <td>{{vintage || 'N/A'}}</td>
     </tr>
   </table>
@@ -36,12 +45,42 @@ export default {
       type: [String,Number,Boolean],
       default: 0,
     },
+    date: {
+      type: [String,Date],
+    }
   },
   components:{ UiHeading },
+  computed:{
+    current(){
+      let
+      pub  = this.parseDate( this.date ),
+      now  = this.parseDate( Date.now() ),
+      diff = this.diffDate(pub,now)
+      if( diff <= 6 ) return true
+      else return false
+    }
+  },
   methods:{
     setFallbackImg(){
       this.$refs.wineWidgetImg.src = fallback_img
-    }
+    },
+    parseDate:(fmt)=> new Date( typeof str=='string' ? Date.parse(fmt) : fmt ),
+    diffDate(d1, d2){
+      var months;
+      months = (d2.getFullYear() - d1.getFullYear()) * 12
+      months -= d1.getMonth() + 1
+      months += d2.getMonth() - 1
+      return months <= 0 ? 0 : months
+    },
+    currentRelease(){
+      if( this.context.loading ) return
+      let
+      pub  = this.parseDate( this.context.date ),
+      now  = this.parseDate( Date.now() ),
+      diff = this.diffDate(pub,now)
+      if( diff <= 6 ) return true
+      else return false
+    },
   }
 }
 </script>

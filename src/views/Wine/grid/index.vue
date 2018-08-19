@@ -21,6 +21,7 @@
           :image="media(item)"
           :vintage="getTagVintage(item)"
           :price="'Release-Price' in item.acf && item.acf['Release-Price']"
+          :date="item.date"
           />
       </router-link>
     </div>

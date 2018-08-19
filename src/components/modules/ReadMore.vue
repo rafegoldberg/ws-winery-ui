@@ -44,7 +44,7 @@ export default {
     },
     classes: {
       type: Array,
-      default: []
+      default: ()=>[]
     }
   },
   components:{ UiIcon }

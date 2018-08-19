@@ -12,6 +12,7 @@
           :fields="context.acf"
           :vineyard="vineyard"
           :AVA="terms.AVA && terms.AVA[0]"
+          :current="currentRelease"
           />
       </UiBox>
 
@@ -117,6 +118,8 @@
       </UiBox>
     </UiPanel>
     
+    {{currentRelease}}
+    
   </div>
   <UiBox v-else style="text-align: center; min-height: 68vh">
     Loading...
@@ -184,6 +187,14 @@ export default {
     getTerm,
     setFallback(){
       this.$refs.bottleImg.src = fallback
+    },
+    parseDate:(fmt)=> new Date( typeof str=='string' ? Date.parse(fmt) : fmt ),
+    diffDate(d1, d2){
+      var months;
+      months = (d2.getFullYear() - d1.getFullYear()) * 12
+      months -= d1.getMonth() + 1
+      months += d2.getMonth() - 1
+      return months <= 0 ? 0 : months
     }
   },
   computed:{
@@ -198,6 +209,15 @@ export default {
         useNew = false
       }
       return useNew
+    },
+    currentRelease(){
+      if( this.context.loading ) return
+      let
+      pub  = this.parseDate( this.context.date ),
+      now  = this.parseDate( Date.now() ),
+      diff = this.diffDate(pub,now)
+      if( diff <= 6 ) return true
+      else return false
     },
     checkTechSpecs(){
       let
@@ -222,7 +242,7 @@ export default {
       if( this.context.loading ) return
 
       let
-      Parse = fmt=> new Date( typeof str=='string' ? Date.parse(fmt) : fmt ),
+      Parse = this.parseDate,
       hold  = Parse( this.context.date          ),
       until = Parse( this.acf['_wpb_drinkhold'] ),
       now   = Parse( Date.now()                 )

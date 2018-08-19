@@ -41,8 +41,12 @@
       <sup>$</sup>{{price}}
     </span>
   </UiHeading>
+
+  <span v-if="current" class="WineStats--current">
+    Current Release
+  </span>
   
-</div>  
+</div>
 </template>
 
 <script>
@@ -58,7 +62,8 @@ export default {
     fields:{ type:[Object,Array] },
     vineyard:{ type:[String,Object] },
     AVA:{ type:[Number,String,Object] },
-    hold:{ type:Number, default: 0, }
+    hold:{ type:Number, default: 0, },
+    current:{ type:Boolean, default: false },
   },
   components:{
     UiHeading
@@ -155,6 +160,18 @@ export default {
     &-date {
       display: block;
     }
+  }
+  &--current {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: .5em .75em;
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    line-height: 1;
+    color: Color(theme);
+    border: 2px solid;
+    border-radius: 25px;
   }
 }
 </style>
