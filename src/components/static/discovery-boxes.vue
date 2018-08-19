@@ -28,7 +28,7 @@ boxes = [
       header:{
         text: "Our Wines"
       },
-      link:   "/wines"
+      link:   "/our-wines"
     },
   },
   {
