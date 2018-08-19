@@ -75,7 +75,7 @@
     <UiPanel id="content" class="reorderFirst_mobile" v-if="sections[0]">
       <UiBoxImg :img="img1" class="reorderLast_mobile"/>
       <UiBox class="UiTheme_cream UiBox_tall">
-        <div>
+        <div class="wrap_min">
           <UiHeading :level="3" class="UiHeading_gold">Winemakers Notes</UiHeading>
           <p v-html="sections[0].text || 'Coming soon.'"/>
         </div>
@@ -101,7 +101,7 @@
         <UiHeading :level="2" :scale="3" class="UiHeading_space">
           Reviews &amp; Scores
         </UiHeading>
-        <div class="WinePage--reviews wrap_mid">
+        <div class="WinePage--reviews wrap_min">
           <Review v-for="review in (acf.reviews||oldReviews)" v-bind="review" :key="review.name"/>
         </div>
       </UiBox>
