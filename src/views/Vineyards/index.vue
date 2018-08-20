@@ -72,6 +72,8 @@
       </div>
     </UiPanel>
 
+    <DiscoveryBoxes :vineyards="false" :people="true"/>
+
   </main>
 
 </template>
@@ -87,6 +89,7 @@ import UiList from "@/components/UI/List"
 
 import VList from "./list"
 import ReadMore from "@/components/modules/ReadMore"
+import DiscoveryBoxes from "@/components/static/discovery-boxes"
 
 import featImg from "@/assets/mock/vineyard-feat.png"
 import casksImg from "@/assets/mock/vineyards-page/casks.png"
@@ -112,7 +115,8 @@ export default {
     UiBoxImage,
     UiList, UiHeading,
     VList,
-    ReadMore
+    ReadMore,
+    DiscoveryBoxes
   },
   computed:{
     page: ()=> pageSettings,
