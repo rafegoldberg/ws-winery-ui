@@ -4,6 +4,10 @@ export default [
     path: "/",
     component: ()=> import("./views"),
   },
+  {
+    path: '/home',
+    redirect: to=> '/'
+  },
 
   {
     name: "Staff",
