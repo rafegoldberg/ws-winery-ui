@@ -8,12 +8,15 @@
     :panels="acf.panels"
     :id="$route.name"
     >
-    <DiscoveryBoxes v-if="acf.showDiscoveryBoxes" v-bind="acf.discoveryBoxes"/>  
+    {{$log(zip(acf.discoveryBoxes,[true,true,true,true]))}}
+    <DiscoveryBoxes v-if="acf.showDiscoveryBoxes" v-bind="zip(acf.discoveryBoxes,[true,true,true,true])"/>  
+
   </PageBuilder>
 
 </template>
 <script>
 import API from "@/VuePress/mix/API"
+import loZip from "lodash/zipObject"
 
 import PageBuilder from "@/components/modules/PageBuilder"
 import DiscoveryBoxes from "@/components/static/discovery-boxes"
@@ -33,6 +36,10 @@ export default {
         return ept
       }
     }
+  },
+  methods:{
+    zip: loZip,
+    // zip(unpaired){ return loZip(unpaired) },
   },
   computed:{
     endpoint(){

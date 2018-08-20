@@ -69,9 +69,9 @@ export default {
   name: "DiscoveryBoxes",
   components: { UiPanel, UiBox, UiBoxImage, DiscoverBox },
   props:{
-    wines:{ type: Boolean, default: true },
-    vineyards:{ type: Boolean, default: true },
-    history:{ type: Boolean, default: true },
+    wines:{ type: Boolean, default: false },
+    vineyards:{ type: Boolean, default: false },
+    history:{ type: Boolean, default: false },
     people:{ type: Boolean, default: false },
   },
   data:()=> ({ boxes }),
