@@ -72,7 +72,7 @@
       </div>
     </UiPanel>
 
-    <DiscoveryBoxes :vineyards="false" :people="true"/>
+    <DiscoveryBoxes :people="true" :history="true" :wines="true"/>
 
   </main>
 

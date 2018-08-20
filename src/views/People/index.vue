@@ -34,7 +34,7 @@
         <RoleList v-if="!context.loading" v-bind="term"/>
     </UiBox>
   </UiPanel>
-  <DiscoveryBoxes/>
+  <DiscoveryBoxes :vineyards="true" :history="true" :wines="true"/>
 </div>
 </template>
 
