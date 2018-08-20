@@ -59,6 +59,17 @@
           </ul>
         </template>
       </li>
+      <li class="AppMenu--list-item">
+        <div class="AppMenu--list-link AppMenu--list-link_social" :style="{
+          display: 'inline-flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }">
+          <UiIcon name="Facebook" width="1em" height="1em"/>
+          <UiIcon name="Insta" width="1em" height="1em"/>
+          <UiIcon name="Twitter" width="1em" height="1em"/>
+        </div>
+      </li>
     </ul>
 
     <WineSearch @blur="$log($router)" :style="{
@@ -97,18 +108,19 @@ export default {
   data:()=>({
     open: false,
     menu: {
-      'Wine Library': '/wine',
+      'Home': '/home',
       'Our Story':{
         'Our Wines': '/our-wines',
         'Our Vineyards': '/vineyards',
         'Our People': '/people',
         'Our History': '/history',
       },
-      'Purchasing': '/purchase',
+      'Wine Library': '/wine',
       'Science': {
         'Growing': '/growing-ava',
         'When to Drink': '/when-to-drink',
       },
+      'Purchasing': '/purchase',
       'Visit': '/visit',
       'Contact': '/contact',
     }
@@ -326,6 +338,16 @@ export default {
       transition: .3s 0s ease;
       &:hover {
         color: Color(theme);
+      }
+      &_social {
+        padding-top: 1.2rem;
+        padding-bottom: 1.2rem;
+        /deep/ > * {
+          transition: .2s 0s ease;
+          &:hover * {
+            fill: Color(theme);
+          }
+        }
       }
     }
     &-item > &-link {

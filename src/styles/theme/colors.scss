@@ -1,7 +1,8 @@
 $c-black: #0e0e0e;
 $c-matte: invert($c-black,99.5%);
 $c-theme: #BA9454;
-$c-alt:   #D21034;
+$c-brand: #D21034;
+$c-alt:   #7D1214;
 
 $colors:(
   dark:    $c-black, // #0E0E0E
@@ -13,6 +14,7 @@ $colors:(
   matte:   $c-matte, // #F0F0F0
   theme:   $c-theme, // #BA9454
   alt:     $c-alt,
+  brand:   $c-brand,
 );
 
 @function Color($key) {

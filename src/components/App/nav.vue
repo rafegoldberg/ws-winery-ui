@@ -86,7 +86,7 @@ export default {
 @mixin DualToneIcon {
   /deep/ .icon--text path,
   /deep/ .icon--ornament--rule {
-    fill: Color(alt) !important;
+    fill: Color(brand) !important;
   }
   /deep/ .icon--ornament--rinceau {
     fill: Color(dark) !important;
