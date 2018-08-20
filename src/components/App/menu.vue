@@ -5,14 +5,35 @@
       @mouseover="(open=true)"
       at-mouseout="(open=false)"
       >
-    <router-link to="/" class="AppMenu--brand" @click.native="toggle(false)">
-      <UiIcon
-        name="Logo"
-        width="8.5rem"
-        height="auto"
-        fill="#D21034"
-        :detail="{ ornament:'#0E0E0E' }"/>
-    </router-link>
+
+    <UiIcon
+      class="AppMenu--close"
+      name="CirclePlus"
+      width="1.5em"
+      height="1.5em"
+      @click.native="toggle"
+      />
+
+    <div class="AppMenu--brand">
+      <router-link to="/" @click.native="toggle(false)">
+        <UiIcon
+          name="Logo"
+          width="8.5rem"
+          height="auto"
+          fill="#D21034"
+          :detail="{ ornament:'#0E0E0E' }"/>
+      </router-link>
+      <em class="serif" style="display: block; line-height: 1.6; font-size: .8rem; color: #BA9454">Make the best wines, <br>from the best grapes, <br> from the best growers.</em>
+    </div>
+    
+    <div class="AppMenu--linkBlock">
+      <router-link to="/join" style="background: #7D1214">Join the List</router-link>
+      <router-link to="/" style="background: #BA9454">
+        <UiIcon name="Account" width="1em" height="1em"/>
+        My Account
+      </router-link>
+    </div>
+
     <ul class="AppMenu--list">
       <li class="AppMenu--list-item" v-for="(data,key,ix) in menu">
         <router-link
@@ -33,24 +54,14 @@
               tag="li"
               @click.native="toggle(false)"
               class="AppMenu--list-link"
-              style="text-decoration: none" v-html="key"
+              v-html="key"
               />
           </ul>
         </template>
       </li>
     </ul>
-    <!-- <ol>
-      <li :v-for="v in menu">
-        {{$log(v)}}
-        <router-link to="item" tag="li" @click.native="toggle(false)">
-          <a style="text-decoration: none">Item</a>
-        </router-link>
-      </li>
-      <li>menu here</li>
-    </ol> -->
-    <UiIcon class="AppMenu--close" name="CirclePlus" width="1.5em" height="1.5em" @click.native="toggle"/>
 
-    <WineSearch @blur="$log($router)" class="UiTheme_dark" :style="{
+    <WineSearch @blur="$log($router)" :style="{
       position: 'absolute',
       left: 0,
       right: 0,
@@ -58,8 +69,10 @@
       display: 'flex',
       justifyContent: 'center',
       margin: 0,
-      padding: '1rem',
-      borderColor: '#BA9454'
+      padding: '2rem 1rem',
+      color: '#BA9454',
+      borderColor: '#BA9454',
+      background: '#323232',
     }"/>
     
   </nav>
@@ -137,7 +150,7 @@ export default {
 .AppMenu {
 
   $Base: &;
-  @extend %cream, %cream_translucent;
+  @extend %light;
   
   & { // self
     z-index: 999;
@@ -255,7 +268,7 @@ export default {
         // top: 0;
         margin: 0;
         white-space: nowrap;
-        &, > * { transition: .3s ease }
+        &, > * { transition: .3s 0s ease }
         &:before,
         &:after {
           content: '';
@@ -264,32 +277,45 @@ export default {
           margin-top: -8px;
           width: 0;
           height: 0;
-          color: #b9b9b9;
+          color: Color(silver);
           border-top: 8px solid transparent;
           border-bottom: 8px solid transparent;
           border-left: 8px solid currentColor;
-          transition: .3s 0 ease;
-          opacity: 0;
+          transition: .3s 0s ease;
+          // opacity: 0;
         }
         &:after {
-          color: #f6f4ed;
+          color: Color(light);
           margin-left: -1.25px;
           z-index: 9999;
         }
       }
-      &:not(:hover) > ul {
-        opacity: 0;
-        pointer-events: none;
-        > * { transform: translateX(-1rem) }
+      // NO HOVER FX
+      // &:not(:hover) > ul {
+      //   opacity: 0;
+      //   pointer-events: none;
+      //   > * { transform: translateX(-1rem) }
+      // }
+      & > ul {
+        z-index: 2;
+        color: Color(silver);
+        > * {
+          text-transform: uppercase;
+          font-size: .8em;
+          text-decoration: underline transparent;
+          &:hover {
+            text-decoration-color: Color(theme) !important;
+          }
+        }
       }
       &:hover > ul,
       > ul:hover {
         opacity: 1;
         pointer-events: initial;
-        z-index: 2;
         &:before, &:after {
           opacity: 1;
         }
+        color: Color(theme);
       }
     }
     &-link {
@@ -297,7 +323,7 @@ export default {
       padding: 0.5rem 1rem;
       text-align: right;
       cursor: pointer;
-      transition: .2s ease;
+      transition: .3s 0s ease;
       &:hover {
         color: Color(theme);
       }
@@ -319,35 +345,42 @@ export default {
     position: absolute;
     top: 1.5rem;
     left: 1.5rem;
-    display: inline-block;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     .UiIcon {
       max-width: 100%;
+      margin-right: 2rem;
     }
   }
-  /* 
-    @include Break( min-width Breaks(4) ){
-      &--brand {
-        margin-right: 15vw;
-      }
-    }
-    @include Break( max-width Breaks(4) ){
+  &--linkBlock {
+    & {
+      position: absolute;
+      top: 6rem;
+      right: 0;
+      display: flex;
       flex-flow: nowrap column;
-      &--brand {
-        margin-bottom: 1rem;
+      max-width: 12rem;
+      font-size: 0.8rem;
+    }
+    > * {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      color: Color(light);
+      padding: .25em 1.5em;
+      font-weight: normal !important;
+      text-decoration: none;
+      & + * {
+        margin-top: .5rem;
       }
     }
-    @include Break( max-width Breaks(2) ){
-      &--close {
-        top: 1rem;
-        right: 1rem;
-      }
-      &--brand .UiIcon {
-        min-width: 12rem;
-      }
+    .UiIcon:first-child {
+      margin-right: .5em;
     }
-   */
-   .open {
-     font-weight: bold;
-   }
+  }
+  .open {
+    font-weight: bold;
+  }
 }
 </style>

@@ -3,6 +3,7 @@ import iconBottles from "./bottles"
 import iconGlasses from "./glasses"
 import iconLogo from "./logo"
 import iconMenu from "./menu"
+import iconAccount from "./account"
 
 import iconCircleClose  from "./circle.close"
 import iconCirclePlus  from "./circle.plus"
@@ -28,6 +29,7 @@ export default {
   iconGlasses,
   iconLogo,
   iconMenu,
+  iconAccount,
   iconCircleClose,
   iconCirclePlus,
   iconCircleMinus,

@@ -63,7 +63,7 @@ input {
     display: inline-flex;
     align-items: stretch;
     align-content: center;
-    * { border-color: Color(silver) }
+    * { border-color: mix(Color(dark),Color(silver),32%) }
     &:focus-within * { border-color: Color(theme) }
   }
   .UiTheme_dark &--inputWrap * {
