@@ -446,17 +446,11 @@ $footer-height: 60px;
       }
     }
     @include Break( max-width Breaks(3) ){
-      // z-index: 1;
-      // position: absolute;
-      // top: 0;
-      // right: 1.5rem;
-
       flex-flow: nowrap column-reverse;
       justify-content: flex-end;
       align-items: center;
       transform: translateY(-(3rem + $search-input-height/4));
       margin: 0 0 ($search-input-height/4) !important;
-      // /deep/ > * { margin: 0 auto !important }
       /deep/ #{$B}--inputWrap {
         margin-left: auto;
         margin-bottom: 3rem + $search-input-height/4 !important;

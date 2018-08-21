@@ -14,24 +14,25 @@
       @click.native="toggle"
       />
 
-    <div class="AppMenu--brand">
-      <router-link to="/" @click.native="toggle(false)">
-        <UiIcon
-          name="Logo"
-          width="8.5rem"
-          height="auto"
-          fill="#D21034"
-          :detail="{ ornament:'#0E0E0E' }"/>
-      </router-link>
-      <em class="serif" style="display: block; line-height: 1.6; font-size: .8rem; color: #BA9454">Make the best wines, <br>from the best grapes, <br> from the best growers.</em>
-    </div>
-    
-    <div class="AppMenu--linkBlock">
-      <router-link to="/join" style="background: #7D1214" @click.native="toggle">Join the List</router-link>
-      <router-link to="/join" style="background: #BA9454" @click.native="toggle">
-        <UiIcon name="Account" width="1em" height="1em"/>
-        My Account
-      </router-link>
+    <div class="AppMenu--topStrip">
+      <div class="AppMenu--brand">
+        <router-link to="/" @click.native="toggle(false)">
+          <UiIcon
+            name="Logo"
+            width="8.5rem"
+            height="auto"
+            fill="#D21034"
+            :detail="{ ornament:'#0E0E0E' }"/>
+        </router-link>
+        <em class="AppMenu--brand-slug serif">Make the best wines, <br>from the best grapes, <br> from the best growers.</em>
+      </div>
+      <div class="AppMenu--linkBlock">
+        <router-link to="/join" style="background: #7D1214" @click.native="toggle">Join the List</router-link>
+        <router-link to="/join" style="background: #BA9454" @click.native="toggle">
+          <UiIcon name="Account" width="1em" height="1em"/>
+          My Account
+        </router-link>
+      </div>
     </div>
 
     <ul class="AppMenu--list">
@@ -81,17 +82,18 @@
     <WineSearch
       @keydown.native.enter="$router.history.push('/wine') | toggle(false)"
       :style="{
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        bottom: 0,
+        // position: 'absolute',
+        // left: 0,
+        // right: 0,
+        // bottom: 0,
         display: 'flex',
         justifyContent: 'center',
-        margin: 0,
+        margin: '2rem 0 0',
         padding: '2rem 1rem',
         color: '#BA9454',
         borderColor: '#BA9454',
         background: '#323232',
+        flex: '0 0 6rem'
       }"/>
     
   </nav>
@@ -217,7 +219,7 @@ export default {
       >small {
         line-height: 1.6;
         transform: translateY(1px);
-        @include Break( max-width Breaks(2) ){
+        @include Break( max-width Breaks(3) ){
           width: 0;
           overflow: hidden;
         }
@@ -257,13 +259,16 @@ export default {
 .AppMenu {
   width: 100vw;
   min-height: 100vh;
+  overflow: scroll;
   -webkit-overflow-scrolling: touch;
   top: 0;
   left: 0;
   position: fixed;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-flow: nowrap column;
+  padding: 2rem 0 0;
+  justify-content: flex-start;
+  align-items: center;
   &--close {
     position: absolute;
     top: 2rem;
@@ -341,7 +346,8 @@ export default {
       }
     }
     &-link {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       padding: 0.5rem 1rem;
       text-align: right;
       cursor: pointer;
@@ -372,11 +378,47 @@ export default {
     &-item:not(:first-child) > &-link {
       border-top: 1px solid Color(silver);
     }
+    @include Break( max-width Breaks(3) ){
+      & {
+        flex: 0 40em;
+        display: flex;
+        flex-flow: nowrap column;
+        justify-content: stretch;
+        align-items: stretch;
+        margin: auto auto auto 1.5rem !important;
+        &-item {
+          flex: 1;
+        }
+        &-item > ul {
+          position: absolute;
+          left: 8rem;
+          top: 50%;
+          transform: translateY(-50%);
+          flex-flow: nowrap column;
+          justify-content: flex-start;
+        }
+      }
+    }
+  }
+  &--topStrip {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100vw;
+    padding: 0 0 0 1.5rem;
+    @include Break( min-width Breaks(3) ){
+      flex: 0 0 5rem;
+    }
+    @include Break( max-width Breaks(3) ){
+      min-height: 9rem;
+      margin-bottom: 2rem;
+    }
   }
   &--brand {
-    position: absolute;
-    top: 1.5rem;
-    left: 1.5rem;
+    // position: absolute;
+    // top: 1.5rem;
+    // left: 1.5rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -384,18 +426,33 @@ export default {
       max-width: 100%;
       margin-right: 2rem;
     }
+    &-slug {
+      display: block;
+      line-height: 1.3;
+      font-size: .8rem;
+      color: Color(theme);
+    }
+    @include Break( max-width Breaks(3) ){
+      flex-flow: nowrap column;
+      text-align: center;
+      .UiIcon {
+        margin: 0 auto 1rem;
+      }
+    }    
   }
   &--linkBlock {
     text-transform: uppercase;
     letter-spacing: .075em;
     & {
-      position: absolute;
-      top: 6rem;
-      right: 0;
       display: flex;
       flex-flow: nowrap column;
       max-width: 15rem;
       font-size: 0.8rem;
+      @include Break( min-width Breaks(3) ){
+        position: absolute;
+        top: 100%;
+        right: 0;
+      }
     }
     > * {
       display: inline-flex;
