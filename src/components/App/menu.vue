@@ -128,9 +128,9 @@ export default {
         'Growing': '/growing-ava',
         'When to Drink': '/when-to-drink',
       },
-      'Purchasing': '/purchase',
-      'Visit': '/visit',
+      'How to Buy': '/purchase',
       'Contact': '/contact',
+      'Visit': '/visit',
     }
   }),
   methods:{
@@ -320,8 +320,10 @@ export default {
         z-index: 2;
         color: Color(silver);
         > * {
-          text-transform: uppercase;
           font-size: .8em;
+          font-weight: 400;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
           text-decoration: underline transparent;
           &:hover {
             text-decoration-color: Color(theme) !important;
@@ -365,7 +367,7 @@ export default {
       border-right: 1px solid Color(silver);
       font-family: $ff-serif;
       text-transform: uppercase;
-      letter-spcaing: .1em;
+      letter-spacing: .05em !important;
     }
     &-item:not(:first-child) > &-link {
       border-top: 1px solid Color(silver);
@@ -384,13 +386,15 @@ export default {
     }
   }
   &--linkBlock {
+    text-transform: uppercase;
+    letter-spacing: .075em;
     & {
       position: absolute;
       top: 6rem;
       right: 0;
       display: flex;
       flex-flow: nowrap column;
-      max-width: 12rem;
+      max-width: 15rem;
       font-size: 0.8rem;
     }
     > * {

@@ -7,9 +7,6 @@
     :options="{
       disableDefaultUI: true,
       styles:[
-        //{elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-        //{elementType: 'labels.text.fill', stylers: [{color: '#FF0000'}]},
-        
         { featureType: 'poi.business',
           stylers: [{visibility: 'off'}]
           },
@@ -28,7 +25,7 @@
       :options="{
         label: {
           text: mark.label,
-          color: '#D21034',
+          color: '#0E0E0E',
         },
         icon:{
           url: mark.icon,
@@ -57,7 +54,8 @@ export default {
     gKML(){
       let
       mid = this.kml.split(/\?id=(.*)&/)[1],
-      url = `http://www.google.com/maps/d/kml?forcekml=1&mid=${mid}`
+      url = `https://www.google.com/maps/d/kml?forcekml=1&mid=${mid}`
+      this.$log({id:mid,url})
       return url
     },
     mapCenter(){
