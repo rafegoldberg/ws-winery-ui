@@ -52,3 +52,7 @@
   box-sizing: border-box;
   & & { padding: 0 }
 }
+
+p[class*="wrap"] {
+  margin: 0 auto 0 0;
+}

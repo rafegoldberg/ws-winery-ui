@@ -21,7 +21,7 @@
     padding-right: 0;
   }
   @include Break( max-width Breaks(-1)){
-    padding: 4.25rem 3.25rem;
+    padding: 5.75rem 3.25rem;
   }
   @include Break( max-width Breaks(2)){
     padding: 3rem 2rem;
