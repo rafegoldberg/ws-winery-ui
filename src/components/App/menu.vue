@@ -27,8 +27,8 @@
     </div>
     
     <div class="AppMenu--linkBlock">
-      <router-link to="/join" style="background: #7D1214">Join the List</router-link>
-      <router-link to="/" style="background: #BA9454">
+      <router-link to="/join" style="background: #7D1214" @click.native="toggle">Join the List</router-link>
+      <router-link to="/join" style="background: #BA9454" @click.native="toggle">
         <UiIcon name="Account" width="1em" height="1em"/>
         My Account
       </router-link>
@@ -65,26 +65,34 @@
           justifyContent: 'space-between',
           alignItems: 'center',
         }">
-          <UiIcon name="Facebook" width="1em" height="1em"/>
-          <UiIcon name="Insta" width="1em" height="1em"/>
-          <UiIcon name="Twitter" width="1em" height="1em"/>
+          <a href="https://www.facebook.com/WilliamsSelyem" target="_BLANK">
+            <UiIcon name="Facebook" width="1em" height="1em"/>
+          </a>
+          <a href="https://www.instagram.com/williamsselyemwinery/" target="_BLANK">
+            <UiIcon name="Insta" width="1em" height="1em"/>
+          </a>
+          <a href="https://twitter.com/Williams_Selyem" target="_BLANK">
+            <UiIcon name="Twitter" width="1em" height="1em"/>
+          </a>
         </div>
       </li>
     </ul>
 
-    <WineSearch @blur="$log($router)" :style="{
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      bottom: 0,
-      display: 'flex',
-      justifyContent: 'center',
-      margin: 0,
-      padding: '2rem 1rem',
-      color: '#BA9454',
-      borderColor: '#BA9454',
-      background: '#323232',
-    }"/>
+    <WineSearch
+      @keydown.native.enter="$router.history.push('/wine') | toggle(false)"
+      :style="{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        display: 'flex',
+        justifyContent: 'center',
+        margin: 0,
+        padding: '2rem 1rem',
+        color: '#BA9454',
+        borderColor: '#BA9454',
+        background: '#323232',
+      }"/>
     
   </nav>
 
@@ -336,7 +344,7 @@ export default {
       text-align: right;
       cursor: pointer;
       transition: .3s 0s ease;
-      &:hover {
+      &[href]:hover {
         color: Color(theme);
       }
       &_social {

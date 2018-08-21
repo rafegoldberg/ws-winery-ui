@@ -18,11 +18,16 @@ import UiBoxImage from "@/components/UI/Box/Image"
 
 import DiscoverBox from "@/components/modules/DiscoverBox"
 
+import imgWines from './wines.png'
+import imgVineyards from './vineyards.png'
+import imgHistory from './history.png'
+import imgPeople from './people.png'
+
 let
 boxes = [
   {
     key: "wines",
-    background: "http://192.168.64.2/clients/ws3/wp-content/uploads/2018/07/our-wines.png",
+    background: imgWines,
     box: {
       icon:{ name: "CirclePlus" },
       header:{
@@ -33,6 +38,7 @@ boxes = [
   },
   {
     key: "vineyards",
+    background: imgVineyards,
     box: {
       icon:{ name: "CirclePlus" },
       header:{
@@ -43,7 +49,7 @@ boxes = [
   },
   {
     key: "history",
-    background: "http://192.168.64.2/clients/ws3/wp-content/uploads/2018/07/our-vineyards.png",
+    background: imgHistory,
     box: {
       icon:{ name: "CirclePlus" },
       header:{
@@ -54,7 +60,7 @@ boxes = [
   },
   {
     key: "people",
-    background: "http://192.168.64.2/clients/ws3/wp-content/uploads/2018/07/our-people.png",
+    background: imgPeople,
     box: {
       icon:{ name: "CirclePlus" },
       header:{

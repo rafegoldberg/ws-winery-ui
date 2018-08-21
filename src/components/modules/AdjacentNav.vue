@@ -1,5 +1,5 @@
 <template>
-<nav class="AdjacentNav">
+<small class="AdjacentNav">
 
   <router-link :class="{ hide:!prev }" :to="prev ? `${prev.slug}#top` : '#prev'">
     <UiIcon name="arrow-left" width=".75em" height=".75em"></UiIcon>
@@ -13,7 +13,7 @@
     <UiIcon name="arrow-right" width=".75em" height=".75em"></UiIcon>
   </router-link>
   
-</nav>
+</small>
 </template>
 
 <script>
