@@ -72,7 +72,7 @@
     <WineSearch
         ref="gridSearch"
         v-if="!testr()"
-        :class="{ hidden: isOpen }"
+        :class="{ WineSearch_grid: true, hidden: isOpen }"
         >
       <div class="FilterChits">
         <span v-for="item in getFilters()">
@@ -80,7 +80,7 @@
         </span>
       </div>
     </WineSearch>
-      
+    
     <WineGrid
         :wpx="wpx"
         paginate="12"
@@ -209,9 +209,10 @@ export default {
 @import "~@/styles/theme/breaks";
 
 $topoff: 8rem;
-$sidebar-width: 18rem;
 $sidebar-pad:   2rem 1.5rem;
+$sidebar-width: 18rem;
 $ribbon-height: 2.25rem;
+$footer-height: 60px;
 
 %rack {
   display: flex;
@@ -223,6 +224,7 @@ $ribbon-height: 2.25rem;
 .WineGrid {
   flex: 1;
   &Wrapper {
+    position: relative;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     overflow: visible;
@@ -407,7 +409,7 @@ $ribbon-height: 2.25rem;
       top: 4rem;
       // margin-top: 6.5rem;
       margin-top: 2rem;
-      max-height: calc(100vh - 75px); // TODO: set global $footerHeight to 75px
+      max-height: calc(100vh - $footer-height); // TODO: set global $footerHeight to 75px
       box-shadow: 1em 0 3em -1em rgba(black,.15);
     }
     &#{$OPEN} {
@@ -424,11 +426,13 @@ $ribbon-height: 2.25rem;
 }
 
 .WineSearch {
+  $B: &;
+  $search-input-height: 2.4rem;
   &.hidden {
     opacity: 0;
   }
-  .UiBox_stack > & {
-    min-height: 2.4rem;
+  &_grid {
+    min-height: $search-input-height;
     margin: 0 0 2.6rem !important;
     transition: .38s .1s ease-out;
 
@@ -440,20 +444,22 @@ $ribbon-height: 2.25rem;
       .WineFilters.open ~ & {
         padding-left: 0;
       }
-      /deep/ input {
-        // margin-left: auto;
-      }
     }
     @include Break( max-width Breaks(3) ){
+      // z-index: 1;
+      // position: absolute;
+      // top: 0;
+      // right: 1.5rem;
+
       flex-flow: nowrap column-reverse;
-      justify-content: flex-start;
+      justify-content: flex-end;
       align-items: center;
-      transform: translateY(-3.8rem);
-      margin: 0 !important;
+      transform: translateY(-(3rem + $search-input-height/4));
+      margin: 0 0 ($search-input-height/4) !important;
       // /deep/ > * { margin: 0 auto !important }
-      /deep/ > input {
+      /deep/ #{$B}--inputWrap {
         margin-left: auto;
-        margin-bottom: 2rem !important;
+        margin-bottom: 3rem + $search-input-height/4 !important;
       }
     }
   }

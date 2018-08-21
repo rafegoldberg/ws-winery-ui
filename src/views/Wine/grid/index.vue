@@ -186,13 +186,13 @@ export default {
   }
   @include Break( max-width Breaks(4) ){
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 1rem;
+    grid-gap: 1.5rem;
   }
   @include Break( max-width Breaks(3) ){
     grid-template-columns: 1fr 1fr;
   }
   @include Break( max-width Breaks(2) ){
-    /deep/ .WineWidget--detail td:not(:first-child) { display: none }
+    // /deep/ .WineWidget--detail td:not(:first-child) { display: none }
   }
 
   &--slot {
