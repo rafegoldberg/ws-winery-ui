@@ -37,6 +37,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~@/styles/theme/fonts";
 @import "~@/styles/theme/colors";
 .WineSearch {
   display: flex;
@@ -56,15 +57,35 @@ input {
   line-height: 1.3;
   min-width: 12rem;
   border-radius: 1px 0 0 1px;
-  border-radius: 2px 0 0 2px;
 }
 .WineSearch {
   &--inputWrap {
+    $edge-color: mix(Color(slate),Color(silver),33%);
+    position: relative;
     display: inline-flex;
     align-items: stretch;
     align-content: center;
-    * { border-color: mix(Color(dark),Color(silver),32%) }
+    * { border-color: $edge-color }
     &:focus-within * { border-color: Color(theme) }
+    &:after {
+      content: "type Enter to search";
+      pointer-events: none;
+
+      position: absolute;
+      top: 100%;
+      right: 0;
+      
+      font-size: .75rem;
+      font-family: $ff-serif;
+      font-style: italic;
+      color: $edge-color;
+      
+      opacity: 0;
+      transition: .3s ease;
+    }
+    &:focus-within:after {
+      opacity: 1;
+    }
   }
   .UiTheme_dark &--inputWrap * {
     border-color: Color(theme) !important;
@@ -81,10 +102,11 @@ input {
     background: transparent;
     transition: .2s ease;
   }
+  &--icon,
   &:focus-within &--icon {
     background: Color(theme);
     color: Color(light);
-    border-color: rgba(Color(dark),.2);
+    border-color: rgba(Color(dark),.1);
   }
 }
 </style>

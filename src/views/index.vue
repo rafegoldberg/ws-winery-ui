@@ -53,9 +53,15 @@
         Scroll Down
       </div>
       <div class="swiper-social">
-        <UiIcon name="Facebook" width="1em" height="1em"/>
-        <UiIcon name="Insta" width="1em" height="1em"/>
-        <UiIcon name="Twitter" width="1em" height="1em"/>
+        <a href="https://www.facebook.com/WilliamsSelyem" target="_BLANK">
+          <UiIcon name="Facebook" width="1em" height="1em"/>
+        </a>
+        <a href="https://www.instagram.com/williamsselyemwinery/" target="_BLANK">
+          <UiIcon name="Insta" width="1em" height="1em"/>
+        </a>
+        <a href="https://twitter.com/Williams_Selyem" target="_BLANK">
+          <UiIcon name="Twitter" width="1em" height="1em"/>
+        </a>
       </div>
     </div>
   </Slider>

@@ -139,10 +139,8 @@ function clearFilters(){
   })
 }
 
-
 export default {
   name: "WineFilters",
-  props:["page"],
   components:{
     UiPanel,
     UiBox,
@@ -153,6 +151,14 @@ export default {
     WineSearch,
     FiltersGroup
   },
+
+  beforeCreate(){
+    if( this.$route.hash=='#top'||
+        this.$route.hash=='#all' )
+      this.$set(this.$root.filters,'search',"")
+  },
+
+  props:["page"],
   data:()=>({
     wpx( endpoint ){
       if( hasFilters(this.$root.filters) ){
@@ -162,6 +168,7 @@ export default {
         return endpoint.category(['wine'])
     }
   }),
+
   methods:{
     hasFilters,
     clearFilters,

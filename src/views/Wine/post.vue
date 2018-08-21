@@ -30,6 +30,14 @@
         </template>
         <ReadMore v-else href="#content" class="ReadMore_center ReadMore_serif ReadMore_gold"/>
       </UiBox>
+      <Adjacent
+        v-bind="context.adjacent"
+        :style="{
+          position: 'absolute',
+          bottom: '2.5rem',
+          left: '50%',
+          transform: 'translateX(-50%)',
+        }"/>
     </UiPanel>
 
     <UiPanel v-if="checkTechSpecs" class="WinePage--detail">
@@ -147,6 +155,7 @@ import getImage from "./lib/get.wpImage"
 import IconList from "@/components/static/icon-list"
 import ReadMore from '@/components/modules/ReadMore'
 import Review   from '@/components/modules/Review'
+import Adjacent from '@/components/modules/AdjacentNav'
 
 import fallback from "@/assets/bottles/default.png"
 
@@ -180,6 +189,7 @@ export default {
     ReadMore,
     IconList,
     Review,
+    Adjacent
   },
   methods:{
     getTerm,

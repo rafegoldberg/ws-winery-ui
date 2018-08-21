@@ -8,7 +8,6 @@
     :panels="acf.panels"
     :id="$route.name"
     >
-    {{$log(zip(acf.discoveryBoxes,[true,true,true,true]))}}
     <DiscoveryBoxes v-if="acf.showDiscoveryBoxes" v-bind="zip(acf.discoveryBoxes,[true,true,true,true])"/>  
 
   </PageBuilder>
