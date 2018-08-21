@@ -14,6 +14,8 @@ export default new Router({
   linkExactActiveClass: "active",
 
   scrollBehavior (to, from, savedPosition) {
+    if ( to.hash == '#all' || to.hash == '#top')
+      return { x:0, y:0 }
     if (to.hash)
       return { selector: to.hash }
     if( savedPosition )
