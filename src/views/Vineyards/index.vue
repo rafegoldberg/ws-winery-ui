@@ -17,7 +17,7 @@
       <UiBox class="UiBox_stack UiBox_connectedBottom wrap_flex_min">
         <UiHeading class="UiHeading_center UiHeading_gold">Greatness in the bottle starts with greatness in the vineyard.</UiHeading>
         <p style="text-align: justify">First things first. Every bottle of wine is born in the vineyard. That’s why we are so particular about the way we source grapes. The grapes have to be exceptional, or no amount of knowledge, effort, time or craft will turn them into exceptional wine.</p>
-        <a @click="e=> e.path[2].nextElementSibling.nextElementSibling.scrollIntoView(true)" class="UiButton UiButton_outline UiButton_gold">About Our Vineyards</a>
+        <a @click="e=> e.path[2].nextElementSibling.nextElementSibling.scrollIntoView(true)" class="UiButton UiButton_outline UiButton_gold">View Our Vineyards</a>
       </UiBox>
     </UiPanel>
     
@@ -33,14 +33,18 @@
           <p>In the beginning, all of our grapes were purchased from existing vineyards, based on deals sealed with nothing but a handshake. Thirty-five years later, nearly all of those “handshake agreements” are still in place—a testament to the loyal, personal relationships our founders established with the region’s most respected grape growers.</p>
           <p>There is no doubt that our success was built on partnering with these growers. Some are neighbors, located right here in the Russian River Valley. Others tend vineyards in Sonoma and Mendocino counties. Each has something unique to contribute; all are committed to producing wine grapes without peer.
           </p>
-          <ReadMore text="Our Estate Vineyards" href="#estate-vineyards" class="ReadMore_gold"/>
+          <br>
+          <ReadMore text="Our Estate Vineyards" href="#estate-vineyards" class="ReadMore_center ReadMore_gold"/>
+          <br>
         </div>
         <div class="wrap_tiny">
           <UiHeading class="UiHeading_gold" :level="4">Growing Grapes</UiHeading>
           <p>As the popularity of our wines grew, our growers were unable to keep up with the increased demand. The next logical step was to start growing some of our own grapes.</p>
           <p>In 1998, we purchased the Drake property in Guerneville—a riverside orchard which had once provided apples for Gerber baby foods—and started cultivating Pinot Noir grapes on the land. In the intervening years, we have purchased and developed four more Estate vineyards.</p>
           <p>In 2009, Wine Enthusiast Magazine awarded our 2007 Litton Estate Pinot Noir a score of 100 points, marking the first time a major wine publication gave a California Pinot Noir a perfect score. We take great pride that this prestigious honor went to a wine made entirely with grapes from one of our own Estate vineyards.</p>
-          <ReadMore text="Our Growers Vineyards" href="#growers-vineyards" class="ReadMore_gold"/>
+          <br>
+          <ReadMore text="Our Growers Vineyards" href="#growers-vineyards" class="ReadMore_center ReadMore_gold"/>
+          <br class="hide_mobile">
         </div>
       </UiBox>
 

@@ -1,13 +1,11 @@
 <template>
 <div class="WineStats">
 
-  <UiHeading :level="1" :scale="4">
-    <b v-html="name"/>
-  </UiHeading>
+  <UiHeading :level="1" :scale="4" v-html="name"/>
 
   <span style="position: relative">
     <span class="WineStats--label" style="position: absolute; right: 100%; top: 0;">Hold</span>
-    <progress :value="hold" max="1"></progress>
+    <progress ref="drinkWindow" max="1"></progress>
     <span class="WineStats--label" style="position: absolute; left: 100%; top: 0;">Drink</span>
   </span>
 
@@ -56,6 +54,12 @@ export default {
   name: "WineStats",
   created(){
     // this.$log(this.fields)
+  },
+  mounted(){
+    // this.$log({ref:this.$refs.drinkWindow,hold:this.hold})
+    let
+    ref = this.$refs.drinkWindow
+    setTimeout( ()=> (ref.value = this.hold), 0 )
   },
   props:{
     name: { type: String },
@@ -109,11 +113,16 @@ export default {
     margin: .5em 0 0;
     background-color: transparent;
     border: .95px solid $val;
-    &[value]::-webkit-progress-bar {
+    &, &::-webkit-progress-bar {
       background-color: $bgc;
     }
-    &[value]::-webkit-progress-value {
+    &::-webkit-progress-value {
       background-color: $val;
+      transition: 1s .25s ease;
+    }
+    &::-moz-progress-bar {
+      background-color: $val;
+      transition: 1s .25s ease;
     }
   }
 }

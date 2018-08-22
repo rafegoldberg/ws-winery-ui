@@ -19,7 +19,7 @@
       ],
     }">
     <GMark
-      v-if="!this.kml"
+      v-if="!this.kml && this.icon.label"
       :label="mark.label"
       :position="mapCenter"
       :options="{
@@ -55,7 +55,7 @@ export default {
       let
       mid = this.kml.split(/\?id=(.*)&/)[1],
       url = `https://www.google.com/maps/d/kml?forcekml=1&mid=${mid}`
-      this.$log({id:mid,url})
+      this.$log.dir({id:mid,url})
       return url
     },
     mapCenter(){

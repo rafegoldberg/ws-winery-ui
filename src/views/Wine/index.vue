@@ -38,6 +38,7 @@
         "/>
 
       <FiltersGroup
+        @click.native="e=> parseInt(e.path[0].value) == $root.filters.categories && $set($root.filters,'categories','')"
         title="Vineyard"
         type="radio"
         :show="false"
@@ -49,7 +50,7 @@
         "/>
 
       <FiltersGroup
-        title="Area"
+        title="Regions (AVA)"
         term="AVA"
         :show="false"
         :wpx="wpapi=>wpapi
@@ -472,7 +473,7 @@ $footer-height: 60px;
 }
 
 .FilterChits {
-  margin-left: auto;
+  margin: 0 1em;
   font-size: 0.8rem;
   white-space: nowrap;
   max-width: 80%;
@@ -488,6 +489,7 @@ $footer-height: 60px;
       margin-left: 0.3rem;
     }
   }
+  + .WineFiltersWrap { margin-left: auto; }
   @include Break( max-width Breaks(3) ){
     margin: 0 auto;
     order: -1;

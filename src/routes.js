@@ -1,12 +1,9 @@
 export default [
   {
     name: "HomePage",
-    path: "/",
+    path: "/home",
+    alias: "/",
     component: ()=> import("./views"),
-  },
-  {
-    path: '/home',
-    redirect: to=> '/'
   },
 
   {

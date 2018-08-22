@@ -8,7 +8,10 @@ export default function update(){
   return src
 }
 export function original(WPX){
-  WPX = (arguments[0]||this).context
+  let
+  self = (arguments[0]||this);
+  
+  WPX = self.context
   if( !WPX || WPX.loading ) return
 
   let

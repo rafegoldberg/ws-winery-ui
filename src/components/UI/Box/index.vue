@@ -159,7 +159,7 @@ export default {
       background: Color(theme);
     }
     &, &Top {
-      padding-top: 7.5rem;
+      padding-top: 8.75rem;
       &:before { top: -1.5rem }
     }
     &, &Bottom {

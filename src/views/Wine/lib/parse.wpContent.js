@@ -32,5 +32,9 @@ export default function parseWpContent(){
   matched = loChunk(matches,2)
     .map( arr=> loPair(loZip( ['heading','text'], arr )) )
 
+  let tag;
+  if( matched[2] && (tag = loFind(this.context.acf.year,'description')) )
+    matched[2].text = tag.description
+
   return matched
 }

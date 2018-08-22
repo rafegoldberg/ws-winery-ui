@@ -5,16 +5,16 @@ $c-brand: #D21034;
 $c-alt:   #7D1214;
 
 $colors:(
-  dark:    $c-black, // #0E0E0E
-  slate:   lighten($c-black,15%), // #323232,
-  silver:  lighten($c-black,67%), // #B8B8B8
-  cream:   lighten(desaturate(adjust-hue($c-theme,7deg),14),42), // #F5F3ED,
-  creamDark: #BFB4A0,
-  light:   mix( white, $c-matte, 69% ), // #F6F4EE
-  matte:   $c-matte, // #F0F0F0
-  theme:   $c-theme, // #BA9454
-  alt:     $c-alt,
-  brand:   $c-brand,
+  dark:      $c-black, // #0E0E0E
+  slate:     lighten($c-black,15%), // #323232,
+  silver:    lighten($c-black,67%), // #B8B8B8
+  cream:     lighten(desaturate(adjust-hue($c-theme,7deg),14),42), // #F5F3ED,
+  creamDark: mix(#BFB4A0,$c-black,75%),
+  light:     mix( white, $c-matte, 69% ), // #F6F4EE
+  matte:     $c-matte, // #F0F0F0
+  theme:     $c-theme, // #BA9454
+  alt:       $c-alt,
+  brand:     $c-brand,
 );
 
 @function Color($key) {

@@ -62,7 +62,8 @@ export default {
   },
   methods:{
     setFallbackImg(){
-      this.$refs.wineWidgetImg.src = fallback_img
+      if( this.$refs.wineWidgetImg )
+        this.$refs.wineWidgetImg.src = fallback_img
     },
     parseDate:(fmt)=> new Date( typeof str=='string' ? Date.parse(fmt) : fmt ),
     diffDate(d1, d2){

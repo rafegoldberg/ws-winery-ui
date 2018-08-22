@@ -39,7 +39,7 @@
           />
         <template v-else>
           <span class="AppMenu--list-link" v-html="key"/>
-          <ul>
+          <ul class="AppMenu--subList">
             <router-link
               v-for="(url,key,ix) in data"
               :key="url"
@@ -257,20 +257,26 @@ export default {
 @import '~@/styles/theme/breaks';
 @import '~@/styles/theme/colors';
 .AppMenu {
-  width: 100vw;
-  min-height: 100%;
-  overflow: scroll;
-  -webkit-overflow-scrolling: touch;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: fixed;
-  display: flex;
-  flex-flow: nowrap column;
-  padding: 2rem 0 0;
-  justify-content: flex-start;
-  align-items: center;
+
+  $B: &;
+
+  & {
+    width: 100vw;
+    height: 100%;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    display: flex;
+    flex-flow: nowrap column;
+    padding: 2rem 0 0;
+    justify-content: flex-start;
+    align-items: center;
+  }
+    
   &--close {
     position: absolute;
     top: 2rem;
@@ -395,10 +401,6 @@ export default {
           width: unset !important;
           flex: 1;
         }
-        // &-item:not(:active):not(:hover) > ul {
-        //   opacity: 0;
-        //   pointer-events: none;
-        // }
         &-item > ul {
           transition: .3s ease;
           position: absolute;
@@ -482,8 +484,15 @@ export default {
       margin-right: .5em;
     }
   }
-  .open {
+
+  .active, .open {
     font-weight: bold;
+    letter-spacing: 0 !important;
+    text-transform: capitalize;
+    color: Color(theme) !important;
   }
+  &--subList &--list-link { &.active, &.open {
+    text-transform: uppercase;
+  } }
 }
 </style>

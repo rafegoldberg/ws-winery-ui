@@ -6,31 +6,21 @@
 
     <AppNav/>
     <router-view :key="$route.fullPath"/>
-    <AppFooter class="UiTheme_dark" />
+    <AppFooter v-if="!this.site.loading" v-bind="site.AppFooter"  class="UiTheme_dark"/>
       
-    <!-- <template v-if="$route.name.toLowerCase().indexOf('beta')<0">
-    </template>
-    <template v-else>
-      <router-view/>
-    </template> -->
-
   </div>
 </template>
+
 <script>
+import WP from "@/VuePress/mix/API"
+
 import AppFooter from "@/components/App/footer"
 import AppNav from "@/components/App/nav"
 import UiHeading from "@/components/UI/Heading"
 
-/**
-  import { transform as inflect } from 'inflection'
-  export default {
-    //...etc
-    methods:{ inflect }
-  }
- */
-
 export default {
   name:"App",
+  mixins:[ WP ],
   beforeCreate() {
     document.addEventListener("touchstart", function(){}, true);
   },
@@ -38,6 +28,22 @@ export default {
     AppNav,
     AppFooter,
     UiHeading,
+  },
+  asyncComputed:{
+    site:{
+      default: { loading:true },
+      async get(){
+        if( !this.API ) return {loading:true}
+        let
+        xhr = await this.API
+          .namespace('acf/v3')
+          .options()
+          .id('options')
+          .get()
+          .then( rsp=> rsp.acf )
+        return xhr
+      }
+    }
   },
 }
 </script>
@@ -62,7 +68,7 @@ p, li {
     display: block;
     height: 0;
     width: 100%;
-    margin: -.5em 0;
+    margin: -.15em 0;
   }
 }
 </style>

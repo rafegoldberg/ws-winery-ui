@@ -30,14 +30,9 @@
         </template>
         <ReadMore v-else href="#content" class="ReadMore_center ReadMore_serif ReadMore_gold"/>
       </UiBox>
-      <Adjacent
-        v-bind="context.adjacent"
-        :style="{
-          position: 'absolute',
-          bottom: '2.5rem',
-          left: '50%',
-          transform: 'translateX(-50%)',
-        }"/>
+
+      <Adjacent v-bind="context.adjacent"/>
+      
     </UiPanel>
 
     <UiPanel v-if="checkTechSpecs" class="WinePage--detail">
@@ -194,7 +189,7 @@ export default {
   methods:{
     getTerm,
     setFallback(){
-      this.$refs.bottleImg.src = fallback
+      this.$refs.bottleImg.src = fallback || ''
     },
     parseDate:(fmt)=> new Date( typeof str=='string' ? Date.parse(fmt) : fmt ),
     diffDate(d1, d2){
@@ -255,16 +250,6 @@ export default {
       until = Parse( this.acf['_wpb_drinkhold'] ),
       now   = Parse( Date.now()                 )
       
-
-      // this.$log({
-      //   date:{ hold, until, now },
-      //   calc:{
-      //     total: until - hold,
-      //     prog:  now - hold,
-      //     perc:  (now-hold)/(until-hold)
-      //   }
-      // })
-
       let
       progress = (now - hold) / (until - hold)
       return progress
@@ -338,13 +323,16 @@ export default {
 @import "~@/styles/theme/colors";
 
 .WinePage {
+
   $B: #{&};
+  
   & {
     @include Break( max-width Breaks(2) ){
       display: flex;
       flex-flow: nowrap column;
     }
   }
+  
   &--header {
     @include Break( (max-width Breaks(4)) (min-width Breaks(2)) ){
       flex-flow: wrap row !important;
@@ -398,6 +386,27 @@ export default {
         }
       }
     }
+    &-tables {
+      > * {
+        display: block;
+        max-width: 28rem;
+        min-width: 12.5rem;
+      }
+
+      table th + td {
+        white-space: nowrap;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        vertical-align: middle;
+      }
+
+      table:hover  th + td,
+      table:active th + td {
+        direction: rtl;
+      }
+    }
     @include Break( min-width Breaks(3) ){
       &-tables table th {
         text-align: right;
@@ -418,7 +427,6 @@ export default {
       }
     }
   }
-  // &--stats {}
   &--media {
     flex: 0 auto !important;
     padding-left: 1rem !important;
@@ -459,10 +467,35 @@ export default {
       text-align: center;
     }
   }
-  // .iconList p {
-  //   margin-top: 1.5em;
-  //   line-height: 1.3;
-  // }
+
+  @include Break( max-width Breaks(4) ){
+    &--intro     { order: 2 }
+    .AdjacentNav { order: 1 }
+  }
+  .AdjacentNav {
+    position: absolute;
+    bottom: 1rem;
+    margin: 1.5rem 0;
+    left: 50%;
+    transform: translateX(-50%);
+    @include Break( max-width Breaks(4) ){
+      position: static;
+      bottom: unset;
+      left: unset;
+      justify-content: center;
+      margin: -2rem 0 0 !important;
+      transform: translate(0,-100%);
+    }
+    @include Break( max-width Breaks(2) ){
+      order: -2;
+      margin: 0 0 -1.5rem !important;
+      padding: 2rem 0 0;
+      transform: translate(0,0);
+      background: Color(cream);
+      /deep/ * { font-weight: normal !important }
+    }
+  }
+  
   .UiBox_expanded.UiTheme_dark:not(:only-child) {
     // truncated harvest notes
     width: 100vw;

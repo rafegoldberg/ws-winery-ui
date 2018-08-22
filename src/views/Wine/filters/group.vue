@@ -1,5 +1,12 @@
 <template>
-<div :class="{show}" class="FiltersGroup" v-if="!context.loading" @change="($set($root.filters,'page',1)) | $emit('filtered',$root.filters)">
+<div v-if="!context.loading"
+    :class="{
+      show,
+      active: $root.filters[term].length | $root.filters[term],
+    }"
+    class="FiltersGroup"
+    @change="($set($root.filters,'page',1)) | $emit('filtered',$root.filters)"
+    >
 
     <button v-if="title" class="FiltersGroup--header" @click.prevent="(show=show?false:true)">
       <UiHeading class="UiHeading_sans" :level="5">
@@ -78,6 +85,31 @@ export default {
     box-shadow: 0 2px 0 0 $bgc;
 
     .show > & .UiHeading { color: Color(theme); }
+  }
+  &--header {
+    $size: .4rem;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 100%;
+      transform: translateY(-50%);
+      display: inline-block;
+      width: $size;
+      height: $size;
+      margin-top: .025em;
+      margin-right: .42rem;
+      background: Color(brand);
+      border-radius: 100%;
+      opacity: 0;
+      transition: .3s ease;
+    }
+  }
+  &.active &--header:before {
+    opacity: 1;
+  }
+  &.show.active &--header:before {
+    background: Color(theme);
   }
 }
 </style>

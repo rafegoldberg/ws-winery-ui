@@ -7,7 +7,7 @@
       <span class="iconList--item--label">All Our Wines</span>
       <div>Visit our wine library to find a specific bottle or peruse our full collection.</div>
     </div>
-    <router-link class="UiButton" to="/wine#all">Library</router-link>
+    <router-link class="UiButton" to="/wine#all">Wine Library</router-link>
   </div>
   <div class="iconList--item">
     <UiIcon name="barrels" width="3rem" height="3rem"/>
@@ -15,7 +15,7 @@
       <span class="iconList--item--label">How To Purchase</span>
       <div>Our wines are available twice a year for purchase.</div>
     </div>
-    <router-link class="UiButton" to="/purchase">Purchasing</router-link>
+    <router-link class="UiButton" to="/purchase">How to Buy</router-link>
   </div>
   <div class="iconList--item">
     <UiIcon name="glasses" width="3rem" height="3rem"/>
@@ -23,7 +23,7 @@
       <span class="iconList--item--label">Visit The Winery</span>
       <div>Arrange a private tour and tasting tailored specifically for you.</div>
     </div>
-    <router-link class="UiButton" to="/visit">Visiting</router-link>
+    <router-link class="UiButton" to="/visit">Visit Us</router-link>
   </div>
 
 </section>
