@@ -125,6 +125,12 @@ export default {
       pages = this.pages
       return parseInt(page||1)<pages.totalPages ? parseInt(page||1)+i : 1
     },
+    getPrevPage( i=1 ){
+      let
+      page = this.page,
+      pages = this.pages
+      return parseInt(page||1)>1 ? parseInt(page||1)-i : pages.totalPages
+    },
   }
 }
 </script>

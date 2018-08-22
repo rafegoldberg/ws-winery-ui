@@ -95,12 +95,10 @@ export default {
           .media()
           .id(this.image)
           .get()
-          .then(rsp=> rsp.source_url)
-          .then(rsp=> rsp.replace(
-            /.*\/wp-content\//gim,
-            'https://www.williamsselyem.com/wp-content/'
-          ))
+          .then(rsp=> rsp.media_details.sizes.medium.source_url )
+          .then(rsp=> rsp.replace(/.*\/wp-content\//gim, 'https://www.williamsselyem.com/wp-content/') )
 
+        this.$log(xhr)
         return xhr
       }
     },
