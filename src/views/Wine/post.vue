@@ -348,8 +348,16 @@ export default {
         min-width: 100%;
       }
     }
-    @include Break( min-width Breaks(3) ){
-      // min-height: 90vh;
+    @include Break( max-width Breaks(4) ){
+      > #{$B}--intro {
+        /deep/ p { margin: 0 auto }
+      }
+    }
+    @include Break( max-width Breaks(3) ){
+      > #{$B}--stats {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
     }
   }
   &--detail {
