@@ -354,8 +354,10 @@ export default {
       }
     }
     @include Break( max-width Breaks(3) ){
-      > #{$B}--stats {
+      > #{$B}--media {
         padding-top: 0;
+      }
+      > #{$B}--stats {
         padding-bottom: 0;
       }
     }
