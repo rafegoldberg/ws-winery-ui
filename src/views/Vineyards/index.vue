@@ -34,7 +34,7 @@
           <p>There is no doubt that our success was built on partnering with these growers. Some are neighbors, located right here in the Russian River Valley. Others tend vineyards in Sonoma and Mendocino counties. Each has something unique to contribute; all are committed to producing wine grapes without peer.
           </p>
           <br>
-          <ReadMore text="Our Estate Vineyards" href="#estate-vineyards" class="ReadMore_center ReadMore_gold"/>
+          <ReadMore text="Our Growers Vineyards" href="#growers-vineyards" class="ReadMore_center ReadMore_gold"/>
           <br>
         </div>
         <div class="wrap_tiny">
@@ -43,7 +43,7 @@
           <p>In 1998, we purchased the Drake property in Guerneville—a riverside orchard which had once provided apples for Gerber baby foods—and started cultivating Pinot Noir grapes on the land. In the intervening years, we have purchased and developed four more Estate vineyards.</p>
           <p>In 2009, Wine Enthusiast Magazine awarded our 2007 Litton Estate Pinot Noir a score of 100 points, marking the first time a major wine publication gave a California Pinot Noir a perfect score. We take great pride that this prestigious honor went to a wine made entirely with grapes from one of our own Estate vineyards.</p>
           <br>
-          <ReadMore text="Our Growers Vineyards" href="#growers-vineyards" class="ReadMore_center ReadMore_gold"/>
+          <ReadMore text="Our Estate Vineyards" href="#estate-vineyards" class="ReadMore_center ReadMore_gold"/>
           <br class="hide_mobile">
         </div>
       </UiBox>
