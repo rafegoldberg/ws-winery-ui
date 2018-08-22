@@ -6,14 +6,6 @@
       at-mouseout="(open=false)"
       >
 
-    <UiIcon
-      class="AppMenu--close"
-      name="CirclePlus"
-      width="1.5em"
-      height="1.5em"
-      @click.native="toggle"
-      />
-
     <div class="AppMenu--topStrip">
       <div class="AppMenu--brand">
         <router-link to="/" @click.native="toggle(false)">
@@ -96,6 +88,14 @@
         flex: '0 0 6rem'
       }"/>
     
+    <UiIcon
+      class="AppMenu--close"
+      name="CirclePlus"
+      width="1.5em"
+      height="1.5em"
+      @click.native="toggle"
+      />
+
   </nav>
 
 </template>
@@ -258,11 +258,13 @@ export default {
 @import '~@/styles/theme/colors';
 .AppMenu {
   width: 100vw;
-  min-height: 100vh;
+  min-height: 100%;
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
   top: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
   position: fixed;
   display: flex;
   flex-flow: nowrap column;
@@ -380,7 +382,7 @@ export default {
     }
     @include Break( max-width Breaks(3) ){
       & {
-        flex: 0 40em;
+        flex: 1 0 25em;
         display: flex;
         flex-flow: nowrap column;
         justify-content: stretch;
@@ -389,13 +391,23 @@ export default {
         &-item {
           flex: 1;
         }
+        &-link {
+          width: unset !important;
+          flex: 1;
+        }
+        // &-item:not(:active):not(:hover) > ul {
+        //   opacity: 0;
+        //   pointer-events: none;
+        // }
         &-item > ul {
+          transition: .3s ease;
           position: absolute;
-          left: 8rem;
+          left: 100%;
           top: 50%;
           transform: translateY(-50%);
           flex-flow: nowrap column;
           justify-content: flex-start;
+          line-height: 1.1;
         }
       }
     }
