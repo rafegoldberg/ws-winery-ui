@@ -17,9 +17,9 @@
           class="WineGrid--item"
           >
         <WineWidget
+          :id="item.id"
           :name="item.title ? item.title.rendered : ''"
-          :image="media(item)"
-          :vintage="getTagVintage(item)"
+          :image="item.acf._thumbnail_id"
           :price="'Release-Price' in item.acf && item.acf['Release-Price']"
           :date="item.date"
           />
@@ -59,16 +59,12 @@
 <script>
 import WpConnect from "@/VuePress/mix/connect"
 
-import loFind  from "lodash/find"
-import loLast  from "lodash/findLast"
-import loFlat from "lodash/flatten"
-
 import UiList from "@/components/UI/List"
 import UiIcon from "@/components/UI/Icon"
 import UiHeading from "@/components/UI/Heading"
 
 import WineWidget from "@/components/modules/Wine"
-import fallback from "@/assets/bottles/default.png"
+// import fallback from "@/assets/bottles/default.png"
 
 export default {
   name: "WineGrid",
@@ -118,7 +114,7 @@ export default {
       off = this.paginate  % 4
       per = per - off
       
-      return endpoint.perPage(per).embed()
+      return endpoint.perPage(per)//.embed()
     },
   },
 
@@ -128,32 +124,6 @@ export default {
       page = this.page,
       pages = this.pages
       return parseInt(page||1)<pages.totalPages ? parseInt(page||1)+i : 1
-    },
-    getPrevPage( i=1 ){
-      let
-      page = this.page,
-      pages = this.pages
-      return parseInt(page||1)>1 ? parseInt(page||1)-i : pages.totalPages
-    },
-
-    media(item){
-      if( this.context.loading || !this.context.length ) return
-      if( "wp:featuredmedia" in item._embedded ){
-        let
-        src = item._embedded["wp:featuredmedia"][0].source_url
-        return src
-          ? src.replace(/.*\/wp-content\//gim,'https://www.williamsselyem.com/wp-content/')
-          : fallback
-      }
-    },
-    getTagVintage( wpx ){
-      let
-      terms = loFlat(wpx._embedded['wp:term']),
-      tag   = loFind( terms, {taxonomy:"post_tag"} )
-      if( !tag ) return false
-      if( !parseInt(tag.name) )
-        tag = loLast( terms, {taxonomy:"post_tag"} )
-      return tag.name
     },
   }
 }

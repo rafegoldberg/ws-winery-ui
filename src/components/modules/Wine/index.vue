@@ -1,6 +1,6 @@
 <template>
 <div class="WineWidget">
-  <img :src="image" class="WineWidget--image" @error="setFallbackImg" ref="wineWidgetImg">
+  <img :src="src" @error="setFallbackImg" class="WineWidget--image" ref="wineWidgetImg">
   <UiHeading :level="6" class="WineWidget--title">
     <span v-html="name"/>
   </UiHeading>
@@ -23,23 +23,24 @@
 </template>
 
 <script>
+import WP from "@/VuePress/mix/API"
 import UiHeading from "@/components/UI/Heading"
-import fallback_img from "@/assets/bottles/default.png"
+import fallback from "@/assets/bottles/default.png"
 
 export default {
   name: "WineWidget",
+  mixins:[WP],
   props:{
+    id: {
+      type: Number
+    },
     name: {
       type: String,
       default: "N/A",
     },
     image: {
-      type: [String,Object],
-      default: fallback_img,
-    },
-    vintage: {
-      type: [String,Number,Boolean],
-      default: "N/A",
+      type: [String,Number,Object],
+      default: fallback,
     },
     price: {
       type: [String,Number,Boolean],
@@ -63,7 +64,7 @@ export default {
   methods:{
     setFallbackImg(){
       if( this.$refs.wineWidgetImg )
-        this.$refs.wineWidgetImg.src = fallback_img
+        this.$refs.wineWidgetImg.src = fallback
     },
     parseDate:(fmt)=> new Date( typeof str=='string' ? Date.parse(fmt) : fmt ),
     diffDate(d1, d2){
@@ -82,7 +83,46 @@ export default {
       if( diff <= 6 ) return true
       else return false
     },
-  }
+  },
+  asyncComputed:{
+    src: {
+      default: fallback,
+      async get(){
+        if( !this.API ) return fallback
+
+        let
+        xhr = this.API
+          .media()
+          .id(this.image)
+          .get()
+          .then(rsp=> rsp.source_url)
+          .then(rsp=> rsp.replace(
+            /.*\/wp-content\//gim,
+            'https://www.williamsselyem.com/wp-content/'
+          ))
+
+        return xhr
+      }
+    },
+    vintage: {
+      default: '…',
+      async get(){
+        if( !this.API ) return '…'
+        let
+        xhr = this.API
+          .tags()
+          .post(this.id)
+          .get()
+          .then(rsp=>{
+            return rsp
+              .map(tag=> parseInt(tag.name) )
+              .filter(v=> v==NaN || !v ? false : true )[0]
+          })
+
+        return xhr
+      }
+    }
+  },
 }
 </script>
 

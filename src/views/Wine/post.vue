@@ -392,20 +392,6 @@ export default {
         max-width: 28rem;
         min-width: 12.5rem;
       }
-
-      table th + td {
-        white-space: nowrap;
-
-        overflow: hidden;
-        text-overflow: ellipsis;
-
-        vertical-align: middle;
-      }
-
-      table:hover  th + td,
-      table:active th + td {
-        direction: rtl;
-      }
     }
     @include Break( min-width Breaks(3) ){
       &-tables table th {
