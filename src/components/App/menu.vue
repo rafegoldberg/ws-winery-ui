@@ -188,11 +188,11 @@ export default {
   }
   & { // open
     opacity: 0;
-    pointer-events: none;
+    pointer-events: none !important;
     &_open {
       &, & #{$Base} {
         opacity: 1;
-        pointer-events: auto;
+        pointer-events: auto !important;
       }
     }
   }
@@ -275,6 +275,9 @@ export default {
     padding: 2rem 0 0;
     justify-content: flex-start;
     align-items: center;
+    &:not(#{$B}_open) {
+      display: none !important;
+    }
   }
     
   &--close {
@@ -485,12 +488,13 @@ export default {
     }
   }
 
-  .active, .open {
+  
+  &--list-link { &.active, &.open {
     font-weight: bold;
     letter-spacing: 0 !important;
     text-transform: capitalize;
     color: Color(theme) !important;
-  }
+  } }
   &--subList &--list-link { &.active, &.open {
     text-transform: uppercase;
   } }
