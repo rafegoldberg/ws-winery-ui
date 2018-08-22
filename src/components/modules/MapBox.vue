@@ -19,7 +19,7 @@
       ],
     }">
     <GMark
-      v-if="!this.kml && this.icon.label"
+      v-if="!this.kml && this.mark.label"
       :label="mark.label"
       :position="mapCenter"
       :options="{
