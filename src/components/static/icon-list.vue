@@ -68,6 +68,9 @@ export default {
       letter-spacing: 0.1em;
     }
   }
+  .UiButton {
+    white-space: nowrap;
+  }
   /deep/ .UiIcon {
     margin: 0;
     width: 3rem;
