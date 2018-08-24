@@ -5,7 +5,7 @@
     <b>{{Points}}</b>
     <small>Points</small>
   </aside>
-  <div>
+  <div class="Review--text">
     <UiHeading class="Review--name  UiHeading_gold UiHeading_sans" :level="3" :scale="5"  v-html="Name"/> 
     <p class="Review--blurb" v-html="Blurb"/>
   </div>
@@ -67,6 +67,9 @@ export default {
       font-weight: lighter;
       letter-spacing: 0.05em;
     }
+  }
+  &--text {
+    flex: 1
   }
   // &--blurb  {}
   @include Break( max-width Breaks(3) ){
