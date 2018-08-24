@@ -31,7 +31,7 @@ export function iframe( self, str ){
     vid = acf.indexOf('/')>=0
         ? acf.split('/').reverse()[0]
         : acf;
-    vid = `<iframe src="//player.vimeo.com/video/${vid}?byline=0&portrait=0" width="640" height="355" frameborder="0" allowfullscreen="allowfullscreen"></iframe>`;
+    vid = `<iframe src="//player.vimeo.com/video/${vid}?title=0&byline=0&portrait=0" width="640" height="355" frameborder="0" allowfullscreen="allowfullscreen"></iframe>`;
     return [vid];
   }
     
