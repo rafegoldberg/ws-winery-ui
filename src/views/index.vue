@@ -237,6 +237,9 @@ export default {
         .UiIcon {
           margin-right: .5rem;
         }
+        @include Break( max-width Breaks(3) ) {
+          display: none;
+        }
       }
     }
     &-container {
