@@ -1,7 +1,7 @@
 export function media( self ){
   if( this.context.loading ) return
 
-  if( Object.values(this.context.acf.cover).filter(v=> v ? true : false).length ){
+  if( this.context.acf.cover && Object.values(this.context.acf.cover).filter(v=> v ? true : false).length ){
     let cover = this.context.acf.cover
     if ( !this.useLandscape )
       return cover.portraitImg.url
