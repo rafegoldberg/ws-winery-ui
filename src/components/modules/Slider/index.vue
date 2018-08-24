@@ -45,13 +45,6 @@
     }"/>
   </div>
 
-  <!-- <template v-if="adjacent">
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-  </template> -->
-
-  <!-- <div v-if="scrollbar" class="swiper-scrollbar"></div> -->
-
   <slot name="swiper-post" v-bind="swiper"/>
 
 </div>
@@ -102,7 +95,8 @@ export default {
         el: '.swiper-pagination',
         clickable: true,
       },
-    }
+    },
+    swiper: false
   }),
   computed:{
     indicatorPosition:{
@@ -204,10 +198,11 @@ export default {
   &-more-arrow {
     position: absolute;
     top: 50%;
-    right: 2rem;
+    right: 2.5rem;
     transform: translateY(-50%);
     text-decoration: none;
     .UiIcon {
+      margin-left: 0.5rem;
       transition: .3s ease;
     }
     /deep/ &:hover .UiIcon {

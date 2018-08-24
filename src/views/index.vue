@@ -63,6 +63,10 @@
           <UiIcon name="Twitter" width="1em" height="1em"/>
         </a>
       </div>
+      <router-link to="/join" class="swiper-account">
+        <UiIcon name="Account" width="1em" height="1em"/>
+        <span>Account</span>
+      </router-link>
     </div>
   </Slider>
 </UiPanel>
@@ -80,7 +84,7 @@ export default {
   mixins:[ API ],
   components:{ UiPanel, UiIcon, Slider },
   created() {
-    this.$log(this.$root.classes,'')
+    // this.$log(this.$root.classes,'')
   },
   asyncComputed:{
     page:{
@@ -118,6 +122,22 @@ export default {
 <style lang="scss">
 @import "~@/styles/theme/colors";
 @import "~@/styles/theme/breaks";
+
+%swiper {
+  &-footer {
+    z-index: 9;
+    position: fixed;
+    position: fixed;
+    display: inline-flex;
+    align-items: center;
+    color: Color(silver);
+    text-decoration: none;
+  }
+  &-overlayText {
+    color: white;
+    text-shadow: 0 0 12px rgba(black,.8);
+  }
+}
 
 .app.route_HomePage {
   @include Break( max-width Breaks(3) ){
@@ -172,11 +192,9 @@ export default {
   .swiper {
     & { // custom elems
       &-social {
-        z-index: 9;
-        position: fixed;
+        @extend %swiper-footer;
         bottom: 2rem;
         right: 3rem;
-        display: inline-flex;
         > * + * {
           margin-left: 1rem;
         }
@@ -185,21 +203,21 @@ export default {
         }
       }
       &-scroll {
-        z-index: 9;
-        position: fixed;
+        @extend %swiper-footer, %swiper-overlayText;
+        display: block;
+        transform: translateX(-50%);
+        left: 50%;
         bottom: 0;
         font-size: .75em;
         text-transform: uppercase;
         letter-spacing: 0.1em;
-        left: 50%;
-        transform: translateX(-50%);
         transition: .3s ease-in;
         cursor: pointer;
         &:after {
           content: '';
           height: 3rem;
           width: 1px;
-          background: white;
+          background: currentColor;
           display: block;
           margin: 0 auto;
         }
@@ -209,6 +227,15 @@ export default {
         }
         @include Break( max-width Breaks(4) ) {
           display: none !important;
+        }
+      }
+      &-account {
+        @extend %swiper-footer;
+        bottom: 2rem;
+        left: 3rem;
+        font-size: .9em;
+        .UiIcon {
+          margin-right: .5rem;
         }
       }
     }
@@ -299,7 +326,7 @@ export default {
           left: 0;
           bottom: calc(100% + 1em);
           font-size: 0.9em;
-          text-shadow: 0 0 12px rgba(black,.8);
+          @extend %swiper-overlayText;
           @include Break( min-width Breaks(4) ){
             top: 0;
             right: calc(100% + 1em);
