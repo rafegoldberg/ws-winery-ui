@@ -1,7 +1,10 @@
 export function media( self ){
   if( this.context.loading ) return
 
-  if( 'cover' in this.context.acf && Object.values(this.context.acf.cover).filter(v=> v ? true : false).length ){
+  if( 'cover' in this.context.acf
+      && this.context.acf.cover
+      && Object.values(this.context.acf.cover).filter(v=> v ? true : false).length
+    ){
     let cover = this.context.acf.cover
     if ( !this.useLandscape )
       return cover.portraitImg.url
@@ -19,7 +22,10 @@ export function media( self ){
 export function iframe( self, str ){
   if( this.context.loading ) return
 
-  if( 'video' in this.context.acf && this.context.acf.video.length ){
+  if( 'video' in this.context.acf
+      && this.context.acf.video
+      && this.context.acf.video.length
+    ){
     let
     acf = this.context.acf.video,
     vid = acf.indexOf('/')>=0
@@ -59,9 +65,10 @@ export function tables( self, str ){
 export function text( self, str='', tag="p" ){
   if( this.context.loading ) return
 
-  if( 'vineyardNotes' in this.context.acf && this.context.acf.vineyardNotes )
-    str = this.context.acf.vineyardNotes.quote
-        +(this.context.acf.vineyardNotes.content || this.context.content.rendered)
+  if( 'vineyardNotes' in this.context.acf
+      && this.context.acf.vineyardNotes
+    ) str = this.context.acf.vineyardNotes.quote
+          +(this.context.acf.vineyardNotes.content || this.context.content.rendered)
 
   var
   txt = str || this.context.content.rendered,
