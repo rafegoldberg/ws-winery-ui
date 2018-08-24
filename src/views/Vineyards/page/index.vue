@@ -100,7 +100,9 @@ export default {
   props: ['type', 'category', 'slug'],
   created(){
     this.$set(this.$root.filters, 'page', 1)
+    
     window.addEventListener('resize', this.handleResize)
+    this.handleResize()
   },
   beforeDestroy(){
     window.removeEventListener('resize', this.handleResize)
