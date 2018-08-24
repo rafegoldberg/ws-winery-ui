@@ -198,7 +198,7 @@ export default {
         > * + * {
           margin-left: 1rem;
         }
-        @include Break( max-width Breaks(3) ) {
+        @include Break( max-width Breaks(4) ) {
           display: none;
         }
       }
@@ -237,7 +237,7 @@ export default {
         .UiIcon {
           margin-right: .5rem;
         }
-        @include Break( max-width Breaks(3) ) {
+        @include Break( max-width Breaks(4) ) {
           display: none;
         }
       }
