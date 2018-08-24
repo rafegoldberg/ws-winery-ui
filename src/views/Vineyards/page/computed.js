@@ -1,5 +1,14 @@
 export function media( self ){
   if( this.context.loading ) return
+
+  if( Object.values(this.context.acf.cover).filter(v=> v ? true : false).length ){
+    let cover = this.context.acf.cover
+    if ( !this.useLandscape )
+      return cover.portraitImg.url
+    else
+      return cover.landscapeImg.url
+  }
+
   var
   img = this.embedded['wp:featuredmedia'][0],
   src = img.source_url
@@ -8,9 +17,21 @@ export function media( self ){
 }
 
 export function iframe( self, str ){
-  var
-  txt = str || !this.context.loading && this.context.content.rendered,
-  rgx = txt.match(/(<iframe[^>]*>[^<]*?<\/iframe>)/gim)
+  if( this.context.loading ) return
+
+  if( this.context.acf.video.length ){
+    let
+    acf = this.context.acf.video,
+    vid = acf.indexOf('/')>=0
+        ? acf.split('/').reverse()[0]
+        : acf;
+    vid = `<iframe src="//player.vimeo.com/video/${vid}?byline=0&portrait=0" width="640" height="355" frameborder="0" allowfullscreen="allowfullscreen"></iframe>`;
+    return [vid];
+  }
+    
+  let
+  txt = str || this.context.content.rendered,
+  rgx = txt.match(/(<iframe[^>]*>.*[^<]*?<\/iframe>)/gim)
 
   if( rgx && rgx.length )
   return rgx
@@ -35,10 +56,15 @@ export function tables( self, str ){
   return []
 }
 
-export function text( self, tag, str ){
+export function text( self, str='', tag="p" ){
+  if( this.context.loading ) return
+
+  if( this.context.acf.vineyardNotes )
+    str = this.context.acf.vineyardNotes.quote
+        +(this.context.acf.vineyardNotes.content || this.context.content.rendered)
+
   var
-  tag = tag || 'p',
-  txt = str || !this.context.loading && this.context.content.rendered,
+  txt = str || this.context.content.rendered,
   rgx = `(?!${tag}>)([^><]+)(?=<\/?${tag}>)`
   rgx = new RegExp(rgx,'gim')
 

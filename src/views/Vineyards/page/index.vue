@@ -80,6 +80,7 @@
 <script>
 import WpConnect from '@/VuePress/mix/item'
 import * as computed from './computed'
+import loThrottle from 'lodash/throttle'
 
 import UiPanel from '@/components/UI/Panel'
 import UiBox from '@/components/UI/Box'
@@ -97,8 +98,21 @@ export default {
   name: 'VineyardPage',
   mixins: [WpConnect],
   props: ['type', 'category', 'slug'],
-  created() {
+  created(){
     this.$set(this.$root.filters, 'page', 1)
+    window.addEventListener('resize', this.handleResize)
+  },
+  beforeDestroy(){
+    window.removeEventListener('resize', this.handleResize)
+  },
+  data: ()=>({
+    useLandscape: false
+  }),
+  methods: {
+    handleResize: loThrottle(function(){
+      this.$log(window.matchMedia("(max-width: 832px)").matches)
+      this.$set(this,'useLandscape',window.matchMedia("(max-width: 832px)").matches);
+    },250),
   },
   computed: {
     ...computed,
@@ -204,7 +218,7 @@ export default {
     margin-bottom: 1.5rem;
     @include Break(max-width Breaks(2)) {
       min-width: 100vw;
-      margin-left: -2rem;
+      margin-left: -2.5rem;
     }
     .iframeWrap {
       position: relative;

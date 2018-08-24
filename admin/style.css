@@ -1,0 +1,10 @@
+.vineyard-quote-box textarea {
+  resize: none;
+  max-width: 33em;
+  padding: 0.5em;
+  font-size: 12pt;
+  font-family: Georgia, serif;
+  font-style: italic;
+  line-height: 1.6;
+  color: #BA9454;
+}
