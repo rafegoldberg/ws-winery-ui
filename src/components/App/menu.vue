@@ -494,8 +494,10 @@ export default {
     letter-spacing: 0 !important;
     text-transform: capitalize;
     color: Color(theme) !important;
+    font-style: italic;
   } }
   &--subList &--list-link { &.active, &.open {
+    font-style: normal;
     text-transform: uppercase;
   } }
 }
