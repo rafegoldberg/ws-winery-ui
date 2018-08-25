@@ -131,6 +131,9 @@ export default {
       about:  aboutImg,
     })
   },
+  metatags:{
+    title: "Our Vineyards",
+  },
   methods: {
     fetch() {
       let ep = this.endpoint

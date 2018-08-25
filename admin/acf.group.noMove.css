@@ -1,0 +1,35 @@
+.acf-postbox.noMove {
+  border: 1px solid #DDD;
+  border-width: 1px 1px 0 0;
+  box-shadow: none;
+}
+
+.acf-postbox.noMove > .handlediv,
+.acf-postbox.noMove > .hndle {
+  display: none !important;
+}
+
+.acf-postbox.noMove .acf-fields.-sidebar:before {
+  background: #f1f1f1;
+}
+
+.acf-postbox.noMove .acf-fields.-sidebar:after {
+  height: 1px;
+  width: 100%;
+  background: #DDD;
+}
+
+.acf-postbox.noMove .acf-fields.-sidebar > .acf-tab-wrap.-left li {
+  border-left: 1px solid #DDD;
+  border-bottom: 1px solid #DDD;
+  transition: .3s ease;
+}
+
+.acf-postbox.noMove .acf-fields.-sidebar > .acf-tab-wrap.-left li + li{
+  margin-top: 0;
+}
+
+.acf-postbox.noMove .acf-fields.-sidebar > .acf-tab-wrap.-left li > a {
+  border: none;
+  transition: inherit;
+}

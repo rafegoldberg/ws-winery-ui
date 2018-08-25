@@ -6,23 +6,32 @@
         class="ContactForm--control"
         placeholder="First Lastname"
         type="text"
+        required
         />
       <input name="email"
         class="ContactForm--control"
         placeholder="you@email.com"
         type="text"
+        required
         />
-      <input name="subject"
+      <select name="subject"
         class="ContactForm--control"
         placeholder="Regarding..."
         type="text"
-        />
+        required
+        >
+        <option disabled selected>Regarding...</option>
+        <option value="members">General Question</option>
+        <option value="join">Join the List</option>
+        <option value="visit">Schedule a Visit</option>
+      </select>
     </div>
 
     <div class="ContactForm--group">
       <textarea name="message"
         class="ContactForm--control"
         placeholder="Your message, briefly."
+        required
         />
       <span>
         <UiButton>Send</UiButton>
@@ -54,6 +63,12 @@ export default {
   }
 
   input {}
+  select {
+    background-image: url(https://static.thenounproject.com/png/730205-200.png);
+    background-repeat: no-repeat;
+    background-position: center right .6rem;
+    background-size: .6em;
+  }
   textarea {
     width: 100%;
     height: 100%;
@@ -66,7 +81,7 @@ export default {
     all: unset;
     width: 100%;
     box-sizing: border-box;
-    padding: .16em .3em;
+    padding: .16rem .3rem;
     border: 1px solid Color(silver);
     border-radius: 1px;
     &:focus {

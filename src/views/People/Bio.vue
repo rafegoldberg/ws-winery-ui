@@ -73,7 +73,7 @@ import AdjacentNav from '@/components/modules/AdjacentNav'
 export default {
   name: "Bio",
   props:[ 'slug', 'category' ],
-  mixins:[ WpConnect ],  
+  mixins:[ WpConnect ],
   components:{
     AppLoad,
     UiPanel,

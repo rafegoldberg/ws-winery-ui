@@ -9,12 +9,14 @@ Vue.config.devtools = true
 Vue.config.productionTip = false
 
 import "@/includes/use/log"
+import "@/includes/use/meta"
 import "@/includes/use/async"
 import "@/includes/use/scrollView"
 import "@/includes/use/googleMaps"
 
 import {truncate} from "@/includes/filters/truncate"
 import {round} from "@/includes/filters/round"
+import {titleize} from 'inflection'
 Vue.filter( "truncate", truncate )
 Vue.filter( "round", round )
 
@@ -39,6 +41,17 @@ options = {
 new Vue({
   router,
   data:()=>options,
-  render: h=> h(App)
+  render: h=> h(App),
+  metatags(){
+    let
+    slug = (this.$route.params.slug || 'Welcome').replace(/[-_]/g,' ')
+    return {
+      title: titleize(slug),
+      titleTemplate: 'Williams Selyem | %s', // title is now "My Example App - Yay!"
+      htmlAttrs: {
+        lang: 'en',
+      }
+    }
+  },
 }).$mount("#app")
 

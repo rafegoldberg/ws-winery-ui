@@ -6,7 +6,7 @@ function parseWineNew(){
   return [
     { text: this.context.content.rendered || '' },
     { text: "" },
-    { text: tag.description },
+    { text: tag.description || 'Coming soon.' },
   ]
   return [{text:"1"},{text:"2"},{text:"3"}]
 }

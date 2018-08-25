@@ -11,7 +11,7 @@
 
   <!-- Metatags -->
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   
   <!-- External -->

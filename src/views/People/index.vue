@@ -68,6 +68,9 @@ export default {
       if( this.API ) return this.API.staff_roles().embed()
     },
   },
+  metatags:{
+    title: "Our People",
+  },
   components:{
     UiPanel,
     UiBox,

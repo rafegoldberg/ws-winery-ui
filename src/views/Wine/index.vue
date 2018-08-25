@@ -169,6 +169,9 @@ export default {
         return endpoint.category(['wine'])
     }
   }),
+  metatags:{
+    title:"Wine Library"
+  },
 
   methods:{
     hasFilters,
