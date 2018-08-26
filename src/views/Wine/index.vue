@@ -8,6 +8,7 @@
       <UiIcon name="CircleClose" width="1.66rem" height="1.66rem"></UiIcon>
     </button>
     <form class="WineFilters--inner">
+
       <header class="WineFilters--header">
         <UiHeading :level="4" v-text="'Sort & Filter'"/>
         <UiButton v-show="hasFilters()" class="UiTheme_rust" @click.native.prevent="clearFilters">Clear</UiButton>
@@ -25,7 +26,6 @@
           .exclude([62,5])
           .perPage(20)
         "/>
-
       <FiltersGroup
         term="tags"
         title="Vintage"
@@ -36,7 +36,6 @@
           .exclude([69,72]) // spring, port
           .perPage(80)
         "/>
-
       <FiltersGroup
         @click.native="e=> parseInt(e.path[0].value) == $root.filters.categories && $set($root.filters,'categories','')"
         title="Vineyard"
@@ -48,7 +47,6 @@
           .exclude([25,26]) // growers + estate vineyards
           .perPage(50)
         "/>
-
       <FiltersGroup
         title="Regions (AVA)"
         term="AVA"
@@ -57,6 +55,28 @@
           .AVA()
           .perPage(20)
         "/>
+      <FiltersGroup title="Release"
+          :show="true"
+          @keydown.native.delete="(showRelease = false)">
+        <label class="showReleaseSelector">
+          <div>
+            Showing <b style="color: #BA9454">
+              {{showRelease && (showRelease=='after' ? 'current' : 'past') || 'all'}}
+            </b> releases.
+          </div>
+          <select name="release" v-model="showRelease">
+            <option id=current name=current value="after">
+              Current Release
+            </option>
+            <option id=past    name=past    value="before">
+              Past Releases
+            </option>
+            <option id=all     name=all    :value="false">
+              All Releases
+            </option>
+          </select>
+        </label>
+      </FiltersGroup>
 
     </form>
   </div>
@@ -75,10 +95,8 @@
         v-if="!testr()"
         :class="{ WineSearch_grid: true, hidden: isOpen }"
         >
-      <div class="FilterChits">
-        <span v-for="item in getFilters()">
-          {{item}}
-        </span>
+      <div class="FilterChits" :style="{ marginLeft: 'auto' }">
+        <span v-for="item in filtersList()" v-html="item"/>
       </div>
     </WineSearch>
     
@@ -86,7 +104,7 @@
         :wpx="wpx"
         paginate="12"
         :sticky="true"
-        @wp:load="$set($refs.gridSearch,'results',$event||{})"
+        @wp:load="$set($refs.gridSearch, 'results', $event||{})"
         ref="grid"
         >
       <div slot="error">
@@ -138,10 +156,45 @@ function clearFilters(){
     var filter = this.$root.filters[k]
     filter.splice && filter.splice(0,filter.length) || this.$set(this.$root.filters,k,[])
   })
+  this.showRelease = false
 }
 
 export default {
   name: "WineFilters",
+  beforeCreate(){
+    if( this.$route.hash=='#top'||
+        this.$route.hash=='#all' )
+      this.$set(this.$root.filters,'search',"")
+  },
+  mounted(){
+
+  },
+  metatags:{
+    title:"Wine Library"
+  },
+
+  props:["page"],
+  data:()=>({
+    showRelease: false,
+    wpx( endpoint ){
+      if( hasFilters(this.$root.filters) ){
+        return endpoint.param(this.$root.filters)
+      }
+      else
+        return endpoint.category(['wine'])
+    }
+  }),
+  computed:{
+    isOpen:{
+      get(){
+        return this.$root.showFilters
+      },
+      set(v){
+        this.$root.showFilters = v ? true : false
+      },
+    },
+  },
+
   components:{
     UiPanel,
     UiBox,
@@ -152,36 +205,33 @@ export default {
     WineSearch,
     FiltersGroup
   },
-
-  beforeCreate(){
-    if( this.$route.hash=='#top'||
-        this.$route.hash=='#all' )
-      this.$set(this.$root.filters,'search',"")
-  },
-
-  props:["page"],
-  data:()=>({
-    wpx( endpoint ){
-      if( hasFilters(this.$root.filters) ){
-        return endpoint.param(this.$root.filters)
-      }
-      else
-        return endpoint.category(['wine'])
-    }
-  }),
-  metatags:{
-    title:"Wine Library"
-  },
-
   methods:{
     hasFilters,
     clearFilters,
     getFilters(){
       var
-      dom = document.querySelectorAll('.WineFilters form:only-of-type :checked'),
+      dom = document.querySelectorAll('.WineFilters .FilterItem :checked'),
       arr = Array.from(dom)
 
-      return arr.map(el=>el.attributes['label'].value)
+      if( !arr.length ) return {}
+      
+      return arr.reduce((all,el,i,og)=>{
+        let
+        key = el.attributes.name.value,
+        val = el.attributes.label.value
+        window.console.log({ key, val, misc:{ el } })
+
+        Array.isArray(all[key])
+          ? all[key].push(val)
+          :(all[key] = [val])
+
+        return all
+      },{})
+    },
+    filtersList( sep=', '){
+      let
+      filters = this.getFilters()
+      return Object.keys(filters).map(f=> filters[f].join( sep ))
     },
     testr(){
       var
@@ -195,15 +245,25 @@ export default {
         return false
     },
   },
-  computed:{
-    isOpen:{
-      get(){
-        return this.$root.showFilters
-      },
-      set(v){
-        this.$root.showFilters = v ? true : false
-      },
-    },
+  watch:{
+    showRelease(is,was){
+      let
+      addt,
+      date = new Date()
+
+      if( !is )
+        addt = { before:'', after:'' }
+      else {
+        date.setMonth(date.getMonth() - 7)
+        addt = {
+          page: 1,
+          [is]: date,
+          [was || (is=='before' ? 'after' : 'before')]: '',
+        }
+      }
+      
+      this.$root.filters = Object.assign({}, this.$root.filters, addt)
+    }
   },
 }
 </script>
@@ -385,7 +445,7 @@ $footer-height: 60px;
     .UiButton {
       font-size: 0.7em;
       margin-top: -0.25 * nth($sidebar-pad,2);
-      margin-right: -0.25 * nth($sidebar-pad,2);
+      // margin-right: -0.25 * nth($sidebar-pad,2);
     }
   }
   &--inner {
@@ -462,7 +522,7 @@ $footer-height: 60px;
     }
   }
   .WineFilters & {
-    margin: 1.3rem 0 .7rem;
+    margin: 2.3rem 0 1.3rem;
     /deep/ &--inputWrap {
       width: 100%;
       input {
@@ -496,6 +556,47 @@ $footer-height: 60px;
   @include Break( max-width Breaks(3) ){
     margin: 0 auto;
     order: -1;
+  }
+}
+
+.showReleaseSelector {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 1rem 0 0;
+  border: 1px solid rgba(Color(slate),.1);
+  padding: 0 .4rem;
+  line-height: 2.3;
+  font-size: 0.9em;
+  color: Color(slate);
+  border-radius: 1px;
+  transition: .3s ease;
+  background: url("https://static.thenounproject.com/png/730205-200.png") right .6em center / 0.6em no-repeat;
+  background-color: mix(Color(silver),Color(light),15%);
+  background-color: Color(light);
+  &:not(:hover) {
+    // opacity: .88;
+  }
+  &:hover {
+    border-color: Color(theme);
+  }
+  &:focus-within {
+    border-color: Color(theme);
+    box-shadow: 1px 3px 8px -1px rgba(Color(slate),.06);
+    // background-color: mix(Color(silver),Color(light),15%);
+  }
+  & > select {
+    appearance: none;
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    z-index: 8;
   }
 }
 </style>

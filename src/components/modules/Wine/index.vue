@@ -71,7 +71,7 @@ export default {
       var months;
       months = (d2.getFullYear() - d1.getFullYear()) * 12
       months -= d1.getMonth() + 1
-      months += d2.getMonth() - 1
+      months += d2.getMonth()
       return months <= 0 ? 0 : months
     },
     currentRelease(){
@@ -98,7 +98,7 @@ export default {
           .then(rsp=> rsp.media_details.sizes.medium.source_url )
           .then(rsp=> rsp.replace(/.*\/wp-content\//gim, 'https://www.williamsselyem.com/wp-content/') )
 
-        this.$log(xhr)
+        // this.$log(xhr)
         return xhr
       }
     },

@@ -1,21 +1,27 @@
 <template>
-<div v-if="!context.loading"
+<div
     :class="{
       show,
-      active: $root.filters[term].length | $root.filters[term],
+      active: term && $root.filters[term].length | $root.filters[term],
     }"
     class="FiltersGroup"
     @change="($set($root.filters,'page',1)) | $emit('filtered',$root.filters)"
     >
+  <button v-if="title" class="FiltersGroup--header" @click.prevent="(show=show?false:true)">
+    <UiHeading class="UiHeading_sans" :level="5">
+      <span v-html="title"/>
+    </UiHeading>
+    <UiIcon :name="show ? 'CircleMinus' : 'CirclePlus'" width="1.3em" height="1.3em"/>
+  </button>
 
-    <button v-if="title" class="FiltersGroup--header" @click.prevent="(show=show?false:true)">
-      <UiHeading class="UiHeading_sans" :level="5">
-        <span v-html="title"/>
-      </UiHeading>
-      <UiIcon :name="show ? 'CircleMinus' : 'CirclePlus'" width="1.3em" height="1.3em"/>
-    </button>
-  </header>
-  <FilterItem v-show="show" v-for="item in context" v-if="item.count>0" v-bind="item" :ref="item.slug" :key="item.slug"/>
+  <slot>
+    <FilterItem v-if="!context.loading && item.count>0"
+      v-show="show"
+      v-for="item in context"
+      v-bind="item"
+      :ref="item.slug"
+      :key="item.slug"/>
+  </slot>
 
 </div>
 </template>
@@ -34,11 +40,12 @@ export default {
     wpx:{ type:Function },
     title:{ type:String },
     type:{ type:String, default:'checkbox' },
-    term:{ type:String, default:"categories" },
+    term:{ type:[String,Boolean], default:"categories" },
   },
   components:{ UiHeading, UiList, UiIcon, FilterItem },
   created(){
     this.$attrs.show && (this.show = this.$attrs.show)
+      this.context = { loading:true }
   },
   data:()=>({
     show: false
@@ -55,6 +62,9 @@ export default {
 <style lang="scss" scoped>
 @import "~@/styles/theme/colors";
 .FiltersGroup {
+
+  $B: #{&};
+  
   display: flex;
   width: 100%;
   flex-flow: nowrap column;
@@ -111,5 +121,6 @@ export default {
   &.show.active &--header:before {
     background: Color(theme);
   }
+  &:not(.show) > *:not(#{$B}--header) { display: none }
 }
 </style>

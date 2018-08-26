@@ -1,59 +1,59 @@
 <template>
-<img v-if="context.loading | loading" src="@/assets/preloader.gif" alt="Loading...">
-<div id="WineGrid" v-else>
+  <img v-if="context.loading | loading" src="@/assets/preloader.gif" alt="Loading...">
+  <div id="WineGrid" v-else>
 
 
-  <div v-if="context.error || !context.length" class="WineGrid--slot-error">
-    <slot name="error" v-bind="context.error"/>
+    <div v-if="context.error || !context.length" class="WineGrid--slot-error">
+      <slot name="error" v-bind="context.error"/>
+    </div>
+    
+    <template v-else>
+      <div class="WineGrid">
+        <router-link
+            v-if="item.categories.indexOf(10)>=0 /*extra check to only show wines!*/"
+            v-for="item in context"
+            :to="`/wine/${item.slug}`"
+            :key="item.id"
+            class="WineGrid--item"
+            >
+          <WineWidget
+            :id="item.id"
+            :name="item.title ? item.title.rendered : ''"
+            :image="item.acf._thumbnail_id"
+            :price="'Release-Price' in item.acf && item.acf['Release-Price']"
+            :date="item.date"
+            />
+        </router-link>
+      </div>
+
+      <div class="WineGridPagination" :class="{ WineGridPagination_sticky: sticky }" v-if="paginate && !context.loading && context.length">
+        <div style="margin-right:auto">
+          <slot name="pagination-first"/>
+        </div>
+        <span @click="( page = getPrevPage() )" :class="{ disabled: page==1 }">
+          <UiIcon name="ArrowLeft" width="1rem" height="1rem"/>
+        </span>
+
+        <span class="pageChit" v-text="'…'" v-if="page > 3"/>
+        <span class="pageChit" v-for="i in [2,1]" v-if="page-i > 0" @click="(page = getPrevPage(i))">
+          {{page-i}}
+        </span>
+        <b class="pageChit" v-text="page"/>
+        <span class="pageChit" v-for="i in [1,2]" v-if="page+i <= pages.totalPages" @click="(page = getNextPage(i))">
+          {{page+i}}
+        </span>
+        <span class="pageChit" v-text="'…'" v-if="page < pages.totalPages - 2"/>
+        
+        <span class="pageChit" @click="( page = getNextPage() )" :class="{ disabled: page==pages.totalPages }">
+          <UiIcon name="ArrowRight" width="1rem" height="1rem"/>
+        </span>
+        <div style="margin-left:auto">
+          <slot name="pagination-last"/>
+        </div>
+      </div>
+    </template>
+
   </div>
-  
-  <template v-else>
-    <div class="WineGrid">
-      <router-link
-          v-if="item.categories.indexOf(10)>=0 /*extra check to only show wines!*/"
-          v-for="item in context"
-          :to="`/wine/${item.slug}`"
-          :key="item.id"
-          class="WineGrid--item"
-          >
-        <WineWidget
-          :id="item.id"
-          :name="item.title ? item.title.rendered : ''"
-          :image="item.acf._thumbnail_id"
-          :price="'Release-Price' in item.acf && item.acf['Release-Price']"
-          :date="item.date"
-          />
-      </router-link>
-    </div>
-
-    <div class="WineGridPagination" :class="{ WineGridPagination_sticky: sticky }" v-if="paginate && !context.loading && context.length">
-      <div style="margin-right:auto">
-        <slot name="pagination-first"/>
-      </div>
-      <span @click="( page = getPrevPage() )" :class="{ disabled: page==1 }">
-        <UiIcon name="ArrowLeft" width="1rem" height="1rem"/>
-      </span>
-
-      <span class="pageChit" v-text="'…'" v-if="page > 3"/>
-      <span class="pageChit" v-for="i in [2,1]" v-if="page-i > 0" @click="(page = getPrevPage(i))">
-        {{page-i}}
-      </span>
-      <b class="pageChit" v-text="page"/>
-      <span class="pageChit" v-for="i in [1,2]" v-if="page+i <= pages.totalPages" @click="(page = getNextPage(i))">
-        {{page+i}}
-      </span>
-      <span class="pageChit" v-text="'…'" v-if="page < pages.totalPages - 2"/>
-      
-      <span class="pageChit" @click="( page = getNextPage() )" :class="{ disabled: page==pages.totalPages }">
-        <UiIcon name="ArrowRight" width="1rem" height="1rem"/>
-      </span>
-      <div style="margin-left:auto">
-        <slot name="pagination-last"/>
-      </div>
-    </div>
-  </template>
-
-</div>
 </template>
 
 <script>

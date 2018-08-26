@@ -4,6 +4,7 @@ let
 logr = console.log.bind(console)
 
 if( process.env.NODE_ENV == "development" ){
+  logr.clear   = console.clear.bind(console)
   logr.dir     = console.dir.bind(console)
   logr.set     = console.groupCollapsed.bind(console)
   logr.set.end = console.groupEnd.bind(console)
@@ -12,6 +13,7 @@ if( process.env.NODE_ENV == "development" ){
   logr.tbl     = console.table.bind(console)
 } else {
   logr         = new Function()
+  logr.clear   = new Function()
   logr.dir     = new Function()
   logr.set     = new Function()
   logr.set.end = new Function()
