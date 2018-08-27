@@ -10,9 +10,7 @@ function ws_api_contact(WP_REST_Request $req){
   $text  = $req->get_param('text');
 
   if( in_array(false, $query) | in_array("false", $query)  )
-    return new WP_Error('wpse-error',esc_html__('Please fill out all fields.','wpse'),[
-      'status'=> 404
-    ]);
+    return new WP_Error('missing_params', __("All fields are required. Make sure you've filled ever out the form and <a href='?'>try again</a>!"), ['status'=>405]);
 
   ob_start();
   ?>
@@ -38,23 +36,25 @@ function ws_api_contact(WP_REST_Request $req){
     </p>
   <?
   $html = ob_get_clean();
-  
-  $mail = wp_mail($send, "New WS User Message – $subj", $html, [
+
+  $head = [
     'Content-Type: text/html; charset=UTF-8',
     "Reply-To: $name <$email>",
-  ]);
+  ];
+  $mail = wp_mail($send, "New WS User Message – $subj", $html, $head);
+  
+  if( !$mail)
+    return new WP_Error('couldnt_send', __("We hit a snag sending your message! Please <a href='?'>try again</a> in a bit, or reach us by phone at the number below."), ['status'=>501]);
   
   return new WP_REST_Response([
-    'mssg'=>$html,
-    'sent'=>$mail,
-    'meta'=>
+    'message'=> "We'll get back to you as soon as we can."
   ], 200);
 }
 
 add_action('rest_api_init',function(){
-  register_rest_route('ws/v1','contact',array(
+  register_rest_route('ws/v1','contact',[
     'methods'  => 'GET',
     'callback' => 'ws_api_contact'
-  ));
+  ]);
 });
 ?>
