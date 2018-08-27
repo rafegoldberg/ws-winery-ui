@@ -35,7 +35,7 @@ function ws_api_contact(WP_REST_Request $req){
   if( in_array(false, $query) )
   return new WP_Error('wpse-error', esc_html__('Please fill out all fields.','wpse'), ['status'=>404]);
   
-  $mail = wp_mail($send, $subj, $htm, ['Content-Type: text/html; charset=UTF-8']);
+  $mail = wp_mail($send, $subj, $html, ['Content-Type: text/html; charset=UTF-8']);
   
   return new WP_REST_Response(['query'=>[
     'send'=> $send,
