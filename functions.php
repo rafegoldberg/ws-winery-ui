@@ -16,12 +16,17 @@
   include "php/api/ws/contact.php";
 ?>
 
-<?/** Post Types
+<?/** Attach Vue UI
+   */
+  include "php/ui.php";
+  ?>
+
+<?/** Register Post Types
    */
   // include "php/types/example.php";
   ?>
 
-<?/** Taxonomies
+<?/** Register Taxonomies
    */
   include "php/tax/classNames.php";
   include "php/tax/vitAreas.php";
@@ -29,7 +34,7 @@
   include "php/tax/varietals.php";
 ?>
 
-<?/** ACF Config
+<?/** Configure ACF
    */
   // include "php/acf/localize.php";
   include "php/acf/config.php";
@@ -37,15 +42,19 @@
   include "php/acf/wpFields.php";
 ?>
 
-<?/** WP Init
+<?/** Configure WP Theme
    */
   function onWpInit(){
     add_theme_support('post-thumbnails');
   }
   add_action('init','onWpInit',0);
-  ?>
-  
-<?/** Link UI
+?>
+<?/** Configure Rest Caching Plugin
+   * (clear on post update)
    */
-  include "php/ui.php";
+  function clear_api_cache(){
+    if( class_exists( 'WP_REST_Cache' ) )
+    WP_REST_Cache::empty_cache();
+  }
+  add_action('save_post','clear_api_cache');
   ?>
