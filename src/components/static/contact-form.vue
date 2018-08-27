@@ -187,7 +187,7 @@ export default {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 2.3em 2.3em;
-    &, > * { transition: all .2s ease, margin-top .88s .075s ease }
+    &, > * { transition: all .2s ease }
     &_loading {
       position: relative;
       margin-top: -3rem;

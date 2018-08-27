@@ -15,28 +15,34 @@ function ws_api_contact(WP_REST_Request $req){
   $img = get_field('fallbacks','options')['mailer_image'];
   ob_start();
   ?>
-    <table style="border-collapse: collapse">
+    <table style="width: 100%; margin: 15px 0 0; border-collapse: collapse">
       <tr>
         <td colspan="2" align="center">
-          <a href="<?=get_site_url()?>">
+          <a href="<?=get_site_url()?>" style="display: inline-block; width: 180px">
             <img src="<?=$img?>" alt="<?=get_bloginfo('name')?>" style="width: 180px">
           </a>
         </td>
       </tr>
     </table>
-    <table style="border-collapse: collapse">
+    <table style="border-collapse: collapse; color: #333; max-width: 460px; margin: 0 auto;">
       <tr>
-        <th style="text-align:right; padding: 10px; vertical-align: top; border-right: 1px solid #DDD; border-bottom: 1px solid #BA9454">From:</th>
+        <th style="text-align:right; padding: 10px; vertical-align: top; border-right: 1px solid #DDD; border-bottom: 1px solid #BA9454">
+          <em style="font-family: Georgia, serif">from:</em>
+        </th>
         <td style="padding: 10px; border-bottom: 1px solid #BA9454">
           <?=$name?> <em>(<?=$email?>)</em>
         </td>
       </tr>
       <tr>
-        <th style="text-align:right; padding: 10px; vertical-align: top; border-right: 1px solid #DDD; border-bottom: 1px solid #BA9454">Regarding:</th>
+        <th style="text-align:right; padding: 10px; vertical-align: top; border-right: 1px solid #DDD; border-bottom: 1px solid #BA9454">
+          <em style="font-family: Georgia, serif">regarding:</em>
+        </th>
         <td style="padding: 10px; border-bottom: 1px solid #BA9454"><?=$subj?></td>
       </tr>
       <tr>
-        <th style="text-align:right; padding: 10px; vertical-align: top; border-right: 1px solid #DDD">Message:</th>
+        <th style="text-align:right; padding: 10px; vertical-align: top; border-right: 1px solid #DDD">
+          <em style="font-family: Georgia, serif">message:</em>
+        </th>
         <td style="padding: 10px"><?=$text?></td>
       </tr>
     </table>
@@ -47,7 +53,7 @@ function ws_api_contact(WP_REST_Request $req){
         <a href="<?=get_site_url()?>" style="font-style: italic; font-weight: normal">
           <?=get_bloginfo('name')?>
         </a>.
-        You can <b>reply to this message to email the user</b> back (at <?=$email?>.)
+        You can <b>reply to this message to email the user</b> back, at <?=$email?>.
       </small>
     </p>
   <?
