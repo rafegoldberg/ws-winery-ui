@@ -47,7 +47,7 @@ new Vue({
     slug = (this.$route.params.slug || 'Welcome').replace(/[-_]/g,' ')
     return {
       title: titleize(slug),
-      titleTemplate: 'Williams Selyem | %s', // title is now "My Example App - Yay!"
+      titleTemplate: '%s • Williams Selyem', // title is now "My Example App - Yay!"
       htmlAttrs: {
         lang: 'en',
       }
