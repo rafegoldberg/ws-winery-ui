@@ -24,9 +24,10 @@
         v-model="form.subject"
         >
         <option :value="false" disabled selected>Regarding...</option>
-        <option value="question">General Question</option>
-        <option value="join">Join the List</option>
-        <option value="visit">Schedule a Visit</option>
+        <option value="General Question">General Question</option>
+        <option value="Joining the List">Joining the List</option>
+        <option value="Booking + Visits">Visiting</option>
+        <option value="Member Allocation">Allocation</option>
       </select>
     </div>
 

@@ -13,20 +13,18 @@ function ws_api_contact(WP_REST_Request $req){
     ?>
     <table>
       <tr>
-        <th style="text-align:right">From:</th>
+        <th style="text-align:right;padding: 10px; vertical-align: top; border-right: 1px solid #DDD;">From:</th>
         <td>
           <?=$name?> <em>(<?=$email?>)</em>
         </td>
       </tr>
       <tr>
-        <th style="text-align:right">Subject:</th>
+        <th style="text-align:right;padding: 10px; vertical-align: top; border-right: 1px solid #DDD;">Subject:</th>
         <td><?=$subj?></td>
       </tr>
       <tr>
-        <th style="text-align:right">Message:</th>
-        <td>
-          <p><?=$text?></p>
-        </td>
+        <th style="text-align:right;padding: 10px; vertical-align: top; border-right: 1px solid #DDD;">Message:</th>
+        <td><?=$text?></td>
       </tr>
     </table>
     <?
