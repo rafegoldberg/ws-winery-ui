@@ -123,7 +123,7 @@ export default {
         'Our Wines': '/our-wines',
         'Our Vineyards': '/vineyards',
         'Our People': '/people',
-        'Our History': '/history',
+        'Our History': '/our-history',
       },
       'Wine Library': '/wine',
       'Science': {

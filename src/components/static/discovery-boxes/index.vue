@@ -55,7 +55,7 @@ boxes = [
       header:{
         text: "Our History"
       },
-      link:   "/history"
+      link:   "/our-history"
     },
   },
   {
