@@ -190,9 +190,9 @@ export default {
     &, > * { transition: .2s ease }
     &_loading {
       position: relative;
-      background: Color(light);
       margin-top: -3rem;
       background-image: url("~@/assets/preloader.gif");
+      background-color: Color(light);
       opacity: .5;
       & > * { opacity: 0 !important }
     }
