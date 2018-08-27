@@ -96,11 +96,15 @@ input {
     padding: 5px 10px;
     border-style: solid;
     border-width: 1px;
-    border-radius: 0 2px 2px 0;
+    border-radius: 0 1px 1px 0;
     line-height: 1;
     color: Color(theme);
     background: transparent;
     transition: .2s ease;
+    cursor: pointer;
+  }
+  &:focus-within &--icon {
+    pointer-events: none;
   }
   &--icon,
   &:focus-within &--icon {

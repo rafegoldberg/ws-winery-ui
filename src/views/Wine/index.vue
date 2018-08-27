@@ -48,7 +48,7 @@
           .perPage(50)
         "/>
       <FiltersGroup
-        title="Regions (AVA)"
+        title="Region (AVA)"
         term="AVA"
         :show="false"
         :wpx="wpapi=>wpapi
