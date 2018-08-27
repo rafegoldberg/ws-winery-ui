@@ -189,6 +189,8 @@ export default {
     background-size: 2.3em 2.3em;
     &, > * { transition: .2s ease }
     &_loading {
+      position: relative;
+      background: Color(light);
       margin-top: -3rem;
       background-image: url("~@/assets/preloader.gif");
       opacity: .5;
