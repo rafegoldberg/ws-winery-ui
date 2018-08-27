@@ -7,21 +7,24 @@
         placeholder="First Lastname"
         type="text"
         required
+        v-model="form.name"
         />
       <input name="email"
         class="ContactForm--control"
         placeholder="you@email.com"
         type="text"
         required
+        v-model="form.email"
         />
       <select name="subject"
         class="ContactForm--control"
         placeholder="Regarding..."
         type="text"
         required
+        v-model="form.subject"
         >
-        <option disabled selected>Regarding...</option>
-        <option value="members">General Question</option>
+        <option :value="false" disabled selected>Regarding...</option>
+        <option value="question">General Question</option>
         <option value="join">Join the List</option>
         <option value="visit">Schedule a Visit</option>
       </select>
@@ -32,6 +35,7 @@
         class="ContactForm--control"
         placeholder="Your message, briefly."
         required
+        v-model="form.text"
         />
       <span>
         <UiButton>Send</UiButton>
@@ -48,6 +52,11 @@ export default {
   components:{
     UiButton
   },
+  data:()=>({
+    form: {
+      subject: false,
+    },
+  })
 }
 </script>
 

@@ -13,6 +13,7 @@
 
   include "php/api/ws/frontpage.php";
   include "php/api/ws/reviews.php";
+  include "php/api/ws/contact.php";
 ?>
 
 <?/** Post Types

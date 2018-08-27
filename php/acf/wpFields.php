@@ -7,7 +7,17 @@
   <script>
     (function($){
       $(document).ready(function(){
-        $('#acf-group_5b7e9604dbef2, #acf-group_5b6d3536cbd63, #acf-group_5b45397e341bd').addClass('noMove')
+        var
+        acfGroups = [
+          "5b627aa428bf4",
+          "5b7e9604dbef2",
+          "5b6d3536cbd63",
+          "5b45397e341bd",
+        ],
+        selectors = acfGroups.map(id=> `#acf-group_${id}`).join(', ')
+        
+        $(selectors).addClass('noMove')
+        
       })
     })(jQuery)
   </script>
