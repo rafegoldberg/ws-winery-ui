@@ -3,7 +3,7 @@ function ws_api_contact(WP_REST_Request $req){
 
   $query = $req->get_query_params();
 
-  $send  = "contact@williamsselyem.com";
+  $send  = "rafegoldberg@gmail.com";
   $email = $req->get_param('email');
   $name  = $req->get_param('name');
   $subj  = $req->get_param('subject');
