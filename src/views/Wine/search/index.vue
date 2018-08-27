@@ -57,6 +57,7 @@ input {
   line-height: 1.3;
   min-width: 12rem;
   border-radius: 1px 0 0 1px;
+  cursor: text;
 }
 .WineSearch {
   &--inputWrap {
@@ -66,9 +67,12 @@ input {
     align-items: stretch;
     align-content: center;
     * { border-color: $edge-color }
-    &:focus-within * { border-color: Color(theme) }
+    &:focus-within {
+      cursor: pointer;
+      * { border-color: Color(theme) }
+    }
     &:after {
-      content: "type Enter to search";
+      content: "(Return to search)";
       pointer-events: none;
 
       position: absolute;
@@ -101,10 +105,12 @@ input {
     color: Color(theme);
     background: transparent;
     transition: .2s ease;
-    cursor: pointer;
   }
   &:focus-within &--icon {
     pointer-events: none;
+  }
+  &:active &--icon {
+    box-shadow: inset 1px 1px 6px -1px rgba(Color(dark),.2);
   }
   &--icon,
   &:focus-within &--icon {

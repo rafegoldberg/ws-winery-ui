@@ -55,12 +55,14 @@
       </div>
       <div class="ContactForm--group">
         <textarea name="message"
+          style="min-height: 100%"
           class="ContactForm--control"
           placeholder="Your message, briefly."
           required
           v-model="form.text"
+          spellcheck="false"
           />
-        <span>
+        <span style="margin-left: auto">
           <UiButton>Send</UiButton>
         </span>
       </div>

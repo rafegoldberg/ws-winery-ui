@@ -3,7 +3,7 @@ function ws_api_contact(WP_REST_Request $req){
 
   $query = $req->get_query_params();
 
-  $send  = "rafegoldberg@gmail.com";
+  $send  = "contact@williamsselyem.com";
   $email = $req->get_param('email');
   $name  = $req->get_param('name');
   $subj  = $req->get_param('subject');
@@ -53,7 +53,7 @@ function ws_api_contact(WP_REST_Request $req){
         <a href="<?=get_site_url()?>" style="font-style: italic; font-weight: normal">
           <?=get_bloginfo('name')?>
         </a>.
-        You can <b>reply to this message to email the user</b> back, at <?=$email?>.
+        You can <b>reply to this thread to email the user</b> back at <?=$email?>.
       </small>
     </p>
   <?
