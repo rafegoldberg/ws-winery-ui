@@ -203,7 +203,7 @@ export default {
     position: relative;
     z-index: 1;
     margin-top: -3rem;
-    background: #fafafa;
+    background: Color(light);
   }
   /deep/ &_error .UiHeading {
     color: Color(brand);

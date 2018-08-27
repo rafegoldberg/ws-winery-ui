@@ -32,7 +32,7 @@ function ws_api_contact(WP_REST_Request $req){
     </table>
     <hr>
     <p style="color: #666">
-      <em>Just hit <b>Reply</b> to respond directly to this user.</em>
+      <em>Hit <b>Reply</b> to respond directly to the user via email.</em>
     </p>
   <?
   $html = ob_get_clean();
@@ -41,7 +41,7 @@ function ws_api_contact(WP_REST_Request $req){
     'Content-Type: text/html; charset=UTF-8',
     "Reply-To: $name <$email>",
   ];
-  $mail = wp_mail($send, "New WS User Message – $subj", $html, $head);
+  $mail = wp_mail($send, "Williams Selyem – $subj", $html, $head);
   
   if( !$mail)
     return new WP_Error('couldnt_send', __("We hit a snag sending your message! Please <a href='?'>try again</a> in a bit, or reach us by phone at the number below."), ['status'=>501]);
