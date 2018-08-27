@@ -24,7 +24,7 @@ function ws_api_contact(WP_REST_Request $req){
         </td>
       </tr>
     </table>
-    <table style="border-collapse: collapse; color: #333; max-width: 460px; margin: 0 auto;">
+    <table style="border-collapse: collapse; color: #333; max-width: 460px; margin: 25px auto;">
       <tr>
         <th style="text-align:right; padding: 10px; vertical-align: top; border-right: 1px solid #DDD; border-bottom: 1px solid #BA9454">
           <em style="font-family: Georgia, serif">from:</em>
