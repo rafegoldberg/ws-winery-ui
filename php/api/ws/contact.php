@@ -9,37 +9,46 @@ function ws_api_contact(WP_REST_Request $req){
   $subj  = $req->get_param('subject');
   $text  = $req->get_param('text');
 
+  if( in_array(false, $query) | in_array("false", $query)  )
+    return new WP_Error('wpse-error',esc_html__('Please fill out all fields.','wpse'),[
+      'status'=> 404
+    ]);
+
   ob_start();
-    ?>
-    <table>
+  ?>
+    <table style="border-collapse: collapse">
       <tr>
-        <th style="text-align:right;padding: 10px; vertical-align: top; border-right: 1px solid #DDD;">From:</th>
-        <td>
+        <th style="text-align:right; padding: 10px; vertical-align: top; border-right: 1px solid #DDD">From:</th>
+        <td style="padding: 10px">
           <?=$name?> <em>(<?=$email?>)</em>
         </td>
       </tr>
       <tr>
-        <th style="text-align:right;padding: 10px; vertical-align: top; border-right: 1px solid #DDD;">Subject:</th>
-        <td><?=$subj?></td>
+        <th style="text-align:right; padding: 10px; vertical-align: top; border-right: 1px solid #DDD">Regarding:</th>
+        <td style="padding: 10px"><?=$subj?></td>
       </tr>
       <tr>
-        <th style="text-align:right;padding: 10px; vertical-align: top; border-right: 1px solid #DDD;">Message:</th>
-        <td><?=$text?></td>
+        <th style="text-align:right; padding: 10px; vertical-align: top; border-right: 1px solid #DDD">Message:</th>
+        <td style="padding: 10px"><?=$text?></td>
       </tr>
     </table>
-    <?
+    <hr>
+    <p style="color: #666">
+      <em>Just hit <b>Reply</b> to respond directly to this user.</em>
+    </p>
+  <?
   $html = ob_get_clean();
-
-  if( in_array(false, $query) )
-  return new WP_Error('wpse-error', esc_html__('Please fill out all fields.','wpse'), ['status'=>404]);
   
-  $mail = wp_mail($send, $subj, $html, ['Content-Type: text/html; charset=UTF-8']);
+  $mail = wp_mail($send, "New WS User Message – $subj", $html, [
+    'Content-Type: text/html; charset=UTF-8',
+    "Reply-To: $name <$email>",
+  ]);
   
-  return new WP_REST_Response(['query'=>[
-    'send'=> $send,
-    'subj'=> $subj,
-    'text'=> $text,
-  ], 'mail'=>$mail], 200);
+  return new WP_REST_Response([
+    'mssg'=>$html,
+    'sent'=>$mail,
+    'meta'=>
+  ], 200);
 }
 
 add_action('rest_api_init',function(){
