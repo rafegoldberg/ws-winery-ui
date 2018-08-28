@@ -10,7 +10,7 @@ function ws_api_contact(WP_REST_Request $req){
   $text  = $req->get_param('text');
 
   if( in_array(false, $query) | in_array("false", $query)  )
-    return new WP_Error('missing_params', __("All fields are required. Make sure you've filled ever out the form and <a href='?'>try again</a>!"), ['status'=>405]);
+    return new WP_Error('missing_params', __("All fields are required. Make sure you've filled everything out and try again."), ['status'=>405]);
 
   $img = get_field('fallbacks','options')['mailer_image'];
   ob_start();
@@ -66,7 +66,7 @@ function ws_api_contact(WP_REST_Request $req){
   $mail = wp_mail($send, "Williams Selyem – $subj", $html, $head);
   
   if( !$mail )
-    return new WP_Error('couldnt_send', __("We hit a snag sending your message! Please <a href='?'>try again</a> in a bit, or reach us by phone at the number below."), ['status'=>501]);
+    return new WP_Error('couldnt_send', __("We hit a snag and couldn't send your message! Please <a href='?'>reload the page</a>, or try again in a bit if the issue persists. You can also <a href='#call'>reach us by phone</a>."), ['status'=>501]);
   
   return new WP_REST_Response([
     'markup' => $html,
