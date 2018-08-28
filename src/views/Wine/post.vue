@@ -76,7 +76,7 @@
       </div></UiBox>
     </UiPanel>
 
-    <UiPanel id="content" class="reorderFirst_mobile" v-if="sections[0]">
+    <UiPanel id="content" class="UiTheme_cream reorderFirst_mobile" v-if="sections[0]">
       <UiBoxImg :img="img1" class="reorderLast_mobile"/>
       <UiBox class="UiTheme_cream UiBox_tall">
         <div class="wrap_min">
