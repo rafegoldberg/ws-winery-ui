@@ -1,6 +1,6 @@
 <template>
 
-  <component :is="tag" v-view="$scrollIntersect" class="UiPanel" :class="{'UiPanel_connected':connect}">
+  <component :is="tag" v-view="$scrollIntersect" :id="id" class="UiPanel" :class="{'UiPanel_connected':connect}">
     <slot/>
     <i v-if="typeof connect == 'string'" class="UiPanel--connect" :class="{
         [`UiPanel--connect-${connect}`]: connect
@@ -22,6 +22,7 @@
 export default {
   name: "UiPanel",
   props:{
+    id:{ default:"" },
     tag:{ default:"div" },
     connect:{
       type:[ String, Boolean ],

@@ -5,6 +5,7 @@
         :connect="panel.connect || false"
         :class="panel.class||''"
         :key="panel.id"
+        :id="panel.id"
         >
       <component v-for="(box,i) in panel.boxes"
           :id="box.id"
