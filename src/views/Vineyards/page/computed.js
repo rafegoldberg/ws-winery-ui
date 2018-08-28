@@ -1,3 +1,5 @@
+import loFlat from 'lodash/flatten'
+
 export function media( self ){
   if( this.context.loading ) return
 
@@ -13,7 +15,7 @@ export function media( self ){
   }
 
   var
-  img = this.embedded['wp:featuredmedia'][0],
+  img = loFlat(this.embedded['wp:featuredmedia'])[0],
   src = img.source_url
   src = src.replace(/.*\/wp-content\//gim,'https://www.williamsselyem.com/wp-content/')
   return src

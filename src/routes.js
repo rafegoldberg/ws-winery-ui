@@ -5,6 +5,11 @@ export default [
     alias: "/",
     component: ()=> import("./views"),
   },
+  {
+    name: "MadeBy",
+    path: "/rgd2",
+    component: ()=> import("./views/MadeByRGD2"),
+  },
 
   {
     name: "Staff",
