@@ -75,7 +75,8 @@ export default {
   methods:{},
   asyncComputed:{
     price(){ 
-      return parseFloat( this.fields['Release-Price'] ).toFixed(0)
+      return this.fields['Release-Price']
+      // return parseFloat( this.fields['Release-Price'] ).toFixed(0)
     },
     drinkWindow(){
       return this.fields._wpb_drinkwindow
