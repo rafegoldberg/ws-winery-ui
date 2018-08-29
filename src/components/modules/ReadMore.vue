@@ -74,6 +74,10 @@ export default {
     font-weight: 500;
     font-style: italic;
   }
+  &_caps, &.caps {
+    @extend .ReadMore;
+    text-transform: uppercase;
+  }
   &_gold, &.gold {
     @extend .ReadMore;
     color: Color(theme);

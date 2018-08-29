@@ -28,7 +28,7 @@
             <b>Read More</b>
           </ReadMore>
         </template>
-        <ReadMore v-else href="#content" class="ReadMore_center ReadMore_serif ReadMore_gold"/>
+        <ReadMore v-else href="#content" class="ReadMore_caps ReadMore_center ReadMore_gold"/>
       </UiBox>
 
       <Adjacent v-bind="context.adjacent"/>

@@ -127,6 +127,7 @@ export default {
     display: flex;
     flex-flow: wrap row;
     align-items: stretch;
+    margin: 2.6rem auto;
   }
 
   input {}

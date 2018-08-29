@@ -45,16 +45,18 @@ export default {
 }
 .UiPanel--connect {
   
-  $height: 4.5em;
-  $slot-offset: -1.9rem;
+  $height: 8em;
+  $y-offset: 30;
+  $y-invert: $height * ($y-offset / 100);
+  $slot-offset: -1.9rem; // what is this?
   
-  // @at-root .UiPanel_connected {
-  //   > .UiBox,
-  //   + .UiPanel > .UiBox {
-  //     padding-top: 3rem !important;
-  //     padding-bottom: 3rem !important;
-  //   }
-  // }
+  @at-root .UiPanel_connected {
+    + .UiBox,
+    + .UiPanel > .UiBox {
+      padding-top: ($height - $y-invert) + 2.6em !important;
+      // padding-bottom: 3rem !important;
+    }
+  }
   
   & {
     z-index: 8;
@@ -64,6 +66,7 @@ export default {
     max-height: 50vh !important;
     height: $height !important;
     width: 1em !important;
+    margin-left: -1px;
 
     background-image: url("~@/assets/list-bullet.svg");
     background-size: 1em;
@@ -82,7 +85,7 @@ export default {
     z-index: 9;
     &:after {
       background: Color(light);
-      height: 50%;
+      height: $y-invert;
     }
   }
   >:only-child {
@@ -106,7 +109,7 @@ export default {
     top: 100%;
     top: calc(100% + .5em);
     background-position: center bottom;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%,#{"-#{$y-offset}%"});
     &:before, &:after { top: -.5em }
   }
   &-top, &-up {
@@ -114,7 +117,7 @@ export default {
     bottom: 100%;
     bottom: calc(100% + .5em);
     background-position: center top;
-    transform: translate(-50%,50%);
+    transform: translate(-50%,#{"#{$y-offset}%"});
     &:before, &:after { top: .5em }
     .UiBoxImage + &:after { 
       top: unset;

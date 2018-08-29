@@ -154,13 +154,17 @@ export default {
   }
   &--price {
     position: relative;
+    // font-family: $ff-alt;
+    font-weight: 100;
+    // letter-spacing: -.01em;
     sup { display: none !important }
     &:before {
       content: "$";
       position: absolute;
-      top: -.15em;
+      top: 0%;
       right: 100%;
-      font-size: .6em;
+      transform: translate(-12.5%,12.5%);
+      font-size: .5em;
     }
   }
   &--drinkWindow {
