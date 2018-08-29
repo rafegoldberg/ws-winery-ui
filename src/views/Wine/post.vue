@@ -21,7 +21,8 @@
       </UiBox>
 
       <UiBox class="WinePage--intro UiBox_stack hide_mobile">
-        <template v-if="sections[0] && sections[0].text">
+        <template v-if="sections[0] && sections[0].text && sections[0].text.length >= 170">
+          <UiHeading :level="3" class="UiHeading_gold UiHeading_space÷2" style="align-self: stretch">Winemakers Notes</UiHeading>          
           <p v-if="sections[0]" class="wrap_min">{{sections[0].text | truncate}}</p>
           <br>
           <ReadMore href="#content" class="ReadMore_gold">
@@ -35,45 +36,53 @@
       
     </UiPanel>
 
-    <UiPanel v-if="checkTechSpecs" class="WinePage--detail">
-      <UiBox><div style="text-align:center">
-        <UiHeading class="UiHeading_space" style="flex:1 100%">
-          Technical Notes
-        </UiHeading>
+    <UiPanel v-if="checkTechSpecs.includes(true)" class="WinePage--detail">
+      <UiBox>
+        <div :style="{
+              display: 'inline-flex',
+              flexFlow: 'nowrap column',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+              width: '100%',
+            }">
+          <UiHeading class="UiHeading_space" style="flex:1 100%">
+            Technical Notes
+          </UiHeading>
 
-        <div class="WinePage--detail-tables">
-          <span>
-            <table>
-              <tr v-if="acf.TA">
-                <th>Alc.</th>
-                <td>{{acf.TA}}</td>
-              </tr>
-              <tr v-if="acf.pH">
-                <th>pH</th>
-                <td>{{acf.pH}}</td>
-              </tr>
-              <tr v-if="acf.Alc">
-                <th>TA</th>
-                <td>{{acf.Alc}}</td>
-              </tr>
-            </table>
+          <span class="WinePage--detail-tables">
+            <span v-if="checkTechSpecs[0]">
+              <table>
+                <tr v-if="acf.TA">
+                  <th>Alc.</th>
+                  <td>{{acf.TA}}</td>
+                </tr>
+                <tr v-if="acf.pH">
+                  <th>pH</th>
+                  <td>{{acf.pH}}</td>
+                </tr>
+                <tr v-if="acf.Alc">
+                  <th>TA</th>
+                  <td>{{acf.Alc}}</td>
+                </tr>
+              </table>
+            </span>
+            <span v-if="checkTechSpecs[1]">
+              <table>
+                <tr v-if="acf['Barrel-Description']">
+                  <th>Barrel Description</th>
+                  <td>{{acf['Barrel-Description']}}</td>
+                </tr>
+                <tr v-if="acf['Barrel-Aged']">
+                  <th>Barrel Aged</th>
+                  <td>{{acf['Barrel-Aged']}}</td>
+                </tr>
+              </table>
+            </span>
           </span>
-          <span>
-            <table>
-              <tr v-if="acf['Barrel-Description']">
-                <th>Barrel Description</th>
-                <td>{{acf['Barrel-Description']}}</td>
-              </tr>
-              <tr v-if="acf['Barrel-Aged']">
-                <th>Barrel Aged</th>
-                <td>{{acf['Barrel-Aged']}}</td>
-              </tr>
-            </table>
-          </span>
+
+          <a v-if="download" :href="download" class="UiButton UiButton_outline gold" :download="title" target="_BLANK">Technical Notes PDF</a>
         </div>
-
-        <a v-if="download" :href="download" class="UiButton UiButton_outline gold" :download="title" target="_BLANK">Technical Notes PDF</a>
-      </div></UiBox>
+      </UiBox>
     </UiPanel>
 
     <UiPanel id="content" class="UiTheme_cream reorderFirst_mobile" v-if="sections[0]">
@@ -157,11 +166,6 @@ import fallback from "@/assets/bottles/default.png"
 import img1 from "@/assets/mock/table.png"
 import img2 from "@/assets/mock/vineyard.png"
 import img3 from "@/assets/mock/harvest.png"
-import img4 from "@/assets/mock/cellar.png"
-
-import bottles from "@/assets/icons/bottles.svg"
-import barrels from "@/assets/icons/barrels.svg"
-import glasses from "@/assets/icons/glasses.svg"
 
 const Window = window || {}
 
@@ -225,13 +229,17 @@ export default {
     checkTechSpecs(){
       let
       checks = [
-        'TA'                 in this.acf && this.acf['TA']                 ? true : false,
-        'pH'                 in this.acf && this.acf['pH']                 ? true : false,
-        'Alc'                in this.acf && this.acf['Alc']                ? true : false,
-        'Barrel-Description' in this.acf && this.acf['Barrel-Description'] ? true : false,
-        'Barrel-Aged'        in this.acf && this.acf['Barrel-Aged']        ? true : false,
+        [
+          'TA'  in this.acf && this.acf['TA']  ? true : false,
+          'pH'  in this.acf && this.acf['pH']  ? true : false,
+          'Alc' in this.acf && this.acf['Alc'] ? true : false,
+        ],
+        [
+          'Barrel-Description' in this.acf && this.acf['Barrel-Description'] ? true : false,
+          'Barrel-Aged'        in this.acf && this.acf['Barrel-Aged']        ? true : false,
+        ],
       ]
-      return checks.indexOf(true)>=0
+      return checks.map(lr=> lr.includes(true))
     },
     embed(){
       if( this.context.loading ) return
@@ -285,8 +293,6 @@ export default {
     img1: ()=> img1,
     img2: ()=> img2,
     img3: ()=> img3,
-    img4: ()=> img4,
-    icon: ()=> ({ bottles, barrels, glasses, }),
   },
   asyncComputed:{
     oldReviews: {
@@ -400,8 +406,8 @@ export default {
     &-tables {
       > * {
         display: block;
-        max-width: 28rem;
-        min-width: 12.5rem;
+        // max-width: 28rem;
+        // min-width: 12.5rem;
       }
     }
     @include Break( min-width Breaks(3) ){
@@ -422,6 +428,9 @@ export default {
           th { width: 33% }
         }
       }
+    }
+    @include Break( (min-width Breaks(2)) (max-width Breaks(4)) ){
+      > .UiBox { padding-top: 0 }
     }
   }
   &--media {
