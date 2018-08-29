@@ -6,7 +6,7 @@
     <small>Points</small>
   </aside>
   <div class="Review--text">
-    <UiHeading class="Review--name  UiHeading_gold UiHeading_sans" :level="3" :scale="5"  v-html="Name"/> 
+    <UiHeading v-if="Name" class="Review--name  UiHeading_gold UiHeading_sans" :level="3" :scale="5"  v-html="Name"/> 
     <p class="Review--blurb" v-html="Blurb"/>
   </div>
 </div>
@@ -37,6 +37,9 @@ export default {
       margin-top: $space;
       padding-top: $space*1.25;
       border-top: 1px solid Color(theme);
+    }
+    p:only-child {
+      margin-top: 0;
     }
     p:last-child {
       margin-bottom: 0;
