@@ -208,7 +208,7 @@ export default {
     min-width: 100%;
     position: relative;
     z-index: 1;
-    margin-top: -3rem;
+    margin-top: -4.3rem;
     background: Color(light);
   }
   /deep/ &_error .UiHeading {
