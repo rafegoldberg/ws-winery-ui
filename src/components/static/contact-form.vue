@@ -46,7 +46,7 @@
           v-model="form.subject"
           @keydown.delete="(form.subject = false)"
           >
-          <option :value="false" disabled selected>Regarding...</option>
+          <option :value="false" disabled selected>Subject...</option>
           <option value="General Question">General Question</option>
           <option value="Joining the List">Joining the List</option>
           <option value="Booking + Visits">Visiting</option>
