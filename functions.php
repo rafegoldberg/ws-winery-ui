@@ -1,6 +1,7 @@
 <?/** WP Config
    */
   include "php/wp/admin.php";
+  include "php/wp/relativeLinks.php";
   // include "php/wp/mimeTypes.php";
 
   include "php/wp/shortcodes/gold.php";
@@ -49,6 +50,7 @@
   }
   add_action('init','onWpInit',0);
 ?>
+
 <?/** Configure Rest Caching Plugin
    * (clear on post update)
    */

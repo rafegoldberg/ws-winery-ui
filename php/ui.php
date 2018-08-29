@@ -13,6 +13,7 @@
       'endpoint' => esc_url_raw(rest_url()),
       'nonce' => wp_create_nonce('wp_rest')
       ]);
+  
     }
   add_action( 'wp_enqueue_scripts', 'LinkUiAssets' );
   ?>

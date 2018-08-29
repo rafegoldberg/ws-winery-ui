@@ -7,7 +7,9 @@
       </slot>
 
       <slot name="right">
-        <a :href="link">The Fine Print</a>
+        <router-link :to="link.url || link" :target="link.target || ''">
+          {{link.title || 'Privacy Policy'}}
+        </router-link>
       </slot>
 
     </div>
