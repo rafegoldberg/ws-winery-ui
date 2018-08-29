@@ -35,38 +35,18 @@ import AppMenu from "./menu"
 import UiPanel from "@/components/UI/Panel"
 import UiIcon from "@/components/UI/Icon"
 
-// import debounce from "lodash/debounce"
-// let
-// lastScroll = 0;
-
 export default {
   name: "AppNav",
   components:{ AppMenu, UiPanel, UiIcon },
-  mounted(){
-    // window.addEventListener('scroll',this.handleScroll)
-  },
-  destroyed(){
-    // window.removeEventListener('scroll',this.handleScroll)
-  },
+  // mounted(){},
+  // destroyed(){},
   data:()=>({
     cta:{
       link: "/join",
       text: "Join the List"
     },
-    // scrollDirection: 'up',
-    // scrollLast: 0,
   }),
   methods:{
-    // handleScroll: debounce(function(e){
-    //   let
-    //   now = window.scrollY,
-    //   pre = this.scrollLast,
-    //   dir = now<=pre ? 'up' : 'down'
-    //   // this.$set(this.$data,'scrollLast',now)
-    //   // this.$set(this.$data,'scrollDirection',dir)
-    //   this.scrollLast = now
-    //   this.scrollDirection = dir
-    // },100),
     toggleMenu(setTo){
       if( typeof this.setTo !== 'undefined' )
         this.$refs.open = setTo
