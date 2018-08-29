@@ -3,7 +3,6 @@
   <section class="iconList">
 
     <div class="iconList--item" v-for="(item, key) in items" :key="key">
-      {{$log({item,key})}}
       <UiIcon :name="item.icon || key" width="3rem" height="3rem"/>
       <div class="iconList--item--text">
         <span class="iconList--item--label" v-html="item.title"/>

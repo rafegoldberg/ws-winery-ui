@@ -60,7 +60,7 @@
       <UiBox class="UiBox_stack">
         <UiHeading :level="2" :scale="3" class="UiHeading_space">
           Our
-          <span v-html="context.title.rendered" /> Wines
+          <span v-html="context.title.rendered"/> Wines
         </UiHeading>
         <WineGrid class="wrap" :category="slug" :paginate="4"/>
       </UiBox>

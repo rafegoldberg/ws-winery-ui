@@ -62,6 +62,10 @@ img[src*='preloader'][src*='.gif'] {
   opacity: 0.3;
 }
 
+img[src*="/default."][src*=".png"] {
+  mix-blend-mode: normal !important;
+}
+
 p, li {
   br {
     content: "";
