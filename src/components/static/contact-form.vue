@@ -26,21 +26,21 @@
       <div class="ContactForm--group">
         <input name="name"
           class="ContactForm--control"
-          placeholder="First Lastname"
+          placeholder="Your Name (required)"
           type="text"
           required
           v-model="form.name"
           />
         <input name="email"
           class="ContactForm--control"
-          placeholder="you@email.com"
+          placeholder="Your Email (required)"
           type="text"
           required
           v-model="form.email"
           />
         <select name="subject"
           class="ContactForm--control"
-          placeholder="Regarding..."
+          placeholder="Subject..."
           type="text"
           required
           v-model="form.subject"
@@ -57,7 +57,7 @@
         <textarea name="message"
           style="min-height: 100%"
           class="ContactForm--control"
-          placeholder="Your message, briefly."
+          placeholder="Your Message"
           required
           v-model="form.text"
           spellcheck="false"
