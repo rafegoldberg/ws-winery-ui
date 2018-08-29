@@ -2,11 +2,11 @@
 
   <component
       :is="url
-        ?( url.indexOf('mailto:')==0 ? 'a' : 'router-link' )
+        ?( !isRelative(url) ? 'a' : 'router-link' )
         : tag"
       class="UiButton"
       :class="classes"
-      :target="url.indexOf('mailto:')==0 && '_blank'" 
+      :target="!isRelative(url) && '_blank'" 
       :href="url"
       :to="url"
       >
@@ -25,6 +25,18 @@ export default {
     classes: {
       type: [String,Array,Object],
       default: ""
+    }
+  },
+  methods:{
+    isRelative( url ){
+      let
+      checks = [
+        url.indexOf('mailto:')    == 0,
+        url.search(/https?:\/\//) == 0,
+        url.indexOf('//')         == 0,
+        url.indexOf('www.')       == 0,
+      ]
+      return checks.includes(true) ? false : true
     }
   }
 }
