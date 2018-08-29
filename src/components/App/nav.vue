@@ -34,7 +34,7 @@
 import AppMenu from "./menu"
 import UiPanel from "@/components/UI/Panel"
 import UiIcon from "@/components/UI/Icon"
-
+// 
 export default {
   name: "AppNav",
   components:{ AppMenu, UiPanel, UiIcon },
