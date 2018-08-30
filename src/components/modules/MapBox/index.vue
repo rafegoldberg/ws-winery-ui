@@ -7,6 +7,7 @@
     :options="{
       disableDefaultUI: true,
       styles: theme,
+      mapTypeId: 'terrain',
     }">
     <GMark
       v-if="!this.kml && this.mark.label"
@@ -31,19 +32,19 @@ import {gmapApi as GM} from 'vue2-google-maps'
 import GMap  from 'vue2-google-maps/src/components/map'
 import GMark from 'vue2-google-maps/src/components/marker'
 
-// import theme from "./theme.json"
-let
-theme = [
-  { featureType: 'poi.business',
-    stylers: [{visibility: 'off'}]
-    },
-  { featureType: 'road',
-    elementType: 'labels.text.fill',
-    stylers: [
-      {color: '#BBBBBB'},
-    ]
-  },
-]
+import theme from "./themes/Creamery.json"
+// let
+// theme = [
+//   { featureType: 'poi.business',
+//     stylers: [{visibility: 'off'}]
+//     },
+//   { featureType: 'road',
+//     elementType: 'labels.text.fill',
+//     stylers: [
+//       {color: '#BBBBBB'},
+//     ]
+//   },
+// ]
 
 export default {
   name: "MapBox",
@@ -53,10 +54,14 @@ export default {
     if( this.kml )
       this.$refs.map.$mapPromise.then(this.setKML)
   },
-  data:()=>({ theme }),
+  data:()=>({
+    theme,
+    kmlLayer: false,
+    kmlLastClick: false,
+  }),
   computed:{
     Google: GM,
-    gKML(){
+    getKML(){
       if( !this.kml ) return
 
       var
@@ -64,17 +69,18 @@ export default {
       mid,
       map = this.kml
 
-      if( map.split('?').length == 1 ) 
+      if( map.split('?').length == 1 ){
+        if( map.indexOf('//')>=0 ) return map;
         mid = map
+      }
       else if( map = map.split('?')[1] ){
         mid = map.split('&')
         mid = mid.map(param=> !param.indexOf('id=') ? param.split('=')[1] : false)
         mid = mid.filter(p=>p)[0]
       }
 
-      url = `https://google.com/maps/d/kml?forcekml=1&mid=${mid}&v=${Math.round(new Date().getTime()/1000)}`
+      url = `https://google.com/maps/d/kml?forcekml=1&mid=${mid}&cb=${Math.round(new Date().getTime()/1000)}`
 
-      this.$log({url,map,mid})
       return url
     },
     mapCenter(){
@@ -87,11 +93,26 @@ export default {
   },
   methods:{
     setKML(map){
-      new this.Google.maps.KmlLayer({
+      this.kmlLayer = new this.Google.maps.KmlLayer({
         map,
-        url: this.gKML
+        url: this.getKML,
+        clickable: true,
       });
-    }
+      this.kmlLayer.addListener('click', this.kmlClick)
+    },
+    kmlClick( e ){
+      let
+      data = e.featureData,
+      slug = data.name.toLowerCase().replace(/\s/g,'-')
+
+      if( slug == this.kmlLastClick ){
+        this.$log(this.$router.push(`/vineyards/${slug}`))
+      }
+      else {
+        this.$log('first click')
+      }
+      this.kmlLastClick = slug
+    },
   }
 }
 </script>
