@@ -105,12 +105,11 @@ export default {
       data = e.featureData,
       slug = data.name.toLowerCase().replace(/\s/g,'-')
 
-      if( slug == this.kmlLastClick ){
-        this.$log(this.$router.push(`/vineyards/${slug}`))
-      }
-      else {
-        this.$log('first click')
-      }
+      if( slug.indexOf('-ava')>=0 ) return
+
+      if( slug == this.kmlLastClick )
+        this.$router.push(`/vineyards/${slug}`)
+        
       this.kmlLastClick = slug
     },
   }
