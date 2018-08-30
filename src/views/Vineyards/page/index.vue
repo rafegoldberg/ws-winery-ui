@@ -112,7 +112,7 @@ export default {
   }),
   methods: {
     handleResize: loThrottle(function(){
-      this.$log(window.matchMedia("(max-width: 832px)").matches)
+      // this.$log(window.matchMedia("(max-width: 832px)").matches)
       this.$set(this,'useLandscape',window.matchMedia("(max-width: 832px)").matches);
     },250),
   },
