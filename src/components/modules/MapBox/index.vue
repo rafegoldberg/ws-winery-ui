@@ -6,17 +6,7 @@
     :zoom="14"
     :options="{
       disableDefaultUI: true,
-      styles:[
-        { featureType: 'poi.business',
-          stylers: [{visibility: 'off'}]
-          },
-        { featureType: 'road',
-          elementType: 'labels.text.fill',
-          stylers: [
-            {color: '#BBBBBB'},
-          ]
-        },
-      ],
+      styles: theme,
     }">
     <GMark
       v-if="!this.kml && this.mark.label"
@@ -41,6 +31,20 @@ import {gmapApi as GM} from 'vue2-google-maps'
 import GMap  from 'vue2-google-maps/src/components/map'
 import GMark from 'vue2-google-maps/src/components/marker'
 
+// import theme from "./theme.json"
+let
+theme = [
+  { featureType: 'poi.business',
+    stylers: [{visibility: 'off'}]
+    },
+  { featureType: 'road',
+    elementType: 'labels.text.fill',
+    stylers: [
+      {color: '#BBBBBB'},
+    ]
+  },
+]
+
 export default {
   name: "MapBox",
   props:[ 'map', 'mark', 'kml' ],
@@ -49,13 +53,28 @@ export default {
     if( this.kml )
       this.$refs.map.$mapPromise.then(this.setKML)
   },
+  data:()=>({ theme }),
   computed:{
     Google: GM,
     gKML(){
-      let
-      mid = this.kml.split(/\?id=(.*)&/)[1],
-      url = `https://www.google.com/maps/d/kml?forcekml=1&mid=${mid}`
-      this.$log.dir({id:mid,url})
+      if( !this.kml ) return
+
+      var
+      url,
+      mid,
+      map = this.kml
+
+      if( map.split('?').length == 1 ) 
+        mid = map
+      else if( map = map.split('?')[1] ){
+        mid = map.split('&')
+        mid = mid.map(param=> !param.indexOf('id=') ? param.split('=')[1] : false)
+        mid = mid.filter(p=>p)[0]
+      }
+
+      url = `https://google.com/maps/d/kml?forcekml=1&mid=${mid}&v=${Math.round(new Date().getTime()/1000)}`
+
+      this.$log({url,map,mid})
       return url
     },
     mapCenter(){
