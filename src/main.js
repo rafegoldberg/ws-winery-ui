@@ -23,6 +23,9 @@ Vue.filter( "round", round )
 import AppLoad from "@/components/App/load"
 Vue.component('AppLoad',AppLoad)
 
+import UiLink from "@/components/UI/Link"
+Vue.component('UiLink',UiLink)
+
 import App from "./App.vue"
 import router from "@/includes/use/router"
 let
