@@ -2,7 +2,7 @@
    */
   include "php/wp/admin.php";
   include "php/wp/relativeLinks.php";
-  // include "php/wp/mimeTypes.php";
+  include "php/wp/mimeTypes.php";
 
   include "php/wp/shortcodes/gold.php";
   include "php/wp/shortcodes/heading.php";
