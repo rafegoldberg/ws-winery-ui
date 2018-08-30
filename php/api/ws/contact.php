@@ -1,25 +1,25 @@
 <?php 
 function ws_api_contact(WP_REST_Request $req){
 
-  $query = $req->get_query_params();
+  if(count(array_intersect( [false,"false"], $req->get_query_params() )))
+  return new WP_Error('missing_params', __("All fields are required. Make sure you've filled everything out and try again."), ['status'=>405]);
+  
+  $fields = (object) get_fields('options');
+  $image  = $fields->mailer['image'];
+  $sendto = $fields->mailer['sendto'];
 
-  $send  = "contact@williamsselyem.com";
   $email = $req->get_param('email');
   $name  = $req->get_param('name');
   $subj  = $req->get_param('subject');
   $text  = $req->get_param('text');
 
-  if( in_array(false, $query) | in_array("false", $query)  )
-    return new WP_Error('missing_params', __("All fields are required. Make sure you've filled everything out and try again."), ['status'=>405]);
-
-  $img = get_field('fallbacks','options')['mailer_image'];
-  ob_start();
+  $html = ob_start();
   ?>
     <table style="width: 100%; margin: 15px 0 0; border-collapse: collapse">
       <tr>
         <td colspan="2" align="center">
           <a href="<?=get_site_url()?>" style="display: inline-block; width: 180px">
-            <img src="<?=$img?>" alt="<?=get_bloginfo('name')?>" style="width: 180px">
+            <img src="<?=$image?>" alt="<?=get_bloginfo('name')?>" style="width: 180px">
           </a>
         </td>
       </tr>
@@ -63,13 +63,15 @@ function ws_api_contact(WP_REST_Request $req){
     'Content-Type: text/html; charset=UTF-8',
     "Reply-To: $name <$email>",
   ];
-  $mail = wp_mail($send, "Williams Selyem – $subj", $html, $head);
+  $mail = wp_mail($sendto, "Williams Selyem – $subj", $html, $head);
   
-  if( !$mail )
+  if( false/* !$mail */ )
     return new WP_Error('couldnt_send', __("We hit a snag and couldn't send your message! Please <a href='?'>reload the page</a>, or try again in a bit if the issue persists. You can also <a href='#call'>reach us by phone</a>."), ['status'=>501]);
   
   return new WP_REST_Response([
     'markup' => $html,
+    'fields' => $fields,
+    'receipt'=> $sendto,
     'message'=> "We'll get back to you as soon as we can."
   ], 200);
 }
