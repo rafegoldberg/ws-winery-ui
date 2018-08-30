@@ -1,0 +1,25 @@
+.link-wrap {
+  display: flex !important;
+  align-items: center;
+  max-width: 100%;
+  box-sizing: border-box;
+  white-space: nowrap;
+  background: linear-gradient(to right, #f1f1f1, white 25%)
+}
+
+.link-wrap > * {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.link-title {
+  flex: 1 max-content;
+  font-weight: bold;
+}
+.link-url {
+  flex: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  opacity: .5;
+}
