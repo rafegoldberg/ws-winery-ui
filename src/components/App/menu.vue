@@ -19,11 +19,16 @@
         <em class="AppMenu--brand-slug serif">Make the best wines, <br>from the best grapes, <br> from the best growers.</em>
       </div>
       <div class="AppMenu--linkBlock">
-        <router-link to="/join" style="background: #7D1214" @click.native="toggle">Join the List</router-link>
-        <router-link to="/join" style="background: #BA9454" @click.native="toggle">
+        <ui-link
+          v-if="cta"
+          v-bind="cta"
+          style="background: #7D1214"
+          @click.native="toggle"
+          />
+        <ui-link url="https://www.williams-selyem.com/shopping3/account/shopping_login.cfm" style="background: #BA9454" @click.native="toggle">
           <UiIcon name="Account" width="1em" height="1em"/>
           My Account
-        </router-link>
+        </ui-link>
       </div>
     </div>
 
@@ -114,7 +119,12 @@ defaults = { open:false }
 export default {
   name: "AppMenu",
   mixins:[WP],
-  components:{ UiList, UiIcon, WineSearch },
+  components:{
+    UiList,
+    UiIcon,
+    WineSearch
+  },
+  props:['cta'],
   data:()=>({
     open: false,
     menu: {

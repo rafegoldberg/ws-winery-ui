@@ -10,10 +10,9 @@
   </router-link>
   
   <div id="AppNav-menu">
-    <router-link
+    <ui-link
       v-if="cta"
-      v-text="cta.text"
-      :to="cta.link"
+      v-bind="cta"
       id="AppNav-menuJoin"
       />
     <span id="AppNav-menuTrigger" class="AppMenuTrigger">
@@ -21,6 +20,7 @@
         <small>MENU  </small><UiIcon name="menu" width="1em" height="1em"/>
       </button>
       <AppMenu
+        :cta="cta"
         @click.stop
         ref="menu"
         />
@@ -32,20 +32,21 @@
 
 <script>
 import AppMenu from "./menu"
+
 import UiPanel from "@/components/UI/Panel"
 import UiIcon from "@/components/UI/Icon"
-// 
+
 export default {
   name: "AppNav",
-  components:{ AppMenu, UiPanel, UiIcon },
-  // mounted(){},
-  // destroyed(){},
-  data:()=>({
-    cta:{
-      link: "/join",
-      text: "Join the List"
-    },
-  }),
+  components:{
+    AppMenu,
+    UiPanel,
+    UiIcon
+  },
+  props:[
+    "cta",
+    "tag"
+  ],
   methods:{
     toggleMenu(setTo){
       if( typeof this.setTo !== 'undefined' )

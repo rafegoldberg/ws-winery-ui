@@ -4,9 +4,17 @@
       `route_${$route.name}`
     ]">
 
-    <AppNav/>
+    <AppNav
+      v-bind="!site.loading
+        ? site.navbar
+        : {}"/>
+
     <router-view :key="$route.fullPath"/>
-    <AppFooter v-if="!this.site.loading" v-bind="site.AppFooter"  class="UiTheme_dark"/>
+    
+    <AppFooter
+      v-if="!this.site.loading"
+      v-bind="site.AppFooter"  
+      class="UiTheme_dark"/>
       
   </div>
 </template>
@@ -31,7 +39,10 @@ export default {
   },
   asyncComputed:{
     site:{
-      default: { loading:true },
+      default: {
+        navbar: {},
+        loading: true
+        },
       async get(){
         if( !this.API ) return {loading:true}
         let
