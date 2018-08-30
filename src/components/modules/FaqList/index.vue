@@ -3,7 +3,11 @@
   <FaqItem v-for="(item,ix) in questions" v-bind="item" :key="ix">
     <UiHeading
       slot="question"
-      class="UiHeading_push"
+      :class="{
+        'UiHeading_push':   ix==0 ? true : false,
+        'UiHeading_push÷2': ix==0 ? false : true,
+        'UiHeading_space÷2': true
+      }"
       :level="3"
       :scale="5">
       <UiIcon name="CirclePlus" width="1em" height="1em"/>
