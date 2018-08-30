@@ -339,7 +339,7 @@ export default {
           font-size: .8em;
           font-weight: 400;
           text-transform: uppercase;
-          letter-spacing: 0.05em;
+          letter-spacing: .1em;
           text-decoration: underline transparent;
           &:hover {
             text-decoration-color: Color(theme) !important;
@@ -384,7 +384,7 @@ export default {
       border-right: 1px solid Color(silver);
       font-family: $ff-serif;
       text-transform: uppercase;
-      letter-spacing: .05em !important;
+      letter-spacing: .1em !important;
     }
     &-item:not(:first-child) > &-link {
       border-top: 1px solid Color(silver);
