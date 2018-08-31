@@ -5,6 +5,7 @@
     ]">
 
     <AppNav
+      :class="[...$root.navTheme]"
       v-bind="!site.loading
         ? site.navbar
         : {}"/>
@@ -52,6 +53,9 @@ export default {
           .id('options')
           .get()
           .then( rsp=> rsp.acf )
+
+        // this.$log(Object.values(xhr.AppNav))
+
         return xhr
       }
     }
