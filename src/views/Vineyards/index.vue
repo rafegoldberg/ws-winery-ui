@@ -84,6 +84,7 @@
 
 <script>
 import WpConnect from "@/VuePress/mix/connect"
+import navTheme from "@/includes/NavTheme/mixin"
 
 import UiPanel from "@/components/UI/Panel"
 import UiBox from "@/components/UI/Box"
@@ -113,7 +114,15 @@ export default {
     'include',
     'exclude',
   ],
-  mixins:[ WpConnect ],  
+  mixins:[ WpConnect, navTheme ],  
+  
+  beforeRouteEnter(to,from,next){
+    next(self=> self.navTheme_update({
+      menu: "menuTheme_light",
+      // brand: "logoTheme_light"
+      }))
+  },
+
   components:{
     UiPanel, UiBox,
     UiBoxImage,

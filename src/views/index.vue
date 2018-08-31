@@ -74,17 +74,20 @@
 
 <script>
 import API from "@/VuePress/mix/API"
-import Slider from "@/components/modules/Slider"
-
+import navTheme from "@/includes/NavTheme/mixin"
 import UiPanel from "@/components/UI/Panel"
 import UiIcon from "@/components/UI/Icon"
 
+import Slider from "@/components/modules/Slider"
+
 export default {
   name: "HomePage",
-  mixins:[ API ],
+  mixins:[ API, navTheme ],
   components:{ UiPanel, UiIcon, Slider },
-  created() {
-    // this.$log(this.$root.classes,'')
+  watch:{
+    page(){
+      this.navTheme_update(this.page.acf.AppNav)
+    }
   },
   asyncComputed:{
     page:{

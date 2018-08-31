@@ -138,6 +138,7 @@
 
 <script>
 import WpConnect from "@/VuePress/mix/item"
+import navTheme from "@/includes/NavTheme/mixin"
 
 import loFind  from "lodash/find"
 import loFlat  from "lodash/flatten"
@@ -175,7 +176,11 @@ export default {
   data: ()=>({
     Window,
   }),
-  mixins:[ WpConnect ],  
+  mixins:[ WpConnect, navTheme ],
+  beforeRouteEnter(to,from,next){
+    next(self=> self.navTheme_update({ brand: "logoTheme_dualtone" }))
+  },
+
   components:{
     UiPanel,
     UiBox,

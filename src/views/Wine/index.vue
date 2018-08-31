@@ -143,6 +143,7 @@ import UiButton from "@/components/UI/Button"
 import WineGrid from "@/views/Wine/grid"
 import WineSearch from "./search"
 import FiltersGroup from "./filters/group"
+import navTheme from "@/includes/NavTheme/mixin"
 
 function hasFilters( filters = this.$root.filters ){
   var
@@ -161,18 +162,19 @@ function clearFilters(){
 
 export default {
   name: "WineFilters",
+  mixins:[ navTheme ],
+
   beforeCreate(){
     if( this.$route.hash=='#top'||
         this.$route.hash=='#all' )
       this.$set(this.$root.filters,'search',"")
   },
-  mounted(){
-
+  beforeRouteEnter(to,from,next){
+    next(self=> self.navTheme_update({ brand: "logoTheme_dualtone" }))
   },
   metatags:{
     title:"Wine Library"
   },
-
   props:["page"],
   data:()=>({
     showRelease: false,

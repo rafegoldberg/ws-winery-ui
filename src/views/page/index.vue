@@ -15,6 +15,8 @@
 </template>
 <script>
 import API from "@/VuePress/mix/API"
+
+import navTheme from "@/includes/NavTheme/mixin"
 import loZip from "lodash/zipObject"
 
 import PageBuilder from "@/components/modules/PageBuilder"
@@ -22,7 +24,7 @@ import DiscoveryBoxes from "@/components/static/discovery-boxes"
 
 export default {
   name: "Page",
-  mixins:[ API ],
+  mixins:[ API, navTheme ],
   components:{ PageBuilder, DiscoveryBoxes },
   props:{
     slug: "",
@@ -75,7 +77,16 @@ export default {
         else return xhr[0]
       }
     }
-  }
+  },
+  watch:{
+    page(){
+      //
+      // TODO: move defaults + merge logic in to NavTheme mixin
+      //
+      if( this.page.loading ) return
+      else this.navTheme_update(this.page.acf.AppNav)
+    },
+  },
 }
 </script>
 
