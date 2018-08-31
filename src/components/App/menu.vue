@@ -207,7 +207,7 @@ export default {
     }
   }
   &Trigger {
-    $pop: mix( Color(theme), Color(dark), 98% );
+    $pop: Color(light);
 
     position: relative;
     // color: Color(theme);
@@ -235,10 +235,18 @@ export default {
         }
       }
     }
+    >:first-child {
+      background-color: rgba($pop,.08);
+      box-shadow: 0 0 0 1px rgba(invert($pop),.04);
+      backdrop-filter: blur(.8px);
+    }
     >:first-child:hover,
-    >:first-child:focus-within,
-    &:hover >:first-child {
-      background-color: rgba($pop,.25);
+    >:first-child:focus-within {
+      background-color: rgba($pop,.2);
+      backdrop-filter: blur(2px) saturate(1.2);
+      &:not(:active) {
+        box-shadow: 0 0 0 1px rgba(invert($pop),.1);
+      }
     }
     // #AppNav.cream & {
     //   color: Color(theme);
