@@ -1,6 +1,6 @@
 <template>
 
-  <component :is="tag" v-view="$scrollIntersect" :id="id" class="UiPanel" :class="{'UiPanel_connected':connect}">
+  <component :is="tag" deprecated-v-view="$scrollIntersect" :id="id" class="UiPanel" :class="{'UiPanel_connected':connect}">
     <slot/>
     <i v-if="typeof connect == 'string'" class="UiPanel--connect" :class="{
         [`UiPanel--connect-${connect}`]: connect
