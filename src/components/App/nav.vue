@@ -64,19 +64,6 @@ export default {
 @import "~@/styles/theme/colors";
 @import "~@/styles/extend/wrap";
 
-@mixin DualToneIcon {
-  /deep/ .icon--text path,
-  /deep/ .icon--ornament--rule {
-    fill: Color(brand) !important;
-  }
-  /deep/ .icon--ornament--rinceau {
-    fill: Color(dark) !important;
-  }
-  /deep/ .icon--text {
-    filter: none !important;
-  }
-}
-
 #AppNav {
   & {
     & { // outer layout
@@ -96,31 +83,6 @@ export default {
     }
     user-select: none;
   }
-  & { // theme
-
-    color: inherit;
-    &.light { color: Color(slate) }
-    &.cream { color: Color(dark)  }
-    &.dark  { color: Color(light) }
-    &.rust  { color: Color(light) }
-
-    &.cream, &.light {
-      @include DualToneIcon;
-    }
-  }
-  & { // transition
-    transition: color .2s 0s ease-in-out;
-    transition-delay: 0s !important;
-    transition-duration: .3s !important;
-    transition-timing-function: ease-in-out !important;
-  }
-  &-menu {
-    --c: #{Color(theme)};
-    color: var(--c);
-  }
-  &.rust #{&}-menu {
-    --c: #{Color(silver)};
-  }
   &-logo {
     >svg {
       pointer-events: none;
@@ -133,6 +95,7 @@ export default {
     }
   }
   &-menuJoin {
+    // TODO: extrapolate this in to a lower/separate style tag
     display: inline-block;
     margin: 0 .6em 0 0;
     padding: 0 .6em 1px .7em;
@@ -151,36 +114,79 @@ export default {
     }
   }
   @include Break( max-width Breaks(4) ){
-    padding: 0 1em;
-    height: 4rem;
-    background: rgba(250, 250, 250, .96);
-    color: Color(slate);
-    box-shadow: -4px 0 2rem 4px rgba(48, 41, 3, 0.08);
-    transition: .4s ease-out;
-    @include DualToneIcon;
-    &.light {
-      background-color: rgba( Color(light), .88);
-      color: Color(dark);
-      #AppNav-menu { --c: #{Color(theme)} }
-    }
-    &.cream {
-      background-color: rgba( Color(cream), .88);
+    & {
+      padding: 0 1em;
+      height: 4rem;
+      background: rgba(250, 250, 250, .96);
       color: Color(slate);
-      #AppNav-menu { --c: #{Color(theme)} }
-    }
-    &.dark  {
-      background: rgba( Color(light), .88);
-      color: Color(slate);
-      #AppNav-menu { --c: #{Color(theme)} }
-    }
-    &.rust  {
-      background-color: rgba( Color(alt), .88);
-      color: Color(light);
-      #AppNav-menu { --c: #{Color(light)} }
+      box-shadow: -4px 0 2rem 4px rgba(48, 41, 3, 0.08);
+      transition: .4s ease-out;
     }
   }
 }
 </style>
+<style lang="scss" scoped>
+@import "~@/styles/theme/breaks";
+@import "~@/styles/theme/colors";
+
+@mixin DualToneLogo {
+  /deep/ .icon--text path,
+  /deep/ .icon--ornament--rule {
+    fill: Color(brand) !important;
+  }
+  /deep/ .icon--ornament--rinceau {
+    fill: Color(dark) !important;
+  }
+  /deep/ .icon--text {
+    filter: none !important;
+  }
+}
+
+#AppNav {
+
+  --c: #{Color(theme)}; // default
+
+  &:not(.logoTheme_dualtone) {
+    --c: #{Color(light)}; // logo default
+    color: var(--c);
+  }
+  &.logoTheme_dualtone {
+    @include DualToneLogo;
+  }
+  &.logoTheme_dark {
+    --c: #{Color(dark)};
+    color: Color(dark);
+  }
+  &.logoTheme_light {
+    --c: #{Color(light)};
+    color: Color(light);
+  }
+
+  &-menu {
+    --c: #{Color(theme)};
+    color: var(--c); // menu default
+  }
+  &.menuTheme_gold &-menu {
+    --c: #{Color(theme)};
+  }
+  &.menuTheme_dark &-menu {
+    --c: #{Color(dark)};
+  }
+  &.menuTheme_light &-menu {
+    --c: #{Color(light)};
+  }
+
+  @include Break( max-width Breaks(4) ){
+    &-logo {
+      @include DualToneLogo();
+    }
+    &-menu {
+      --c: #{Color(theme)} !important;
+    }
+  }
+}
+</style>
+
 
 <style lang="scss">
 @import "~@/styles/theme/breaks";
