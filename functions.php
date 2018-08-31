@@ -4,8 +4,8 @@
   include "php/wp/relativeLinks.php";
   include "php/wp/mimeTypes.php";
 
-  include "php/wp/shortcodes/gold.php";
-  include "php/wp/shortcodes/heading.php";
+  include "php/shortcodes/gold.php";
+  include "php/shortcodes/heading.php";
 
   include "php/api/adjacent.php";
   include "php/api/CORS.php";
