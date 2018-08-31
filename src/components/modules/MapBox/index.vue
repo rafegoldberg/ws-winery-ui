@@ -3,26 +3,28 @@
     ref="map"
     class="MapBox"
     :center="mapCenter"
-    :zoom="14"
+    :zoom="10"
     :options="{
       disableDefaultUI: true,
       styles: theme,
       mapTypeId: 'terrain',
     }">
     <GMark
-      v-if="!this.kml && this.mark.label"
-      :label="mark.label"
-      :position="mapCenter"
-      :options="{
-        label: {
-          text: mark.label,
-          color: '#0E0E0E',
-        },
-        icon:{
-          url: mark.icon,
-          labelOrigin:{ x:90, y:65 },
-        },
-      }"/>
+        v-if="!this.kml && this.mark.label"
+        :label="mark.label"
+        :position="mapCenter"
+        :options="{
+          label: {
+            text: mark.label,
+            color: '#0E0E0E',
+          },
+          icon:{
+            url: mark.icon,
+            labelOrigin:{ x:90, y:65 },
+          },
+        }">
+      Hello world!
+    </GMark>
   </GMap>
 </template>
 
@@ -32,7 +34,7 @@ import {gmapApi as GM} from 'vue2-google-maps'
 import GMap  from 'vue2-google-maps/src/components/map'
 import GMark from 'vue2-google-maps/src/components/marker'
 
-import theme from "./themes/Creamery.json"
+import theme from "./themes/CreameryCustom.json"
 // let
 // theme = [
 //   { featureType: 'poi.business',
