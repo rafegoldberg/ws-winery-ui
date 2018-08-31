@@ -1,12 +1,12 @@
 import Vue from "vue";
 import Router from "vue-router";
+import routes from "@/routes";
 Vue.use(Router);
 
-import routes from "@/routes";
-export default new Router({
+let
+router = new Router({
 
-  // base: '/clients/ws3/',
-  base: '/',
+  base: "/", // "/clients/ws3/"
   
   routes,
   mode: "history",
@@ -24,3 +24,6 @@ export default new Router({
       return { x:0, y:0 }
   }
 });
+
+export default router
+
