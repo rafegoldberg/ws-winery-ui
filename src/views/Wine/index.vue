@@ -134,6 +134,8 @@
 <script>
 import Vue from "vue"
 
+import navTheme from "@/includes/NavTheme/mixin"
+
 import UiPanel from "@/components/UI/Panel"
 import UiBox from "@/components/UI/Box"
 import UiIcon from "@/components/UI/Icon"
@@ -143,7 +145,6 @@ import UiButton from "@/components/UI/Button"
 import WineGrid from "@/views/Wine/grid"
 import WineSearch from "./search"
 import FiltersGroup from "./filters/group"
-import navTheme from "@/includes/NavTheme/mixin"
 
 function hasFilters( filters = this.$root.filters ){
   var

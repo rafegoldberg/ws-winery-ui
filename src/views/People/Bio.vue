@@ -59,7 +59,8 @@
 
 <script>
 import WpConnect from "@/VuePress/mix/item"
-import AppLoad from "@/components/App/load"
+
+import navTheme from "@/includes/NavTheme/mixin"
 
 import UiPanel from '@/components/UI/Panel'
 import UiBox from '@/components/UI/Box'
@@ -72,10 +73,14 @@ import AdjacentNav from '@/components/modules/AdjacentNav'
 
 export default {
   name: "Bio",
+
+  beforeRouteEnter(to,from,next){
+    next(self=> self.navTheme_update({ brand: "logoTheme_dualtone" }))
+  },
+
   props:[ 'slug', 'category' ],
-  mixins:[ WpConnect ],
+  mixins:[ WpConnect, navTheme ],
   components:{
-    AppLoad,
     UiPanel,
     UiBox,
     UiButton,

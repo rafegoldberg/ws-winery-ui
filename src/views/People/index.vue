@@ -52,7 +52,6 @@ import DiscoveryBoxes from "@/components/static/discovery-boxes"
 import cover from "./assets/cover.png"
 import proprietors from "./assets/proprietors.png"
 
-
 let
 imgs = {
   cover,

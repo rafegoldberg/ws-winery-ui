@@ -76,22 +76,34 @@
       </li>
     </ul>
 
-    <WineSearch
-      @keydown.native.enter="$router.history.push('/wine') | toggle(false)"
-      :style="{
-        // position: 'absolute',
-        // left: 0,
-        // right: 0,
-        // bottom: 0,
-        display: 'flex',
-        justifyContent: 'center',
-        margin: '2rem 0 0',
-        padding: '2rem 1rem',
-        color: '#BA9454',
-        borderColor: '#BA9454',
-        background: '#323232',
-        flex: '0 0 6rem'
-      }"/>
+    <div class="AppMenu--footer">
+
+      <div class="AppMenu--footer-links">
+        <ui-link
+          v-if="cta"
+          v-bind="cta"
+          style="background: #7D1214"
+          @click.native="toggle"
+          />
+        <ui-link url="https://www.williams-selyem.com/shopping3/account/shopping_login.cfm" style="background: #BA9454" @click.native="toggle">
+          <UiIcon name="Account" width="1em" height="1em"/>
+          My Account
+        </ui-link>
+      </div>
+
+      <WineSearch
+        @keydown.native.enter="$router.history.push('/wine') | toggle(false)"
+        :style="{
+          display: 'flex',
+          justifyContent: 'center',
+          margin: 0,
+          padding: '2rem 1rem',
+          color: '#BA9454',
+          borderColor: '#BA9454',
+          background: '#323232',
+        }"/>
+    </div>
+
     
     <UiIcon
       class="AppMenu--close"
@@ -274,6 +286,23 @@ export default {
 @import '~@/styles/theme/fonts';
 @import '~@/styles/theme/breaks';
 @import '~@/styles/theme/colors';
+
+%blockLink {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: Color(light);
+  padding: .25em 1.5em;
+  font-weight: normal !important;
+  text-decoration: none;
+  & + * {
+    margin-top: .5rem;
+  }
+  .UiIcon:first-child {
+    margin-right: .5em;
+  }
+}
+
 .AppMenu {
 
   $B: &;
@@ -490,22 +519,49 @@ export default {
       }
     }
     > * {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      color: Color(light);
-      padding: .25em 1.5em;
-      font-weight: normal !important;
-      text-decoration: none;
-      & + * {
-        margin-top: .5rem;
-      }
-    }
-    .UiIcon:first-child {
-      margin-right: .5em;
+      @extend %blockLink;
     }
   }
 
+  &--footer {
+    flex: 0 0 6rem;
+    display: flex;
+    flex-flow: nowrap column;
+    width: 100%;
+    margin: 2rem 0 0;
+    &-links {
+      display: none;
+      width: 100%;
+      align-items: center;
+      > * {
+        @extend %blockLink;
+        flex: 1;
+        margin: 0;
+      }
+    }
+    @include Break( max-width Breaks(3) ){
+      flex: 0 9rem;
+      min-height: 9rem;
+      &-links {
+        display: flex;
+        margin-top: 0;
+      }
+      .WineSearch {
+        flex: 1;
+      }
+      @at-root .AppMenu--topStrip {
+        display: none !important;
+      }
+      @at-root
+      .AppMenu--list {
+        flex: 1;
+        margin-top: auto !important;
+        margin-bottom: auto !important;
+        min-height: 25em;
+        max-height: 38em;
+      }
+    }
+  }
   
   &--list-link { &.active, &.open {
     font-weight: bold;
