@@ -9,20 +9,26 @@
         >
       <component v-for="(box,i) in panel.boxes"
           :id="box.id"
-          :class="classList(box).join(' ')"
-          :is="box.img ? 'UiBoxImage' : 'UiBox'"
+          :class="box.doubleBoxed ? 'UiBox_doubled' : classList(box).join(' ')"
+          :is="(box.doubleBoxed || box.img) ? 'UiBoxImage' : 'UiBox'"
           :img="box.img || ''"
           :key="box.id"
           >
-        
-          <div v-if="box.wrap" :class="wrapClass(box.wrap)">
+
+          <component
+              v-if="box.doubleBoxed || box.wrap"
+              :is="box.doubleBoxed ? 'UiBox' : 'div'"
+              :class="[
+                wrapClass(box.wrap),
+                box.doubleBoxed ? classList(box).join(' ') : ''
+              ]">
             <component
               v-for="(com,i) in box.components"
               v-bind="com.props"
               :is="com.acf_fc_layout"
               :key="`com-${i}`"
               />
-          </div>
+          </component>
           <component v-else
             v-for="(com,i) in box.components"
             v-bind="com.props"
@@ -93,3 +99,17 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.UiBox {
+  $B: #{&};
+  &_doubled {
+    /deep/ &.UiBoxImage {
+      flex-flow: nowrap row;
+    }
+    > #{$B}[class*="UiTheme_"] {
+      box-shadow: 0 0 8em 0 rgba(0,0,0,.5);
+    }
+  }
+}
+</style>
