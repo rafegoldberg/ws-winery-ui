@@ -241,7 +241,14 @@ export default {
           margin-right: .5rem;
         }
         @include Break( max-width Breaks(4) ) {
-          display: none;
+          position: fixed;
+          bottom: 13vh;
+          left: 50%;
+          transform: translateX(-50%);
+          color: Color(light);
+          .UiIcon + :last-child:before {
+            content: "My ";
+          }
         }
       }
     }
