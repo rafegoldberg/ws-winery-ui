@@ -73,6 +73,9 @@ export default {
       &÷2, &Half { margin-top: .4rem }
     }
   }
+  &_spaceAuto { margin-bottom: auto }
+  &_pushAuto  { margin-top: auto }
+
   &_caps     { text-transform: uppercase }
   &_expand   { line-height: 1.6          }
   &_contract { line-height: 0.9          }

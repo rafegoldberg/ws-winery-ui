@@ -1,0 +1,43 @@
+.ButtonGroup {
+
+  $B: #{&};
+  
+  & {
+    display: inline-flex;
+    justify-content: space-evenly;
+    text-align: center;
+    margin: 2em 0 1.3em;
+  }
+  .UiButton {
+    // margin-right: 1px;
+    opacity: 1 !important;
+    display: inline-flex;
+    &_outline {
+      margin-left: -3px;
+      margin-right: -3px;
+      + .UiButton_outline,
+      + br + .UiButton_outline { // <- hack
+        margin-left: 0 !important;
+      }
+    }
+    &:not([class*="_outline"]){
+      border-color: transparent !important;
+    }
+    &--inner {
+      display: inline-block;
+      line-height: 1.3;
+      margin: .5em 0;
+    }
+    &:hover:not(:active) {
+      box-shadow: 0 .1em .8em 0em rgba(0,0,0,.2)
+    }
+    &:hover, &:active, &:focus {
+      position: relative;
+      z-index: 2;
+    }
+  }
+  // &_hairline {
+  //   #{$B}_outline {
+  //   }
+  // }
+}
