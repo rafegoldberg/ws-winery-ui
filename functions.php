@@ -6,6 +6,7 @@
 
   include "php/shortcodes/gold.php";
   include "php/shortcodes/heading.php";
+  include "php/shortcodes/button.php";
 
   include "php/api/adjacent.php";
   include "php/api/CORS.php";
