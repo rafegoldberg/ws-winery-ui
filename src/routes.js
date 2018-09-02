@@ -57,6 +57,10 @@ export default [
     path: "/wine",
     component: ()=> import("./views/Wine"),
   },
+  {
+    path: "/wines",
+    redirect: "/wine",
+  },
 
   { name: "Page",
     path: "/:slug",
