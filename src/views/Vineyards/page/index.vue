@@ -6,7 +6,11 @@
   <main id="VineyardPage" class="UiTheme_light" v-else>
 
     <UiPanel id="VineyardPage-overview">
-      <UiBoxImg id="VineyardPage-overviewMedia" :img="media" class="UiTheme_cream" style="background-position: center 25%" />
+      <UiBoxImg id="VineyardPage-overviewMedia" :img="media" class="UiTheme_cream" style="background-position: center 25%">
+        <router-link v-if="this.area" :to="`/growing-ava#${this.area.slug}`" class="AVA-link">
+          {{this.area.name}}
+        </router-link>
+      </UiBoxImg>
       <UiBox id="VineyardPage-overviewContent" class="UiTheme_light wrap_mid">
         <div id="VineyardPage-overviewContent-inner" v-if="text">
 
@@ -80,7 +84,10 @@
 <script>
 import WpConnect from '@/VuePress/mix/item'
 import * as computed from './computed'
+
 import loThrottle from 'lodash/throttle'
+import loFlat from "lodash/flatten"
+import loFind from "lodash/find"
 
 import UiPanel from '@/components/UI/Panel'
 import UiBox from '@/components/UI/Box'
@@ -93,6 +100,7 @@ import WineGrid from '@/views/Wine/grid'
 import StaticIconList from '@/components/static/icon-list'
 
 import AdjacentNav from '@/components/modules/AdjacentNav'
+import getTerm from '../../Wine/lib/get.wpTerm';
 
 export default {
   name: 'VineyardPage',
@@ -111,6 +119,14 @@ export default {
     useLandscape: false
   }),
   methods: {
+    getTerm( where ){
+
+      let
+      terms = this.context._embedded["wp:term"]
+      terms = loFlat(terms)
+
+      return loFind( terms, where )
+    },
     handleResize: loThrottle(function(){
       // this.$log(window.matchMedia("(max-width: 832px)").matches)
       this.$set(this,'useLandscape',window.matchMedia("(max-width: 832px)").matches);
@@ -118,6 +134,11 @@ export default {
   },
   computed: {
     ...computed,
+
+    area(){
+      if( this.context.loading ) return {};
+      else return this.getTerm({id:this.context.AVA[0]})
+    },
 
     endpoint() {
       if (this.API)
@@ -147,7 +168,7 @@ export default {
     AdjacentNav,
     WineGrid,
     StaticIconList
-  }
+  },
 }
 </script>
 
@@ -260,6 +281,62 @@ export default {
   }
 }
 </style>
+
+<style lang="scss">
+.AVA-link {
+
+  font-size: smaller;
+
+  $size:  1.4em;
+  $space: .3em;
+
+  display: inline-flex;
+  align-items: center;
+  margin: auto 0 0 auto;
+  padding: $space $space*2 $space 0;
+  transform: translate(1rem,3rem);
+  text-decoration: none;
+  color: #BA9454;
+  background: #FAFAFA;
+  line-height: 1;
+  height: $size;
+  border-radius: $size/2;
+  box-shadow: 1px 2px 12px -1px rgba(black,.5);
+  transition: .26s ease;
+  &:before {
+    content: '';
+    display: inline-block;
+    width: $size;
+    height: $size;
+    border-radius: 100%;
+    background: currentColor;
+    margin-right: $space;
+    border: 4px double #FFF;
+    transition: inherit;
+  }
+  &:after {
+    content: '→';
+    transition: inherit;
+    margin-left: .2em;
+    transform: translateY(1px);
+  }
+  &:not(:hover) {
+    opacity: .9;
+    &:before {
+      border-width: 0;
+      box-shadow: 0 0 0 2px #fafafa inset
+    }
+    &:after {
+      margin-left: -1em;
+      opacity: 0;
+    }
+  }
+  &:active:before {
+    border-width: 0;
+  }
+}
+</style>
+
 
 <style lang="scss">
 @import '~@/styles/theme/colors';
