@@ -95,10 +95,6 @@
       </UiBox>
     </UiPanel>
 
-    <!-- <UiPanel v-if="checkTechSpecs">
-      <UiBoxImg :img="img4" class="UiBox_tall UiBoxImage_vignette"/>
-    </UiPanel> -->
-
     <UiPanel v-if="sections[2]" class="UiTheme_dark">
       <UiBox :collapse="true" class="UiTheme_dark">
         <div class="wrap_min">
@@ -106,7 +102,7 @@
           <p v-html="sections[2].text"/>
         </div>
       </UiBox>
-      <UiBoxImg :img="img2" class="UiBox_tall"></UiBoxImg>
+      <UiBoxImg :img="img2" class="UiBox_tall reorderFirst_mobile"></UiBoxImg>
     </UiPanel>
 
     <UiPanel class="UiTheme_light" v-if="acf.reviews || oldReviews && !oldReviews.loading">
