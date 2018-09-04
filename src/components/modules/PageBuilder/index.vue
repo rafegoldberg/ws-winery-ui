@@ -104,10 +104,10 @@ export default {
 .UiBox {
   $B: #{&};
   &_doubled {
-    /deep/ &.UiBoxImage {
+    &.UiBoxImage:not(.UiBox_stack) {
       flex-flow: nowrap row;
     }
-    > #{$B}[class*="UiTheme_"] {
+    &.UiBoxImage > #{$B}[class*="UiTheme_"] {
       box-shadow: 0 0 8em 0 rgba(0,0,0,.5);
     }
   }

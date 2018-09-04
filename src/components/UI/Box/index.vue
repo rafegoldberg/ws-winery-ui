@@ -66,6 +66,7 @@ export default {
     max-height: 48vh;
     overflow: hidden;
     align-items: flex-start;
+    margin: auto 0;
     > * {
       pointer-events: none !important;
     }
