@@ -84,7 +84,18 @@ export default {
       // TODO: move defaults + merge logic in to NavTheme mixin
       //
       if( this.page.loading ) return
-      else this.navTheme_update(this.page.acf.AppNav)
+
+      this.navTheme_update(this.page.acf.AppNav)
+      setTimeout(()=>{
+        let
+        hash = this.$route.hash,
+        $ref = document.querySelectorAll(hash)
+
+        if( $ref = $ref[0] ){
+          $ref.scrollIntoView()
+          window.scrollBy(0, -(document.querySelectorAll('#AppNav')[0].offsetHeight))
+        }
+      })
     },
   },
 }
