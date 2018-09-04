@@ -18,8 +18,9 @@
     </ul>
   </div>
   
-  <div class="MediaList--media">
-    <img :src="media" alt="">
+  <div class="MediaList--media" style="display: flex">
+    <img v-show="!imgLoading" :src="media" @load="(imgLoading = false)">
+    <img v-if="imgLoading" :src="imgSpinner" style="margin: auto">
   </div>
 
 </div>
@@ -29,7 +30,7 @@
 import API from '@/VuePress/mix/API'
 import UiHeading from '@/components/UI/Heading'
 
-import mock from './mock/data.long'
+import imgSpinner from '@/assets/preloader.gif'
 import fallback from './mock/default.jpg'
 
 export default {
@@ -37,12 +38,14 @@ export default {
   mixins:[ API ],
   components:{ UiHeading },
   props:{
-    list:{ type:[Array,Object], default:()=>mock },
+    list:{ type:[Array,Object] },
     title:{ type:String }
   },
   data:()=>({
-    current: 0
-    }),
+    current: 0,
+    imgSpinner,
+    imgLoading: false,
+  }),
   methods:{
     getImage(){
       // console.log({args:arguments,self:this})
@@ -93,6 +96,11 @@ export default {
         return xhr
       },
       watch(){ this.active }
+    }
+  },
+  watch:{
+    media(is,was){
+      this.imgLoading = true
     }
   }
 }
