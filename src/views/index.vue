@@ -86,7 +86,7 @@ export default {
   components:{ UiPanel, UiIcon, Slider },
   watch:{
     page(){
-      this.navTheme_update(this.page.acf.AppNav)
+      this.navTheme_update(this.page.acf && this.page.acf.AppNav || false)
     }
   },
   asyncComputed:{
