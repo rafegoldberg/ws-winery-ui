@@ -1,8 +1,10 @@
 <?/** WP Config
    */
   include "php/wp/admin.php";
+  include "php/wp/menu.php";
   include "php/wp/relativeLinks.php";
   include "php/wp/mimeTypes.php";
+  include "php/wp/roles.php";
 
   include "php/shortcodes/gold.php";
   include "php/shortcodes/heading.php";
@@ -55,9 +57,9 @@
 <?/** Configure Rest Caching Plugin
    * (clear on post update)
    */
-  function clear_api_cache(){
-    if( class_exists( 'WP_REST_Cache' ) )
-    WP_REST_Cache::empty_cache();
-  }
-  add_action('save_post','clear_api_cache');
+  // function clear_api_cache(){
+  //   if( class_exists( 'WP_REST_Cache' ) )
+  //   WP_REST_Cache::empty_cache();
+  // }
+  // add_action('save_post','clear_api_cache');
   ?>

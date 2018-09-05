@@ -18,13 +18,4 @@
     "redirect"       => false,
   ]);
 
-  // Hide Default ACF
-  // Options Page Menu
-  //
-  add_action('admin_menu',function(){
-    remove_menu_page('acf-options');
-    remove_menu_page('index.php');
-    remove_menu_page('seo');
-  },99);
-
 }?>

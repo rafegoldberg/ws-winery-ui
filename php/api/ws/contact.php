@@ -65,7 +65,7 @@ function ws_api_contact(WP_REST_Request $req){
   ];
   $mail = wp_mail($sendto, "Williams Selyem – $subj", $html, $head);
   
-  if( false/* !$mail */ )
+  if( !$mail )
     return new WP_Error('couldnt_send', __("We hit a snag and couldn't send your message! Please <a href='?'>reload the page</a>, or try again in a bit if the issue persists. You can also <a href='#call'>reach us by phone</a>."), ['status'=>501]);
   
   return new WP_REST_Response([
