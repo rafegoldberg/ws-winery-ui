@@ -21,14 +21,14 @@
       </UiBox>
 
       <UiBox class="WinePage--intro UiBox_stack hide_mobile">
-        <template v-if="sections[0] && sections[0].text && sections[0].text.length >= 170">
+        <span v-if="sections[0] && sections[0].text && sections[0].text.length >= 170">
           <UiHeading :level="3" class="UiHeading_gold UiHeading_space÷2" style="align-self: stretch">Winemakers Notes</UiHeading>          
           <p v-if="sections[0]" class="wrap_min">{{sections[0].text | truncate}}</p>
           <br>
           <ReadMore href="#content" class="ReadMore_gold">
             <b>Read More</b>
           </ReadMore>
-        </template>
+        </span>
         <ReadMore v-else href="#content" class="ReadMore_caps ReadMore_center ReadMore_gold"/>
       </UiBox>
 
