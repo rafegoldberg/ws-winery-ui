@@ -91,7 +91,7 @@ p, li {
   }
 }
 
-#app > [id] > .UiPanel:first-child > .UiBoxImage:first-child {
+#app > [id] > .UiPanel:first-child > .UiBoxImage:first-child .UiHeading {
   @extend .textPop !optional;
 }
 </style>
