@@ -24,6 +24,9 @@ import {titleize} from 'inflection'
 Vue.filter( "truncate", truncate )
 Vue.filter( "round", round )
 
+import rewriteSRC from "@/includes/mixins/ws.rewriteSRC"
+Vue.mixin(rewriteSRC)
+
 import AppLoad from "@/components/App/load"
 import UiLink from "@/components/UI/Link"
 Vue.component('AppLoad',AppLoad)

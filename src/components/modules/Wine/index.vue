@@ -96,7 +96,7 @@ export default {
           .id(this.image)
           .get()
           .then(rsp=> rsp.media_details.sizes.medium.source_url )
-          .then(rsp=> rsp.replace(/.*\/wp-content\//gim, 'https://www.williamsselyem.com/wp-content/') )
+          .then(rsp=> this.wsRewriteSRC(rsp) )
 
         // this.$log(xhr)
         return xhr

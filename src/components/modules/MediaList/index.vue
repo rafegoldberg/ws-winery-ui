@@ -86,10 +86,7 @@ export default {
         xhr = await this.API.media()
           .id(img)
           .get()
-          .then( rsp=> rsp
-            .source_url
-            .replace(/.*\/wp-content\//gim,'https://www.williamsselyem.com/wp-content/')
-          )
+          .then( rsp=> this.wsRewriteSRC(rsp.source_url) )
           .catch( e=>( err = e ))
 
         if( err ) return fallback

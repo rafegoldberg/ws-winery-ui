@@ -17,7 +17,7 @@ export function media( self ){
   var
   img = loFlat(this.embedded['wp:featuredmedia'])[0],
   src = img.source_url
-  src = src.replace(/.*\/wp-content\//gim,'https://www.williamsselyem.com/wp-content/')
+  src = this.rewriteSRC(src)
   return src
 }
 

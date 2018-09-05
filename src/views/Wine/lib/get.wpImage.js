@@ -4,7 +4,7 @@ export default function update(){
   src = (this.embed||this.context._embedded)
   if(!( 'wp:featuredmedia' in src )) return ''
   src = src['wp:featuredmedia'][0].source_url
-  src = src.replace(/.*\/wp-content\//gim,'https://www.williamsselyem.com/wp-content/')
+  src = this.wsRewriteSRC(src)
   return src
 }
 export function original(WPX){
@@ -26,9 +26,9 @@ export function original(WPX){
   set = /(srcset) *= *((['"])?((\\\3|[^\3])*?)\3|(\w+))/
     .exec(match)[4]
     .split(/,/g)
-    .map(e=>{
-      e = e.trim().split(/\s/)[0]
-      return e.replace(/.*\/wp-content\//gim,'https://www.williamsselyem.com/wp-content/')
+    .map(src=>{
+      src = src.trim().split(/\s/)[0]
+      return this.wsRewriteSRC(src)
     })
 
   return set.reverse()
