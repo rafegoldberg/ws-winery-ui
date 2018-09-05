@@ -17,7 +17,8 @@
       <UiBox class="UiBox_stack UiBox_connectedBottom wrap_flex_min">
         <UiHeading class="UiHeading_center UiHeading_gold">Greatness in the bottle starts with greatness in the vineyard.</UiHeading>
         <p style="text-align: justify">First things first. Every bottle of wine is born in the vineyard. That’s why we are so particular about the way we source grapes. The grapes have to be exceptional, or no amount of knowledge, effort, time or craft will turn them into exceptional wine.</p>
-        <a @click="e=> e.path[2].nextElementSibling.nextElementSibling.scrollIntoView(true)" class="UiButton UiButton_outline UiButton_gold">View Our Vineyards</a>
+        <a @click="e=> $refs['about-section'].$el.scrollIntoView()" class="UiButton UiButton_outline UiButton_gold">View Our Vineyards</a>
+        <!-- <a @click="e=> e.path[2].nextElementSibling.nextElementSibling.scrollIntoView(true)" class="UiButton UiButton_outline UiButton_gold">View Our Vineyards</a> -->
       </UiBox>
     </UiPanel>
     
@@ -25,7 +26,7 @@
       <UiBoxImage :img="imgs.about" class="UiBox_tall" style="background-position: top center"/>
     </UiPanel>
 
-    <UiPanel>
+    <UiPanel ref="about-section">
 
       <UiBox class="VinyardsPage--about  UiBox_connectedTop">
         <div class="wrap_tiny">
@@ -119,7 +120,7 @@ export default {
   beforeRouteEnter(to,from,next){
     next(self=> self.navTheme_update({
       menu: "menuTheme_light",
-      // brand: "logoTheme_light"
+      brand: "logoTheme_light"
       }))
   },
 
