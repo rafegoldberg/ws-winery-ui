@@ -15,9 +15,17 @@
           freeMode: false
         }
       },
+      autoplay: {
+        delay: 10000
+      },
       direction: 'vertical',
-      freeMode: true,
-      freeModeSticky: true,
+      //effect: 'fade',
+      speed: 800,
+      resistanceRatio: .5,
+      //freeMode: true,
+      //freeModeSticky: true,
+      //freeModeMomentum: true,
+      //freeModeMomentumVelocityRatio: 10,
       hashNavigation: {
         watchState: true,
         replaceState: true
@@ -25,9 +33,9 @@
       keyboard: true,
       lazy: {
         loadPrevNext: true,
+        loadPrevNextAmount: 2,
         loadOnTransitionStart: true,
       },
-      // preloadImages: false,
       mousewheel: {
         releaseOnEdges: true,
         sensitivity: 1
@@ -42,8 +50,7 @@
           </div>`;
         },
       },
-      parallax: true,
-      speed: 400,
+      //parallax: true,
     }">
     <div slot="swiper-post" slot-scope="swiper">
       <div :class="{
@@ -194,6 +201,9 @@ export default {
   }
   .swiper {
     & { // custom elems
+      &-slide {
+        overflow: hidden;
+      }
       &-social {
         @extend %swiper-footer;
         bottom: 2rem;
