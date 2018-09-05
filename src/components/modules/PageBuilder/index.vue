@@ -56,6 +56,7 @@ import Timeline from "@/components/modules/Timeline"
 import FaqList from "@/components/modules/FaqList"
 import IconList from "@/components/static/icon-list"
 import ContactForm from "@/components/static/contact-form"
+import AvaList from "@/components/static/ava-list"
 
 export default {
   name: "PageBuilder",
@@ -73,6 +74,7 @@ export default {
     FaqList,
     IconList,
     ContactForm,
+    AvaList,
   },
   methods:{
     wrapClass( size ){

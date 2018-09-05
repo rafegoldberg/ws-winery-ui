@@ -7,7 +7,8 @@
 
     <UiPanel id="VineyardPage-overview">
       <UiBoxImg id="VineyardPage-overviewMedia" :img="media" class="UiTheme_cream" style="background-position: center 25%">
-        <router-link v-if="this.area" :to="`/growing-ava#${this.area.slug}`" class="AVA-link">
+        <router-link v-if="area" :to="`/growing-ava#${area.slug}`" class="AVA-link">
+          <span class="AVA-link--index" v-text="area.index"/>
           {{this.area.name}}
         </router-link>
       </UiBoxImg>
@@ -18,7 +19,7 @@
             <AdjacentNav all="/vineyards" v-bind="adjacent"/>
             <UiHeading
               id="VineyardPage-overviewHeader"
-              class="UiHeading_contract UiHeading_space÷2"
+              class="UiHeading_push÷2 UiHeading_spaceX2"
               :level="2"
               :scale="3"
               v-html="context.title.rendered"
@@ -60,9 +61,9 @@
       </UiBox>
     </UiPanel>
 
-    <UiPanel class="UiTheme_light">
+    <UiPanel class="VineyardPage--grid UiTheme_light">
       <UiBox class="UiBox_stack">
-        <UiHeading :level="2" :scale="3" class="UiHeading_space">
+        <UiHeading :level="2" :scale="3" class="UiHeading_spaceX2">
           Our
           <span v-html="context.title.rendered"/> Wines
         </UiHeading>
@@ -194,11 +195,13 @@ export default {
     }
 
     &Header {
-      margin: 0 0 1rem;
-      @include Break(max-width Breaks(4)) {
-        margin: 0.5em auto;
+      // margin: 0 0 1rem;
+      margin-left: -.1em;
+      @include Break(max-width Breaks(3)) {
+        margin: .8em auto 1.2em;
         text-align: center;
-        line-height: 1.1;
+        text-indent: 0;
+        // line-height: 1.1;
       }
     }
 
@@ -280,39 +283,71 @@ export default {
     }
   }
 }
+
+.VineyardPage--grid {
+  @include Break( max-width Breaks(3) ){
+    &, > .UiBox:first-child {
+      padding-top: 0;
+    }
+  }
+}
 </style>
 
 <style lang="scss">
 .AVA-link {
 
-  font-size: smaller;
+  $size:    2em;
+  $lines:   1;
+  $space:  .6em;
+  $c-pop:  #BA9454;
+  $c-lite: #FAFAFA;
 
-  $size:  1.4em;
-  $space: .3em;
-
+  position: absolute;
+  right: 0;
+  bottom: 1.5rem;
+  // transform: translate(1rem,3rem);
+  
   display: inline-flex;
   align-items: center;
-  margin: auto 0 0 auto;
-  padding: $space $space*2 $space 0;
-  transform: translate(1rem,3rem);
-  text-decoration: none;
-  color: #BA9454;
-  background: #FAFAFA;
-  line-height: 1;
   height: $size;
-  border-radius: $size/2;
+  margin: auto 0 0 auto;
+  padding: $space $space*1.5 $space 0;
+
+  font-size: smaller;
+  line-height: $lines;
+
+  text-decoration: none;
+  color: $c-lite;
+  background: rgba(13,13,13,.6);
+  border: 1px solid rgba(90,90,90,.75);
+  border-width: 1px 0;
+  border-radius: $size/2 0 0 $size/2;
   box-shadow: 1px 2px 12px -1px rgba(black,.5);
   transition: .26s ease;
-  &:before {
-    content: '';
-    display: inline-block;
+  &--index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: $size;
     height: $size;
-    border-radius: 100%;
-    background: currentColor;
     margin-right: $space;
-    border: 4px double #FFF;
+    font-weight: bold;
+    background: $c-pop;
+    color: $c-lite;
+    border: 0 double $c-lite;
+    border-radius: 100%;
     transition: inherit;
+  }
+  &:not(:hover) &--index {
+    // border-style: solid;
+    box-shadow:
+      0 0 0 3px $c-lite,
+      0 0 0 0px $c-lite inset;
+  }
+  &:hover &--index {
+    box-shadow:
+      0 0 0 0px $c-lite,
+      0 0 0 3px $c-lite inset;
   }
   &:after {
     content: '→';
@@ -322,21 +357,13 @@ export default {
   }
   &:not(:hover) {
     opacity: .9;
-    &:before {
-      border-width: 0;
-      box-shadow: 0 0 0 2px #fafafa inset
-    }
     &:after {
       margin-left: -1em;
       opacity: 0;
     }
   }
-  &:active:before {
-    border-width: 0;
-  }
 }
 </style>
-
 
 <style lang="scss">
 @import '~@/styles/theme/colors';
