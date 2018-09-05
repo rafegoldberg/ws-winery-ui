@@ -1,27 +1,27 @@
 <template>
-<component
-    :is="tag"
-    class="UiBox"
-    :class="{
-      'UiBox_stack': stack,
-      'UiBox_expanded':  typeof collapse!=='boolean' ? false : !collapse,
-      'UiBox_collapsed': typeof collapse!=='boolean' ? false :  collapse,
-    }">
-  
-  <slot/>
+  <component
+      :is="tag"
+      class="UiBox"
+      :class="{
+        'UiBox_stack': stack,
+        'UiBox_expanded':  typeof collapse!=='boolean' ? false : !collapse,
+        'UiBox_collapsed': typeof collapse!=='boolean' ? false :  collapse,
+      }">
+    
+    <slot/>
 
-  <div
-    v-if="typeof collapse==='boolean'"
-    class="UiBox--expandIcon">
-    <UiIcon
-      name="CirclePlus"
-      width="1.5em"
-      height="1.5em"
-      @click.native="toggleCollapse"
-      />
-  </div>
-  
-</component>
+    <div
+      v-if="typeof collapse==='boolean'"
+      class="UiBox--expandIcon">
+      <UiIcon
+        name="CirclePlus"
+        width="1.5em"
+        height="1.5em"
+        @click.native="toggleCollapse"
+        />
+    </div>
+    
+  </component>
 </template>
 <script>
 /**
@@ -58,15 +58,23 @@ export default {
 @import "./style.scss";
 .UiBox {
   @extend %UiBox, %UiBox_center;  
+  > .UiBox {
+    padding: 1.9rem 1.6rem;
+    &:not(.UiBox_push-up):not(.UiBox_push-down) {
+      margin-top: -1.9rem;
+      margin-bottom: -1.9rem;
+    }
+  }
   &_stack {
     flex-flow: nowrap column;
     align-items: center;
   }
   &_collapsed {
-    max-height: 48vh;
+    height: 100%;
+    max-height: 52vh;
     overflow: hidden;
     align-items: flex-start;
-    margin: auto 0;
+    margin: 0 0 auto;
     > * {
       pointer-events: none !important;
     }
@@ -85,7 +93,7 @@ export default {
       right: 0;
       bottom: 0;
       left: 0;
-      padding: 1rem;
+      padding: 2em;
       font-size: smaller;
       font-weight: bold;
       text-transform: uppercase;
@@ -93,14 +101,20 @@ export default {
       background: linear-gradient(
         to bottom,
         transparent,
-        Color(dark) 93%
+        Color(dark) 90%
+      );
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        Color(dark) calc(100% + -3rem)
       );
       opacity: 1;
       transition: $transition;
+      box-sizing: content-box;
     }
     .UiIcon {
       position: absolute;
-      bottom: 3em;
+      bottom: 3.3rem;
       left: 50%;
       transform: translateX(-50%);
       transition: $transition;
@@ -131,7 +145,7 @@ export default {
         pointer-events: none;
       }
       .UiIcon {
-        bottom: 1.5em;
+        bottom: 2.3em;
         transform: translateX(-50%) rotate(45deg);
         transition-delay: .1s;
       }
