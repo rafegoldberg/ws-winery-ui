@@ -30,7 +30,7 @@
         <div style="margin-right:auto">
           <slot name="pagination-first"/>
         </div>
-        <span @click="( page = getPrevPage() )" :class="{ disabled: page==1 }">
+        <span class="pageChit" @click="( page = getPrevPage() )" :class="{ disabled: page==1 }">
           <UiIcon name="ArrowLeft" width="1rem" height="1rem"/>
         </span>
 
@@ -205,5 +205,6 @@ export default {
 .pageChit {
   width: 2rem;
   text-align: center;
+  &:not(.disabled) { cursor: pointer }
 }
 </style>
