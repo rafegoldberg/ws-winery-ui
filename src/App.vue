@@ -90,4 +90,8 @@ p, li {
     margin: -.15em 0;
   }
 }
+
+#app > [id] > .UiPanel:first-child > .UiBoxImage:first-child {
+  @extend .textPop !optional;
+}
 </style>

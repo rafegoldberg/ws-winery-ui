@@ -174,6 +174,11 @@ export default {
   }
   &.menuTheme_light &-menu {
     --c: #{Color(light)};
+    button {
+      text-shadow:
+        0 1px 0 rgba(Color(dark),.3),
+        0 -1px .5em rgba(Color(dark),.3);
+    }
   }
 
   @include Break( max-width Breaks(4) ){

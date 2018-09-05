@@ -219,7 +219,7 @@ export default {
     }
   }
   &Trigger {
-    $pop: Color(light);
+    $pop: mix(Color(light),Color(dark),88%);
 
     position: relative;
     // color: Color(theme);
@@ -254,8 +254,8 @@ export default {
     }
     >:first-child:hover,
     >:first-child:focus-within {
-      background-color: rgba($pop,.2);
-      backdrop-filter: blur(2px) saturate(1.2);
+      background-color: rgba($pop,.15);
+      backdrop-filter: blur(1.5px) saturate(1.15);
       &:not(:active) {
         box-shadow: 0 0 0 1px rgba(invert($pop),.1);
       }
