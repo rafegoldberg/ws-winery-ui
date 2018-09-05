@@ -161,7 +161,7 @@ export default {
     @include Break( max-width Breaks(1) ){
       margin-right: -1rem;
       width: 100%;
-      min-width: calc(100% + 2rem);
+      min-width: calc(100% + 2.5rem);
     }
   }
   #content {
