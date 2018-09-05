@@ -17,7 +17,7 @@ export function media( self ){
   var
   img = loFlat(this.embedded['wp:featuredmedia'])[0],
   src = img.source_url
-  src = this.rewriteSRC(src)
+  src = this.wsRewriteSRC(src)
   return src
 }
 
