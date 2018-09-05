@@ -58,19 +58,23 @@ export default {
   }
 
   &_space  {
-    margin-bottom: 1.2em;
-    &÷2, &Half { margin-bottom: .6em }
+    margin-bottom: 1.1em;
+    &÷2, &Half  { margin-bottom: .6em }
+    &X2, &Twice { margin-bottom: 1.9em }
     @include Break( max-width Breaks(3) ){
-      margin-bottom: 1rem;
-      &÷2, &Half { margin-bottom: .4rem }
+      margin-bottom: .9em;
+      &÷2, &Half  { margin-bottom: .4em }
+      &X2, &Twice { margin-bottom: 1.2em }
     }
   }
   &_push   {
-    margin-top: 1.2em;
-    &÷2, &Half { margin-top: .6em }
+    margin-top: 1.1em;
+    &÷2, &Half  { margin-top: .6em }
+    &X2, &Twice { margin-top: 1.9em }
     @include Break( max-width Breaks(3) ){
-      margin-top: 1rem;
-      &÷2, &Half { margin-top: .4rem }
+      margin-top: .9em;
+      &÷2, &Half  { margin-top: .4em }
+      &X2, &Twice { margin-top: 1.2em }
     }
   }
   &_spaceAuto { margin-bottom: auto }
