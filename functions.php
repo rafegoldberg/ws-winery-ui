@@ -13,11 +13,12 @@
   include "php/api/adjacent.php";
   include "php/api/CORS.php";
   include "php/api/metaQuery.php";
-  include "php/api/wsMetas.php";
-
+  
+  include "php/api/ws/metas.php";
   include "php/api/ws/frontpage.php";
   include "php/api/ws/reviews.php";
   include "php/api/ws/contact.php";
+  include "php/api/ws/avaIndex.php";
 ?>
 
 <?/** Attach Vue UI
