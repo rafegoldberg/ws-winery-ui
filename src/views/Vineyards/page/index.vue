@@ -205,6 +205,12 @@ export default {
       }
     }
 
+    &Media {
+      &:before {
+        display: none !important;
+      }
+    }
+
     &Sidebar {
       float: left;
       width: $sidebar-width;
@@ -242,6 +248,7 @@ export default {
   }
   &--media {
     margin-bottom: 1.5rem;
+    
     @include Break(max-width Breaks(4)) {
       margin-top: -3rem;
     }
