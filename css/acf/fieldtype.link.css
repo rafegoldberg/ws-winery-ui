@@ -1,0 +1,50 @@
+.acf-field-link .link-wrap {
+  display: inline-flex !important;
+  align-items: center;
+  max-width: 100%;
+  box-sizing: border-box;
+  white-space: nowrap;
+  background: #FAFAFA;
+}
+
+.acf-field-link .link-title {
+  flex: 1 max-content;
+  font-weight: bold;
+}
+.acf-field-link .link-url {
+  flex: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  opacity: .5;
+}
+.acf-field-link .link-url:focus {
+  box-shadow: none !important;
+}
+
+/* link edit icons
+ */
+
+.-link-ext ~ .acf-icon {
+  transition: .3s ease;
+}
+.-link-ext + .acf-icon:hover {
+  background: #fbfdff;
+  box-shadow: 0 0 0 1px rgba(30, 144, 255, .6) inset;
+  color: dodgerblue;
+}
+.-link-ext ~ .acf-icon.-cancel:not(:hover) {
+  opacity: .5;
+}
+.-link-ext ~ .acf-icon.-cancel:hover {
+  opacity: 1 !important;
+  background: #ffe3eb;
+  box-shadow: 0 0 0 1px rgba(209, 18, 64, .4) inset;
+  color: #d11240;
+}
+
+.acf-field-link .link-title:empty,
+.acf-field-link .link-url:empty,
+.acf-field-link .link-url:empty ~ .acf-icon.-cancel {
+  display: none;
+}

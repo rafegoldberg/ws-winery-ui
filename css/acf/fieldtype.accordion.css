@@ -1,0 +1,11 @@
+.acf-accordion-title {
+  display: flex !important;
+  flex-flow: nowrap row-reverse;
+  justify-content: space-between;
+  align-items: center;
+}
+.acf-accordion-title h1,
+.acf-accordion-title h2,
+.acf-accordion-title h3 {
+  font-weight: 100 !important;
+}

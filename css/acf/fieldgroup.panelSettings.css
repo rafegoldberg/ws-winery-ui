@@ -1,0 +1,26 @@
+.acf-field[data-name="panels"] .acf-row.-collapsed .-sidebar {
+  padding-left: 0 !important;
+}
+.acf-field[data-name="panels"] .acf-row.-collapsed .-sidebar[style*="height:"] {
+  height: unset !important;
+}
+.acf-field[data-name="panels"] .acf-row.-collapsed .-sidebar:before {
+  display: none;
+}
+.acf-field[data-name="panels"] .acf-row.-collapsed .acf-fields.-sidebar {
+  background: #F8F8F8;
+}
+.acf-field[data-name="panels"] .acf-row.-collapsed .hideOn-collapsed {
+  display: none;
+}
+
+.acf-field[data-name="panels"] .acf-row.-collapsed h1 {
+  padding-top: 0;
+}
+.acf-field[data-name="panels"] .acf-row.-collapsed h1 >:not(.hideOn-collapsed) {
+  font-weight: bold;
+}
+.acf-field[data-name="panels"] .acf-row.-collapsed .description {
+  opacity: 0;
+  margin-bottom: -25px;
+}

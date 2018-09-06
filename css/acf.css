@@ -1,0 +1,8 @@
+@import "./acf/fieldtype.link.css";
+@import "./acf/fieldtype.accordion.css";
+@import "./acf/fieldgroup.panelSettings.css";
+@import "./acf/fieldclass.noMove.css";
+
+.ui-sortable-handle a.acf-hndle-cog {
+  display: none;
+}
