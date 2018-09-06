@@ -1,7 +1,7 @@
 <template>
 
   <AppLoad
-    v-if="context.loading"
+    v-if="context.loading | settings.loading"
     />
   <main id="VineyardsListPage" v-else>
     
@@ -15,10 +15,12 @@
 
     <UiPanel>
       <UiBox class="UiBox_stack UiBox_connectedBottom wrap_flex_min">
-        <UiHeading class="UiHeading_center UiHeading_gold">Greatness in the bottle starts with greatness in the vineyard.</UiHeading>
+        <ActionBox v-if="!settings.loading" v-bind="settings.intro">
+          <a slot="action" @click="e=> $refs['vineyards-details'].$el.scrollIntoView()" class="UiButton UiButton_outline UiButton_gold">View Our Vineyards</a>
+        </ActionBox>
+        <!-- <UiHeading class="UiHeading_center UiHeading_gold">Greatness in the bottle starts with greatness in the vineyard.</UiHeading>
         <p style="text-align: justify">First things first. Every bottle of wine is born in the vineyard. That’s why we are so particular about the way we source grapes. The grapes have to be exceptional, or no amount of knowledge, effort, time or craft will turn them into exceptional wine.</p>
-        <a @click="e=> $refs['about-section'].$el.scrollIntoView()" class="UiButton UiButton_outline UiButton_gold">View Our Vineyards</a>
-        <!-- <a @click="e=> e.path[2].nextElementSibling.nextElementSibling.scrollIntoView(true)" class="UiButton UiButton_outline UiButton_gold">View Our Vineyards</a> -->
+        <a @click="e=> $refs['about-section'].$el.scrollIntoView()" class="UiButton UiButton_outline UiButton_gold">View Our Vineyards</a> -->
       </UiBox>
     </UiPanel>
     
@@ -26,29 +28,11 @@
       <UiBoxImage :img="imgs.about" class="UiBox_tall" style="background-position: top center"/>
     </UiPanel>
 
-    <UiPanel ref="about-section">
-
+    <UiPanel v-if="!settings.loading" ref="vineyards-details">
       <UiBox class="VinyardsPage--about  UiBox_connectedTop">
-        <div class="wrap_tiny">
-          <UiHeading class="UiHeading_gold" :level="4">Buying Grapes</UiHeading>
-          <p>In the beginning, all of our grapes were purchased from existing vineyards, based on deals sealed with nothing but a handshake. Thirty-five years later, nearly all of those “handshake agreements” are still in place—a testament to the loyal, personal relationships our founders established with the region’s most respected grape growers.</p>
-          <p>There is no doubt that our success was built on partnering with these growers. Some are neighbors, located right here in the Russian River Valley. Others tend vineyards in Sonoma and Mendocino counties. Each has something unique to contribute; all are committed to producing wine grapes without peer.
-          </p>
-          <br>
-          <ReadMore text="Our Growers Vineyards" href="#growers-vineyards" class="ReadMore_center ReadMore_gold"/>
-          <br>
-        </div>
-        <div class="wrap_tiny">
-          <UiHeading class="UiHeading_gold" :level="4">Growing Grapes</UiHeading>
-          <p>As the popularity of our wines grew, our growers were unable to keep up with the increased demand. The next logical step was to start growing some of our own grapes.</p>
-          <p>In 1998, we purchased the Drake property in Guerneville—a riverside orchard which had once provided apples for Gerber baby foods—and started cultivating Pinot Noir grapes on the land. In the intervening years, we have purchased and developed four more Estate vineyards.</p>
-          <p>In 2009, Wine Enthusiast Magazine awarded our 2007 Litton Estate Pinot Noir a score of 100 points, marking the first time a major wine publication gave a California Pinot Noir a perfect score. We take great pride that this prestigious honor went to a wine made entirely with grapes from one of our own Estate vineyards.</p>
-          <br>
-          <ReadMore text="Our Estate Vineyards" href="#estate-vineyards" class="ReadMore_center ReadMore_gold"/>
-          <br class="hide_mobile">
-        </div>
+        <ActionBox class="wrap_tiny" v-bind="settings.left"/>
+        <ActionBox class="wrap_tiny" v-bind="settings.right"/>
       </UiBox>
-
     </UiPanel>
 
     <UiPanel>
@@ -95,6 +79,7 @@ import UiList from "@/components/UI/List"
 
 import VList from "./list"
 import ReadMore from "@/components/modules/ReadMore"
+import ActionBox from "@/components/modules/ActionBox"
 import DiscoveryBoxes from "@/components/static/discovery-boxes"
 
 import featImg from "@/assets/mock/vineyard-feat.png"
@@ -125,11 +110,14 @@ export default {
   },
 
   components:{
-    UiPanel, UiBox,
+    UiPanel,
+    UiBox,
     UiBoxImage,
-    UiList, UiHeading,
+    UiList,
+    UiHeading,
     VList,
     ReadMore,
+    ActionBox,
     DiscoveryBoxes
   },
   computed:{
@@ -140,6 +128,26 @@ export default {
       grapes: grapesImg,
       about:  aboutImg,
     })
+  },
+  asyncComputed:{
+    settings:{
+      default: {loading:true},
+      async get(){
+        if( !this.API ) return {loading:true}
+        
+        let
+        error,
+        async = await this.API
+          .namespace('acf/v3')
+          .options()
+          .id('options')
+          .get()
+          .then(rsp=> rsp.acf.vineyards_list_settings)
+          .catch(err=>(error = err))
+          
+        return async;
+      }
+    }
   },
   metatags:{
     title: "Our Vineyards",
