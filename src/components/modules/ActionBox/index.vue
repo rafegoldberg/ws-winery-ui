@@ -23,15 +23,17 @@
       </UiHeading>
     </slot>
 
-    <div v-if="button.url && layout=='float'"
+    <div v-if="layout=='float'"
         class="ActionBox--action"
         :class="{
           'ActionBox--button_float': layout
         }">
-      <UiButton v-bind="button"/>
-      <UiButton class="ActionBox--expand" v-if="collapse && !expanded" @click.native="(expanded = true)">
-        <span>𝒊</span>
-      </UiButton>
+      <template v-if="button && 'url' in button">
+        <UiButton v-bind="button"/>
+        <UiButton class="ActionBox--expand" v-if="collapse && !expanded" @click.native="(expanded = true)">
+          <span>𝒊</span>
+        </UiButton>
+      </template>
     </div>
 
     <!-- @slot Add custom content to the box. -->
@@ -44,9 +46,9 @@
 
   <div class="ActionBox--action">
 
-    <template v-if="layout!='float' && button.url">
-      <slot name="action" v-bind="{button}" v-if="button.cta">
-        <UiButton v-bind="button"/>
+    <template v-if="layout!='float'">
+      <slot name="action" v-bind="{button}">
+        <UiButton v-if="button && button.url" v-bind="button"/>
       </slot>
       <UiButton class="ActionBox--expand" v-if="collapse && !expanded" @click.native="(expanded = true)">
         <span>𝒊</span>
@@ -98,7 +100,8 @@ export default {
     scale: { type: [String,Number] },
 
     button: {
-      type: Object
+      type: Object,
+      default:()=>({})
     },
     cta: { type: [String,Object] },
     url: { type: String },
