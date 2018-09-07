@@ -27,10 +27,13 @@
         
         <div v-if="slide.image" class="swiper-lazy-preloader"/>
 
-        <a v-if="slide.button.url" :href="slide.button.url" class="swiper-more-arrow">
-          Learn More
+        <UiLink v-if="slide.altLink || slide.button.url"
+            :url="slide.altLink.url || slide.button.url"
+            :target="slide.altLink.target"
+            class="swiper-more-arrow">
+          {{slide.altLink.title || "Learn More"}}
           <UiIcon name="ArrowRightLong" width="3rem"/>
-        </a>
+        </UiLink>
 
       </slot>
       
@@ -40,8 +43,8 @@
   <div class="swiper-pagination-wrapper">
     <div class="swiper-pagination"/>
     <UiIcon name="Indicator" :styles="{
-      top:  `calc( ${this.indicatorPosition}% + (33% / 2) )`,
-      left: `calc( ${this.indicatorPosition}% + (33% / 2) )`
+      top:  `calc( ${this.indicatorPosition}% + (${100/this.slides.length}% / 2) )`,
+      left: `calc( ${this.indicatorPosition}% + (${100/this.slides.length}% / 2) )`
     }"/>
   </div>
 
