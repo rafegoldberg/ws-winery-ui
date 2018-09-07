@@ -3,6 +3,7 @@ assetPath = process.env.NODE_ENV=='production' ? '/wp-content/themes/ws-ui/dist/
 __webpack_public_path__ = new URL( assetPath, window.location.origin )
 
 // import API from "@/VuePress/WP"
+
 import Vue from "vue"
 import App from "./App.vue"
 import router from "@/includes/use/router"
@@ -12,6 +13,7 @@ import "@/includes/NavTheme"
 Vue.config.devtools = true
 Vue.config.productionTip = false
 
+import "@/includes/use/modernizr"
 import "@/includes/use/log"
 import "@/includes/use/meta"
 import "@/includes/use/async"
