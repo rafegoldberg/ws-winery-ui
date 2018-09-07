@@ -5,6 +5,7 @@
   box-sizing: border-box;
   white-space: nowrap;
   background: #FAFAFA;
+  max-width: 18em;
 }
 
 .acf-field-link .link-title {
@@ -17,6 +18,8 @@
   text-overflow: ellipsis;
   text-decoration: none;
   opacity: .5;
+  max-width: 15em;
+  /* display: inline-block !important; */
 }
 .acf-field-link .link-url:focus {
   box-shadow: none !important;

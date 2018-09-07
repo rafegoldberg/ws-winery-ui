@@ -1,0 +1,5 @@
+.button[data-name="add"] {
+  all: unset;
+  text-decoration: underline dotted;
+  font-style: italic;
+}

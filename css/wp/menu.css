@@ -1,0 +1,6 @@
+#adminmenu a[href="admin.php?page=ws-test"] .wp-menu-image {
+  /* Vineyards ACF
+   * Admin Page Icon
+   */ 
+  transform: rotate(180deg);
+}
