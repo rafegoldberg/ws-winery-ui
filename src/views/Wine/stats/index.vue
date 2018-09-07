@@ -31,14 +31,18 @@
     </router-link>
   </div>
   
-  <hr>
-  
-  <span class="WineStats--label WineStats--label_price">Release Price</span>
-  <UiHeading :level="2" :scale="4">
-    <span class="WineStats--price">
-      <sup>$</sup>{{price}}
-    </span>
-  </UiHeading>
+  <template v-if="price">
+
+    <hr>
+    
+    <span class="WineStats--label WineStats--label_price">Release Price</span>
+    <UiHeading :level="2" :scale="4">
+      <span class="WineStats--price">
+        <sup>$</sup>{{price}}
+      </span>
+    </UiHeading>
+    
+  </template>
 
   <span v-if="current" class="WineStats--current">
     Current Release

@@ -8,13 +8,16 @@
         :id="panel.id"
         >
       <component v-for="(box,i) in panel.boxes"
+          :test="box.doubleBoxed && $log(classList(box)) || ''"
           :id="box.id"
-          :class="box.doubleBoxed ? 'UiBox_doubled' : classList(box).join(' ')"
-          :is="(box.doubleBoxed || box.img) ? 'UiBoxImage' : 'UiBox'"
+          :class="(box.doubleBoxed
+            ? ['UiBox_doubled',...box.class]
+            : classList(box)
+          ).join(' ')"
+          :is="box.img ? 'UiBoxImage' : 'UiBox'"
           :img="box.img || ''"
           :key="box.id"
           >
-
           <component
               v-if="box.doubleBoxed || box.wrap"
               :is="box.doubleBoxed ? 'UiBox' : 'div'"
@@ -82,8 +85,8 @@ export default {
     },
     classList( box ){
       let
-      classes = box.class || [],
       hiders  = box.hide  || [],
+      classes = box.class && !box.doubleBoxed ? box.class : [],
       order   = box.order || '',
       theme   = box.theme || ''
       return [ ...classes, ...hiders, order, theme ]
@@ -101,17 +104,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.UiBox {
-  $B: #{&};
-  &_doubled {
-    &.UiBoxImage:not(.UiBox_stack) {
-      flex-flow: nowrap row;
-    }
-    &.UiBoxImage > #{$B}[class*="UiTheme_"] {
-      box-shadow: 0 0 8em 0 rgba(0,0,0,.5);
-    }
-  }
-}
-</style>

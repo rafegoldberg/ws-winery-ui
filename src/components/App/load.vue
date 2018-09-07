@@ -26,7 +26,7 @@ export default {
 @import "~@/styles/theme/breaks";
 #AppLoad {
   .UiBox {
-    min-height: calc( 100vh - 4rem);
+    min-height: 100vh;
     @include Break( max-width Breaks(4) ){
       margin-top: -4rem;
       padding-top: 9rem;

@@ -1,7 +1,7 @@
 <template>
 <AppLoad
   v-if="page.loading"
-  theme="dark"
+  theme="cream"
   />
 <UiPanel id="HomePage" class="UiTheme_dark" v-else>
   <Slider
@@ -19,13 +19,12 @@
         delay: 10000
       },
       direction: 'vertical',
-      //effect: 'fade',
       speed: 800,
       resistanceRatio: .5,
-      //freeMode: true,
-      //freeModeSticky: true,
-      //freeModeMomentum: true,
-      //freeModeMomentumVelocityRatio: 10,
+      // freeMode: true,
+      // freeModeSticky: true,
+      // freeModeMomentum: true,
+      // freeModeMomentumVelocityRatio: 10,
       hashNavigation: {
         watchState: true,
         replaceState: true
@@ -46,7 +45,9 @@
           let
           panel = acf.panels[ix]
           return `<div class='${className}'>
-            <span class='${className}-text'>${panel.label}</span>
+            <span class='${className}-text' style='width: calc(50vh / ${acf.panels.length})'>
+              ${panel.label}
+            </span>
           </div>`;
         },
       },
@@ -357,7 +358,6 @@ export default {
             left: unset;
             line-height: 1;
             
-            width: calc(50vh / 3);
             height: initial;
 
             transform: rotate(-90deg) translate(0,-125%);
@@ -388,7 +388,7 @@ export default {
         z-index: 99;
         position: absolute;
         transition: .3s ease;
-        transform: translate(0,-50%);
+        transform: translate( 0, -50% ) !important;
         @include Break( min-width Breaks(4) ){ left: calc(-1em - 4px) !important }
         @include Break( max-width Breaks(4) ){
           top: 0px !important;

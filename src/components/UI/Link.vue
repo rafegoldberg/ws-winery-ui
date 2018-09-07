@@ -9,7 +9,7 @@
       id="AppNav-menuJoin"
       >
     <slot>
-      <div v-html="title || 'Join'"/>
+      <div v-html="title || 'Click'"/>
     </slot>
   </component>
 </template>

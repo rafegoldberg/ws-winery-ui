@@ -56,6 +56,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "./style.scss";
+@import "~@/styles/tools/BreakClass";
+
 .UiBox {
   @extend %UiBox, %UiBox_center;  
   > .UiBox {
@@ -65,6 +67,7 @@ export default {
       margin-bottom: -1.9rem;
     }
   }
+  
   &_stack {
     flex-flow: nowrap column;
     align-items: center;
@@ -163,35 +166,72 @@ export default {
     }
   }
   &_connected {
+    $length: 8rem;
     &:before, &:after,
     &Top:before,
     &Bottom:after {
       content: "";
+      z-index: 2;
       position: absolute;
       left: 50%;
       width: 1px;
-      height: 8rem;
+      height: $length;
       background: Color(theme);
+      margin-left: -1px;
     }
     &, &Top {
-      padding-top: 8.75rem;
-      &:before { top: -1.5rem }
+      padding-top: $length + 2rem;
+      &:before { top: 0 } //-1.5rem }
     }
     &, &Bottom {
-      padding-bottom: 10rem;
+      padding-bottom: $length + 2rem;
       &:after  { bottom: 0 }
     }
   }
   &_overflow {
     overflow: visible;
   }
+  &_jam {
+    &Top, &T {
+      @include Break( min-width Breaks(4) ){
+        padding-top: 0;
+      }
+      @include BreakClass {
+        padding-top: 0;
+      }
+    }
+    &Right, &R {
+      @include Break( min-width Breaks(4) ){
+        padding-right: 0;
+      }
+      @include BreakClass {
+        padding-right: 0;
+      }
+    }
+    &Bottom, &B {
+      @include Break( min-width Breaks(4) ){
+        padding-bottom: 0;
+      }
+      @include BreakClass {
+        padding-bottom: 0;
+      }
+    }
+    &Left, &L {
+      @include Break( min-width Breaks(4) ){
+        padding-left: 0;
+      }
+      @include BreakClass {
+        padding-left: 0;
+      }
+    }
+  }
 }
 </style>
 <docs>
-```vue
-<UiBox>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, delectus molestiae sapiente vel repudiandae in nulla facism? Harum facilis assumenda maiores vel aliquam. Nulla voluptatem unde nam tenetur repudiandae.
-  </p>
-</UiBox>
-```
+  ```vue
+  <UiBox>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, delectus molestiae sapiente vel repudiandae in nulla facism? Harum facilis assumenda maiores vel aliquam. Nulla voluptatem unde nam tenetur repudiandae.
+    </p>
+  </UiBox>
+  ```
 </docs>

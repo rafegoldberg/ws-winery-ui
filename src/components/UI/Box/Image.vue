@@ -14,7 +14,12 @@ import fallback_img from '@/assets/mock/harvest.png';
  */
 export default {
   name: "UiBoxImage",
-  props:{ img:{ type:[String,Object], default:fallback_img } },
+  props:{
+    img: {
+      type:[String,Object],
+      default:fallback_img
+    },
+  },
   components:{ UiBox },
   computed:{
     src(){ return `url(${this.img})` }
