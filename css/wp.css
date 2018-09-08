@@ -1,4 +1,7 @@
-@import "./wp/topBar.css";
-@import "./wp/menu.css";
-@import "./wp/taxDescription.css";
+@import "./wp/top-strip.css";
+@import "./wp/side-menu.css";
+
+@import "./wp/box.publish.css";
+
 @import "./wp/settings.css";
+@import "./wp/taxonomies.css";
