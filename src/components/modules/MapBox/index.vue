@@ -69,10 +69,11 @@ export default {
       var
       url,
       mid,
-      map = this.kml
+      map = this.kml,
+      ucb = Math.round(new Date().getTime()/1000) // uncache param
 
       if( map.split('?').length == 1 ){
-        if( map.indexOf('//')>=0 ) return map;
+        if( map.indexOf('//')>=0 ) return `${map}?ucb=${ucb}`;
         mid = map
       }
       else if( map = map.split('?')[1] ){
@@ -81,7 +82,7 @@ export default {
         mid = mid.filter(p=>p)[0]
       }
 
-      url = `https://google.com/maps/d/kml?forcekml=1&mid=${mid}&cb=${Math.round(new Date().getTime()/1000)}`
+      url = `https://google.com/maps/d/kml?forcekml=1&mid=${mid}&ucb=${ucb}`
 
       return url
     },
