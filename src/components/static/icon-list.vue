@@ -34,7 +34,7 @@
           <span class="iconList--item--label">Visit The Winery</span>
           <div>Arrange a private tour and tasting tailored specifically for you.</div>
         </div>
-        <router-link class="UiButton" to="/visit">Visit Us</router-link>
+        <router-link class="UiButton" to="/visit-request">Visit Us</router-link>
       </div>
     -->
   </section>
@@ -59,7 +59,7 @@ export default {
           title:"Visit The Winery",
           text: "Arrange a private tour and tasting tailored specifically for you.",
           CTA:  "Visit Us",
-          URL:  '/visit',
+          URL:  '/visit-request',
         }
       })
     }
@@ -82,7 +82,7 @@ export default {
         title:"Visit The Winery",
         text: "Arrange a private tour and tasting tailored specifically for you.",
         CTA:  "Visit Us",
-        URL:  '/visit',
+        URL:  '/visit-request',
       } */
     }
   }),
