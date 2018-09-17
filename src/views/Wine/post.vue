@@ -266,6 +266,9 @@ export default {
     download(){
       if( this.context.loading ) return
 
+      if( this.acf.techspecsUseFile ){
+        return this.acf.techspecs
+      }
       let
       PDF = this.acf['Wine-PDF'],
       rgx = /.*\/wp-content\//gim,
