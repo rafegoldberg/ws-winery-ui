@@ -18,10 +18,11 @@
   
   <div class="WineStats--location">
     <div
-      v-text="AVA.name"
       v-if="AVA"
       class="WineStats--location-AVA"
-      />
+      >
+      <router-link to="/growing-ava" v-text="AVA.name" style="text-decoration: none"/>
+    </div>
     <router-link
       v-if="vineyard.name.toLowerCase().indexOf('vineyard')>=0"
       v-text="vineyard.name"
