@@ -154,7 +154,7 @@ export default {
       },
       'How to Buy': '/purchase',
       'Contact': '/contact',
-      'Visit': '/visit-request',
+      'Visit': '/visit',
     }
   }),
   methods:{
