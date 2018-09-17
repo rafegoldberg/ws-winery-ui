@@ -18,7 +18,7 @@ import UiBoxImage from "@/components/UI/Box/Image"
 
 import DiscoverBox from "@/components/modules/DiscoverBox"
 
-import imgWines from './wines.png'
+import imgWines from './wines.jpg'
 import imgVineyards from './vineyards.png'
 import imgHistory from './history.png'
 import imgPeople from './people.png'
