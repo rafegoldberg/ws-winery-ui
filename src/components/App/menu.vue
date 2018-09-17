@@ -85,7 +85,7 @@
           style="background: #7D1214"
           @click.native="toggle"
           />
-        <ui-link url="https://www.williams-selyem.com/shopping3/account/shopping_login.cfm" style="background: #BA9454" @click.native="toggle">
+        <ui-link url="https://www.williams-selyem.com/shopping3/account/login.cfm" style="background: #BA9454" @click.native="toggle">
           <UiIcon name="Account" width="1em" height="1em"/>
           My Account
         </ui-link>
