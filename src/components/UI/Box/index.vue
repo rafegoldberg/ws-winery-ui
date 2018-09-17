@@ -61,10 +61,10 @@ export default {
 .UiBox {
   @extend %UiBox, %UiBox_center;  
   > .UiBox {
-    padding: 1.9rem 1.6rem;
+    padding: 3.6rem;
     &:not(.UiBox_push-up):not(.UiBox_push-down) {
-      margin-top: -1.9rem;
-      margin-bottom: -1.9rem;
+      margin-top: -3.6rem;
+      margin-bottom: -3.6rem;
     }
   }
   
