@@ -13,8 +13,8 @@
     opacity: 1 !important;
     display: inline-flex;
     &_outline {
-      margin-left: -3px;
-      margin-right: -3px;
+      margin-left: -2px;
+      margin-right: -2px;
       + .UiButton_outline,
       + br + .UiButton_outline { // <- hack
         margin-left: 0 !important;
