@@ -72,7 +72,7 @@ input {
       * { border-color: Color(theme) }
     }
     &:after {
-      content: "hit Return to search.";
+      content: "Hit Return to search.";
       pointer-events: none;
 
       position: absolute;
