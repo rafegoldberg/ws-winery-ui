@@ -257,9 +257,9 @@ export default {
           left: 50%;
           transform: translateX(-50%);
           color: Color(light);
-          .UiIcon + :last-child:before {
-            content: "My ";
-          }
+          // .UiIcon + :last-child:before {
+          //   content: "My ";
+          // }
         }
       }
     }
