@@ -8,8 +8,8 @@
     :panels="acf.panels"
     :id="$route.name"
     >
-    <DiscoveryBoxes v-if="acf.showDiscoveryBoxes" v-bind="zip(acf.discoveryBoxes,[true,true,true,true])"/>  
-
+    <DiscoveryBoxes v-if="acf.showDiscoveryBoxes" v-bind="zip(acf.discoveryBoxes,[true,true,true,true])"/>
+    {{pageStyles}}
   </PageBuilder>
 
 </template>
@@ -38,11 +38,27 @@ export default {
       }
     }
   },
+  destroyed(){
+    this.customPageStyles.remove()
+  },
   methods:{
     zip: loZip,
     // zip(unpaired){ return loZip(unpaired) },
   },
   computed:{
+    pageStyles(){
+      if( this.page.loading ) return
+      if(!( 'css' in this.page.acf )) return ''
+
+      var
+      link = this.customPageStyles = document.createElement('style')
+
+      link.type      = 'text/css'
+      link.innerHTML = this.page.acf.css
+
+      document.head.appendChild(link)
+      console.log('appended',this.customPageStyles)
+    },
     endpoint(){
       if(!( this.API && this.fetch )) return false
       else return this.fetch(this.API)
