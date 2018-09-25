@@ -80,6 +80,15 @@ export default {
 
     let setIndicatorPosition = (val=> (this.indicatorPosition = val)).bind(this)
     this.swiper.on('init',function(){
+      if( this.slides[0].classList.contains('swiper-slide-video') ){
+        let
+        inner = document.querySelectorAll('.swiper-slide[data-hash="1"] .ActionBox')[0]
+        inner.classList.add('fade')
+        setTimeout(function(){
+          inner.classList.add('fade_in')
+        },4000);
+      }
+
       setIndicatorPosition(this.activeIndex)
     });
     this.swiper.on('slideChange',function(){
@@ -247,6 +256,11 @@ export default {
         min-height: 100vmax !important;
       }
     }
+  }
+  .fade {
+    opacity: 0;
+    transition: 1.2s 0s ease-in !important;
+    &_in { opacity: 1 }
   }
 }
 </style>
