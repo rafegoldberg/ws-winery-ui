@@ -23,7 +23,9 @@
             @loaded="startPlayer($refs.vimeo[0])"/>
         </div>
 
-        <ActionBox v-bind="slide" class="wrap_min" style="margin: 0 auto 0 0"/>
+        <ActionBox v-bind="slide" class="wrap_min" style="position: relative; margin: 0 auto 0 0" :style="{
+          textShadow: slide.video ? '0 1px 6px rgba(82,82,82,.4)' : '',
+          }"/>
         
         <div v-if="slide.image" class="swiper-lazy-preloader"/>
 
