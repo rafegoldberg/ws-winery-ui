@@ -86,7 +86,7 @@ export default {
         inner.classList.add('fade')
         setTimeout(function(){
           inner.classList.add('fade_in')
-        },4000);
+        },8000);
       }
 
       setIndicatorPosition(this.activeIndex)

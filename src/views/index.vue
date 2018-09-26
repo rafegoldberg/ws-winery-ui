@@ -15,9 +15,6 @@
           freeMode: false
         }
       },
-      autoplay: {
-        delay: 10000
-      },
       direction: 'vertical',
       speed: 800,
       resistanceRatio: .5,
