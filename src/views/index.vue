@@ -9,6 +9,7 @@
     v-if="!page.loading"
     :slides="acf.panels"
     :settings="{
+      threshold: 12,
       breakpoints: {
         1088: {
           direction: 'horizontal',
