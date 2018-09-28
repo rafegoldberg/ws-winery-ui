@@ -69,7 +69,7 @@
           <UiIcon name="Twitter" width="1em" height="1em"/>
         </a>
       </div>
-      <ui-link url="https://www.williams-selyem.com/shopping3/account/login.cfm" class="swiper-account">
+      <ui-link url="https://www.williams-selyem.com/shopping3/account/shopping_login.cfm" class="swiper-account">
         <UiIcon name="Account" width="1em" height="1em"/>
         <span>My Account</span>
       </ui-link>
