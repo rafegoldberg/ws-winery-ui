@@ -35,18 +35,6 @@ import GMap  from 'vue2-google-maps/src/components/map'
 import GMark from 'vue2-google-maps/src/components/marker'
 
 import theme from "./themes/CreameryCustom.json"
-// let
-// theme = [
-//   { featureType: 'poi.business',
-//     stylers: [{visibility: 'off'}]
-//     },
-//   { featureType: 'road',
-//     elementType: 'labels.text.fill',
-//     stylers: [
-//       {color: '#BBBBBB'},
-//     ]
-//   },
-// ]
 
 export default {
   name: "MapBox",
