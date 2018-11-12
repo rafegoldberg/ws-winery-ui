@@ -1,6 +1,6 @@
 <template>
 <div class="WineSearch">
-  <UiHeading v-if="$root.filters.search && results">
+  <UiHeading v-if="results">
     {{results && results._paging.total}} Results
   </UiHeading>
   <slot/>
