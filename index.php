@@ -9,6 +9,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46387613-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-46387613-1');
+  </script>
+
   <!-- External -->
   <script src="//unpkg.com/wpapi@1.1.2/browser/wpapi.min.js"></script>
   <!-- <script src="//unpkg.com/vue"></script> -->
