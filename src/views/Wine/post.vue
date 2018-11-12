@@ -53,7 +53,7 @@
             <span v-if="checkTechSpecs[0]">
               <table>
                 <tr v-if="acf.TA">
-                  <th>Alc.</th>
+                  <th>TA</th>
                   <td>{{acf.TA}}</td>
                 </tr>
                 <tr v-if="acf.pH">
@@ -61,7 +61,7 @@
                   <td>{{acf.pH}}</td>
                 </tr>
                 <tr v-if="acf.Alc">
-                  <th>TA</th>
+                  <th>Alc.</th>
                   <td>{{acf.Alc}}</td>
                 </tr>
               </table>
