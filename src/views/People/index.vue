@@ -21,7 +21,7 @@
         <img :src="imgs.proprietors">
       </router-link>
       <label>
-        <router-link to="john-and-kathe-dyson" append>John &amp; Kath Dyson</router-link>
+        <router-link to="john-and-kathe-dyson" append>John &amp; Kathe Dyson</router-link>
       </label>
     </UiBox>
   </UiPanel>
