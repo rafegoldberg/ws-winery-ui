@@ -1,7 +1,5 @@
 <template>
-<AppLoad
-  v-if="context.loading"
-  />
+<AppLoad v-if="context.loading"/>
 <div id="StaffList" v-else>
   <UiPanel class="UiTheme_dark" connect="down" :connectText="''">
     <UiBoxImage :img="imgs.cover"/>
