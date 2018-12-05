@@ -30,7 +30,7 @@ module.exports = {
       ]
     }
   },
-  transpileDependencies: ['swiper'],
+  transpileDependencies: ['swiper', 'vue-vimeo-player'],
 
   css: {
     sourceMap: true,
