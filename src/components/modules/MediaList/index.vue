@@ -47,9 +47,9 @@ export default {
     imgLoading: false,
   }),
   methods:{
-    getImage(){
-      // console.log({args:arguments,self:this})
-    }
+    // getImage(){
+    //   // console.log({args:arguments,self:this})
+    // }
   },
   computed:{
     active:{

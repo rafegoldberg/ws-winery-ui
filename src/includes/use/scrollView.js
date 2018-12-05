@@ -8,6 +8,7 @@ lastTheme,
 navOffset
 
 function getAppNavHeight( el='AppNav' ){
+  el = el || 'AppNav'
   if( el = document.getElementById(el) )
     return el.offsetHeight
   else

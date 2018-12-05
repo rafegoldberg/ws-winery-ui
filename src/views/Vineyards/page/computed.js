@@ -64,8 +64,11 @@ export function tables( self, str ){
   return []
 }
 
-export function text( self, str='', tag="p" ){
+export function text( self, str, tag ){
   if( this.context.loading ) return
+  
+  str = str || ''
+  tag = tag || 'p'
 
   if( 'vineyardNotes' in this.context.acf
       && this.context.acf.vineyardNotes
