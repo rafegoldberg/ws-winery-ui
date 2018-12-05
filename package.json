@@ -13,6 +13,7 @@
     "devx": "concurrently \"yarn dev\" \"yarn dox\""
   },
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
     "breakpoint-sass": "^2.7.1",
     "express": "^4.16.3",
     "inflection": "^1.12.0",
@@ -32,11 +33,11 @@
     "@vue/cli-plugin-eslint": "^3.0.0",
     "@vue/cli-service": "^3.0.0",
     "@vue/eslint-config-prettier": "^3.0.0",
+    "concurrently": "^3.5.1",
     "lint-staged": "^7.2.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.17",
-    "concurrently": "^3.5.1",
     "wpapi": "^1.1.2"
   },
   "browserslist": [
