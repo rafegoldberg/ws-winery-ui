@@ -15,7 +15,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   
   <!-- External Dependencies -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
+  <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script> -->
   <script src="//unpkg.com/wpapi@1.1.2/browser/wpapi.min.js"></script>
 
   <!-- Google Analytics -->
