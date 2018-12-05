@@ -24,11 +24,13 @@ module.exports = {
     },
     module:{
       rules:[
-      { resourceQuery: /blockType=docs/,
-        loader:        require.resolve('./docs/src/.loader.js')
+        { resourceQuery: /blockType=docs/,
+          loader:        require.resolve('./docs/src/.loader.js')
         },
-    ]}
+      ]
+    }
   },
+  transpileDependencies: ['swiper'],
 
   css: {
     sourceMap: true,
