@@ -1,10 +1,7 @@
 const
 BASE = '/',
 PROD = process.env.NODE_ENV === 'production',
-path = require('path'),
-{dependencies} = require('./package.json')
-
-
+path = require('path')
 
 module.exports = {
 
@@ -33,7 +30,12 @@ module.exports = {
       ]
     }
   },
-  transpileDependencies: Object.keys(dependencies),
+  transpileDependencies: [
+    'inflection',
+    'swiper',
+    'vue-vimeo-player',
+    'vue2-google-maps'
+  ],
 
   css: {
     sourceMap: true,
