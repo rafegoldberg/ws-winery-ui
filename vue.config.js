@@ -31,9 +31,9 @@ module.exports = {
     }
   },
   transpileDependencies: [
-    'inflection',
     'swiper',
     'vue-vimeo-player',
+    // 'inflection',      // BREAKING
     // 'vue2-google-maps' // BREAKING
   ],
 
