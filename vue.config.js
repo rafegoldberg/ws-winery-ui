@@ -34,7 +34,7 @@ module.exports = {
     'inflection',
     'swiper',
     'vue-vimeo-player',
-    'vue2-google-maps'
+    // 'vue2-google-maps' // BREAKING
   ],
 
   css: {
