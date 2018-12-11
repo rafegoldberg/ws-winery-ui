@@ -1,3 +1,4 @@
+import "@babel/polyfill"
 import "@/includes/publicPath"
 
 import Vue from "vue"
