@@ -1,13 +1,11 @@
 const
 BASE = '/',
-PROD = process.env.NODE_ENV === 'production',
-path = require('path')
+PROD = process.env.NODE_ENV === 'production'
 
 module.exports = {
 
   baseUrl: BASE,
   assetsDir: PROD ? './wp-content/themes/ws-ui/dist/' : '.',
-
 
   configureWebpack: {
     devtool: "source-map",
@@ -16,12 +14,11 @@ module.exports = {
     },
     output:{
       filename: '[name].js',
-      chunkFilename: '[name].js',
-      // publicPath: PROD ? BASE+'wp-content/themes/ws-ui/dist/' : '/'
+      chunkFilename: '[name].js'
     },
-    resolve: {
+    /* resolve: {
       alias: {}
-    },
+    }, */
     module:{
       rules:[
         { resourceQuery: /blockType=docs/,
