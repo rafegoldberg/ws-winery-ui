@@ -1,8 +1,10 @@
 <?
-$isie = false;
-// $isie = htmlentities($_SERVER['HTTP_USER_AGENT'], ENT_QUOTES, 'UTF-8');
-// $isie = preg_match('~MSIE|Internet Explorer~i', $ua) || (strpos($ua, 'Trident/7.0') !== false && strpos($ua, 'rv:11.0') !== false) ? true : false;
-if( $_REQUEST['isie'] ) $isie = true;
+$isIE = false;
+$isIE = htmlentities($_SERVER['HTTP_USER_AGENT'], ENT_QUOTES, 'UTF-8');
+$isIE = preg_match('~MSIE|Internet Explorer~i', $ua) || (strpos($ua, 'Trident/7.0') !== false && strpos($ua, 'rv:11.0') !== false)
+  ? true
+  : false;
+if( $_REQUEST['test']=='ie' ) $isIE = true;
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +15,7 @@ if( $_REQUEST['isie'] ) $isie = true;
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   
-  <?if( !$isie ):?>
+  <?if( !$isIE ):?>
     <!-- External  -->
       <script src="//unpkg.com/wpapi@1.1.2/browser/wpapi.min.js"></script>
 
@@ -29,9 +31,9 @@ if( $_REQUEST['isie'] ) $isie = true;
 
   <?wp_head()?>
 </head>
-<body <?if(!$isie) body_class()?>>
+<body <?if(!$isIE) body_class()?>>
 
-  <?if( !$isie ):?>
+  <?if( !$isIE ):?>
     <div id="app">
       <div hidden>
       <?if( have_posts() )while( have_posts() ){

@@ -33,7 +33,7 @@ body {
   max-width: 30em;
   padding: 1.5em;
   background: rgba(25, 25, 25, .95);
-  box-shadow: 0 0 2.5em rgba(50, 50, 50, .75);
+  box-shadow: 0 .5em 2.5em rgba(25, 25, 25, .88);
   border: 1px solid black;
 }
 
