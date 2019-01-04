@@ -40,8 +40,9 @@ if( $_REQUEST['isie'] ) $isie = true;
         }?>
       </div>
     </div>
-  <?else:?>
-    your browser is out of date!
+  <?else:
+    include "./IE.php";
+    ?>
   <?endif?>
 
   <?wp_footer()?>
