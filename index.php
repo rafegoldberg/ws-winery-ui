@@ -13,38 +13,38 @@ if( $_REQUEST['isie'] ) $isie = true;
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   
-<?if( !$isie ):?>
-  <!-- External  -->
-    <script src="//unpkg.com/wpapi@1.1.2/browser/wpapi.min.js"></script>
+  <?if( !$isie ):?>
+    <!-- External  -->
+      <script src="//unpkg.com/wpapi@1.1.2/browser/wpapi.min.js"></script>
 
-  <!-- Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46387613-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-46387613-1');
-    </script>
+    <!-- Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46387613-1"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-46387613-1');
+      </script>
+  <?endif?>
 
   <?wp_head()?>
-<?endif?>
 </head>
 <body <?if( !$isie ){ body_class() }?>>
 
-<?if( !$isie ):?>
-  <div id="app">
-    <div hidden>
-    <?if( have_posts() )while( have_posts() ){
-      the_post();
-      the_title();
-      }?>
+  <?if( !$isie ):?>
+    <div id="app">
+      <div hidden>
+      <?if( have_posts() )while( have_posts() ){
+        the_post();
+        the_title();
+        }?>
+      </div>
     </div>
-  </div>
-  <?wp_footer()?>
-<?else:
-  include "./templates/IE.php";
-  ?>
-<?endif?>
+  <?else:
+    get_template_part("templates/ie", "warning");
+    ?>
+  <?endif?>
 
+  <?wp_footer()?>
 </body>
 </html>
