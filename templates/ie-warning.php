@@ -1,9 +1,9 @@
 <div id="IE">
-  <div id="IE--inner">
+  <div id="IE-inner">
     <p>Without a modern browser, you may run into problems viewing the Williams Selyem website. We recommend using <a href="//google.com/chrome" title="Download Chrome">Chrome</a> or <a href="//mozilla.org/firefox" title="Download Firefox">Firefox</a> for the best experience.</p>
     <p>
       <small style="opacity: .75">Visit <a href="//browser-update.org/update.html">browser-update.org</a> for more information about your current browser.</small></p>
-    <div style="text-align:center">
+    <div style="text-align: center">
       <button onclick="document.querySelectorAll('#IE')[0].remove()">Dismiss</button>
     </div>
   </div>
@@ -32,7 +32,7 @@
     background-repeat: no-repeat;
   }
 
-  #IE--inner {
+  #IE-inner {
     max-width: 30em;
     padding: 1.5em;
     background: rgba(250, 250, 250, 0.95);
@@ -43,18 +43,18 @@
     box-shadow: 0 .5em 3em .25em rgba(25, 25, 25, .33);
   }
 
-  #IE--inner > :first-child {
+  #IE-inner > :first-child {
     margin-top: 0;
   }
-  #IE--inner > :last-child {
+  #IE-inner > :last-child {
     margin-bottom: 0;
   }
   
-  #IE--inner > p {
+  #IE-inner > p {
     line-height: 1.5;
   }
   
-  #IE--inner > p:last-of-type {
+  #IE-inner > p:last-of-type {
     padding: 1rem 0 0;
     border-top: 1px solid rgba(127, 127, 127, .5);
   }
