@@ -4,7 +4,7 @@ $isIE = htmlentities($_SERVER['HTTP_USER_AGENT'], ENT_QUOTES, 'UTF-8');
 $isIE = preg_match('~MSIE|Internet Explorer~i', $isIE) || (strpos($isIE, 'Trident/7.0') !== false && strpos($isIE, 'rv:11.0') !== false)
   ? true
   : false;
-if( $_REQUEST['test']=='ie' ) $isIE = true;
+if( $_REQUEST['check']=='ie' ) $isIE = true;
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +39,7 @@ if( $_REQUEST['test']=='ie' ) $isIE = true;
         }?>
       </div>
     </div>
-    
+
   <?if( $isIE )
     get_template_part("templates/ie", "warning");
     ?>
