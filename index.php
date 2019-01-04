@@ -29,7 +29,7 @@ if( $_REQUEST['isie'] ) $isie = true;
 
   <?wp_head()?>
 </head>
-<body <?if( !$isie ){ body_class() }?>>
+<body <?if(!$isie) body_class()?>>
 
   <?if( !$isie ):?>
     <div id="app">
