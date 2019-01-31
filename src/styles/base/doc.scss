@@ -4,15 +4,15 @@
 
 :root {
   font-size: $root;
-  @include Break( min-width (Breaks(4) + Breaks(2)) ){
-    font-size: $root + 1.5pt;
-  }
-  @include Break( max-width Breaks(4) ){
-    font-size: $root - 1pt;
-  }
-  @include Break( max-width Breaks(2) ){
-    font-size: $root - 1.5pt;
-  }
+  // @include Break( min-width (Breaks(4) + Breaks(2)) ){
+  //   font-size: $root + 1.5pt;
+  // }
+  // @include Break( max-width Breaks(4) ){
+  //   font-size: $root - 1pt;
+  // }
+  // @include Break( max-width Breaks(2) ){
+  //   font-size: $root - 1.5pt;
+  // }
 }
 
 html, body {
